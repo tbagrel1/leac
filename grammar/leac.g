@@ -202,8 +202,11 @@ expr_0
 
 expr_1
     : (expr_0 -> expr_0)
-        ( '^' next=expr_0 -> ^(POW $expr_1 $next)
-        )*
+        ( '^' next=expr_1_proxy -> ^(POW $expr_1 $next)
+        )?
+    ;
+expr_1_proxy
+    : expr_1 -> expr_1
     ;
 
 expr_2

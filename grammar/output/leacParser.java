@@ -1,4 +1,4 @@
-// $ANTLR null /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g 2020-01-15 17:40:34
+// $ANTLR null /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g 2020-01-15 17:48:17
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -149,12 +149,12 @@ public class leacParser extends DebugParser {
 
 
 	public static final String[] ruleNames = new String[] {
-		"invalidRule", "idf_list", "range_list", "expr_3", "program", "statement", 
-		"write", "conditional", "var_decl_list", "expr_4", "constant", "range", 
-		"loop", "read", "expr_2", "expr_8", "coord_list", "func_decl_list", "param_list", 
-		"arg_list", "func_decl", "affect_or_procedure_call", "var_decl", "param", 
-		"typename", "expr_0", "expr_7", "array_typename", "expr", "expr_1", "expr_5", 
-		"expr_6", "atom_typename", "returning", "block"
+		"invalidRule", "expr_8", "expr_1", "write", "var_decl", "affect_or_procedure_call", 
+		"atom_typename", "loop", "range", "conditional", "expr_4", "expr_7", "var_decl_list", 
+		"expr_1_proxy", "param", "range_list", "returning", "array_typename", 
+		"expr_2", "func_decl", "read", "program", "arg_list", "expr", "param_list", 
+		"expr_5", "expr_6", "statement", "expr_3", "constant", "typename", "coord_list", 
+		"idf_list", "block", "expr_0", "func_decl_list"
 	};
 
 	public static final boolean[] decisionCanBacktrack = new boolean[] {
@@ -277,7 +277,7 @@ public class leacParser extends DebugParser {
 
 			stream_statement.add(statement5.getTree());
 			// AST REWRITE
-			// elements: statement, var_decl_list, func_decl_list
+			// elements: func_decl_list, statement, var_decl_list
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -531,7 +531,7 @@ public class leacParser extends DebugParser {
 			stream_78.add(char_literal11);
 
 			// AST REWRITE
-			// elements: idf_list, typename
+			// elements: typename, idf_list
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -954,7 +954,7 @@ public class leacParser extends DebugParser {
 
 			stream_block.add(block24.getTree());
 			// AST REWRITE
-			// elements: var_decl_list, block, atom_typename, param_list
+			// elements: param_list, block, atom_typename, var_decl_list
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1499,7 +1499,7 @@ public class leacParser extends DebugParser {
 
 			stream_atom_typename.add(atom_typename37.getTree());
 			// AST REWRITE
-			// elements: range_list, atom_typename
+			// elements: atom_typename, range_list
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1751,7 +1751,7 @@ public class leacParser extends DebugParser {
 			stream_INT.add(sup);
 
 			// AST REWRITE
-			// elements: inf, sup
+			// elements: sup, inf
 			// token labels: inf, sup
 			// rule labels: retval
 			// token list labels: 
@@ -2095,7 +2095,7 @@ public class leacParser extends DebugParser {
 
 					stream_typename.add(typename47.getTree());
 					// AST REWRITE
-					// elements: typename, IDF
+					// elements: IDF, typename
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2654,7 +2654,7 @@ public class leacParser extends DebugParser {
 
 					stream_statement.add(second.getTree());
 					// AST REWRITE
-					// elements: expr, second, first
+					// elements: expr, first, second
 					// token labels: 
 					// rule labels: first, retval, second
 					// token list labels: 
@@ -2694,7 +2694,7 @@ public class leacParser extends DebugParser {
 					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:133:25: 
 					{
 					// AST REWRITE
-					// elements: expr, first
+					// elements: first, expr
 					// token labels: 
 					// rule labels: first, retval
 					// token list labels: 
@@ -3356,7 +3356,7 @@ public class leacParser extends DebugParser {
 							stream_86.add(char_literal75);
 
 							// AST REWRITE
-							// elements: IDF, coord_list
+							// elements: coord_list, IDF
 							// token labels: 
 							// rule labels: retval
 							// token list labels: 
@@ -3449,7 +3449,7 @@ public class leacParser extends DebugParser {
 					stream_70.add(char_literal80);
 
 					// AST REWRITE
-					// elements: IDF, arg_list
+					// elements: arg_list, IDF
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -4639,7 +4639,7 @@ public class leacParser extends DebugParser {
 							stream_70.add(char_literal103);
 
 							// AST REWRITE
-							// elements: IDF, arg_list
+							// elements: arg_list, IDF
 							// token labels: 
 							// rule labels: retval
 							// token list labels: 
@@ -4835,7 +4835,7 @@ public class leacParser extends DebugParser {
 
 
 	// $ANTLR start "expr_1"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:203:1: expr_1 : ( expr_0 -> expr_0 ) ( '^' next= expr_0 -> ^( POW $expr_1 $next) )* ;
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:203:1: expr_1 : ( expr_0 -> expr_0 ) ( '^' next= expr_1_proxy -> ^( POW $expr_1 $next) )? ;
 	public final leacParser.expr_1_return expr_1() throws RecognitionException {
 		leacParser.expr_1_return retval = new leacParser.expr_1_return();
 		retval.start = input.LT(1);
@@ -4848,6 +4848,7 @@ public class leacParser extends DebugParser {
 
 		Object char_literal112_tree=null;
 		RewriteRuleTokenStream stream_87=new RewriteRuleTokenStream(adaptor,"token 87");
+		RewriteRuleSubtreeStream stream_expr_1_proxy=new RewriteRuleSubtreeStream(adaptor,"rule expr_1_proxy");
 		RewriteRuleSubtreeStream stream_expr_0=new RewriteRuleSubtreeStream(adaptor,"rule expr_0");
 
 		try { dbg.enterRule(getGrammarFileName(), "expr_1");
@@ -4856,10 +4857,10 @@ public class leacParser extends DebugParser {
 		dbg.location(203, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:204:5: ( ( expr_0 -> expr_0 ) ( '^' next= expr_0 -> ^( POW $expr_1 $next) )* )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:204:5: ( ( expr_0 -> expr_0 ) ( '^' next= expr_1_proxy -> ^( POW $expr_1 $next) )? )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:204:7: ( expr_0 -> expr_0 ) ( '^' next= expr_0 -> ^( POW $expr_1 $next) )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:204:7: ( expr_0 -> expr_0 ) ( '^' next= expr_1_proxy -> ^( POW $expr_1 $next) )?
 			{
 			dbg.location(204,7);
 			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:204:7: ( expr_0 -> expr_0 )
@@ -4895,38 +4896,34 @@ public class leacParser extends DebugParser {
 
 			}
 			dbg.location(205,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:205:9: ( '^' next= expr_0 -> ^( POW $expr_1 $next) )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:205:9: ( '^' next= expr_1_proxy -> ^( POW $expr_1 $next) )?
+			int alt25=2;
 			try { dbg.enterSubRule(25);
+			try { dbg.enterDecision(25, decisionCanBacktrack[25]);
 
-			loop25:
-			while (true) {
-				int alt25=2;
-				try { dbg.enterDecision(25, decisionCanBacktrack[25]);
+			int LA25_0 = input.LA(1);
+			if ( (LA25_0==87) ) {
+				alt25=1;
+			}
+			} finally {dbg.exitDecision(25);}
 
-				int LA25_0 = input.LA(1);
-				if ( (LA25_0==87) ) {
-					alt25=1;
-				}
-
-				} finally {dbg.exitDecision(25);}
-
-				switch (alt25) {
+			switch (alt25) {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:205:11: '^' next= expr_0
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:205:11: '^' next= expr_1_proxy
 					{
 					dbg.location(205,11);
 					char_literal112=(Token)match(input,87,FOLLOW_87_in_expr_11911);  
 					stream_87.add(char_literal112);
 					dbg.location(205,19);
-					pushFollow(FOLLOW_expr_0_in_expr_11915);
-					next=expr_0();
+					pushFollow(FOLLOW_expr_1_proxy_in_expr_11915);
+					next=expr_1_proxy();
 					state._fsp--;
 
-					stream_expr_0.add(next.getTree());
+					stream_expr_1_proxy.add(next.getTree());
 					// AST REWRITE
-					// elements: next, expr_1
+					// elements: expr_1, next
 					// token labels: 
 					// rule labels: next, retval
 					// token list labels: 
@@ -4937,16 +4934,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 205:27: -> ^( POW $expr_1 $next)
+					// 205:33: -> ^( POW $expr_1 $next)
 					{
-						dbg.location(205,30);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:205:30: ^( POW $expr_1 $next)
+						dbg.location(205,36);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:205:36: ^( POW $expr_1 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(205,32);
+						dbg.location(205,38);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(POW, "POW"), root_1);
-						dbg.location(205,37);
-						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(205,45);
+						dbg.location(205,43);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(205,51);
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -4959,9 +4956,6 @@ public class leacParser extends DebugParser {
 					}
 					break;
 
-				default :
-					break loop25;
-				}
 			}
 			} finally {dbg.exitSubRule(25);}
 
@@ -4995,6 +4989,92 @@ public class leacParser extends DebugParser {
 	// $ANTLR end "expr_1"
 
 
+	public static class expr_1_proxy_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
+
+	// $ANTLR start "expr_1_proxy"
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:208:1: expr_1_proxy : expr_1 -> expr_1 ;
+	public final leacParser.expr_1_proxy_return expr_1_proxy() throws RecognitionException {
+		leacParser.expr_1_proxy_return retval = new leacParser.expr_1_proxy_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		ParserRuleReturnScope expr_1113 =null;
+
+		RewriteRuleSubtreeStream stream_expr_1=new RewriteRuleSubtreeStream(adaptor,"rule expr_1");
+
+		try { dbg.enterRule(getGrammarFileName(), "expr_1_proxy");
+		if ( getRuleLevel()==0 ) {dbg.commence();}
+		incRuleLevel();
+		dbg.location(208, 0);
+
+		try {
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:209:5: ( expr_1 -> expr_1 )
+			dbg.enterAlt(1);
+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:209:7: expr_1
+			{
+			dbg.location(209,7);
+			pushFollow(FOLLOW_expr_1_in_expr_1_proxy1954);
+			expr_1113=expr_1();
+			state._fsp--;
+
+			stream_expr_1.add(expr_1113.getTree());
+			// AST REWRITE
+			// elements: expr_1
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 209:14: -> expr_1
+			{
+				dbg.location(209,17);
+				adaptor.addChild(root_0, stream_expr_1.nextTree());
+			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		dbg.location(210, 4);
+
+		}
+		finally {
+			dbg.exitRule(getGrammarFileName(), "expr_1_proxy");
+			decRuleLevel();
+			if ( getRuleLevel()==0 ) {dbg.terminate();}
+		}
+
+		return retval;
+	}
+	// $ANTLR end "expr_1_proxy"
+
+
 	public static class expr_2_return extends ParserRuleReturnScope {
 		Object tree;
 		@Override
@@ -5003,19 +5083,19 @@ public class leacParser extends DebugParser {
 
 
 	// $ANTLR start "expr_2"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:209:1: expr_2 : ( '-' -> ^( UNARY_MINUS $expr_2) | 'not' -> ^( NOT $expr_2) )* ( expr_1 -> expr_1 ) ;
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:212:1: expr_2 : ( '-' -> ^( UNARY_MINUS $expr_2) | 'not' -> ^( NOT $expr_2) )* ( expr_1 -> expr_1 ) ;
 	public final leacParser.expr_2_return expr_2() throws RecognitionException {
 		leacParser.expr_2_return retval = new leacParser.expr_2_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token char_literal113=null;
-		Token string_literal114=null;
-		ParserRuleReturnScope expr_1115 =null;
+		Token char_literal114=null;
+		Token string_literal115=null;
+		ParserRuleReturnScope expr_1116 =null;
 
-		Object char_literal113_tree=null;
-		Object string_literal114_tree=null;
+		Object char_literal114_tree=null;
+		Object string_literal115_tree=null;
 		RewriteRuleTokenStream stream_74=new RewriteRuleTokenStream(adaptor,"token 74");
 		RewriteRuleTokenStream stream_98=new RewriteRuleTokenStream(adaptor,"token 98");
 		RewriteRuleSubtreeStream stream_expr_1=new RewriteRuleSubtreeStream(adaptor,"rule expr_1");
@@ -5023,16 +5103,16 @@ public class leacParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "expr_2");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(209, 0);
+		dbg.location(212, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:210:5: ( ( '-' -> ^( UNARY_MINUS $expr_2) | 'not' -> ^( NOT $expr_2) )* ( expr_1 -> expr_1 ) )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:213:5: ( ( '-' -> ^( UNARY_MINUS $expr_2) | 'not' -> ^( NOT $expr_2) )* ( expr_1 -> expr_1 ) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:211:9: ( '-' -> ^( UNARY_MINUS $expr_2) | 'not' -> ^( NOT $expr_2) )* ( expr_1 -> expr_1 )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:214:9: ( '-' -> ^( UNARY_MINUS $expr_2) | 'not' -> ^( NOT $expr_2) )* ( expr_1 -> expr_1 )
 			{
-			dbg.location(211,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:211:9: ( '-' -> ^( UNARY_MINUS $expr_2) | 'not' -> ^( NOT $expr_2) )*
+			dbg.location(214,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:214:9: ( '-' -> ^( UNARY_MINUS $expr_2) | 'not' -> ^( NOT $expr_2) )*
 			try { dbg.enterSubRule(26);
 
 			loop26:
@@ -5054,11 +5134,11 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:211:11: '-'
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:214:11: '-'
 					{
-					dbg.location(211,11);
-					char_literal113=(Token)match(input,74,FOLLOW_74_in_expr_21965);  
-					stream_74.add(char_literal113);
+					dbg.location(214,11);
+					char_literal114=(Token)match(input,74,FOLLOW_74_in_expr_21985);  
+					stream_74.add(char_literal114);
 
 					// AST REWRITE
 					// elements: expr_2
@@ -5071,15 +5151,15 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 211:15: -> ^( UNARY_MINUS $expr_2)
+					// 214:15: -> ^( UNARY_MINUS $expr_2)
 					{
-						dbg.location(211,18);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:211:18: ^( UNARY_MINUS $expr_2)
+						dbg.location(214,18);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:214:18: ^( UNARY_MINUS $expr_2)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(211,20);
+						dbg.location(214,20);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(UNARY_MINUS, "UNARY_MINUS"), root_1);
-						dbg.location(211,33);
+						dbg.location(214,33);
 						adaptor.addChild(root_1, stream_retval.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -5094,11 +5174,11 @@ public class leacParser extends DebugParser {
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:212:11: 'not'
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:215:11: 'not'
 					{
-					dbg.location(212,11);
-					string_literal114=(Token)match(input,98,FOLLOW_98_in_expr_21986);  
-					stream_98.add(string_literal114);
+					dbg.location(215,11);
+					string_literal115=(Token)match(input,98,FOLLOW_98_in_expr_22006);  
+					stream_98.add(string_literal115);
 
 					// AST REWRITE
 					// elements: expr_2
@@ -5111,15 +5191,15 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 212:17: -> ^( NOT $expr_2)
+					// 215:17: -> ^( NOT $expr_2)
 					{
-						dbg.location(212,20);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:212:20: ^( NOT $expr_2)
+						dbg.location(215,20);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:215:20: ^( NOT $expr_2)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(212,22);
+						dbg.location(215,22);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(NOT, "NOT"), root_1);
-						dbg.location(212,27);
+						dbg.location(215,27);
 						adaptor.addChild(root_1, stream_retval.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -5137,18 +5217,18 @@ public class leacParser extends DebugParser {
 				}
 			}
 			} finally {dbg.exitSubRule(26);}
-			dbg.location(214,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:214:9: ( expr_1 -> expr_1 )
+			dbg.location(217,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:217:9: ( expr_1 -> expr_1 )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:214:10: expr_1
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:217:10: expr_1
 			{
-			dbg.location(214,10);
-			pushFollow(FOLLOW_expr_1_in_expr_22017);
-			expr_1115=expr_1();
+			dbg.location(217,10);
+			pushFollow(FOLLOW_expr_1_in_expr_22037);
+			expr_1116=expr_1();
 			state._fsp--;
 
-			stream_expr_1.add(expr_1115.getTree());
+			stream_expr_1.add(expr_1116.getTree());
 			// AST REWRITE
 			// elements: expr_1
 			// token labels: 
@@ -5160,9 +5240,9 @@ public class leacParser extends DebugParser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 214:17: -> expr_1
+			// 217:17: -> expr_1
 			{
-				dbg.location(214,20);
+				dbg.location(217,20);
 				adaptor.addChild(root_0, stream_expr_1.nextTree());
 			}
 
@@ -5187,7 +5267,7 @@ public class leacParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(215, 4);
+		dbg.location(218, 4);
 
 		}
 		finally {
@@ -5209,20 +5289,20 @@ public class leacParser extends DebugParser {
 
 
 	// $ANTLR start "expr_3"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:217:1: expr_3 : ( expr_2 -> expr_2 ) ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )* ;
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:220:1: expr_3 : ( expr_2 -> expr_2 ) ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )* ;
 	public final leacParser.expr_3_return expr_3() throws RecognitionException {
 		leacParser.expr_3_return retval = new leacParser.expr_3_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token char_literal117=null;
 		Token char_literal118=null;
+		Token char_literal119=null;
 		ParserRuleReturnScope next =null;
-		ParserRuleReturnScope expr_2116 =null;
+		ParserRuleReturnScope expr_2117 =null;
 
-		Object char_literal117_tree=null;
 		Object char_literal118_tree=null;
+		Object char_literal119_tree=null;
 		RewriteRuleTokenStream stream_71=new RewriteRuleTokenStream(adaptor,"token 71");
 		RewriteRuleTokenStream stream_76=new RewriteRuleTokenStream(adaptor,"token 76");
 		RewriteRuleSubtreeStream stream_expr_2=new RewriteRuleSubtreeStream(adaptor,"rule expr_2");
@@ -5230,26 +5310,26 @@ public class leacParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "expr_3");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(217, 0);
+		dbg.location(220, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:218:5: ( ( expr_2 -> expr_2 ) ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )* )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:221:5: ( ( expr_2 -> expr_2 ) ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )* )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:218:7: ( expr_2 -> expr_2 ) ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:221:7: ( expr_2 -> expr_2 ) ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )*
 			{
-			dbg.location(218,7);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:218:7: ( expr_2 -> expr_2 )
+			dbg.location(221,7);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:221:7: ( expr_2 -> expr_2 )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:218:8: expr_2
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:221:8: expr_2
 			{
-			dbg.location(218,8);
-			pushFollow(FOLLOW_expr_2_in_expr_32040);
-			expr_2116=expr_2();
+			dbg.location(221,8);
+			pushFollow(FOLLOW_expr_2_in_expr_32060);
+			expr_2117=expr_2();
 			state._fsp--;
 
-			stream_expr_2.add(expr_2116.getTree());
+			stream_expr_2.add(expr_2117.getTree());
 			// AST REWRITE
 			// elements: expr_2
 			// token labels: 
@@ -5261,9 +5341,9 @@ public class leacParser extends DebugParser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 218:15: -> expr_2
+			// 221:15: -> expr_2
 			{
-				dbg.location(218,18);
+				dbg.location(221,18);
 				adaptor.addChild(root_0, stream_expr_2.nextTree());
 			}
 
@@ -5271,8 +5351,8 @@ public class leacParser extends DebugParser {
 			retval.tree = root_0;
 
 			}
-			dbg.location(219,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:219:9: ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )*
+			dbg.location(222,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:222:9: ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )*
 			try { dbg.enterSubRule(27);
 
 			loop27:
@@ -5294,19 +5374,19 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:219:11: '*' next= expr_2
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:222:11: '*' next= expr_2
 					{
-					dbg.location(219,11);
-					char_literal117=(Token)match(input,71,FOLLOW_71_in_expr_32057);  
-					stream_71.add(char_literal117);
-					dbg.location(219,19);
-					pushFollow(FOLLOW_expr_2_in_expr_32061);
+					dbg.location(222,11);
+					char_literal118=(Token)match(input,71,FOLLOW_71_in_expr_32077);  
+					stream_71.add(char_literal118);
+					dbg.location(222,19);
+					pushFollow(FOLLOW_expr_2_in_expr_32081);
 					next=expr_2();
 					state._fsp--;
 
 					stream_expr_2.add(next.getTree());
 					// AST REWRITE
-					// elements: next, expr_3
+					// elements: expr_3, next
 					// token labels: 
 					// rule labels: next, retval
 					// token list labels: 
@@ -5317,16 +5397,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 219:27: -> ^( MUL $expr_3 $next)
+					// 222:27: -> ^( MUL $expr_3 $next)
 					{
-						dbg.location(219,30);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:219:30: ^( MUL $expr_3 $next)
+						dbg.location(222,30);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:222:30: ^( MUL $expr_3 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(219,32);
+						dbg.location(222,32);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(MUL, "MUL"), root_1);
-						dbg.location(219,37);
-						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(219,45);
+						dbg.location(222,37);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(222,45);
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -5341,13 +5421,13 @@ public class leacParser extends DebugParser {
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:220:11: '/' next= expr_2
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:223:11: '/' next= expr_2
 					{
-					dbg.location(220,11);
-					char_literal118=(Token)match(input,76,FOLLOW_76_in_expr_32085);  
-					stream_76.add(char_literal118);
-					dbg.location(220,19);
-					pushFollow(FOLLOW_expr_2_in_expr_32089);
+					dbg.location(223,11);
+					char_literal119=(Token)match(input,76,FOLLOW_76_in_expr_32105);  
+					stream_76.add(char_literal119);
+					dbg.location(223,19);
+					pushFollow(FOLLOW_expr_2_in_expr_32109);
 					next=expr_2();
 					state._fsp--;
 
@@ -5364,16 +5444,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 220:27: -> ^( DIV $expr_3 $next)
+					// 223:27: -> ^( DIV $expr_3 $next)
 					{
-						dbg.location(220,30);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:220:30: ^( DIV $expr_3 $next)
+						dbg.location(223,30);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:223:30: ^( DIV $expr_3 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(220,32);
+						dbg.location(223,32);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(DIV, "DIV"), root_1);
-						dbg.location(220,37);
-						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(220,45);
+						dbg.location(223,37);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(223,45);
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -5408,7 +5488,7 @@ public class leacParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(222, 4);
+		dbg.location(225, 4);
 
 		}
 		finally {
@@ -5430,20 +5510,20 @@ public class leacParser extends DebugParser {
 
 
 	// $ANTLR start "expr_4"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:224:1: expr_4 : ( expr_3 -> expr_3 ) ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )* ;
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:227:1: expr_4 : ( expr_3 -> expr_3 ) ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )* ;
 	public final leacParser.expr_4_return expr_4() throws RecognitionException {
 		leacParser.expr_4_return retval = new leacParser.expr_4_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token char_literal120=null;
 		Token char_literal121=null;
+		Token char_literal122=null;
 		ParserRuleReturnScope next =null;
-		ParserRuleReturnScope expr_3119 =null;
+		ParserRuleReturnScope expr_3120 =null;
 
-		Object char_literal120_tree=null;
 		Object char_literal121_tree=null;
+		Object char_literal122_tree=null;
 		RewriteRuleTokenStream stream_72=new RewriteRuleTokenStream(adaptor,"token 72");
 		RewriteRuleTokenStream stream_74=new RewriteRuleTokenStream(adaptor,"token 74");
 		RewriteRuleSubtreeStream stream_expr_3=new RewriteRuleSubtreeStream(adaptor,"rule expr_3");
@@ -5451,26 +5531,26 @@ public class leacParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "expr_4");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(224, 0);
+		dbg.location(227, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:225:5: ( ( expr_3 -> expr_3 ) ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )* )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:228:5: ( ( expr_3 -> expr_3 ) ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )* )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:225:7: ( expr_3 -> expr_3 ) ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:228:7: ( expr_3 -> expr_3 ) ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )*
 			{
-			dbg.location(225,7);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:225:7: ( expr_3 -> expr_3 )
+			dbg.location(228,7);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:228:7: ( expr_3 -> expr_3 )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:225:8: expr_3
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:228:8: expr_3
 			{
-			dbg.location(225,8);
-			pushFollow(FOLLOW_expr_3_in_expr_42130);
-			expr_3119=expr_3();
+			dbg.location(228,8);
+			pushFollow(FOLLOW_expr_3_in_expr_42150);
+			expr_3120=expr_3();
 			state._fsp--;
 
-			stream_expr_3.add(expr_3119.getTree());
+			stream_expr_3.add(expr_3120.getTree());
 			// AST REWRITE
 			// elements: expr_3
 			// token labels: 
@@ -5482,9 +5562,9 @@ public class leacParser extends DebugParser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 225:15: -> expr_3
+			// 228:15: -> expr_3
 			{
-				dbg.location(225,18);
+				dbg.location(228,18);
 				adaptor.addChild(root_0, stream_expr_3.nextTree());
 			}
 
@@ -5492,8 +5572,8 @@ public class leacParser extends DebugParser {
 			retval.tree = root_0;
 
 			}
-			dbg.location(226,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:226:9: ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )*
+			dbg.location(229,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:229:9: ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )*
 			try { dbg.enterSubRule(28);
 
 			loop28:
@@ -5515,60 +5595,13 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:226:11: '+' next= expr_3
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:229:11: '+' next= expr_3
 					{
-					dbg.location(226,11);
-					char_literal120=(Token)match(input,72,FOLLOW_72_in_expr_42147);  
-					stream_72.add(char_literal120);
-					dbg.location(226,19);
-					pushFollow(FOLLOW_expr_3_in_expr_42151);
-					next=expr_3();
-					state._fsp--;
-
-					stream_expr_3.add(next.getTree());
-					// AST REWRITE
-					// elements: next, expr_4
-					// token labels: 
-					// rule labels: next, retval
-					// token list labels: 
-					// rule list labels: 
-					// wildcard labels: 
-					retval.tree = root_0;
-					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
-					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-					root_0 = (Object)adaptor.nil();
-					// 226:27: -> ^( ADD $expr_4 $next)
-					{
-						dbg.location(226,30);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:226:30: ^( ADD $expr_4 $next)
-						{
-						Object root_1 = (Object)adaptor.nil();
-						dbg.location(226,32);
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ADD, "ADD"), root_1);
-						dbg.location(226,37);
-						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(226,45);
-						adaptor.addChild(root_1, stream_next.nextTree());
-						adaptor.addChild(root_0, root_1);
-						}
-
-					}
-
-
-					retval.tree = root_0;
-
-					}
-					break;
-				case 2 :
-					dbg.enterAlt(2);
-
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:227:11: '-' next= expr_3
-					{
-					dbg.location(227,11);
-					char_literal121=(Token)match(input,74,FOLLOW_74_in_expr_42175);  
-					stream_74.add(char_literal121);
-					dbg.location(227,19);
-					pushFollow(FOLLOW_expr_3_in_expr_42179);
+					dbg.location(229,11);
+					char_literal121=(Token)match(input,72,FOLLOW_72_in_expr_42167);  
+					stream_72.add(char_literal121);
+					dbg.location(229,19);
+					pushFollow(FOLLOW_expr_3_in_expr_42171);
 					next=expr_3();
 					state._fsp--;
 
@@ -5585,16 +5618,63 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 227:27: -> ^( SUB $expr_4 $next)
+					// 229:27: -> ^( ADD $expr_4 $next)
 					{
-						dbg.location(227,30);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:227:30: ^( SUB $expr_4 $next)
+						dbg.location(229,30);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:229:30: ^( ADD $expr_4 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(227,32);
+						dbg.location(229,32);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ADD, "ADD"), root_1);
+						dbg.location(229,37);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(229,45);
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+				case 2 :
+					dbg.enterAlt(2);
+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:230:11: '-' next= expr_3
+					{
+					dbg.location(230,11);
+					char_literal122=(Token)match(input,74,FOLLOW_74_in_expr_42195);  
+					stream_74.add(char_literal122);
+					dbg.location(230,19);
+					pushFollow(FOLLOW_expr_3_in_expr_42199);
+					next=expr_3();
+					state._fsp--;
+
+					stream_expr_3.add(next.getTree());
+					// AST REWRITE
+					// elements: next, expr_4
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 230:27: -> ^( SUB $expr_4 $next)
+					{
+						dbg.location(230,30);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:230:30: ^( SUB $expr_4 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(230,32);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(SUB, "SUB"), root_1);
-						dbg.location(227,37);
-						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(227,45);
+						dbg.location(230,37);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(230,45);
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -5629,7 +5709,7 @@ public class leacParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(229, 4);
+		dbg.location(232, 4);
 
 		}
 		finally {
@@ -5651,24 +5731,24 @@ public class leacParser extends DebugParser {
 
 
 	// $ANTLR start "expr_5"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:231:1: expr_5 : ( expr_4 -> expr_4 ) ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )* ;
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:234:1: expr_5 : ( expr_4 -> expr_4 ) ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )* ;
 	public final leacParser.expr_5_return expr_5() throws RecognitionException {
 		leacParser.expr_5_return retval = new leacParser.expr_5_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token char_literal123=null;
-		Token string_literal124=null;
-		Token char_literal125=null;
-		Token string_literal126=null;
+		Token char_literal124=null;
+		Token string_literal125=null;
+		Token char_literal126=null;
+		Token string_literal127=null;
 		ParserRuleReturnScope next =null;
-		ParserRuleReturnScope expr_4122 =null;
+		ParserRuleReturnScope expr_4123 =null;
 
-		Object char_literal123_tree=null;
-		Object string_literal124_tree=null;
-		Object char_literal125_tree=null;
-		Object string_literal126_tree=null;
+		Object char_literal124_tree=null;
+		Object string_literal125_tree=null;
+		Object char_literal126_tree=null;
+		Object string_literal127_tree=null;
 		RewriteRuleTokenStream stream_79=new RewriteRuleTokenStream(adaptor,"token 79");
 		RewriteRuleTokenStream stream_80=new RewriteRuleTokenStream(adaptor,"token 80");
 		RewriteRuleTokenStream stream_83=new RewriteRuleTokenStream(adaptor,"token 83");
@@ -5678,26 +5758,26 @@ public class leacParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "expr_5");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(231, 0);
+		dbg.location(234, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:232:5: ( ( expr_4 -> expr_4 ) ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )* )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:235:5: ( ( expr_4 -> expr_4 ) ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )* )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:232:7: ( expr_4 -> expr_4 ) ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:235:7: ( expr_4 -> expr_4 ) ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )*
 			{
-			dbg.location(232,7);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:232:7: ( expr_4 -> expr_4 )
+			dbg.location(235,7);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:235:7: ( expr_4 -> expr_4 )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:232:8: expr_4
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:235:8: expr_4
 			{
-			dbg.location(232,8);
-			pushFollow(FOLLOW_expr_4_in_expr_52220);
-			expr_4122=expr_4();
+			dbg.location(235,8);
+			pushFollow(FOLLOW_expr_4_in_expr_52240);
+			expr_4123=expr_4();
 			state._fsp--;
 
-			stream_expr_4.add(expr_4122.getTree());
+			stream_expr_4.add(expr_4123.getTree());
 			// AST REWRITE
 			// elements: expr_4
 			// token labels: 
@@ -5709,9 +5789,9 @@ public class leacParser extends DebugParser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 232:15: -> expr_4
+			// 235:15: -> expr_4
 			{
-				dbg.location(232,18);
+				dbg.location(235,18);
 				adaptor.addChild(root_0, stream_expr_4.nextTree());
 			}
 
@@ -5719,8 +5799,8 @@ public class leacParser extends DebugParser {
 			retval.tree = root_0;
 
 			}
-			dbg.location(233,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:233:9: ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )*
+			dbg.location(236,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:236:9: ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )*
 			try { dbg.enterSubRule(29);
 
 			loop29:
@@ -5756,13 +5836,13 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:233:11: '<' next= expr_4
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:236:11: '<' next= expr_4
 					{
-					dbg.location(233,11);
-					char_literal123=(Token)match(input,79,FOLLOW_79_in_expr_52237);  
-					stream_79.add(char_literal123);
-					dbg.location(233,19);
-					pushFollow(FOLLOW_expr_4_in_expr_52241);
+					dbg.location(236,11);
+					char_literal124=(Token)match(input,79,FOLLOW_79_in_expr_52257);  
+					stream_79.add(char_literal124);
+					dbg.location(236,19);
+					pushFollow(FOLLOW_expr_4_in_expr_52261);
 					next=expr_4();
 					state._fsp--;
 
@@ -5779,16 +5859,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 233:27: -> ^( TEST_LT $expr_5 $next)
+					// 236:27: -> ^( TEST_LT $expr_5 $next)
 					{
-						dbg.location(233,30);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:233:30: ^( TEST_LT $expr_5 $next)
+						dbg.location(236,30);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:236:30: ^( TEST_LT $expr_5 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(233,32);
+						dbg.location(236,32);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_LT, "TEST_LT"), root_1);
-						dbg.location(233,41);
-						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(233,49);
+						dbg.location(236,41);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(236,49);
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -5803,13 +5883,13 @@ public class leacParser extends DebugParser {
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:234:11: '<=' next= expr_4
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:237:11: '<=' next= expr_4
 					{
-					dbg.location(234,11);
-					string_literal124=(Token)match(input,80,FOLLOW_80_in_expr_52265);  
-					stream_80.add(string_literal124);
-					dbg.location(234,20);
-					pushFollow(FOLLOW_expr_4_in_expr_52269);
+					dbg.location(237,11);
+					string_literal125=(Token)match(input,80,FOLLOW_80_in_expr_52285);  
+					stream_80.add(string_literal125);
+					dbg.location(237,20);
+					pushFollow(FOLLOW_expr_4_in_expr_52289);
 					next=expr_4();
 					state._fsp--;
 
@@ -5826,16 +5906,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 234:28: -> ^( TEST_LE $expr_5 $next)
+					// 237:28: -> ^( TEST_LE $expr_5 $next)
 					{
-						dbg.location(234,31);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:234:31: ^( TEST_LE $expr_5 $next)
+						dbg.location(237,31);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:237:31: ^( TEST_LE $expr_5 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(234,33);
+						dbg.location(237,33);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_LE, "TEST_LE"), root_1);
-						dbg.location(234,42);
-						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(234,50);
+						dbg.location(237,42);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(237,50);
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -5850,13 +5930,13 @@ public class leacParser extends DebugParser {
 				case 3 :
 					dbg.enterAlt(3);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:235:11: '>' next= expr_4
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:238:11: '>' next= expr_4
 					{
-					dbg.location(235,11);
-					char_literal125=(Token)match(input,83,FOLLOW_83_in_expr_52293);  
-					stream_83.add(char_literal125);
-					dbg.location(235,19);
-					pushFollow(FOLLOW_expr_4_in_expr_52297);
+					dbg.location(238,11);
+					char_literal126=(Token)match(input,83,FOLLOW_83_in_expr_52313);  
+					stream_83.add(char_literal126);
+					dbg.location(238,19);
+					pushFollow(FOLLOW_expr_4_in_expr_52317);
 					next=expr_4();
 					state._fsp--;
 
@@ -5873,16 +5953,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 235:27: -> ^( TEST_GT $expr_5 $next)
+					// 238:27: -> ^( TEST_GT $expr_5 $next)
 					{
-						dbg.location(235,30);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:235:30: ^( TEST_GT $expr_5 $next)
+						dbg.location(238,30);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:238:30: ^( TEST_GT $expr_5 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(235,32);
+						dbg.location(238,32);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_GT, "TEST_GT"), root_1);
-						dbg.location(235,41);
-						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(235,49);
+						dbg.location(238,41);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(238,49);
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -5897,19 +5977,19 @@ public class leacParser extends DebugParser {
 				case 4 :
 					dbg.enterAlt(4);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:236:11: '>=' next= expr_4
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:239:11: '>=' next= expr_4
 					{
-					dbg.location(236,11);
-					string_literal126=(Token)match(input,84,FOLLOW_84_in_expr_52321);  
-					stream_84.add(string_literal126);
-					dbg.location(236,20);
-					pushFollow(FOLLOW_expr_4_in_expr_52325);
+					dbg.location(239,11);
+					string_literal127=(Token)match(input,84,FOLLOW_84_in_expr_52341);  
+					stream_84.add(string_literal127);
+					dbg.location(239,20);
+					pushFollow(FOLLOW_expr_4_in_expr_52345);
 					next=expr_4();
 					state._fsp--;
 
 					stream_expr_4.add(next.getTree());
 					// AST REWRITE
-					// elements: next, expr_5
+					// elements: expr_5, next
 					// token labels: 
 					// rule labels: next, retval
 					// token list labels: 
@@ -5920,16 +6000,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 236:28: -> ^( TEST_GE $expr_5 $next)
+					// 239:28: -> ^( TEST_GE $expr_5 $next)
 					{
-						dbg.location(236,31);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:236:31: ^( TEST_GE $expr_5 $next)
+						dbg.location(239,31);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:239:31: ^( TEST_GE $expr_5 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(236,33);
+						dbg.location(239,33);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_GE, "TEST_GE"), root_1);
-						dbg.location(236,42);
-						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(236,50);
+						dbg.location(239,42);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(239,50);
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -5964,7 +6044,7 @@ public class leacParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(238, 4);
+		dbg.location(241, 4);
 
 		}
 		finally {
@@ -5986,20 +6066,20 @@ public class leacParser extends DebugParser {
 
 
 	// $ANTLR start "expr_6"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:240:1: expr_6 : ( expr_5 -> expr_5 ) ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )* ;
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:243:1: expr_6 : ( expr_5 -> expr_5 ) ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )* ;
 	public final leacParser.expr_6_return expr_6() throws RecognitionException {
 		leacParser.expr_6_return retval = new leacParser.expr_6_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token string_literal128=null;
 		Token string_literal129=null;
+		Token string_literal130=null;
 		ParserRuleReturnScope next =null;
-		ParserRuleReturnScope expr_5127 =null;
+		ParserRuleReturnScope expr_5128 =null;
 
-		Object string_literal128_tree=null;
 		Object string_literal129_tree=null;
+		Object string_literal130_tree=null;
 		RewriteRuleTokenStream stream_68=new RewriteRuleTokenStream(adaptor,"token 68");
 		RewriteRuleTokenStream stream_82=new RewriteRuleTokenStream(adaptor,"token 82");
 		RewriteRuleSubtreeStream stream_expr_5=new RewriteRuleSubtreeStream(adaptor,"rule expr_5");
@@ -6007,26 +6087,26 @@ public class leacParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "expr_6");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(240, 0);
+		dbg.location(243, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:241:5: ( ( expr_5 -> expr_5 ) ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )* )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:244:5: ( ( expr_5 -> expr_5 ) ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )* )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:241:7: ( expr_5 -> expr_5 ) ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:244:7: ( expr_5 -> expr_5 ) ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )*
 			{
-			dbg.location(241,7);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:241:7: ( expr_5 -> expr_5 )
+			dbg.location(244,7);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:244:7: ( expr_5 -> expr_5 )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:241:8: expr_5
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:244:8: expr_5
 			{
-			dbg.location(241,8);
-			pushFollow(FOLLOW_expr_5_in_expr_62366);
-			expr_5127=expr_5();
+			dbg.location(244,8);
+			pushFollow(FOLLOW_expr_5_in_expr_62386);
+			expr_5128=expr_5();
 			state._fsp--;
 
-			stream_expr_5.add(expr_5127.getTree());
+			stream_expr_5.add(expr_5128.getTree());
 			// AST REWRITE
 			// elements: expr_5
 			// token labels: 
@@ -6038,9 +6118,9 @@ public class leacParser extends DebugParser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 241:15: -> expr_5
+			// 244:15: -> expr_5
 			{
-				dbg.location(241,18);
+				dbg.location(244,18);
 				adaptor.addChild(root_0, stream_expr_5.nextTree());
 			}
 
@@ -6048,8 +6128,8 @@ public class leacParser extends DebugParser {
 			retval.tree = root_0;
 
 			}
-			dbg.location(242,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:242:9: ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )*
+			dbg.location(245,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:245:9: ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )*
 			try { dbg.enterSubRule(30);
 
 			loop30:
@@ -6071,19 +6151,19 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:242:11: '==' next= expr_5
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:245:11: '==' next= expr_5
 					{
-					dbg.location(242,11);
-					string_literal128=(Token)match(input,82,FOLLOW_82_in_expr_62383);  
-					stream_82.add(string_literal128);
-					dbg.location(242,20);
-					pushFollow(FOLLOW_expr_5_in_expr_62387);
+					dbg.location(245,11);
+					string_literal129=(Token)match(input,82,FOLLOW_82_in_expr_62403);  
+					stream_82.add(string_literal129);
+					dbg.location(245,20);
+					pushFollow(FOLLOW_expr_5_in_expr_62407);
 					next=expr_5();
 					state._fsp--;
 
 					stream_expr_5.add(next.getTree());
 					// AST REWRITE
-					// elements: next, expr_6
+					// elements: expr_6, next
 					// token labels: 
 					// rule labels: next, retval
 					// token list labels: 
@@ -6094,16 +6174,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 242:28: -> ^( TEST_EQ $expr_6 $next)
+					// 245:28: -> ^( TEST_EQ $expr_6 $next)
 					{
-						dbg.location(242,31);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:242:31: ^( TEST_EQ $expr_6 $next)
+						dbg.location(245,31);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:245:31: ^( TEST_EQ $expr_6 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(242,33);
+						dbg.location(245,33);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_EQ, "TEST_EQ"), root_1);
-						dbg.location(242,42);
-						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(242,50);
+						dbg.location(245,42);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(245,50);
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -6118,19 +6198,19 @@ public class leacParser extends DebugParser {
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:243:11: '!=' next= expr_5
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:246:11: '!=' next= expr_5
 					{
-					dbg.location(243,11);
-					string_literal129=(Token)match(input,68,FOLLOW_68_in_expr_62411);  
-					stream_68.add(string_literal129);
-					dbg.location(243,20);
-					pushFollow(FOLLOW_expr_5_in_expr_62415);
+					dbg.location(246,11);
+					string_literal130=(Token)match(input,68,FOLLOW_68_in_expr_62431);  
+					stream_68.add(string_literal130);
+					dbg.location(246,20);
+					pushFollow(FOLLOW_expr_5_in_expr_62435);
 					next=expr_5();
 					state._fsp--;
 
 					stream_expr_5.add(next.getTree());
 					// AST REWRITE
-					// elements: next, expr_6
+					// elements: expr_6, next
 					// token labels: 
 					// rule labels: next, retval
 					// token list labels: 
@@ -6141,16 +6221,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 243:28: -> ^( TEST_NE $expr_6 $next)
+					// 246:28: -> ^( TEST_NE $expr_6 $next)
 					{
-						dbg.location(243,31);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:243:31: ^( TEST_NE $expr_6 $next)
+						dbg.location(246,31);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:246:31: ^( TEST_NE $expr_6 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(243,33);
+						dbg.location(246,33);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_NE, "TEST_NE"), root_1);
-						dbg.location(243,42);
-						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(243,50);
+						dbg.location(246,42);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(246,50);
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -6185,7 +6265,7 @@ public class leacParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(245, 4);
+		dbg.location(248, 4);
 
 		}
 		finally {
@@ -6207,44 +6287,44 @@ public class leacParser extends DebugParser {
 
 
 	// $ANTLR start "expr_7"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:247:1: expr_7 : ( expr_6 -> expr_6 ) ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )* ;
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:250:1: expr_7 : ( expr_6 -> expr_6 ) ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )* ;
 	public final leacParser.expr_7_return expr_7() throws RecognitionException {
 		leacParser.expr_7_return retval = new leacParser.expr_7_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token string_literal131=null;
+		Token string_literal132=null;
 		ParserRuleReturnScope next =null;
-		ParserRuleReturnScope expr_6130 =null;
+		ParserRuleReturnScope expr_6131 =null;
 
-		Object string_literal131_tree=null;
+		Object string_literal132_tree=null;
 		RewriteRuleTokenStream stream_88=new RewriteRuleTokenStream(adaptor,"token 88");
 		RewriteRuleSubtreeStream stream_expr_6=new RewriteRuleSubtreeStream(adaptor,"rule expr_6");
 
 		try { dbg.enterRule(getGrammarFileName(), "expr_7");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(247, 0);
+		dbg.location(250, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:248:5: ( ( expr_6 -> expr_6 ) ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )* )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:251:5: ( ( expr_6 -> expr_6 ) ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )* )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:248:7: ( expr_6 -> expr_6 ) ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:251:7: ( expr_6 -> expr_6 ) ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )*
 			{
-			dbg.location(248,7);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:248:7: ( expr_6 -> expr_6 )
+			dbg.location(251,7);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:251:7: ( expr_6 -> expr_6 )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:248:8: expr_6
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:251:8: expr_6
 			{
-			dbg.location(248,8);
-			pushFollow(FOLLOW_expr_6_in_expr_72456);
-			expr_6130=expr_6();
+			dbg.location(251,8);
+			pushFollow(FOLLOW_expr_6_in_expr_72476);
+			expr_6131=expr_6();
 			state._fsp--;
 
-			stream_expr_6.add(expr_6130.getTree());
+			stream_expr_6.add(expr_6131.getTree());
 			// AST REWRITE
 			// elements: expr_6
 			// token labels: 
@@ -6256,9 +6336,9 @@ public class leacParser extends DebugParser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 248:15: -> expr_6
+			// 251:15: -> expr_6
 			{
-				dbg.location(248,18);
+				dbg.location(251,18);
 				adaptor.addChild(root_0, stream_expr_6.nextTree());
 			}
 
@@ -6266,8 +6346,8 @@ public class leacParser extends DebugParser {
 			retval.tree = root_0;
 
 			}
-			dbg.location(249,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:249:9: ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )*
+			dbg.location(252,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:252:9: ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )*
 			try { dbg.enterSubRule(31);
 
 			loop31:
@@ -6286,13 +6366,13 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:249:11: 'and' next= expr_6
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:252:11: 'and' next= expr_6
 					{
-					dbg.location(249,11);
-					string_literal131=(Token)match(input,88,FOLLOW_88_in_expr_72473);  
-					stream_88.add(string_literal131);
-					dbg.location(249,21);
-					pushFollow(FOLLOW_expr_6_in_expr_72477);
+					dbg.location(252,11);
+					string_literal132=(Token)match(input,88,FOLLOW_88_in_expr_72493);  
+					stream_88.add(string_literal132);
+					dbg.location(252,21);
+					pushFollow(FOLLOW_expr_6_in_expr_72497);
 					next=expr_6();
 					state._fsp--;
 
@@ -6309,16 +6389,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 249:29: -> ^( AND $expr_7 $next)
+					// 252:29: -> ^( AND $expr_7 $next)
 					{
-						dbg.location(249,32);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:249:32: ^( AND $expr_7 $next)
+						dbg.location(252,32);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:252:32: ^( AND $expr_7 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(249,34);
+						dbg.location(252,34);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(AND, "AND"), root_1);
-						dbg.location(249,39);
-						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(249,47);
+						dbg.location(252,39);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(252,47);
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -6353,7 +6433,7 @@ public class leacParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(251, 4);
+		dbg.location(254, 4);
 
 		}
 		finally {
@@ -6375,44 +6455,44 @@ public class leacParser extends DebugParser {
 
 
 	// $ANTLR start "expr_8"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:253:1: expr_8 : ( expr_7 -> expr_7 ) ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )* ;
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:256:1: expr_8 : ( expr_7 -> expr_7 ) ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )* ;
 	public final leacParser.expr_8_return expr_8() throws RecognitionException {
 		leacParser.expr_8_return retval = new leacParser.expr_8_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token string_literal133=null;
+		Token string_literal134=null;
 		ParserRuleReturnScope next =null;
-		ParserRuleReturnScope expr_7132 =null;
+		ParserRuleReturnScope expr_7133 =null;
 
-		Object string_literal133_tree=null;
+		Object string_literal134_tree=null;
 		RewriteRuleTokenStream stream_100=new RewriteRuleTokenStream(adaptor,"token 100");
 		RewriteRuleSubtreeStream stream_expr_7=new RewriteRuleSubtreeStream(adaptor,"rule expr_7");
 
 		try { dbg.enterRule(getGrammarFileName(), "expr_8");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(253, 0);
+		dbg.location(256, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:254:5: ( ( expr_7 -> expr_7 ) ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )* )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:257:5: ( ( expr_7 -> expr_7 ) ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )* )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:254:7: ( expr_7 -> expr_7 ) ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:257:7: ( expr_7 -> expr_7 ) ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )*
 			{
-			dbg.location(254,7);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:254:7: ( expr_7 -> expr_7 )
+			dbg.location(257,7);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:257:7: ( expr_7 -> expr_7 )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:254:8: expr_7
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:257:8: expr_7
 			{
-			dbg.location(254,8);
-			pushFollow(FOLLOW_expr_7_in_expr_82518);
-			expr_7132=expr_7();
+			dbg.location(257,8);
+			pushFollow(FOLLOW_expr_7_in_expr_82538);
+			expr_7133=expr_7();
 			state._fsp--;
 
-			stream_expr_7.add(expr_7132.getTree());
+			stream_expr_7.add(expr_7133.getTree());
 			// AST REWRITE
 			// elements: expr_7
 			// token labels: 
@@ -6424,9 +6504,9 @@ public class leacParser extends DebugParser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 254:15: -> expr_7
+			// 257:15: -> expr_7
 			{
-				dbg.location(254,18);
+				dbg.location(257,18);
 				adaptor.addChild(root_0, stream_expr_7.nextTree());
 			}
 
@@ -6434,8 +6514,8 @@ public class leacParser extends DebugParser {
 			retval.tree = root_0;
 
 			}
-			dbg.location(255,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:255:9: ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )*
+			dbg.location(258,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:258:9: ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )*
 			try { dbg.enterSubRule(32);
 
 			loop32:
@@ -6454,19 +6534,19 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:255:11: 'or' next= expr_7
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:258:11: 'or' next= expr_7
 					{
-					dbg.location(255,11);
-					string_literal133=(Token)match(input,100,FOLLOW_100_in_expr_82535);  
-					stream_100.add(string_literal133);
-					dbg.location(255,20);
-					pushFollow(FOLLOW_expr_7_in_expr_82539);
+					dbg.location(258,11);
+					string_literal134=(Token)match(input,100,FOLLOW_100_in_expr_82555);  
+					stream_100.add(string_literal134);
+					dbg.location(258,20);
+					pushFollow(FOLLOW_expr_7_in_expr_82559);
 					next=expr_7();
 					state._fsp--;
 
 					stream_expr_7.add(next.getTree());
 					// AST REWRITE
-					// elements: expr_8, next
+					// elements: next, expr_8
 					// token labels: 
 					// rule labels: next, retval
 					// token list labels: 
@@ -6477,16 +6557,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 255:28: -> ^( OR $expr_8 $next)
+					// 258:28: -> ^( OR $expr_8 $next)
 					{
-						dbg.location(255,31);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:255:31: ^( OR $expr_8 $next)
+						dbg.location(258,31);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:258:31: ^( OR $expr_8 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(255,33);
+						dbg.location(258,33);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(OR, "OR"), root_1);
-						dbg.location(255,37);
-						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(255,45);
+						dbg.location(258,37);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(258,45);
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -6521,7 +6601,7 @@ public class leacParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(257, 4);
+		dbg.location(260, 4);
 
 		}
 		finally {
@@ -6543,34 +6623,34 @@ public class leacParser extends DebugParser {
 
 
 	// $ANTLR start "expr"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:259:1: expr : expr_8 -> expr_8 ;
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:262:1: expr : expr_8 -> expr_8 ;
 	public final leacParser.expr_return expr() throws RecognitionException {
 		leacParser.expr_return retval = new leacParser.expr_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		ParserRuleReturnScope expr_8134 =null;
+		ParserRuleReturnScope expr_8135 =null;
 
 		RewriteRuleSubtreeStream stream_expr_8=new RewriteRuleSubtreeStream(adaptor,"rule expr_8");
 
 		try { dbg.enterRule(getGrammarFileName(), "expr");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(259, 0);
+		dbg.location(262, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:260:5: ( expr_8 -> expr_8 )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:263:5: ( expr_8 -> expr_8 )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:260:7: expr_8
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:263:7: expr_8
 			{
-			dbg.location(260,7);
-			pushFollow(FOLLOW_expr_8_in_expr2579);
-			expr_8134=expr_8();
+			dbg.location(263,7);
+			pushFollow(FOLLOW_expr_8_in_expr2599);
+			expr_8135=expr_8();
 			state._fsp--;
 
-			stream_expr_8.add(expr_8134.getTree());
+			stream_expr_8.add(expr_8135.getTree());
 			// AST REWRITE
 			// elements: expr_8
 			// token labels: 
@@ -6582,9 +6662,9 @@ public class leacParser extends DebugParser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 260:14: -> expr_8
+			// 263:14: -> expr_8
 			{
-				dbg.location(260,17);
+				dbg.location(263,17);
 				adaptor.addChild(root_0, stream_expr_8.nextTree());
 			}
 
@@ -6607,7 +6687,7 @@ public class leacParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(261, 4);
+		dbg.location(264, 4);
 
 		}
 		finally {
@@ -6629,24 +6709,24 @@ public class leacParser extends DebugParser {
 
 
 	// $ANTLR start "constant"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:263:1: constant : ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) );
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:266:1: constant : ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) );
 	public final leacParser.constant_return constant() throws RecognitionException {
 		leacParser.constant_return retval = new leacParser.constant_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token INT135=null;
-		Token FLOAT136=null;
-		Token BOOL137=null;
-		Token STRING138=null;
-		Token CHAR139=null;
+		Token INT136=null;
+		Token FLOAT137=null;
+		Token BOOL138=null;
+		Token STRING139=null;
+		Token CHAR140=null;
 
-		Object INT135_tree=null;
-		Object FLOAT136_tree=null;
-		Object BOOL137_tree=null;
-		Object STRING138_tree=null;
-		Object CHAR139_tree=null;
+		Object INT136_tree=null;
+		Object FLOAT137_tree=null;
+		Object BOOL138_tree=null;
+		Object STRING139_tree=null;
+		Object CHAR140_tree=null;
 		RewriteRuleTokenStream stream_FLOAT=new RewriteRuleTokenStream(adaptor,"token FLOAT");
 		RewriteRuleTokenStream stream_BOOL=new RewriteRuleTokenStream(adaptor,"token BOOL");
 		RewriteRuleTokenStream stream_STRING=new RewriteRuleTokenStream(adaptor,"token STRING");
@@ -6656,10 +6736,10 @@ public class leacParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "constant");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(263, 0);
+		dbg.location(266, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:264:5: ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:267:5: ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) )
 			int alt33=5;
 			try { dbg.enterDecision(33, decisionCanBacktrack[33]);
 
@@ -6701,11 +6781,11 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:264:7: INT
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:267:7: INT
 					{
-					dbg.location(264,7);
-					INT135=(Token)match(input,INT,FOLLOW_INT_in_constant2600);  
-					stream_INT.add(INT135);
+					dbg.location(267,7);
+					INT136=(Token)match(input,INT,FOLLOW_INT_in_constant2620);  
+					stream_INT.add(INT136);
 
 					// AST REWRITE
 					// elements: INT
@@ -6718,16 +6798,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 264:11: -> ^( CONST INT_TYPENAME INT )
+					// 267:11: -> ^( CONST INT_TYPENAME INT )
 					{
-						dbg.location(264,14);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:264:14: ^( CONST INT_TYPENAME INT )
+						dbg.location(267,14);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:267:14: ^( CONST INT_TYPENAME INT )
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(264,16);
+						dbg.location(267,16);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
-						dbg.location(264,22);
-						adaptor.addChild(root_1, (Object)adaptor.create(INT_TYPENAME, "INT_TYPENAME"));dbg.location(264,35);
+						dbg.location(267,22);
+						adaptor.addChild(root_1, (Object)adaptor.create(INT_TYPENAME, "INT_TYPENAME"));dbg.location(267,35);
 						adaptor.addChild(root_1, stream_INT.nextNode());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -6742,11 +6822,11 @@ public class leacParser extends DebugParser {
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:265:7: FLOAT
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:268:7: FLOAT
 					{
-					dbg.location(265,7);
-					FLOAT136=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_constant2618);  
-					stream_FLOAT.add(FLOAT136);
+					dbg.location(268,7);
+					FLOAT137=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_constant2638);  
+					stream_FLOAT.add(FLOAT137);
 
 					// AST REWRITE
 					// elements: FLOAT
@@ -6759,16 +6839,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 265:13: -> ^( CONST FLOAT_TYPENAME FLOAT )
+					// 268:13: -> ^( CONST FLOAT_TYPENAME FLOAT )
 					{
-						dbg.location(265,16);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:265:16: ^( CONST FLOAT_TYPENAME FLOAT )
+						dbg.location(268,16);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:268:16: ^( CONST FLOAT_TYPENAME FLOAT )
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(265,18);
+						dbg.location(268,18);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
-						dbg.location(265,24);
-						adaptor.addChild(root_1, (Object)adaptor.create(FLOAT_TYPENAME, "FLOAT_TYPENAME"));dbg.location(265,39);
+						dbg.location(268,24);
+						adaptor.addChild(root_1, (Object)adaptor.create(FLOAT_TYPENAME, "FLOAT_TYPENAME"));dbg.location(268,39);
 						adaptor.addChild(root_1, stream_FLOAT.nextNode());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -6783,11 +6863,11 @@ public class leacParser extends DebugParser {
 				case 3 :
 					dbg.enterAlt(3);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:266:7: BOOL
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:269:7: BOOL
 					{
-					dbg.location(266,7);
-					BOOL137=(Token)match(input,BOOL,FOLLOW_BOOL_in_constant2636);  
-					stream_BOOL.add(BOOL137);
+					dbg.location(269,7);
+					BOOL138=(Token)match(input,BOOL,FOLLOW_BOOL_in_constant2656);  
+					stream_BOOL.add(BOOL138);
 
 					// AST REWRITE
 					// elements: BOOL
@@ -6800,16 +6880,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 266:12: -> ^( CONST BOOL_TYPENAME BOOL )
+					// 269:12: -> ^( CONST BOOL_TYPENAME BOOL )
 					{
-						dbg.location(266,15);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:266:15: ^( CONST BOOL_TYPENAME BOOL )
+						dbg.location(269,15);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:269:15: ^( CONST BOOL_TYPENAME BOOL )
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(266,17);
+						dbg.location(269,17);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
-						dbg.location(266,23);
-						adaptor.addChild(root_1, (Object)adaptor.create(BOOL_TYPENAME, "BOOL_TYPENAME"));dbg.location(266,37);
+						dbg.location(269,23);
+						adaptor.addChild(root_1, (Object)adaptor.create(BOOL_TYPENAME, "BOOL_TYPENAME"));dbg.location(269,37);
 						adaptor.addChild(root_1, stream_BOOL.nextNode());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -6824,11 +6904,11 @@ public class leacParser extends DebugParser {
 				case 4 :
 					dbg.enterAlt(4);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:267:7: STRING
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:270:7: STRING
 					{
-					dbg.location(267,7);
-					STRING138=(Token)match(input,STRING,FOLLOW_STRING_in_constant2654);  
-					stream_STRING.add(STRING138);
+					dbg.location(270,7);
+					STRING139=(Token)match(input,STRING,FOLLOW_STRING_in_constant2674);  
+					stream_STRING.add(STRING139);
 
 					// AST REWRITE
 					// elements: STRING
@@ -6841,16 +6921,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 267:14: -> ^( CONST STRING_TYPENAME STRING )
+					// 270:14: -> ^( CONST STRING_TYPENAME STRING )
 					{
-						dbg.location(267,17);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:267:17: ^( CONST STRING_TYPENAME STRING )
+						dbg.location(270,17);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:270:17: ^( CONST STRING_TYPENAME STRING )
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(267,19);
+						dbg.location(270,19);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
-						dbg.location(267,25);
-						adaptor.addChild(root_1, (Object)adaptor.create(STRING_TYPENAME, "STRING_TYPENAME"));dbg.location(267,41);
+						dbg.location(270,25);
+						adaptor.addChild(root_1, (Object)adaptor.create(STRING_TYPENAME, "STRING_TYPENAME"));dbg.location(270,41);
 						adaptor.addChild(root_1, stream_STRING.nextNode());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -6865,11 +6945,11 @@ public class leacParser extends DebugParser {
 				case 5 :
 					dbg.enterAlt(5);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:268:7: CHAR
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:271:7: CHAR
 					{
-					dbg.location(268,7);
-					CHAR139=(Token)match(input,CHAR,FOLLOW_CHAR_in_constant2672);  
-					stream_CHAR.add(CHAR139);
+					dbg.location(271,7);
+					CHAR140=(Token)match(input,CHAR,FOLLOW_CHAR_in_constant2692);  
+					stream_CHAR.add(CHAR140);
 
 					// AST REWRITE
 					// elements: CHAR
@@ -6882,16 +6962,16 @@ public class leacParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 268:12: -> ^( CONST CHAR_TYPENAME CHAR )
+					// 271:12: -> ^( CONST CHAR_TYPENAME CHAR )
 					{
-						dbg.location(268,15);
-						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:268:15: ^( CONST CHAR_TYPENAME CHAR )
+						dbg.location(271,15);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:271:15: ^( CONST CHAR_TYPENAME CHAR )
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(268,17);
+						dbg.location(271,17);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
-						dbg.location(268,23);
-						adaptor.addChild(root_1, (Object)adaptor.create(CHAR_TYPENAME, "CHAR_TYPENAME"));dbg.location(268,37);
+						dbg.location(271,23);
+						adaptor.addChild(root_1, (Object)adaptor.create(CHAR_TYPENAME, "CHAR_TYPENAME"));dbg.location(271,37);
 						adaptor.addChild(root_1, stream_CHAR.nextNode());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -6919,7 +6999,7 @@ public class leacParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(269, 4);
+		dbg.location(272, 4);
 
 		}
 		finally {
@@ -7052,44 +7132,45 @@ public class leacParser extends DebugParser {
 	public static final BitSet FOLLOW_70_in_expr_01872 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_expr_0_in_expr_11894 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
 	public static final BitSet FOLLOW_87_in_expr_11911 = new BitSet(new long[]{0x0008000282010800L,0x0000000000000020L});
-	public static final BitSet FOLLOW_expr_0_in_expr_11915 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
-	public static final BitSet FOLLOW_74_in_expr_21965 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_98_in_expr_21986 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_1_in_expr_22017 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_2_in_expr_32040 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
-	public static final BitSet FOLLOW_71_in_expr_32057 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_2_in_expr_32061 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
-	public static final BitSet FOLLOW_76_in_expr_32085 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_2_in_expr_32089 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
-	public static final BitSet FOLLOW_expr_3_in_expr_42130 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
-	public static final BitSet FOLLOW_72_in_expr_42147 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_3_in_expr_42151 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
-	public static final BitSet FOLLOW_74_in_expr_42175 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_3_in_expr_42179 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
-	public static final BitSet FOLLOW_expr_4_in_expr_52220 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
-	public static final BitSet FOLLOW_79_in_expr_52237 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_4_in_expr_52241 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
-	public static final BitSet FOLLOW_80_in_expr_52265 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_4_in_expr_52269 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
-	public static final BitSet FOLLOW_83_in_expr_52293 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_4_in_expr_52297 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
-	public static final BitSet FOLLOW_84_in_expr_52321 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_4_in_expr_52325 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
-	public static final BitSet FOLLOW_expr_5_in_expr_62366 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
-	public static final BitSet FOLLOW_82_in_expr_62383 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_5_in_expr_62387 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
-	public static final BitSet FOLLOW_68_in_expr_62411 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_5_in_expr_62415 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
-	public static final BitSet FOLLOW_expr_6_in_expr_72456 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
-	public static final BitSet FOLLOW_88_in_expr_72473 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_6_in_expr_72477 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
-	public static final BitSet FOLLOW_expr_7_in_expr_82518 = new BitSet(new long[]{0x0000000000000002L,0x0000001000000000L});
-	public static final BitSet FOLLOW_100_in_expr_82535 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_7_in_expr_82539 = new BitSet(new long[]{0x0000000000000002L,0x0000001000000000L});
-	public static final BitSet FOLLOW_expr_8_in_expr2579 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INT_in_constant2600 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FLOAT_in_constant2618 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_BOOL_in_constant2636 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_STRING_in_constant2654 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CHAR_in_constant2672 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_1_proxy_in_expr_11915 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_1_in_expr_1_proxy1954 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_74_in_expr_21985 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_98_in_expr_22006 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_1_in_expr_22037 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_2_in_expr_32060 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
+	public static final BitSet FOLLOW_71_in_expr_32077 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_2_in_expr_32081 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
+	public static final BitSet FOLLOW_76_in_expr_32105 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_2_in_expr_32109 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
+	public static final BitSet FOLLOW_expr_3_in_expr_42150 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
+	public static final BitSet FOLLOW_72_in_expr_42167 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_3_in_expr_42171 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
+	public static final BitSet FOLLOW_74_in_expr_42195 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_3_in_expr_42199 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52240 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
+	public static final BitSet FOLLOW_79_in_expr_52257 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52261 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
+	public static final BitSet FOLLOW_80_in_expr_52285 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52289 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
+	public static final BitSet FOLLOW_83_in_expr_52313 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52317 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
+	public static final BitSet FOLLOW_84_in_expr_52341 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52345 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
+	public static final BitSet FOLLOW_expr_5_in_expr_62386 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
+	public static final BitSet FOLLOW_82_in_expr_62403 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_5_in_expr_62407 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
+	public static final BitSet FOLLOW_68_in_expr_62431 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_5_in_expr_62435 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
+	public static final BitSet FOLLOW_expr_6_in_expr_72476 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
+	public static final BitSet FOLLOW_88_in_expr_72493 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_6_in_expr_72497 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
+	public static final BitSet FOLLOW_expr_7_in_expr_82538 = new BitSet(new long[]{0x0000000000000002L,0x0000001000000000L});
+	public static final BitSet FOLLOW_100_in_expr_82555 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_7_in_expr_82559 = new BitSet(new long[]{0x0000000000000002L,0x0000001000000000L});
+	public static final BitSet FOLLOW_expr_8_in_expr2599 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INT_in_constant2620 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FLOAT_in_constant2638 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_BOOL_in_constant2656 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_STRING_in_constant2674 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CHAR_in_constant2692 = new BitSet(new long[]{0x0000000000000002L});
 }

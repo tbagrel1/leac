@@ -1,10 +1,10 @@
 program essai
 var i: int;
-var j: int;
+var j, z: int;
 var res: bool;
 
 function is_first_max(a: int, b: int): bool {
 return a >= b
 }
 
-{ res = is_first_max(i, j); write res }
+{ res = is_first_max(i, j); write res; z = i^j^j }
