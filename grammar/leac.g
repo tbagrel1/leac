@@ -112,8 +112,8 @@ param_list
     | param (',' param)* -> ^(PARAM_LIST param+)
     ;
 param
-    : IDF ':' typename -> ^('param typename BY_COPY IDF)
-    | 'ref' IDF ':' typename -> ^('param typename BY_REF IDF)
+    : IDF ':' typename -> ^(PARAM typename BY_COPY IDF)
+    | 'ref' IDF ':' typename -> ^(PARAM typename BY_REF IDF)
     ;
 
 statement
@@ -128,8 +128,8 @@ statement
 
 conditional
     : 'if' expr 'then' first=statement
-        ( options { greedy = true; }: 'else' second=statement -> ^(CONDITIONAL expr first second)
-        | /* epsilon */ -> ^(CONDITIONAL expr first PASS)
+        ( options { greedy = true; }: 'else' second=statement -> ^(CONDITIONAL expr $first $second)
+        | /* epsilon */ -> ^(CONDITIONAL expr $first PASS)
         )
     ;
 
@@ -327,4 +327,3 @@ CHAR
     : '\'' ( ESC_SEQ | ~( '\'' | '\\' ) ) '\''
     ;
 
-    /* user-defined rules */
