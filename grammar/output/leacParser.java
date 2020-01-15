@@ -1,4 +1,4 @@
-// $ANTLR null /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g 2020-01-15 15:14:49
+// $ANTLR null /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g 2020-01-15 17:40:34
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -7,76 +7,138 @@ import java.util.ArrayList;
 
 import org.antlr.runtime.debug.*;
 import java.io.IOException;
+import org.antlr.runtime.tree.*;
+
+
 @SuppressWarnings("all")
 public class leacParser extends DebugParser {
 	public static final String[] tokenNames = new String[] {
-		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "BOOL", "CHAR", "COMMENT", "ESC_SEQ", 
-		"EXPONENT", "FLOAT", "HEX_DIGIT", "IDF", "INT", "OCTAL_ESC", "STRING", 
-		"UNICODE_ESC", "WS", "'!='", "'('", "')'", "'*'", "'+'", "','", "'-'", 
-		"'..'", "'/'", "':'", "';'", "'<'", "'<='", "'='", "'=='", "'>'", "'>='", 
-		"'['", "']'", "'^'", "'and'", "'array'", "'bool'", "'char'", "'do'", "'else'", 
+		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "ADD", "AFFECT", "AND", "ARG_LIST", 
+		"ARRAY", "ATOM", "BLOCK", "BOOL", "BOOL_TYPENAME", "BY_COPY", "BY_REF", 
+		"CELL", "CHAR", "CHAR_TYPENAME", "COMMENT", "CONDITIONAL", "CONST", "COORD_LIST", 
+		"DIV", "ESC_SEQ", "EXPONENT", "FLOAT", "FLOAT_TYPENAME", "FUNC_CALL", 
+		"FUNC_DECL", "FUNC_DECL_LIST", "HEX_DIGIT", "IDF", "IDF_LIST", "INT", 
+		"INT_TYPENAME", "LOOP", "MUL", "NOT", "NO_RETURN_VALUE", "OCTAL_ESC", 
+		"OR", "PARAM", "PARAM_LIST", "PASS", "POW", "PROCEDURE_CALL", "PROGRAM", 
+		"RANGE", "RANGE_LIST", "READ", "RETURNING", "STRING", "STRING_TYPENAME", 
+		"SUB", "TEST_EQ", "TEST_GE", "TEST_GT", "TEST_LE", "TEST_LT", "TEST_NE", 
+		"UNARY_MINUS", "UNICODE_ESC", "VAR", "VAR_DECL", "VAR_DECL_LIST", "VOID_TYPENAME", 
+		"WRITE", "WS", "'!='", "'('", "')'", "'*'", "'+'", "','", "'-'", "'..'", 
+		"'/'", "':'", "';'", "'<'", "'<='", "'='", "'=='", "'>'", "'>='", "'['", 
+		"']'", "'^'", "'and'", "'array'", "'bool'", "'char'", "'do'", "'else'", 
 		"'float'", "'function'", "'if'", "'int'", "'not'", "'of'", "'or'", "'program'", 
 		"'read'", "'ref'", "'return'", "'then'", "'var'", "'void'", "'while'", 
 		"'write'", "'{'", "'}'"
 	};
 	public static final int EOF=-1;
-	public static final int T__17=17;
-	public static final int T__18=18;
-	public static final int T__19=19;
-	public static final int T__20=20;
-	public static final int T__21=21;
-	public static final int T__22=22;
-	public static final int T__23=23;
-	public static final int T__24=24;
-	public static final int T__25=25;
-	public static final int T__26=26;
-	public static final int T__27=27;
-	public static final int T__28=28;
-	public static final int T__29=29;
-	public static final int T__30=30;
-	public static final int T__31=31;
-	public static final int T__32=32;
-	public static final int T__33=33;
-	public static final int T__34=34;
-	public static final int T__35=35;
-	public static final int T__36=36;
-	public static final int T__37=37;
-	public static final int T__38=38;
-	public static final int T__39=39;
-	public static final int T__40=40;
-	public static final int T__41=41;
-	public static final int T__42=42;
-	public static final int T__43=43;
-	public static final int T__44=44;
-	public static final int T__45=45;
-	public static final int T__46=46;
-	public static final int T__47=47;
-	public static final int T__48=48;
-	public static final int T__49=49;
-	public static final int T__50=50;
-	public static final int T__51=51;
-	public static final int T__52=52;
-	public static final int T__53=53;
-	public static final int T__54=54;
-	public static final int T__55=55;
-	public static final int T__56=56;
-	public static final int T__57=57;
-	public static final int T__58=58;
-	public static final int T__59=59;
-	public static final int T__60=60;
-	public static final int BOOL=4;
-	public static final int CHAR=5;
-	public static final int COMMENT=6;
-	public static final int ESC_SEQ=7;
-	public static final int EXPONENT=8;
-	public static final int FLOAT=9;
-	public static final int HEX_DIGIT=10;
-	public static final int IDF=11;
-	public static final int INT=12;
-	public static final int OCTAL_ESC=13;
-	public static final int STRING=14;
-	public static final int UNICODE_ESC=15;
-	public static final int WS=16;
+	public static final int T__68=68;
+	public static final int T__69=69;
+	public static final int T__70=70;
+	public static final int T__71=71;
+	public static final int T__72=72;
+	public static final int T__73=73;
+	public static final int T__74=74;
+	public static final int T__75=75;
+	public static final int T__76=76;
+	public static final int T__77=77;
+	public static final int T__78=78;
+	public static final int T__79=79;
+	public static final int T__80=80;
+	public static final int T__81=81;
+	public static final int T__82=82;
+	public static final int T__83=83;
+	public static final int T__84=84;
+	public static final int T__85=85;
+	public static final int T__86=86;
+	public static final int T__87=87;
+	public static final int T__88=88;
+	public static final int T__89=89;
+	public static final int T__90=90;
+	public static final int T__91=91;
+	public static final int T__92=92;
+	public static final int T__93=93;
+	public static final int T__94=94;
+	public static final int T__95=95;
+	public static final int T__96=96;
+	public static final int T__97=97;
+	public static final int T__98=98;
+	public static final int T__99=99;
+	public static final int T__100=100;
+	public static final int T__101=101;
+	public static final int T__102=102;
+	public static final int T__103=103;
+	public static final int T__104=104;
+	public static final int T__105=105;
+	public static final int T__106=106;
+	public static final int T__107=107;
+	public static final int T__108=108;
+	public static final int T__109=109;
+	public static final int T__110=110;
+	public static final int T__111=111;
+	public static final int ADD=4;
+	public static final int AFFECT=5;
+	public static final int AND=6;
+	public static final int ARG_LIST=7;
+	public static final int ARRAY=8;
+	public static final int ATOM=9;
+	public static final int BLOCK=10;
+	public static final int BOOL=11;
+	public static final int BOOL_TYPENAME=12;
+	public static final int BY_COPY=13;
+	public static final int BY_REF=14;
+	public static final int CELL=15;
+	public static final int CHAR=16;
+	public static final int CHAR_TYPENAME=17;
+	public static final int COMMENT=18;
+	public static final int CONDITIONAL=19;
+	public static final int CONST=20;
+	public static final int COORD_LIST=21;
+	public static final int DIV=22;
+	public static final int ESC_SEQ=23;
+	public static final int EXPONENT=24;
+	public static final int FLOAT=25;
+	public static final int FLOAT_TYPENAME=26;
+	public static final int FUNC_CALL=27;
+	public static final int FUNC_DECL=28;
+	public static final int FUNC_DECL_LIST=29;
+	public static final int HEX_DIGIT=30;
+	public static final int IDF=31;
+	public static final int IDF_LIST=32;
+	public static final int INT=33;
+	public static final int INT_TYPENAME=34;
+	public static final int LOOP=35;
+	public static final int MUL=36;
+	public static final int NOT=37;
+	public static final int NO_RETURN_VALUE=38;
+	public static final int OCTAL_ESC=39;
+	public static final int OR=40;
+	public static final int PARAM=41;
+	public static final int PARAM_LIST=42;
+	public static final int PASS=43;
+	public static final int POW=44;
+	public static final int PROCEDURE_CALL=45;
+	public static final int PROGRAM=46;
+	public static final int RANGE=47;
+	public static final int RANGE_LIST=48;
+	public static final int READ=49;
+	public static final int RETURNING=50;
+	public static final int STRING=51;
+	public static final int STRING_TYPENAME=52;
+	public static final int SUB=53;
+	public static final int TEST_EQ=54;
+	public static final int TEST_GE=55;
+	public static final int TEST_GT=56;
+	public static final int TEST_LE=57;
+	public static final int TEST_LT=58;
+	public static final int TEST_NE=59;
+	public static final int UNARY_MINUS=60;
+	public static final int UNICODE_ESC=61;
+	public static final int VAR=62;
+	public static final int VAR_DECL=63;
+	public static final int VAR_DECL_LIST=64;
+	public static final int VOID_TYPENAME=65;
+	public static final int WRITE=66;
+	public static final int WS=67;
 
 	// delegates
 	public Parser[] getDelegates() {
@@ -87,20 +149,20 @@ public class leacParser extends DebugParser {
 
 
 	public static final String[] ruleNames = new String[] {
-		"invalidRule", "idf_list", "param_list", "expr_5", "conditional", "read", 
-		"array_typename", "write", "range", "expr_4", "var_decl", "atom_typename", 
-		"expr_2", "func_decls", "constant", "expr_8", "returning", "idf_access", 
-		"expr_6", "range_list", "global_decls", "typename", "coord_list", "expr_1", 
-		"func_decl", "loop", "statement", "affect_or_procedure_call", "block", 
-		"param", "affect", "expr_3", "arg_list", "expr", "lvalue", "var_decls", 
-		"expr_7", "program", "expr_0"
+		"invalidRule", "idf_list", "range_list", "expr_3", "program", "statement", 
+		"write", "conditional", "var_decl_list", "expr_4", "constant", "range", 
+		"loop", "read", "expr_2", "expr_8", "coord_list", "func_decl_list", "param_list", 
+		"arg_list", "func_decl", "affect_or_procedure_call", "var_decl", "param", 
+		"typename", "expr_0", "expr_7", "array_typename", "expr", "expr_1", "expr_5", 
+		"expr_6", "atom_typename", "returning", "block"
 	};
 
 	public static final boolean[] decisionCanBacktrack = new boolean[] {
 		false, // invalid decision
 		false, false, false, false, false, false, false, false, false, false, 
 		    false, false, false, false, false, false, false, false, false, false, 
-		    false, false, false, false, false, false, false, false, false, false
+		    false, false, false, false, false, false, false, false, false, false, 
+		    false, false, false
 	};
 
  
@@ -114,19 +176,26 @@ public class leacParser extends DebugParser {
 	public leacParser(TokenStream input, int port, RecognizerSharedState state) {
 		super(input, state);
 		DebugEventSocketProxy proxy =
-			new DebugEventSocketProxy(this, port, null);
-
+			new DebugEventSocketProxy(this,port,adaptor);
 		setDebugListener(proxy);
+		setTokenStream(new DebugTokenStream(input,proxy));
 		try {
 			proxy.handshake();
 		}
 		catch (IOException ioe) {
 			reportError(ioe);
 		}
+		TreeAdaptor adap = new CommonTreeAdaptor();
+		setTreeAdaptor(adap);
+		proxy.setTreeAdaptor(adap);
 	}
 
 	public leacParser(TokenStream input, DebugEventListener dbg) {
-		super(input, dbg, new RecognizerSharedState());
+		super(input, dbg);
+		 
+		TreeAdaptor adap = new CommonTreeAdaptor();
+		setTreeAdaptor(adap);
+
 	}
 
 	protected boolean evalPredicate(boolean result, String predicate) {
@@ -134,51 +203,127 @@ public class leacParser extends DebugParser {
 		return result;
 	}
 
+		protected DebugTreeAdaptor adaptor;
+		public void setTreeAdaptor(TreeAdaptor adaptor) {
+			this.adaptor = new DebugTreeAdaptor(dbg,adaptor);
+		}
+		public TreeAdaptor getTreeAdaptor() {
+			return adaptor;
+		}
 	@Override public String[] getTokenNames() { return leacParser.tokenNames; }
 	@Override public String getGrammarFileName() { return "/home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g"; }
 
 
+	public static class program_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "program"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:9:1: program : 'program' IDF global_decls func_decls statement ;
-	public final void program() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:66:1: program : 'program' IDF var_decl_list func_decl_list statement -> ^( PROGRAM var_decl_list func_decl_list statement ) ;
+	public final leacParser.program_return program() throws RecognitionException {
+		leacParser.program_return retval = new leacParser.program_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token string_literal1=null;
+		Token IDF2=null;
+		ParserRuleReturnScope var_decl_list3 =null;
+		ParserRuleReturnScope func_decl_list4 =null;
+		ParserRuleReturnScope statement5 =null;
+
+		Object string_literal1_tree=null;
+		Object IDF2_tree=null;
+		RewriteRuleTokenStream stream_101=new RewriteRuleTokenStream(adaptor,"token 101");
+		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
+		RewriteRuleSubtreeStream stream_func_decl_list=new RewriteRuleSubtreeStream(adaptor,"rule func_decl_list");
+		RewriteRuleSubtreeStream stream_statement=new RewriteRuleSubtreeStream(adaptor,"rule statement");
+		RewriteRuleSubtreeStream stream_var_decl_list=new RewriteRuleSubtreeStream(adaptor,"rule var_decl_list");
+
 		try { dbg.enterRule(getGrammarFileName(), "program");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(9, 0);
+		dbg.location(66, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:10:5: ( 'program' IDF global_decls func_decls statement )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:67:5: ( 'program' IDF var_decl_list func_decl_list statement -> ^( PROGRAM var_decl_list func_decl_list statement ) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:10:7: 'program' IDF global_decls func_decls statement
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:67:7: 'program' IDF var_decl_list func_decl_list statement
 			{
-			dbg.location(10,7);
-			match(input,50,FOLLOW_50_in_program33); dbg.location(10,17);
-			match(input,IDF,FOLLOW_IDF_in_program35); dbg.location(10,21);
-			pushFollow(FOLLOW_global_decls_in_program37);
-			global_decls();
-			state._fsp--;
-			dbg.location(10,34);
-			pushFollow(FOLLOW_func_decls_in_program39);
-			func_decls();
-			state._fsp--;
-			dbg.location(10,45);
-			pushFollow(FOLLOW_statement_in_program41);
-			statement();
+			dbg.location(67,7);
+			string_literal1=(Token)match(input,101,FOLLOW_101_in_program414);  
+			stream_101.add(string_literal1);
+			dbg.location(67,17);
+			IDF2=(Token)match(input,IDF,FOLLOW_IDF_in_program416);  
+			stream_IDF.add(IDF2);
+			dbg.location(67,21);
+			pushFollow(FOLLOW_var_decl_list_in_program418);
+			var_decl_list3=var_decl_list();
 			state._fsp--;
 
+			stream_var_decl_list.add(var_decl_list3.getTree());dbg.location(67,35);
+			pushFollow(FOLLOW_func_decl_list_in_program420);
+			func_decl_list4=func_decl_list();
+			state._fsp--;
+
+			stream_func_decl_list.add(func_decl_list4.getTree());dbg.location(67,50);
+			pushFollow(FOLLOW_statement_in_program422);
+			statement5=statement();
+			state._fsp--;
+
+			stream_statement.add(statement5.getTree());
+			// AST REWRITE
+			// elements: statement, var_decl_list, func_decl_list
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 67:60: -> ^( PROGRAM var_decl_list func_decl_list statement )
+			{
+				dbg.location(67,63);
+				// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:67:63: ^( PROGRAM var_decl_list func_decl_list statement )
+				{
+				Object root_1 = (Object)adaptor.nil();
+				dbg.location(67,65);
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PROGRAM, "PROGRAM"), root_1);
+				dbg.location(67,73);
+				adaptor.addChild(root_1, stream_var_decl_list.nextTree());dbg.location(67,87);
+				adaptor.addChild(root_1, stream_func_decl_list.nextTree());dbg.location(67,102);
+				adaptor.addChild(root_1, stream_statement.nextTree());
+				adaptor.addChild(root_0, root_1);
+				}
+
 			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(10, 53);
+		dbg.location(68, 4);
 
 		}
 		finally {
@@ -187,70 +332,43 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "program"
 
 
+	public static class var_decl_list_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
 
-	// $ANTLR start "global_decls"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:12:1: global_decls : var_decls ;
-	public final void global_decls() throws RecognitionException {
-		try { dbg.enterRule(getGrammarFileName(), "global_decls");
+
+	// $ANTLR start "var_decl_list"
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:70:1: var_decl_list : ( var_decl )* -> ^( VAR_DECL_LIST ( var_decl )* ) ;
+	public final leacParser.var_decl_list_return var_decl_list() throws RecognitionException {
+		leacParser.var_decl_list_return retval = new leacParser.var_decl_list_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		ParserRuleReturnScope var_decl6 =null;
+
+		RewriteRuleSubtreeStream stream_var_decl=new RewriteRuleSubtreeStream(adaptor,"rule var_decl");
+
+		try { dbg.enterRule(getGrammarFileName(), "var_decl_list");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(12, 0);
+		dbg.location(70, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:13:5: ( var_decls )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:71:5: ( ( var_decl )* -> ^( VAR_DECL_LIST ( var_decl )* ) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:13:7: var_decls
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:71:7: ( var_decl )*
 			{
-			dbg.location(13,7);
-			pushFollow(FOLLOW_var_decls_in_global_decls53);
-			var_decls();
-			state._fsp--;
-
-			}
-
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-		dbg.location(14, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "global_decls");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
-	}
-	// $ANTLR end "global_decls"
-
-
-
-	// $ANTLR start "var_decls"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:15:1: var_decls : ( var_decl )* ;
-	public final void var_decls() throws RecognitionException {
-		try { dbg.enterRule(getGrammarFileName(), "var_decls");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(15, 0);
-
-		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:16:5: ( ( var_decl )* )
-			dbg.enterAlt(1);
-
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:16:7: ( var_decl )*
-			{
-			dbg.location(16,7);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:16:7: ( var_decl )*
+			dbg.location(71,7);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:71:7: ( var_decl )*
 			try { dbg.enterSubRule(1);
 
 			loop1:
@@ -259,7 +377,7 @@ public class leacParser extends DebugParser {
 				try { dbg.enterDecision(1, decisionCanBacktrack[1]);
 
 				int LA1_0 = input.LA(1);
-				if ( (LA1_0==55) ) {
+				if ( (LA1_0==106) ) {
 					alt1=1;
 				}
 
@@ -269,13 +387,14 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:16:7: var_decl
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:71:7: var_decl
 					{
-					dbg.location(16,7);
-					pushFollow(FOLLOW_var_decl_in_var_decls69);
-					var_decl();
+					dbg.location(71,7);
+					pushFollow(FOLLOW_var_decl_in_var_decl_list451);
+					var_decl6=var_decl();
 					state._fsp--;
 
+					stream_var_decl.add(var_decl6.getTree());
 					}
 					break;
 
@@ -285,67 +404,179 @@ public class leacParser extends DebugParser {
 			}
 			} finally {dbg.exitSubRule(1);}
 
+			// AST REWRITE
+			// elements: var_decl
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 71:17: -> ^( VAR_DECL_LIST ( var_decl )* )
+			{
+				dbg.location(71,20);
+				// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:71:20: ^( VAR_DECL_LIST ( var_decl )* )
+				{
+				Object root_1 = (Object)adaptor.nil();
+				dbg.location(71,22);
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(VAR_DECL_LIST, "VAR_DECL_LIST"), root_1);
+				dbg.location(71,36);
+				// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:71:36: ( var_decl )*
+				while ( stream_var_decl.hasNext() ) {
+					dbg.location(71,36);
+					adaptor.addChild(root_1, stream_var_decl.nextTree());
+				}
+				stream_var_decl.reset();
+
+				adaptor.addChild(root_0, root_1);
+				}
+
 			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(17, 4);
+		dbg.location(72, 4);
 
 		}
 		finally {
-			dbg.exitRule(getGrammarFileName(), "var_decls");
+			dbg.exitRule(getGrammarFileName(), "var_decl_list");
 			decRuleLevel();
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
-	// $ANTLR end "var_decls"
+	// $ANTLR end "var_decl_list"
 
+
+	public static class var_decl_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
 
 
 	// $ANTLR start "var_decl"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:18:1: var_decl : 'var' idf_list ':' typename ';' ;
-	public final void var_decl() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:73:1: var_decl : 'var' idf_list ':' typename ';' -> ^( VAR_DECL typename idf_list ) ;
+	public final leacParser.var_decl_return var_decl() throws RecognitionException {
+		leacParser.var_decl_return retval = new leacParser.var_decl_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token string_literal7=null;
+		Token char_literal9=null;
+		Token char_literal11=null;
+		ParserRuleReturnScope idf_list8 =null;
+		ParserRuleReturnScope typename10 =null;
+
+		Object string_literal7_tree=null;
+		Object char_literal9_tree=null;
+		Object char_literal11_tree=null;
+		RewriteRuleTokenStream stream_77=new RewriteRuleTokenStream(adaptor,"token 77");
+		RewriteRuleTokenStream stream_78=new RewriteRuleTokenStream(adaptor,"token 78");
+		RewriteRuleTokenStream stream_106=new RewriteRuleTokenStream(adaptor,"token 106");
+		RewriteRuleSubtreeStream stream_idf_list=new RewriteRuleSubtreeStream(adaptor,"rule idf_list");
+		RewriteRuleSubtreeStream stream_typename=new RewriteRuleSubtreeStream(adaptor,"rule typename");
+
 		try { dbg.enterRule(getGrammarFileName(), "var_decl");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(18, 0);
+		dbg.location(73, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:19:5: ( 'var' idf_list ':' typename ';' )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:74:5: ( 'var' idf_list ':' typename ';' -> ^( VAR_DECL typename idf_list ) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:19:7: 'var' idf_list ':' typename ';'
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:74:7: 'var' idf_list ':' typename ';'
 			{
-			dbg.location(19,7);
-			match(input,55,FOLLOW_55_in_var_decl86); dbg.location(19,13);
-			pushFollow(FOLLOW_idf_list_in_var_decl88);
-			idf_list();
+			dbg.location(74,7);
+			string_literal7=(Token)match(input,106,FOLLOW_106_in_var_decl477);  
+			stream_106.add(string_literal7);
+			dbg.location(74,13);
+			pushFollow(FOLLOW_idf_list_in_var_decl479);
+			idf_list8=idf_list();
 			state._fsp--;
-			dbg.location(19,22);
-			match(input,26,FOLLOW_26_in_var_decl90); dbg.location(19,26);
-			pushFollow(FOLLOW_typename_in_var_decl92);
-			typename();
+
+			stream_idf_list.add(idf_list8.getTree());dbg.location(74,22);
+			char_literal9=(Token)match(input,77,FOLLOW_77_in_var_decl481);  
+			stream_77.add(char_literal9);
+			dbg.location(74,26);
+			pushFollow(FOLLOW_typename_in_var_decl483);
+			typename10=typename();
 			state._fsp--;
-			dbg.location(19,35);
-			match(input,27,FOLLOW_27_in_var_decl94); 
+
+			stream_typename.add(typename10.getTree());dbg.location(74,35);
+			char_literal11=(Token)match(input,78,FOLLOW_78_in_var_decl485);  
+			stream_78.add(char_literal11);
+
+			// AST REWRITE
+			// elements: idf_list, typename
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 74:39: -> ^( VAR_DECL typename idf_list )
+			{
+				dbg.location(74,42);
+				// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:74:42: ^( VAR_DECL typename idf_list )
+				{
+				Object root_1 = (Object)adaptor.nil();
+				dbg.location(74,44);
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(VAR_DECL, "VAR_DECL"), root_1);
+				dbg.location(74,53);
+				adaptor.addChild(root_1, stream_typename.nextTree());dbg.location(74,62);
+				adaptor.addChild(root_1, stream_idf_list.nextTree());
+				adaptor.addChild(root_0, root_1);
+				}
+
 			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(20, 4);
+		dbg.location(75, 4);
 
 		}
 		finally {
@@ -354,28 +585,52 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "var_decl"
 
 
+	public static class idf_list_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "idf_list"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:21:1: idf_list : IDF ( ',' IDF )* ;
-	public final void idf_list() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:76:1: idf_list : IDF ( ',' IDF )* -> ^( IDF_LIST ( IDF )+ ) ;
+	public final leacParser.idf_list_return idf_list() throws RecognitionException {
+		leacParser.idf_list_return retval = new leacParser.idf_list_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token IDF12=null;
+		Token char_literal13=null;
+		Token IDF14=null;
+
+		Object IDF12_tree=null;
+		Object char_literal13_tree=null;
+		Object IDF14_tree=null;
+		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
+		RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
+
 		try { dbg.enterRule(getGrammarFileName(), "idf_list");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(21, 0);
+		dbg.location(76, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:22:5: ( IDF ( ',' IDF )* )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:77:5: ( IDF ( ',' IDF )* -> ^( IDF_LIST ( IDF )+ ) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:22:7: IDF ( ',' IDF )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:77:7: IDF ( ',' IDF )*
 			{
-			dbg.location(22,7);
-			match(input,IDF,FOLLOW_IDF_in_idf_list110); dbg.location(22,11);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:22:11: ( ',' IDF )*
+			dbg.location(77,7);
+			IDF12=(Token)match(input,IDF,FOLLOW_IDF_in_idf_list511);  
+			stream_IDF.add(IDF12);
+			dbg.location(77,11);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:77:11: ( ',' IDF )*
 			try { dbg.enterSubRule(2);
 
 			loop2:
@@ -384,7 +639,7 @@ public class leacParser extends DebugParser {
 				try { dbg.enterDecision(2, decisionCanBacktrack[2]);
 
 				int LA2_0 = input.LA(1);
-				if ( (LA2_0==22) ) {
+				if ( (LA2_0==73) ) {
 					alt2=1;
 				}
 
@@ -394,11 +649,15 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:22:12: ',' IDF
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:77:12: ',' IDF
 					{
-					dbg.location(22,12);
-					match(input,22,FOLLOW_22_in_idf_list113); dbg.location(22,16);
-					match(input,IDF,FOLLOW_IDF_in_idf_list115); 
+					dbg.location(77,12);
+					char_literal13=(Token)match(input,73,FOLLOW_73_in_idf_list514);  
+					stream_73.add(char_literal13);
+					dbg.location(77,16);
+					IDF14=(Token)match(input,IDF,FOLLOW_IDF_in_idf_list516);  
+					stream_IDF.add(IDF14);
+
 					}
 					break;
 
@@ -408,17 +667,60 @@ public class leacParser extends DebugParser {
 			}
 			} finally {dbg.exitSubRule(2);}
 
+			// AST REWRITE
+			// elements: IDF
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 77:22: -> ^( IDF_LIST ( IDF )+ )
+			{
+				dbg.location(77,25);
+				// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:77:25: ^( IDF_LIST ( IDF )+ )
+				{
+				Object root_1 = (Object)adaptor.nil();
+				dbg.location(77,27);
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(IDF_LIST, "IDF_LIST"), root_1);
+				dbg.location(77,36);
+				if ( !(stream_IDF.hasNext()) ) {
+					throw new RewriteEarlyExitException();
+				}
+				while ( stream_IDF.hasNext() ) {
+					dbg.location(77,36);
+					adaptor.addChild(root_1, stream_IDF.nextNode());
+				}
+				stream_IDF.reset();
+
+				adaptor.addChild(root_0, root_1);
+				}
+
 			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(23, 4);
+		dbg.location(78, 4);
 
 		}
 		finally {
@@ -427,27 +729,43 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "idf_list"
 
 
+	public static class func_decl_list_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
 
-	// $ANTLR start "func_decls"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:25:1: func_decls : ( func_decl )* ;
-	public final void func_decls() throws RecognitionException {
-		try { dbg.enterRule(getGrammarFileName(), "func_decls");
+
+	// $ANTLR start "func_decl_list"
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:80:1: func_decl_list : ( func_decl )* -> ^( FUNC_DECL_LIST ( func_decl )* ) ;
+	public final leacParser.func_decl_list_return func_decl_list() throws RecognitionException {
+		leacParser.func_decl_list_return retval = new leacParser.func_decl_list_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		ParserRuleReturnScope func_decl15 =null;
+
+		RewriteRuleSubtreeStream stream_func_decl=new RewriteRuleSubtreeStream(adaptor,"rule func_decl");
+
+		try { dbg.enterRule(getGrammarFileName(), "func_decl_list");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(25, 0);
+		dbg.location(80, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:26:5: ( ( func_decl )* )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:81:5: ( ( func_decl )* -> ^( FUNC_DECL_LIST ( func_decl )* ) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:26:7: ( func_decl )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:81:7: ( func_decl )*
 			{
-			dbg.location(26,7);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:26:7: ( func_decl )*
+			dbg.location(81,7);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:81:7: ( func_decl )*
 			try { dbg.enterSubRule(3);
 
 			loop3:
@@ -456,7 +774,7 @@ public class leacParser extends DebugParser {
 				try { dbg.enterDecision(3, decisionCanBacktrack[3]);
 
 				int LA3_0 = input.LA(1);
-				if ( (LA3_0==44) ) {
+				if ( (LA3_0==95) ) {
 					alt3=1;
 				}
 
@@ -466,13 +784,14 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:26:7: func_decl
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:81:7: func_decl
 					{
-					dbg.location(26,7);
-					pushFollow(FOLLOW_func_decl_in_func_decls134);
-					func_decl();
+					dbg.location(81,7);
+					pushFollow(FOLLOW_func_decl_in_func_decl_list544);
+					func_decl15=func_decl();
 					state._fsp--;
 
+					stream_func_decl.add(func_decl15.getTree());
 					}
 					break;
 
@@ -482,77 +801,207 @@ public class leacParser extends DebugParser {
 			}
 			} finally {dbg.exitSubRule(3);}
 
+			// AST REWRITE
+			// elements: func_decl
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 81:18: -> ^( FUNC_DECL_LIST ( func_decl )* )
+			{
+				dbg.location(81,21);
+				// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:81:21: ^( FUNC_DECL_LIST ( func_decl )* )
+				{
+				Object root_1 = (Object)adaptor.nil();
+				dbg.location(81,23);
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FUNC_DECL_LIST, "FUNC_DECL_LIST"), root_1);
+				dbg.location(81,38);
+				// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:81:38: ( func_decl )*
+				while ( stream_func_decl.hasNext() ) {
+					dbg.location(81,38);
+					adaptor.addChild(root_1, stream_func_decl.nextTree());
+				}
+				stream_func_decl.reset();
+
+				adaptor.addChild(root_0, root_1);
+				}
+
 			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(27, 4);
+		dbg.location(82, 4);
 
 		}
 		finally {
-			dbg.exitRule(getGrammarFileName(), "func_decls");
+			dbg.exitRule(getGrammarFileName(), "func_decl_list");
 			decRuleLevel();
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
-	// $ANTLR end "func_decls"
+	// $ANTLR end "func_decl_list"
 
+
+	public static class func_decl_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
 
 
 	// $ANTLR start "func_decl"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:28:1: func_decl : 'function' IDF '(' param_list ')' ':' atom_typename var_decls block ;
-	public final void func_decl() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:83:1: func_decl : 'function' IDF '(' param_list ')' ':' atom_typename var_decl_list block -> ^( FUNC_DECL param_list atom_typename var_decl_list block ) ;
+	public final leacParser.func_decl_return func_decl() throws RecognitionException {
+		leacParser.func_decl_return retval = new leacParser.func_decl_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token string_literal16=null;
+		Token IDF17=null;
+		Token char_literal18=null;
+		Token char_literal20=null;
+		Token char_literal21=null;
+		ParserRuleReturnScope param_list19 =null;
+		ParserRuleReturnScope atom_typename22 =null;
+		ParserRuleReturnScope var_decl_list23 =null;
+		ParserRuleReturnScope block24 =null;
+
+		Object string_literal16_tree=null;
+		Object IDF17_tree=null;
+		Object char_literal18_tree=null;
+		Object char_literal20_tree=null;
+		Object char_literal21_tree=null;
+		RewriteRuleTokenStream stream_77=new RewriteRuleTokenStream(adaptor,"token 77");
+		RewriteRuleTokenStream stream_69=new RewriteRuleTokenStream(adaptor,"token 69");
+		RewriteRuleTokenStream stream_70=new RewriteRuleTokenStream(adaptor,"token 70");
+		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
+		RewriteRuleTokenStream stream_95=new RewriteRuleTokenStream(adaptor,"token 95");
+		RewriteRuleSubtreeStream stream_atom_typename=new RewriteRuleSubtreeStream(adaptor,"rule atom_typename");
+		RewriteRuleSubtreeStream stream_var_decl_list=new RewriteRuleSubtreeStream(adaptor,"rule var_decl_list");
+		RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
+		RewriteRuleSubtreeStream stream_param_list=new RewriteRuleSubtreeStream(adaptor,"rule param_list");
+
 		try { dbg.enterRule(getGrammarFileName(), "func_decl");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(28, 0);
+		dbg.location(83, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:29:5: ( 'function' IDF '(' param_list ')' ':' atom_typename var_decls block )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:84:5: ( 'function' IDF '(' param_list ')' ':' atom_typename var_decl_list block -> ^( FUNC_DECL param_list atom_typename var_decl_list block ) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:29:7: 'function' IDF '(' param_list ')' ':' atom_typename var_decls block
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:84:7: 'function' IDF '(' param_list ')' ':' atom_typename var_decl_list block
 			{
-			dbg.location(29,7);
-			match(input,44,FOLLOW_44_in_func_decl151); dbg.location(29,18);
-			match(input,IDF,FOLLOW_IDF_in_func_decl153); dbg.location(29,22);
-			match(input,18,FOLLOW_18_in_func_decl155); dbg.location(29,26);
-			pushFollow(FOLLOW_param_list_in_func_decl157);
-			param_list();
-			state._fsp--;
-			dbg.location(29,37);
-			match(input,19,FOLLOW_19_in_func_decl159); dbg.location(29,41);
-			match(input,26,FOLLOW_26_in_func_decl161); dbg.location(29,45);
-			pushFollow(FOLLOW_atom_typename_in_func_decl163);
-			atom_typename();
-			state._fsp--;
-			dbg.location(29,59);
-			pushFollow(FOLLOW_var_decls_in_func_decl165);
-			var_decls();
-			state._fsp--;
-			dbg.location(29,69);
-			pushFollow(FOLLOW_block_in_func_decl167);
-			block();
+			dbg.location(84,7);
+			string_literal16=(Token)match(input,95,FOLLOW_95_in_func_decl570);  
+			stream_95.add(string_literal16);
+			dbg.location(84,18);
+			IDF17=(Token)match(input,IDF,FOLLOW_IDF_in_func_decl572);  
+			stream_IDF.add(IDF17);
+			dbg.location(84,22);
+			char_literal18=(Token)match(input,69,FOLLOW_69_in_func_decl574);  
+			stream_69.add(char_literal18);
+			dbg.location(84,26);
+			pushFollow(FOLLOW_param_list_in_func_decl576);
+			param_list19=param_list();
 			state._fsp--;
 
+			stream_param_list.add(param_list19.getTree());dbg.location(84,37);
+			char_literal20=(Token)match(input,70,FOLLOW_70_in_func_decl578);  
+			stream_70.add(char_literal20);
+			dbg.location(84,41);
+			char_literal21=(Token)match(input,77,FOLLOW_77_in_func_decl580);  
+			stream_77.add(char_literal21);
+			dbg.location(84,45);
+			pushFollow(FOLLOW_atom_typename_in_func_decl582);
+			atom_typename22=atom_typename();
+			state._fsp--;
+
+			stream_atom_typename.add(atom_typename22.getTree());dbg.location(84,59);
+			pushFollow(FOLLOW_var_decl_list_in_func_decl584);
+			var_decl_list23=var_decl_list();
+			state._fsp--;
+
+			stream_var_decl_list.add(var_decl_list23.getTree());dbg.location(84,73);
+			pushFollow(FOLLOW_block_in_func_decl586);
+			block24=block();
+			state._fsp--;
+
+			stream_block.add(block24.getTree());
+			// AST REWRITE
+			// elements: var_decl_list, block, atom_typename, param_list
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 84:79: -> ^( FUNC_DECL param_list atom_typename var_decl_list block )
+			{
+				dbg.location(84,82);
+				// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:84:82: ^( FUNC_DECL param_list atom_typename var_decl_list block )
+				{
+				Object root_1 = (Object)adaptor.nil();
+				dbg.location(84,84);
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FUNC_DECL, "FUNC_DECL"), root_1);
+				dbg.location(84,94);
+				adaptor.addChild(root_1, stream_param_list.nextTree());dbg.location(84,105);
+				adaptor.addChild(root_1, stream_atom_typename.nextTree());dbg.location(84,119);
+				adaptor.addChild(root_1, stream_var_decl_list.nextTree());dbg.location(84,133);
+				adaptor.addChild(root_1, stream_block.nextTree());
+				adaptor.addChild(root_0, root_1);
+				}
+
 			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(30, 4);
+		dbg.location(85, 4);
 
 		}
 		finally {
@@ -561,29 +1010,47 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "func_decl"
 
 
+	public static class typename_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "typename"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:32:1: typename : ( atom_typename | array_typename );
-	public final void typename() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:87:1: typename : ( atom_typename -> ^( ATOM atom_typename ) | array_typename -> array_typename );
+	public final leacParser.typename_return typename() throws RecognitionException {
+		leacParser.typename_return retval = new leacParser.typename_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		ParserRuleReturnScope atom_typename25 =null;
+		ParserRuleReturnScope array_typename26 =null;
+
+		RewriteRuleSubtreeStream stream_array_typename=new RewriteRuleSubtreeStream(adaptor,"rule array_typename");
+		RewriteRuleSubtreeStream stream_atom_typename=new RewriteRuleSubtreeStream(adaptor,"rule atom_typename");
+
 		try { dbg.enterRule(getGrammarFileName(), "typename");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(32, 0);
+		dbg.location(87, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:33:5: ( atom_typename | array_typename )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:88:5: ( atom_typename -> ^( ATOM atom_typename ) | array_typename -> array_typename )
 			int alt4=2;
 			try { dbg.enterDecision(4, decisionCanBacktrack[4]);
 
 			int LA4_0 = input.LA(1);
-			if ( ((LA4_0 >= 39 && LA4_0 <= 40)||LA4_0==43||LA4_0==46||LA4_0==56) ) {
+			if ( ((LA4_0 >= 90 && LA4_0 <= 91)||LA4_0==94||LA4_0==97||LA4_0==107) ) {
 				alt4=1;
 			}
-			else if ( (LA4_0==38) ) {
+			else if ( (LA4_0==89) ) {
 				alt4=2;
 			}
 
@@ -600,38 +1067,95 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:33:7: atom_typename
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:88:7: atom_typename
 					{
-					dbg.location(33,7);
-					pushFollow(FOLLOW_atom_typename_in_typename184);
-					atom_typename();
+					dbg.location(88,7);
+					pushFollow(FOLLOW_atom_typename_in_typename617);
+					atom_typename25=atom_typename();
 					state._fsp--;
+
+					stream_atom_typename.add(atom_typename25.getTree());
+					// AST REWRITE
+					// elements: atom_typename
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 88:21: -> ^( ATOM atom_typename )
+					{
+						dbg.location(88,24);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:88:24: ^( ATOM atom_typename )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(88,26);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ATOM, "ATOM"), root_1);
+						dbg.location(88,31);
+						adaptor.addChild(root_1, stream_atom_typename.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:34:7: array_typename
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:89:7: array_typename
 					{
-					dbg.location(34,7);
-					pushFollow(FOLLOW_array_typename_in_typename192);
-					array_typename();
+					dbg.location(89,7);
+					pushFollow(FOLLOW_array_typename_in_typename633);
+					array_typename26=array_typename();
 					state._fsp--;
+
+					stream_array_typename.add(array_typename26.getTree());
+					// AST REWRITE
+					// elements: array_typename
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 89:22: -> array_typename
+					{
+						dbg.location(89,25);
+						adaptor.addChild(root_0, stream_array_typename.nextTree());
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 
 			}
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(35, 4);
+		dbg.location(90, 4);
 
 		}
 		finally {
@@ -640,46 +1164,260 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "typename"
 
 
+	public static class atom_typename_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "atom_typename"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:37:1: atom_typename : ( 'void' | 'bool' | 'int' | 'float' | 'char' );
-	public final void atom_typename() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:92:1: atom_typename : ( 'void' -> VOID_TYPENAME | 'bool' -> BOOL_TYPENAME | 'int' -> INT_TYPENAME | 'float' -> FLOAT_TYPENAME | 'char' -> CHAR_TYPENAME );
+	public final leacParser.atom_typename_return atom_typename() throws RecognitionException {
+		leacParser.atom_typename_return retval = new leacParser.atom_typename_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token string_literal27=null;
+		Token string_literal28=null;
+		Token string_literal29=null;
+		Token string_literal30=null;
+		Token string_literal31=null;
+
+		Object string_literal27_tree=null;
+		Object string_literal28_tree=null;
+		Object string_literal29_tree=null;
+		Object string_literal30_tree=null;
+		Object string_literal31_tree=null;
+		RewriteRuleTokenStream stream_90=new RewriteRuleTokenStream(adaptor,"token 90");
+		RewriteRuleTokenStream stream_107=new RewriteRuleTokenStream(adaptor,"token 107");
+		RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
+		RewriteRuleTokenStream stream_94=new RewriteRuleTokenStream(adaptor,"token 94");
+		RewriteRuleTokenStream stream_97=new RewriteRuleTokenStream(adaptor,"token 97");
+
 		try { dbg.enterRule(getGrammarFileName(), "atom_typename");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(37, 0);
+		dbg.location(92, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:38:5: ( 'void' | 'bool' | 'int' | 'float' | 'char' )
-			dbg.enterAlt(1);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:93:5: ( 'void' -> VOID_TYPENAME | 'bool' -> BOOL_TYPENAME | 'int' -> INT_TYPENAME | 'float' -> FLOAT_TYPENAME | 'char' -> CHAR_TYPENAME )
+			int alt5=5;
+			try { dbg.enterDecision(5, decisionCanBacktrack[5]);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:
-			{
-			dbg.location(38,5);
-			if ( (input.LA(1) >= 39 && input.LA(1) <= 40)||input.LA(1)==43||input.LA(1)==46||input.LA(1)==56 ) {
-				input.consume();
-				state.errorRecovery=false;
+			switch ( input.LA(1) ) {
+			case 107:
+				{
+				alt5=1;
+				}
+				break;
+			case 90:
+				{
+				alt5=2;
+				}
+				break;
+			case 97:
+				{
+				alt5=3;
+				}
+				break;
+			case 94:
+				{
+				alt5=4;
+				}
+				break;
+			case 91:
+				{
+				alt5=5;
+				}
+				break;
+			default:
+				NoViableAltException nvae =
+					new NoViableAltException("", 5, 0, input);
+				dbg.recognitionException(nvae);
+				throw nvae;
 			}
-			else {
-				MismatchedSetException mse = new MismatchedSetException(null,input);
-				dbg.recognitionException(mse);
-				throw mse;
+			} finally {dbg.exitDecision(5);}
+
+			switch (alt5) {
+				case 1 :
+					dbg.enterAlt(1);
+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:93:7: 'void'
+					{
+					dbg.location(93,7);
+					string_literal27=(Token)match(input,107,FOLLOW_107_in_atom_typename654);  
+					stream_107.add(string_literal27);
+
+					// AST REWRITE
+					// elements: 
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 93:14: -> VOID_TYPENAME
+					{
+						dbg.location(93,17);
+						adaptor.addChild(root_0, (Object)adaptor.create(VOID_TYPENAME, "VOID_TYPENAME"));
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+				case 2 :
+					dbg.enterAlt(2);
+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:94:7: 'bool'
+					{
+					dbg.location(94,7);
+					string_literal28=(Token)match(input,90,FOLLOW_90_in_atom_typename666);  
+					stream_90.add(string_literal28);
+
+					// AST REWRITE
+					// elements: 
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 94:14: -> BOOL_TYPENAME
+					{
+						dbg.location(94,17);
+						adaptor.addChild(root_0, (Object)adaptor.create(BOOL_TYPENAME, "BOOL_TYPENAME"));
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+				case 3 :
+					dbg.enterAlt(3);
+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:95:7: 'int'
+					{
+					dbg.location(95,7);
+					string_literal29=(Token)match(input,97,FOLLOW_97_in_atom_typename678);  
+					stream_97.add(string_literal29);
+
+					// AST REWRITE
+					// elements: 
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 95:13: -> INT_TYPENAME
+					{
+						dbg.location(95,16);
+						adaptor.addChild(root_0, (Object)adaptor.create(INT_TYPENAME, "INT_TYPENAME"));
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+				case 4 :
+					dbg.enterAlt(4);
+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:96:7: 'float'
+					{
+					dbg.location(96,7);
+					string_literal30=(Token)match(input,94,FOLLOW_94_in_atom_typename690);  
+					stream_94.add(string_literal30);
+
+					// AST REWRITE
+					// elements: 
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 96:15: -> FLOAT_TYPENAME
+					{
+						dbg.location(96,18);
+						adaptor.addChild(root_0, (Object)adaptor.create(FLOAT_TYPENAME, "FLOAT_TYPENAME"));
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+				case 5 :
+					dbg.enterAlt(5);
+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:97:7: 'char'
+					{
+					dbg.location(97,7);
+					string_literal31=(Token)match(input,91,FOLLOW_91_in_atom_typename702);  
+					stream_91.add(string_literal31);
+
+					// AST REWRITE
+					// elements: 
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 97:14: -> CHAR_TYPENAME
+					{
+						dbg.location(97,17);
+						adaptor.addChild(root_0, (Object)adaptor.create(CHAR_TYPENAME, "CHAR_TYPENAME"));
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+
 			}
-			}
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(43, 4);
+		dbg.location(98, 4);
 
 		}
 		finally {
@@ -688,49 +1426,125 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "atom_typename"
 
 
+	public static class array_typename_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "array_typename"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:45:1: array_typename : 'array' '[' range_list ']' 'of' atom_typename ;
-	public final void array_typename() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:100:1: array_typename : 'array' '[' range_list ']' 'of' atom_typename -> ^( ARRAY atom_typename range_list ) ;
+	public final leacParser.array_typename_return array_typename() throws RecognitionException {
+		leacParser.array_typename_return retval = new leacParser.array_typename_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token string_literal32=null;
+		Token char_literal33=null;
+		Token char_literal35=null;
+		Token string_literal36=null;
+		ParserRuleReturnScope range_list34 =null;
+		ParserRuleReturnScope atom_typename37 =null;
+
+		Object string_literal32_tree=null;
+		Object char_literal33_tree=null;
+		Object char_literal35_tree=null;
+		Object string_literal36_tree=null;
+		RewriteRuleTokenStream stream_99=new RewriteRuleTokenStream(adaptor,"token 99");
+		RewriteRuleTokenStream stream_89=new RewriteRuleTokenStream(adaptor,"token 89");
+		RewriteRuleTokenStream stream_85=new RewriteRuleTokenStream(adaptor,"token 85");
+		RewriteRuleTokenStream stream_86=new RewriteRuleTokenStream(adaptor,"token 86");
+		RewriteRuleSubtreeStream stream_atom_typename=new RewriteRuleSubtreeStream(adaptor,"rule atom_typename");
+		RewriteRuleSubtreeStream stream_range_list=new RewriteRuleSubtreeStream(adaptor,"rule range_list");
+
 		try { dbg.enterRule(getGrammarFileName(), "array_typename");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(45, 0);
+		dbg.location(100, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:46:5: ( 'array' '[' range_list ']' 'of' atom_typename )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:101:5: ( 'array' '[' range_list ']' 'of' atom_typename -> ^( ARRAY atom_typename range_list ) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:46:7: 'array' '[' range_list ']' 'of' atom_typename
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:101:7: 'array' '[' range_list ']' 'of' atom_typename
 			{
-			dbg.location(46,7);
-			match(input,38,FOLLOW_38_in_array_typename258); dbg.location(46,15);
-			match(input,34,FOLLOW_34_in_array_typename260); dbg.location(46,19);
-			pushFollow(FOLLOW_range_list_in_array_typename262);
-			range_list();
-			state._fsp--;
-			dbg.location(46,30);
-			match(input,35,FOLLOW_35_in_array_typename264); dbg.location(46,34);
-			match(input,48,FOLLOW_48_in_array_typename266); dbg.location(46,39);
-			pushFollow(FOLLOW_atom_typename_in_array_typename268);
-			atom_typename();
+			dbg.location(101,7);
+			string_literal32=(Token)match(input,89,FOLLOW_89_in_array_typename723);  
+			stream_89.add(string_literal32);
+			dbg.location(101,15);
+			char_literal33=(Token)match(input,85,FOLLOW_85_in_array_typename725);  
+			stream_85.add(char_literal33);
+			dbg.location(101,19);
+			pushFollow(FOLLOW_range_list_in_array_typename727);
+			range_list34=range_list();
 			state._fsp--;
 
+			stream_range_list.add(range_list34.getTree());dbg.location(101,30);
+			char_literal35=(Token)match(input,86,FOLLOW_86_in_array_typename729);  
+			stream_86.add(char_literal35);
+			dbg.location(101,34);
+			string_literal36=(Token)match(input,99,FOLLOW_99_in_array_typename731);  
+			stream_99.add(string_literal36);
+			dbg.location(101,39);
+			pushFollow(FOLLOW_atom_typename_in_array_typename733);
+			atom_typename37=atom_typename();
+			state._fsp--;
+
+			stream_atom_typename.add(atom_typename37.getTree());
+			// AST REWRITE
+			// elements: range_list, atom_typename
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 101:53: -> ^( ARRAY atom_typename range_list )
+			{
+				dbg.location(101,56);
+				// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:101:56: ^( ARRAY atom_typename range_list )
+				{
+				Object root_1 = (Object)adaptor.nil();
+				dbg.location(101,58);
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ARRAY, "ARRAY"), root_1);
+				dbg.location(101,64);
+				adaptor.addChild(root_1, stream_atom_typename.nextTree());dbg.location(101,78);
+				adaptor.addChild(root_1, stream_range_list.nextTree());
+				adaptor.addChild(root_0, root_1);
+				}
+
 			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(47, 4);
+		dbg.location(102, 4);
 
 		}
 		finally {
@@ -739,77 +1553,144 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "array_typename"
 
 
+	public static class range_list_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "range_list"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:49:1: range_list : range ( ',' range )* ;
-	public final void range_list() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:104:1: range_list : range ( ',' range )* -> ^( RANGE_LIST ( range )+ ) ;
+	public final leacParser.range_list_return range_list() throws RecognitionException {
+		leacParser.range_list_return retval = new leacParser.range_list_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token char_literal39=null;
+		ParserRuleReturnScope range38 =null;
+		ParserRuleReturnScope range40 =null;
+
+		Object char_literal39_tree=null;
+		RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
+		RewriteRuleSubtreeStream stream_range=new RewriteRuleSubtreeStream(adaptor,"rule range");
+
 		try { dbg.enterRule(getGrammarFileName(), "range_list");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(49, 0);
+		dbg.location(104, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:50:5: ( range ( ',' range )* )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:105:5: ( range ( ',' range )* -> ^( RANGE_LIST ( range )+ ) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:50:7: range ( ',' range )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:105:7: range ( ',' range )*
 			{
-			dbg.location(50,7);
-			pushFollow(FOLLOW_range_in_range_list285);
-			range();
+			dbg.location(105,7);
+			pushFollow(FOLLOW_range_in_range_list760);
+			range38=range();
 			state._fsp--;
-			dbg.location(50,13);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:50:13: ( ',' range )*
-			try { dbg.enterSubRule(5);
 
-			loop5:
+			stream_range.add(range38.getTree());dbg.location(105,13);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:105:13: ( ',' range )*
+			try { dbg.enterSubRule(6);
+
+			loop6:
 			while (true) {
-				int alt5=2;
-				try { dbg.enterDecision(5, decisionCanBacktrack[5]);
+				int alt6=2;
+				try { dbg.enterDecision(6, decisionCanBacktrack[6]);
 
-				int LA5_0 = input.LA(1);
-				if ( (LA5_0==22) ) {
-					alt5=1;
+				int LA6_0 = input.LA(1);
+				if ( (LA6_0==73) ) {
+					alt6=1;
 				}
 
-				} finally {dbg.exitDecision(5);}
+				} finally {dbg.exitDecision(6);}
 
-				switch (alt5) {
+				switch (alt6) {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:50:14: ',' range
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:105:14: ',' range
 					{
-					dbg.location(50,14);
-					match(input,22,FOLLOW_22_in_range_list288); dbg.location(50,18);
-					pushFollow(FOLLOW_range_in_range_list290);
-					range();
+					dbg.location(105,14);
+					char_literal39=(Token)match(input,73,FOLLOW_73_in_range_list763);  
+					stream_73.add(char_literal39);
+					dbg.location(105,18);
+					pushFollow(FOLLOW_range_in_range_list765);
+					range40=range();
 					state._fsp--;
 
+					stream_range.add(range40.getTree());
 					}
 					break;
 
 				default :
-					break loop5;
+					break loop6;
 				}
 			}
-			} finally {dbg.exitSubRule(5);}
+			} finally {dbg.exitSubRule(6);}
+
+			// AST REWRITE
+			// elements: range
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 105:26: -> ^( RANGE_LIST ( range )+ )
+			{
+				dbg.location(105,29);
+				// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:105:29: ^( RANGE_LIST ( range )+ )
+				{
+				Object root_1 = (Object)adaptor.nil();
+				dbg.location(105,31);
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(RANGE_LIST, "RANGE_LIST"), root_1);
+				dbg.location(105,42);
+				if ( !(stream_range.hasNext()) ) {
+					throw new RewriteEarlyExitException();
+				}
+				while ( stream_range.hasNext() ) {
+					dbg.location(105,42);
+					adaptor.addChild(root_1, stream_range.nextTree());
+				}
+				stream_range.reset();
+
+				adaptor.addChild(root_0, root_1);
+				}
 
 			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(51, 4);
+		dbg.location(106, 4);
 
 		}
 		finally {
@@ -818,40 +1699,106 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "range_list"
 
 
+	public static class range_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "range"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:52:1: range : INT '..' INT ;
-	public final void range() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:107:1: range : inf= INT '..' sup= INT -> ^( RANGE $inf $sup) ;
+	public final leacParser.range_return range() throws RecognitionException {
+		leacParser.range_return retval = new leacParser.range_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token inf=null;
+		Token sup=null;
+		Token string_literal41=null;
+
+		Object inf_tree=null;
+		Object sup_tree=null;
+		Object string_literal41_tree=null;
+		RewriteRuleTokenStream stream_75=new RewriteRuleTokenStream(adaptor,"token 75");
+		RewriteRuleTokenStream stream_INT=new RewriteRuleTokenStream(adaptor,"token INT");
+
 		try { dbg.enterRule(getGrammarFileName(), "range");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(52, 0);
+		dbg.location(107, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:53:5: ( INT '..' INT )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:108:5: (inf= INT '..' sup= INT -> ^( RANGE $inf $sup) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:53:7: INT '..' INT
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:108:7: inf= INT '..' sup= INT
 			{
-			dbg.location(53,7);
-			match(input,INT,FOLLOW_INT_in_range308); dbg.location(53,11);
-			match(input,24,FOLLOW_24_in_range310); dbg.location(53,16);
-			match(input,INT,FOLLOW_INT_in_range312); 
+			dbg.location(108,10);
+			inf=(Token)match(input,INT,FOLLOW_INT_in_range794);  
+			stream_INT.add(inf);
+			dbg.location(108,15);
+			string_literal41=(Token)match(input,75,FOLLOW_75_in_range796);  
+			stream_75.add(string_literal41);
+			dbg.location(108,23);
+			sup=(Token)match(input,INT,FOLLOW_INT_in_range800);  
+			stream_INT.add(sup);
+
+			// AST REWRITE
+			// elements: inf, sup
+			// token labels: inf, sup
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleTokenStream stream_inf=new RewriteRuleTokenStream(adaptor,"token inf",inf);
+			RewriteRuleTokenStream stream_sup=new RewriteRuleTokenStream(adaptor,"token sup",sup);
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 108:28: -> ^( RANGE $inf $sup)
+			{
+				dbg.location(108,31);
+				// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:108:31: ^( RANGE $inf $sup)
+				{
+				Object root_1 = (Object)adaptor.nil();
+				dbg.location(108,33);
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(RANGE, "RANGE"), root_1);
+				dbg.location(108,40);
+				adaptor.addChild(root_1, stream_inf.nextNode());dbg.location(108,45);
+				adaptor.addChild(root_1, stream_sup.nextNode());
+				adaptor.addChild(root_0, root_1);
+				}
+
 			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(54, 4);
+		dbg.location(109, 4);
 
 		}
 		finally {
@@ -860,139 +1807,49 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "range"
 
 
+	public static class param_list_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "param_list"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:56:1: param_list : (| param ( ',' param )* );
-	public final void param_list() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:111:1: param_list : ( -> ^( PARAM_LIST ) | param ( ',' param )* -> ^( PARAM_LIST ( param )+ ) );
+	public final leacParser.param_list_return param_list() throws RecognitionException {
+		leacParser.param_list_return retval = new leacParser.param_list_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token char_literal43=null;
+		ParserRuleReturnScope param42 =null;
+		ParserRuleReturnScope param44 =null;
+
+		Object char_literal43_tree=null;
+		RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
+		RewriteRuleSubtreeStream stream_param=new RewriteRuleSubtreeStream(adaptor,"rule param");
+
 		try { dbg.enterRule(getGrammarFileName(), "param_list");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(56, 0);
+		dbg.location(111, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:57:5: (| param ( ',' param )* )
-			int alt7=2;
-			try { dbg.enterDecision(7, decisionCanBacktrack[7]);
-
-			int LA7_0 = input.LA(1);
-			if ( (LA7_0==19) ) {
-				alt7=1;
-			}
-			else if ( (LA7_0==IDF||LA7_0==52) ) {
-				alt7=2;
-			}
-
-			else {
-				NoViableAltException nvae =
-					new NoViableAltException("", 7, 0, input);
-				dbg.recognitionException(nvae);
-				throw nvae;
-			}
-
-			} finally {dbg.exitDecision(7);}
-
-			switch (alt7) {
-				case 1 :
-					dbg.enterAlt(1);
-
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:58:5: 
-					{
-					}
-					break;
-				case 2 :
-					dbg.enterAlt(2);
-
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:58:7: param ( ',' param )*
-					{
-					dbg.location(58,7);
-					pushFollow(FOLLOW_param_in_param_list337);
-					param();
-					state._fsp--;
-					dbg.location(58,13);
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:58:13: ( ',' param )*
-					try { dbg.enterSubRule(6);
-
-					loop6:
-					while (true) {
-						int alt6=2;
-						try { dbg.enterDecision(6, decisionCanBacktrack[6]);
-
-						int LA6_0 = input.LA(1);
-						if ( (LA6_0==22) ) {
-							alt6=1;
-						}
-
-						} finally {dbg.exitDecision(6);}
-
-						switch (alt6) {
-						case 1 :
-							dbg.enterAlt(1);
-
-							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:58:14: ',' param
-							{
-							dbg.location(58,14);
-							match(input,22,FOLLOW_22_in_param_list340); dbg.location(58,18);
-							pushFollow(FOLLOW_param_in_param_list342);
-							param();
-							state._fsp--;
-
-							}
-							break;
-
-						default :
-							break loop6;
-						}
-					}
-					} finally {dbg.exitSubRule(6);}
-
-					}
-					break;
-
-			}
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-		dbg.location(59, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "param_list");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
-	}
-	// $ANTLR end "param_list"
-
-
-
-	// $ANTLR start "param"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:60:1: param : ( IDF ':' typename | 'ref' IDF ':' typename );
-	public final void param() throws RecognitionException {
-		try { dbg.enterRule(getGrammarFileName(), "param");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(60, 0);
-
-		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:61:5: ( IDF ':' typename | 'ref' IDF ':' typename )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:112:5: ( -> ^( PARAM_LIST ) | param ( ',' param )* -> ^( PARAM_LIST ( param )+ ) )
 			int alt8=2;
 			try { dbg.enterDecision(8, decisionCanBacktrack[8]);
 
 			int LA8_0 = input.LA(1);
-			if ( (LA8_0==IDF) ) {
+			if ( (LA8_0==70) ) {
 				alt8=1;
 			}
-			else if ( (LA8_0==52) ) {
+			else if ( (LA8_0==IDF||LA8_0==103) ) {
 				alt8=2;
 			}
 
@@ -1009,43 +1866,337 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:61:7: IDF ':' typename
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:112:21: 
 					{
-					dbg.location(61,7);
-					match(input,IDF,FOLLOW_IDF_in_param360); dbg.location(61,11);
-					match(input,26,FOLLOW_26_in_param362); dbg.location(61,15);
-					pushFollow(FOLLOW_typename_in_param364);
-					typename();
-					state._fsp--;
+					// AST REWRITE
+					// elements: 
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 112:21: -> ^( PARAM_LIST )
+					{
+						dbg.location(112,24);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:112:24: ^( PARAM_LIST )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(112,26);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PARAM_LIST, "PARAM_LIST"), root_1);
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:62:7: 'ref' IDF ':' typename
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:113:7: param ( ',' param )*
 					{
-					dbg.location(62,7);
-					match(input,52,FOLLOW_52_in_param372); dbg.location(62,13);
-					match(input,IDF,FOLLOW_IDF_in_param374); dbg.location(62,17);
-					match(input,26,FOLLOW_26_in_param376); dbg.location(62,21);
-					pushFollow(FOLLOW_typename_in_param378);
-					typename();
+					dbg.location(113,7);
+					pushFollow(FOLLOW_param_in_param_list843);
+					param42=param();
 					state._fsp--;
+
+					stream_param.add(param42.getTree());dbg.location(113,13);
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:113:13: ( ',' param )*
+					try { dbg.enterSubRule(7);
+
+					loop7:
+					while (true) {
+						int alt7=2;
+						try { dbg.enterDecision(7, decisionCanBacktrack[7]);
+
+						int LA7_0 = input.LA(1);
+						if ( (LA7_0==73) ) {
+							alt7=1;
+						}
+
+						} finally {dbg.exitDecision(7);}
+
+						switch (alt7) {
+						case 1 :
+							dbg.enterAlt(1);
+
+							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:113:14: ',' param
+							{
+							dbg.location(113,14);
+							char_literal43=(Token)match(input,73,FOLLOW_73_in_param_list846);  
+							stream_73.add(char_literal43);
+							dbg.location(113,18);
+							pushFollow(FOLLOW_param_in_param_list848);
+							param44=param();
+							state._fsp--;
+
+							stream_param.add(param44.getTree());
+							}
+							break;
+
+						default :
+							break loop7;
+						}
+					}
+					} finally {dbg.exitSubRule(7);}
+
+					// AST REWRITE
+					// elements: param
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 113:26: -> ^( PARAM_LIST ( param )+ )
+					{
+						dbg.location(113,29);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:113:29: ^( PARAM_LIST ( param )+ )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(113,31);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PARAM_LIST, "PARAM_LIST"), root_1);
+						dbg.location(113,42);
+						if ( !(stream_param.hasNext()) ) {
+							throw new RewriteEarlyExitException();
+						}
+						while ( stream_param.hasNext() ) {
+							dbg.location(113,42);
+							adaptor.addChild(root_1, stream_param.nextTree());
+						}
+						stream_param.reset();
+
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 
 			}
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(63, 4);
+		dbg.location(114, 4);
+
+		}
+		finally {
+			dbg.exitRule(getGrammarFileName(), "param_list");
+			decRuleLevel();
+			if ( getRuleLevel()==0 ) {dbg.terminate();}
+		}
+
+		return retval;
+	}
+	// $ANTLR end "param_list"
+
+
+	public static class param_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
+
+	// $ANTLR start "param"
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:115:1: param : ( IDF ':' typename -> ^( PARAM typename BY_COPY IDF ) | 'ref' IDF ':' typename -> ^( PARAM typename BY_REF IDF ) );
+	public final leacParser.param_return param() throws RecognitionException {
+		leacParser.param_return retval = new leacParser.param_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token IDF45=null;
+		Token char_literal46=null;
+		Token string_literal48=null;
+		Token IDF49=null;
+		Token char_literal50=null;
+		ParserRuleReturnScope typename47 =null;
+		ParserRuleReturnScope typename51 =null;
+
+		Object IDF45_tree=null;
+		Object char_literal46_tree=null;
+		Object string_literal48_tree=null;
+		Object IDF49_tree=null;
+		Object char_literal50_tree=null;
+		RewriteRuleTokenStream stream_77=new RewriteRuleTokenStream(adaptor,"token 77");
+		RewriteRuleTokenStream stream_103=new RewriteRuleTokenStream(adaptor,"token 103");
+		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
+		RewriteRuleSubtreeStream stream_typename=new RewriteRuleSubtreeStream(adaptor,"rule typename");
+
+		try { dbg.enterRule(getGrammarFileName(), "param");
+		if ( getRuleLevel()==0 ) {dbg.commence();}
+		incRuleLevel();
+		dbg.location(115, 0);
+
+		try {
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:116:5: ( IDF ':' typename -> ^( PARAM typename BY_COPY IDF ) | 'ref' IDF ':' typename -> ^( PARAM typename BY_REF IDF ) )
+			int alt9=2;
+			try { dbg.enterDecision(9, decisionCanBacktrack[9]);
+
+			int LA9_0 = input.LA(1);
+			if ( (LA9_0==IDF) ) {
+				alt9=1;
+			}
+			else if ( (LA9_0==103) ) {
+				alt9=2;
+			}
+
+			else {
+				NoViableAltException nvae =
+					new NoViableAltException("", 9, 0, input);
+				dbg.recognitionException(nvae);
+				throw nvae;
+			}
+
+			} finally {dbg.exitDecision(9);}
+
+			switch (alt9) {
+				case 1 :
+					dbg.enterAlt(1);
+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:116:7: IDF ':' typename
+					{
+					dbg.location(116,7);
+					IDF45=(Token)match(input,IDF,FOLLOW_IDF_in_param875);  
+					stream_IDF.add(IDF45);
+					dbg.location(116,11);
+					char_literal46=(Token)match(input,77,FOLLOW_77_in_param877);  
+					stream_77.add(char_literal46);
+					dbg.location(116,15);
+					pushFollow(FOLLOW_typename_in_param879);
+					typename47=typename();
+					state._fsp--;
+
+					stream_typename.add(typename47.getTree());
+					// AST REWRITE
+					// elements: typename, IDF
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 116:24: -> ^( PARAM typename BY_COPY IDF )
+					{
+						dbg.location(116,27);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:116:27: ^( PARAM typename BY_COPY IDF )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(116,29);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PARAM, "PARAM"), root_1);
+						dbg.location(116,35);
+						adaptor.addChild(root_1, stream_typename.nextTree());dbg.location(116,44);
+						adaptor.addChild(root_1, (Object)adaptor.create(BY_COPY, "BY_COPY"));dbg.location(116,52);
+						adaptor.addChild(root_1, stream_IDF.nextNode());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+				case 2 :
+					dbg.enterAlt(2);
+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:117:7: 'ref' IDF ':' typename
+					{
+					dbg.location(117,7);
+					string_literal48=(Token)match(input,103,FOLLOW_103_in_param899);  
+					stream_103.add(string_literal48);
+					dbg.location(117,13);
+					IDF49=(Token)match(input,IDF,FOLLOW_IDF_in_param901);  
+					stream_IDF.add(IDF49);
+					dbg.location(117,17);
+					char_literal50=(Token)match(input,77,FOLLOW_77_in_param903);  
+					stream_77.add(char_literal50);
+					dbg.location(117,21);
+					pushFollow(FOLLOW_typename_in_param905);
+					typename51=typename();
+					state._fsp--;
+
+					stream_typename.add(typename51.getTree());
+					// AST REWRITE
+					// elements: IDF, typename
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 117:30: -> ^( PARAM typename BY_REF IDF )
+					{
+						dbg.location(117,33);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:117:33: ^( PARAM typename BY_REF IDF )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(117,35);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PARAM, "PARAM"), root_1);
+						dbg.location(117,41);
+						adaptor.addChild(root_1, stream_typename.nextTree());dbg.location(117,50);
+						adaptor.addChild(root_1, (Object)adaptor.create(BY_REF, "BY_REF"));dbg.location(117,57);
+						adaptor.addChild(root_1, stream_IDF.nextNode());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+
+			}
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		dbg.location(118, 4);
 
 		}
 		finally {
@@ -1054,164 +2205,345 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "param"
 
 
+	public static class statement_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "statement"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:65:1: statement : ( conditional | loop | affect_or_procedure_call | returning | block | read | write );
-	public final void statement() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:120:1: statement : ( conditional -> conditional | loop -> loop | affect_or_procedure_call -> affect_or_procedure_call | returning -> returning | block -> block | read -> read | write -> write );
+	public final leacParser.statement_return statement() throws RecognitionException {
+		leacParser.statement_return retval = new leacParser.statement_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		ParserRuleReturnScope conditional52 =null;
+		ParserRuleReturnScope loop53 =null;
+		ParserRuleReturnScope affect_or_procedure_call54 =null;
+		ParserRuleReturnScope returning55 =null;
+		ParserRuleReturnScope block56 =null;
+		ParserRuleReturnScope read57 =null;
+		ParserRuleReturnScope write58 =null;
+
+		RewriteRuleSubtreeStream stream_read=new RewriteRuleSubtreeStream(adaptor,"rule read");
+		RewriteRuleSubtreeStream stream_conditional=new RewriteRuleSubtreeStream(adaptor,"rule conditional");
+		RewriteRuleSubtreeStream stream_loop=new RewriteRuleSubtreeStream(adaptor,"rule loop");
+		RewriteRuleSubtreeStream stream_returning=new RewriteRuleSubtreeStream(adaptor,"rule returning");
+		RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
+		RewriteRuleSubtreeStream stream_affect_or_procedure_call=new RewriteRuleSubtreeStream(adaptor,"rule affect_or_procedure_call");
+		RewriteRuleSubtreeStream stream_write=new RewriteRuleSubtreeStream(adaptor,"rule write");
+
 		try { dbg.enterRule(getGrammarFileName(), "statement");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(65, 0);
+		dbg.location(120, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:66:5: ( conditional | loop | affect_or_procedure_call | returning | block | read | write )
-			int alt9=7;
-			try { dbg.enterDecision(9, decisionCanBacktrack[9]);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:121:5: ( conditional -> conditional | loop -> loop | affect_or_procedure_call -> affect_or_procedure_call | returning -> returning | block -> block | read -> read | write -> write )
+			int alt10=7;
+			try { dbg.enterDecision(10, decisionCanBacktrack[10]);
 
 			switch ( input.LA(1) ) {
-			case 45:
+			case 96:
 				{
-				alt9=1;
+				alt10=1;
 				}
 				break;
-			case 57:
+			case 108:
 				{
-				alt9=2;
+				alt10=2;
 				}
 				break;
 			case IDF:
 				{
-				alt9=3;
+				alt10=3;
 				}
 				break;
-			case 53:
+			case 104:
 				{
-				alt9=4;
+				alt10=4;
 				}
 				break;
-			case 59:
+			case 110:
 				{
-				alt9=5;
+				alt10=5;
 				}
 				break;
-			case 51:
+			case 102:
 				{
-				alt9=6;
+				alt10=6;
 				}
 				break;
-			case 58:
+			case 109:
 				{
-				alt9=7;
+				alt10=7;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 9, 0, input);
+					new NoViableAltException("", 10, 0, input);
 				dbg.recognitionException(nvae);
 				throw nvae;
 			}
-			} finally {dbg.exitDecision(9);}
+			} finally {dbg.exitDecision(10);}
 
-			switch (alt9) {
+			switch (alt10) {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:66:7: conditional
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:121:7: conditional
 					{
-					dbg.location(66,7);
-					pushFollow(FOLLOW_conditional_in_statement395);
-					conditional();
+					dbg.location(121,7);
+					pushFollow(FOLLOW_conditional_in_statement934);
+					conditional52=conditional();
 					state._fsp--;
+
+					stream_conditional.add(conditional52.getTree());
+					// AST REWRITE
+					// elements: conditional
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 121:19: -> conditional
+					{
+						dbg.location(121,22);
+						adaptor.addChild(root_0, stream_conditional.nextTree());
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:67:7: loop
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:122:7: loop
 					{
-					dbg.location(67,7);
-					pushFollow(FOLLOW_loop_in_statement403);
-					loop();
+					dbg.location(122,7);
+					pushFollow(FOLLOW_loop_in_statement946);
+					loop53=loop();
 					state._fsp--;
+
+					stream_loop.add(loop53.getTree());
+					// AST REWRITE
+					// elements: loop
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 122:12: -> loop
+					{
+						dbg.location(122,15);
+						adaptor.addChild(root_0, stream_loop.nextTree());
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 				case 3 :
 					dbg.enterAlt(3);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:68:7: affect_or_procedure_call
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:123:7: affect_or_procedure_call
 					{
-					dbg.location(68,7);
-					pushFollow(FOLLOW_affect_or_procedure_call_in_statement411);
-					affect_or_procedure_call();
+					dbg.location(123,7);
+					pushFollow(FOLLOW_affect_or_procedure_call_in_statement958);
+					affect_or_procedure_call54=affect_or_procedure_call();
 					state._fsp--;
+
+					stream_affect_or_procedure_call.add(affect_or_procedure_call54.getTree());
+					// AST REWRITE
+					// elements: affect_or_procedure_call
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 123:32: -> affect_or_procedure_call
+					{
+						dbg.location(123,35);
+						adaptor.addChild(root_0, stream_affect_or_procedure_call.nextTree());
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 				case 4 :
 					dbg.enterAlt(4);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:69:7: returning
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:124:7: returning
 					{
-					dbg.location(69,7);
-					pushFollow(FOLLOW_returning_in_statement419);
-					returning();
+					dbg.location(124,7);
+					pushFollow(FOLLOW_returning_in_statement970);
+					returning55=returning();
 					state._fsp--;
+
+					stream_returning.add(returning55.getTree());
+					// AST REWRITE
+					// elements: returning
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 124:17: -> returning
+					{
+						dbg.location(124,20);
+						adaptor.addChild(root_0, stream_returning.nextTree());
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 				case 5 :
 					dbg.enterAlt(5);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:70:7: block
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:125:7: block
 					{
-					dbg.location(70,7);
-					pushFollow(FOLLOW_block_in_statement427);
-					block();
+					dbg.location(125,7);
+					pushFollow(FOLLOW_block_in_statement982);
+					block56=block();
 					state._fsp--;
+
+					stream_block.add(block56.getTree());
+					// AST REWRITE
+					// elements: block
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 125:13: -> block
+					{
+						dbg.location(125,16);
+						adaptor.addChild(root_0, stream_block.nextTree());
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 				case 6 :
 					dbg.enterAlt(6);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:71:7: read
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:126:7: read
 					{
-					dbg.location(71,7);
-					pushFollow(FOLLOW_read_in_statement435);
-					read();
+					dbg.location(126,7);
+					pushFollow(FOLLOW_read_in_statement994);
+					read57=read();
 					state._fsp--;
+
+					stream_read.add(read57.getTree());
+					// AST REWRITE
+					// elements: read
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 126:12: -> read
+					{
+						dbg.location(126,15);
+						adaptor.addChild(root_0, stream_read.nextTree());
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 				case 7 :
 					dbg.enterAlt(7);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:72:7: write
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:127:7: write
 					{
-					dbg.location(72,7);
-					pushFollow(FOLLOW_write_in_statement443);
-					write();
+					dbg.location(127,7);
+					pushFollow(FOLLOW_write_in_statement1006);
+					write58=write();
 					state._fsp--;
+
+					stream_write.add(write58.getTree());
+					// AST REWRITE
+					// elements: write
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 127:13: -> write
+					{
+						dbg.location(127,16);
+						adaptor.addChild(root_0, stream_write.nextTree());
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 
 			}
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(73, 4);
+		dbg.location(128, 4);
 
 		}
 		finally {
@@ -1220,230 +2552,80 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "statement"
 
 
+	public static class conditional_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "conditional"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:75:1: conditional : 'if' expr 'then' statement ( options {greedy=true; } : 'else' statement |) ;
-	public final void conditional() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:130:1: conditional : 'if' expr 'then' first= statement ( options {greedy=true; } : 'else' second= statement -> ^( CONDITIONAL expr $first $second) | -> ^( CONDITIONAL expr $first PASS ) ) ;
+	public final leacParser.conditional_return conditional() throws RecognitionException {
+		leacParser.conditional_return retval = new leacParser.conditional_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token string_literal59=null;
+		Token string_literal61=null;
+		Token string_literal62=null;
+		ParserRuleReturnScope first =null;
+		ParserRuleReturnScope second =null;
+		ParserRuleReturnScope expr60 =null;
+
+		Object string_literal59_tree=null;
+		Object string_literal61_tree=null;
+		Object string_literal62_tree=null;
+		RewriteRuleTokenStream stream_105=new RewriteRuleTokenStream(adaptor,"token 105");
+		RewriteRuleTokenStream stream_93=new RewriteRuleTokenStream(adaptor,"token 93");
+		RewriteRuleTokenStream stream_96=new RewriteRuleTokenStream(adaptor,"token 96");
+		RewriteRuleSubtreeStream stream_statement=new RewriteRuleSubtreeStream(adaptor,"rule statement");
+		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
+
 		try { dbg.enterRule(getGrammarFileName(), "conditional");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(75, 0);
+		dbg.location(130, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:76:5: ( 'if' expr 'then' statement ( options {greedy=true; } : 'else' statement |) )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:131:5: ( 'if' expr 'then' first= statement ( options {greedy=true; } : 'else' second= statement -> ^( CONDITIONAL expr $first $second) | -> ^( CONDITIONAL expr $first PASS ) ) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:76:7: 'if' expr 'then' statement ( options {greedy=true; } : 'else' statement |)
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:131:7: 'if' expr 'then' first= statement ( options {greedy=true; } : 'else' second= statement -> ^( CONDITIONAL expr $first $second) | -> ^( CONDITIONAL expr $first PASS ) )
 			{
-			dbg.location(76,7);
-			match(input,45,FOLLOW_45_in_conditional460); dbg.location(76,12);
-			pushFollow(FOLLOW_expr_in_conditional462);
-			expr();
-			state._fsp--;
-			dbg.location(76,17);
-			match(input,54,FOLLOW_54_in_conditional464); dbg.location(76,24);
-			pushFollow(FOLLOW_statement_in_conditional466);
-			statement();
-			state._fsp--;
-			dbg.location(77,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:77:9: ( options {greedy=true; } : 'else' statement |)
-			int alt10=2;
-			try { dbg.enterSubRule(10);
-			try { dbg.enterDecision(10, decisionCanBacktrack[10]);
-
-			int LA10_0 = input.LA(1);
-			if ( (LA10_0==42) ) {
-				alt10=1;
-			}
-			else if ( (LA10_0==EOF||LA10_0==27||LA10_0==60) ) {
-				alt10=2;
-			}
-
-			else {
-				NoViableAltException nvae =
-					new NoViableAltException("", 10, 0, input);
-				dbg.recognitionException(nvae);
-				throw nvae;
-			}
-
-			} finally {dbg.exitDecision(10);}
-
-			switch (alt10) {
-				case 1 :
-					dbg.enterAlt(1);
-
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:77:39: 'else' statement
-					{
-					dbg.location(77,39);
-					match(input,42,FOLLOW_42_in_conditional490); dbg.location(77,46);
-					pushFollow(FOLLOW_statement_in_conditional492);
-					statement();
-					state._fsp--;
-
-					}
-					break;
-				case 2 :
-					dbg.enterAlt(2);
-
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:79:9: 
-					{
-					}
-					break;
-
-			}
-			} finally {dbg.exitSubRule(10);}
-
-			}
-
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-		dbg.location(80, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "conditional");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
-	}
-	// $ANTLR end "conditional"
-
-
-
-	// $ANTLR start "loop"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:82:1: loop : 'while' expr 'do' statement ;
-	public final void loop() throws RecognitionException {
-		try { dbg.enterRule(getGrammarFileName(), "loop");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(82, 0);
-
-		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:83:5: ( 'while' expr 'do' statement )
-			dbg.enterAlt(1);
-
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:83:7: 'while' expr 'do' statement
-			{
-			dbg.location(83,7);
-			match(input,57,FOLLOW_57_in_loop531); dbg.location(83,15);
-			pushFollow(FOLLOW_expr_in_loop533);
-			expr();
-			state._fsp--;
-			dbg.location(83,20);
-			match(input,41,FOLLOW_41_in_loop535); dbg.location(83,25);
-			pushFollow(FOLLOW_statement_in_loop537);
-			statement();
+			dbg.location(131,7);
+			string_literal59=(Token)match(input,96,FOLLOW_96_in_conditional1027);  
+			stream_96.add(string_literal59);
+			dbg.location(131,12);
+			pushFollow(FOLLOW_expr_in_conditional1029);
+			expr60=expr();
 			state._fsp--;
 
-			}
-
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-		dbg.location(84, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "loop");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
-	}
-	// $ANTLR end "loop"
-
-
-
-	// $ANTLR start "affect"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:86:1: affect : lvalue '=' expr ;
-	public final void affect() throws RecognitionException {
-		try { dbg.enterRule(getGrammarFileName(), "affect");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(86, 0);
-
-		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:87:5: ( lvalue '=' expr )
-			dbg.enterAlt(1);
-
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:87:7: lvalue '=' expr
-			{
-			dbg.location(87,7);
-			pushFollow(FOLLOW_lvalue_in_affect554);
-			lvalue();
-			state._fsp--;
-			dbg.location(87,14);
-			match(input,30,FOLLOW_30_in_affect556); dbg.location(87,18);
-			pushFollow(FOLLOW_expr_in_affect558);
-			expr();
+			stream_expr.add(expr60.getTree());dbg.location(131,17);
+			string_literal61=(Token)match(input,105,FOLLOW_105_in_conditional1031);  
+			stream_105.add(string_literal61);
+			dbg.location(131,29);
+			pushFollow(FOLLOW_statement_in_conditional1035);
+			first=statement();
 			state._fsp--;
 
-			}
-
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-		dbg.location(88, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "affect");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
-	}
-	// $ANTLR end "affect"
-
-
-
-	// $ANTLR start "lvalue"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:89:1: lvalue : IDF (| '[' coord_list ']' ) ;
-	public final void lvalue() throws RecognitionException {
-		try { dbg.enterRule(getGrammarFileName(), "lvalue");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(89, 0);
-
-		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:90:5: ( IDF (| '[' coord_list ']' ) )
-			dbg.enterAlt(1);
-
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:90:7: IDF (| '[' coord_list ']' )
-			{
-			dbg.location(90,7);
-			match(input,IDF,FOLLOW_IDF_in_lvalue574); dbg.location(91,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:91:9: (| '[' coord_list ']' )
+			stream_statement.add(first.getTree());dbg.location(132,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:132:9: ( options {greedy=true; } : 'else' second= statement -> ^( CONDITIONAL expr $first $second) | -> ^( CONDITIONAL expr $first PASS ) )
 			int alt11=2;
 			try { dbg.enterSubRule(11);
 			try { dbg.enterDecision(11, decisionCanBacktrack[11]);
 
 			int LA11_0 = input.LA(1);
-			if ( (LA11_0==EOF||LA11_0==27||LA11_0==30||LA11_0==42||LA11_0==60) ) {
+			if ( (LA11_0==93) ) {
 				alt11=1;
 			}
-			else if ( (LA11_0==34) ) {
+			else if ( (LA11_0==EOF||LA11_0==78||LA11_0==111) ) {
 				alt11=2;
 			}
 
@@ -1460,22 +2642,89 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:92:9: 
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:132:39: 'else' second= statement
 					{
+					dbg.location(132,39);
+					string_literal62=(Token)match(input,93,FOLLOW_93_in_conditional1059);  
+					stream_93.add(string_literal62);
+					dbg.location(132,52);
+					pushFollow(FOLLOW_statement_in_conditional1063);
+					second=statement();
+					state._fsp--;
+
+					stream_statement.add(second.getTree());
+					// AST REWRITE
+					// elements: expr, second, first
+					// token labels: 
+					// rule labels: first, retval, second
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_first=new RewriteRuleSubtreeStream(adaptor,"rule first",first!=null?first.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+					RewriteRuleSubtreeStream stream_second=new RewriteRuleSubtreeStream(adaptor,"rule second",second!=null?second.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 132:63: -> ^( CONDITIONAL expr $first $second)
+					{
+						dbg.location(132,66);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:132:66: ^( CONDITIONAL expr $first $second)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(132,68);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONDITIONAL, "CONDITIONAL"), root_1);
+						dbg.location(132,80);
+						adaptor.addChild(root_1, stream_expr.nextTree());dbg.location(132,86);
+						adaptor.addChild(root_1, stream_first.nextTree());dbg.location(132,93);
+						adaptor.addChild(root_1, stream_second.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:92:11: '[' coord_list ']'
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:133:25: 
 					{
-					dbg.location(92,11);
-					match(input,34,FOLLOW_34_in_lvalue598); dbg.location(92,15);
-					pushFollow(FOLLOW_coord_list_in_lvalue600);
-					coord_list();
-					state._fsp--;
-					dbg.location(92,26);
-					match(input,35,FOLLOW_35_in_lvalue602); 
+					// AST REWRITE
+					// elements: expr, first
+					// token labels: 
+					// rule labels: first, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_first=new RewriteRuleSubtreeStream(adaptor,"rule first",first!=null?first.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 133:25: -> ^( CONDITIONAL expr $first PASS )
+					{
+						dbg.location(133,28);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:133:28: ^( CONDITIONAL expr $first PASS )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(133,30);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONDITIONAL, "CONDITIONAL"), root_1);
+						dbg.location(133,42);
+						adaptor.addChild(root_1, stream_expr.nextTree());dbg.location(133,48);
+						adaptor.addChild(root_1, stream_first.nextTree());dbg.location(133,54);
+						adaptor.addChild(root_1, (Object)adaptor.create(PASS, "PASS"));
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 
@@ -1484,48 +2733,190 @@ public class leacParser extends DebugParser {
 
 			}
 
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(94, 4);
+		dbg.location(135, 4);
 
 		}
 		finally {
-			dbg.exitRule(getGrammarFileName(), "lvalue");
+			dbg.exitRule(getGrammarFileName(), "conditional");
 			decRuleLevel();
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
-	// $ANTLR end "lvalue"
+	// $ANTLR end "conditional"
 
+
+	public static class loop_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
+
+	// $ANTLR start "loop"
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:137:1: loop : 'while' expr 'do' statement -> ^( LOOP expr statement ) ;
+	public final leacParser.loop_return loop() throws RecognitionException {
+		leacParser.loop_return retval = new leacParser.loop_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token string_literal63=null;
+		Token string_literal65=null;
+		ParserRuleReturnScope expr64 =null;
+		ParserRuleReturnScope statement66 =null;
+
+		Object string_literal63_tree=null;
+		Object string_literal65_tree=null;
+		RewriteRuleTokenStream stream_108=new RewriteRuleTokenStream(adaptor,"token 108");
+		RewriteRuleTokenStream stream_92=new RewriteRuleTokenStream(adaptor,"token 92");
+		RewriteRuleSubtreeStream stream_statement=new RewriteRuleSubtreeStream(adaptor,"rule statement");
+		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
+
+		try { dbg.enterRule(getGrammarFileName(), "loop");
+		if ( getRuleLevel()==0 ) {dbg.commence();}
+		incRuleLevel();
+		dbg.location(137, 0);
+
+		try {
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:138:5: ( 'while' expr 'do' statement -> ^( LOOP expr statement ) )
+			dbg.enterAlt(1);
+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:138:7: 'while' expr 'do' statement
+			{
+			dbg.location(138,7);
+			string_literal63=(Token)match(input,108,FOLLOW_108_in_loop1129);  
+			stream_108.add(string_literal63);
+			dbg.location(138,15);
+			pushFollow(FOLLOW_expr_in_loop1131);
+			expr64=expr();
+			state._fsp--;
+
+			stream_expr.add(expr64.getTree());dbg.location(138,20);
+			string_literal65=(Token)match(input,92,FOLLOW_92_in_loop1133);  
+			stream_92.add(string_literal65);
+			dbg.location(138,25);
+			pushFollow(FOLLOW_statement_in_loop1135);
+			statement66=statement();
+			state._fsp--;
+
+			stream_statement.add(statement66.getTree());
+			// AST REWRITE
+			// elements: expr, statement
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 138:35: -> ^( LOOP expr statement )
+			{
+				dbg.location(138,38);
+				// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:138:38: ^( LOOP expr statement )
+				{
+				Object root_1 = (Object)adaptor.nil();
+				dbg.location(138,40);
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(LOOP, "LOOP"), root_1);
+				dbg.location(138,45);
+				adaptor.addChild(root_1, stream_expr.nextTree());dbg.location(138,50);
+				adaptor.addChild(root_1, stream_statement.nextTree());
+				adaptor.addChild(root_0, root_1);
+				}
+
+			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		dbg.location(139, 4);
+
+		}
+		finally {
+			dbg.exitRule(getGrammarFileName(), "loop");
+			decRuleLevel();
+			if ( getRuleLevel()==0 ) {dbg.terminate();}
+		}
+
+		return retval;
+	}
+	// $ANTLR end "loop"
+
+
+	public static class coord_list_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
 
 
 	// $ANTLR start "coord_list"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:95:1: coord_list : expr ( ',' expr )* ;
-	public final void coord_list() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:141:1: coord_list : expr ( ',' expr )* -> ^( COORD_LIST ( expr )+ ) ;
+	public final leacParser.coord_list_return coord_list() throws RecognitionException {
+		leacParser.coord_list_return retval = new leacParser.coord_list_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token char_literal68=null;
+		ParserRuleReturnScope expr67 =null;
+		ParserRuleReturnScope expr69 =null;
+
+		Object char_literal68_tree=null;
+		RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
+		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
+
 		try { dbg.enterRule(getGrammarFileName(), "coord_list");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(95, 0);
+		dbg.location(141, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:96:5: ( expr ( ',' expr )* )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:142:5: ( expr ( ',' expr )* -> ^( COORD_LIST ( expr )+ ) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:96:7: expr ( ',' expr )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:142:7: expr ( ',' expr )*
 			{
-			dbg.location(96,7);
-			pushFollow(FOLLOW_expr_in_coord_list628);
-			expr();
+			dbg.location(142,7);
+			pushFollow(FOLLOW_expr_in_coord_list1162);
+			expr67=expr();
 			state._fsp--;
-			dbg.location(96,12);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:96:12: ( ',' expr )*
+
+			stream_expr.add(expr67.getTree());dbg.location(142,12);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:142:12: ( ',' expr )*
 			try { dbg.enterSubRule(12);
 
 			loop12:
@@ -1534,7 +2925,7 @@ public class leacParser extends DebugParser {
 				try { dbg.enterDecision(12, decisionCanBacktrack[12]);
 
 				int LA12_0 = input.LA(1);
-				if ( (LA12_0==22) ) {
+				if ( (LA12_0==73) ) {
 					alt12=1;
 				}
 
@@ -1544,14 +2935,17 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:96:13: ',' expr
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:142:13: ',' expr
 					{
-					dbg.location(96,13);
-					match(input,22,FOLLOW_22_in_coord_list631); dbg.location(96,17);
-					pushFollow(FOLLOW_expr_in_coord_list633);
-					expr();
+					dbg.location(142,13);
+					char_literal68=(Token)match(input,73,FOLLOW_73_in_coord_list1165);  
+					stream_73.add(char_literal68);
+					dbg.location(142,17);
+					pushFollow(FOLLOW_expr_in_coord_list1167);
+					expr69=expr();
 					state._fsp--;
 
+					stream_expr.add(expr69.getTree());
 					}
 					break;
 
@@ -1561,17 +2955,60 @@ public class leacParser extends DebugParser {
 			}
 			} finally {dbg.exitSubRule(12);}
 
+			// AST REWRITE
+			// elements: expr
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 142:24: -> ^( COORD_LIST ( expr )+ )
+			{
+				dbg.location(142,27);
+				// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:142:27: ^( COORD_LIST ( expr )+ )
+				{
+				Object root_1 = (Object)adaptor.nil();
+				dbg.location(142,29);
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(COORD_LIST, "COORD_LIST"), root_1);
+				dbg.location(142,40);
+				if ( !(stream_expr.hasNext()) ) {
+					throw new RewriteEarlyExitException();
+				}
+				while ( stream_expr.hasNext() ) {
+					dbg.location(142,40);
+					adaptor.addChild(root_1, stream_expr.nextTree());
+				}
+				stream_expr.reset();
+
+				adaptor.addChild(root_0, root_1);
+				}
+
 			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(97, 4);
+		dbg.location(143, 4);
 
 		}
 		finally {
@@ -1580,37 +3017,58 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "coord_list"
 
 
+	public static class returning_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "returning"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:99:1: returning : 'return' (| expr ) ;
-	public final void returning() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:145:1: returning : 'return' ( -> ^( RETURNING NO_RETURN_VALUE ) | expr -> ^( RETURNING expr ) ) ;
+	public final leacParser.returning_return returning() throws RecognitionException {
+		leacParser.returning_return retval = new leacParser.returning_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token string_literal70=null;
+		ParserRuleReturnScope expr71 =null;
+
+		Object string_literal70_tree=null;
+		RewriteRuleTokenStream stream_104=new RewriteRuleTokenStream(adaptor,"token 104");
+		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
+
 		try { dbg.enterRule(getGrammarFileName(), "returning");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(99, 0);
+		dbg.location(145, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:100:5: ( 'return' (| expr ) )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:146:5: ( 'return' ( -> ^( RETURNING NO_RETURN_VALUE ) | expr -> ^( RETURNING expr ) ) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:100:7: 'return' (| expr )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:146:7: 'return' ( -> ^( RETURNING NO_RETURN_VALUE ) | expr -> ^( RETURNING expr ) )
 			{
-			dbg.location(100,7);
-			match(input,53,FOLLOW_53_in_returning652); dbg.location(101,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:101:9: (| expr )
+			dbg.location(146,7);
+			string_literal70=(Token)match(input,104,FOLLOW_104_in_returning1195);  
+			stream_104.add(string_literal70);
+			dbg.location(147,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:147:9: ( -> ^( RETURNING NO_RETURN_VALUE ) | expr -> ^( RETURNING expr ) )
 			int alt13=2;
 			try { dbg.enterSubRule(13);
 			try { dbg.enterDecision(13, decisionCanBacktrack[13]);
 
 			int LA13_0 = input.LA(1);
-			if ( (LA13_0==EOF||LA13_0==27||LA13_0==42||LA13_0==60) ) {
+			if ( (LA13_0==EOF||LA13_0==78||LA13_0==93||LA13_0==111) ) {
 				alt13=1;
 			}
-			else if ( ((LA13_0 >= BOOL && LA13_0 <= CHAR)||LA13_0==FLOAT||(LA13_0 >= IDF && LA13_0 <= INT)||LA13_0==STRING||LA13_0==18||LA13_0==23||LA13_0==47) ) {
+			else if ( (LA13_0==BOOL||LA13_0==CHAR||LA13_0==FLOAT||LA13_0==IDF||LA13_0==INT||LA13_0==STRING||LA13_0==69||LA13_0==74||LA13_0==98) ) {
 				alt13=2;
 			}
 
@@ -1627,19 +3085,78 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:102:9: 
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:147:25: 
 					{
+					// AST REWRITE
+					// elements: 
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 147:25: -> ^( RETURNING NO_RETURN_VALUE )
+					{
+						dbg.location(147,28);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:147:28: ^( RETURNING NO_RETURN_VALUE )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(147,30);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(RETURNING, "RETURNING"), root_1);
+						dbg.location(147,40);
+						adaptor.addChild(root_1, (Object)adaptor.create(NO_RETURN_VALUE, "NO_RETURN_VALUE"));
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:102:11: expr
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:148:11: expr
 					{
-					dbg.location(102,11);
-					pushFollow(FOLLOW_expr_in_returning676);
-					expr();
+					dbg.location(148,11);
+					pushFollow(FOLLOW_expr_in_returning1227);
+					expr71=expr();
 					state._fsp--;
+
+					stream_expr.add(expr71.getTree());
+					// AST REWRITE
+					// elements: expr
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 148:16: -> ^( RETURNING expr )
+					{
+						dbg.location(148,19);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:148:19: ^( RETURNING expr )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(148,21);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(RETURNING, "RETURNING"), root_1);
+						dbg.location(148,31);
+						adaptor.addChild(root_1, stream_expr.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
@@ -1649,15 +3166,21 @@ public class leacParser extends DebugParser {
 
 			}
 
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(104, 4);
+		dbg.location(150, 4);
 
 		}
 		finally {
@@ -1666,37 +3189,77 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "returning"
 
 
+	public static class affect_or_procedure_call_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "affect_or_procedure_call"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:106:1: affect_or_procedure_call : IDF ( (| '[' coord_list ']' ) '=' expr | '(' arg_list ')' ) ;
-	public final void affect_or_procedure_call() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:152:1: affect_or_procedure_call : IDF ( ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr -> ^( AFFECT $affect_or_procedure_call expr ) | '(' arg_list ')' -> ^( PROCEDURE_CALL IDF arg_list ) ) ;
+	public final leacParser.affect_or_procedure_call_return affect_or_procedure_call() throws RecognitionException {
+		leacParser.affect_or_procedure_call_return retval = new leacParser.affect_or_procedure_call_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token IDF72=null;
+		Token char_literal73=null;
+		Token char_literal75=null;
+		Token char_literal76=null;
+		Token char_literal78=null;
+		Token char_literal80=null;
+		ParserRuleReturnScope coord_list74 =null;
+		ParserRuleReturnScope expr77 =null;
+		ParserRuleReturnScope arg_list79 =null;
+
+		Object IDF72_tree=null;
+		Object char_literal73_tree=null;
+		Object char_literal75_tree=null;
+		Object char_literal76_tree=null;
+		Object char_literal78_tree=null;
+		Object char_literal80_tree=null;
+		RewriteRuleTokenStream stream_69=new RewriteRuleTokenStream(adaptor,"token 69");
+		RewriteRuleTokenStream stream_81=new RewriteRuleTokenStream(adaptor,"token 81");
+		RewriteRuleTokenStream stream_70=new RewriteRuleTokenStream(adaptor,"token 70");
+		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
+		RewriteRuleTokenStream stream_85=new RewriteRuleTokenStream(adaptor,"token 85");
+		RewriteRuleTokenStream stream_86=new RewriteRuleTokenStream(adaptor,"token 86");
+		RewriteRuleSubtreeStream stream_coord_list=new RewriteRuleSubtreeStream(adaptor,"rule coord_list");
+		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
+		RewriteRuleSubtreeStream stream_arg_list=new RewriteRuleSubtreeStream(adaptor,"rule arg_list");
+
 		try { dbg.enterRule(getGrammarFileName(), "affect_or_procedure_call");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(106, 0);
+		dbg.location(152, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:107:5: ( IDF ( (| '[' coord_list ']' ) '=' expr | '(' arg_list ')' ) )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:153:5: ( IDF ( ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr -> ^( AFFECT $affect_or_procedure_call expr ) | '(' arg_list ')' -> ^( PROCEDURE_CALL IDF arg_list ) ) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:107:7: IDF ( (| '[' coord_list ']' ) '=' expr | '(' arg_list ')' )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:153:7: IDF ( ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr -> ^( AFFECT $affect_or_procedure_call expr ) | '(' arg_list ')' -> ^( PROCEDURE_CALL IDF arg_list ) )
 			{
-			dbg.location(107,7);
-			match(input,IDF,FOLLOW_IDF_in_affect_or_procedure_call703); dbg.location(108,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:108:9: ( (| '[' coord_list ']' ) '=' expr | '(' arg_list ')' )
+			dbg.location(153,7);
+			IDF72=(Token)match(input,IDF,FOLLOW_IDF_in_affect_or_procedure_call1262);  
+			stream_IDF.add(IDF72);
+			dbg.location(154,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:154:9: ( ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr -> ^( AFFECT $affect_or_procedure_call expr ) | '(' arg_list ')' -> ^( PROCEDURE_CALL IDF arg_list ) )
 			int alt15=2;
 			try { dbg.enterSubRule(15);
 			try { dbg.enterDecision(15, decisionCanBacktrack[15]);
 
 			int LA15_0 = input.LA(1);
-			if ( (LA15_0==30||LA15_0==34) ) {
+			if ( (LA15_0==81||LA15_0==85) ) {
 				alt15=1;
 			}
-			else if ( (LA15_0==18) ) {
+			else if ( (LA15_0==69) ) {
 				alt15=2;
 			}
 
@@ -1713,19 +3276,19 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:109:13: (| '[' coord_list ']' ) '=' expr
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:155:13: ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr
 					{
-					dbg.location(109,13);
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:109:13: (| '[' coord_list ']' )
+					dbg.location(155,13);
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:155:13: ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) )
 					int alt14=2;
 					try { dbg.enterSubRule(14);
 					try { dbg.enterDecision(14, decisionCanBacktrack[14]);
 
 					int LA14_0 = input.LA(1);
-					if ( (LA14_0==30) ) {
+					if ( (LA14_0==81) ) {
 						alt14=1;
 					}
-					else if ( (LA14_0==34) ) {
+					else if ( (LA14_0==85) ) {
 						alt14=2;
 					}
 
@@ -1742,47 +3305,179 @@ public class leacParser extends DebugParser {
 						case 1 :
 							dbg.enterAlt(1);
 
-							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:110:13: 
+							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:155:29: 
 							{
+							// AST REWRITE
+							// elements: IDF
+							// token labels: 
+							// rule labels: retval
+							// token list labels: 
+							// rule list labels: 
+							// wildcard labels: 
+							retval.tree = root_0;
+							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+							root_0 = (Object)adaptor.nil();
+							// 155:29: -> ^( VAR IDF )
+							{
+								dbg.location(155,32);
+								// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:155:32: ^( VAR IDF )
+								{
+								Object root_1 = (Object)adaptor.nil();
+								dbg.location(155,34);
+								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(VAR, "VAR"), root_1);
+								dbg.location(155,38);
+								adaptor.addChild(root_1, stream_IDF.nextNode());
+								adaptor.addChild(root_0, root_1);
+								}
+
+							}
+
+
+							retval.tree = root_0;
+
 							}
 							break;
 						case 2 :
 							dbg.enterAlt(2);
 
-							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:110:15: '[' coord_list ']'
+							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:156:15: '[' coord_list ']'
 							{
-							dbg.location(110,15);
-							match(input,34,FOLLOW_34_in_affect_or_procedure_call745); dbg.location(110,19);
-							pushFollow(FOLLOW_coord_list_in_affect_or_procedure_call747);
-							coord_list();
+							dbg.location(156,15);
+							char_literal73=(Token)match(input,85,FOLLOW_85_in_affect_or_procedure_call1312);  
+							stream_85.add(char_literal73);
+							dbg.location(156,19);
+							pushFollow(FOLLOW_coord_list_in_affect_or_procedure_call1314);
+							coord_list74=coord_list();
 							state._fsp--;
-							dbg.location(110,30);
-							match(input,35,FOLLOW_35_in_affect_or_procedure_call749); 
+
+							stream_coord_list.add(coord_list74.getTree());dbg.location(156,30);
+							char_literal75=(Token)match(input,86,FOLLOW_86_in_affect_or_procedure_call1316);  
+							stream_86.add(char_literal75);
+
+							// AST REWRITE
+							// elements: IDF, coord_list
+							// token labels: 
+							// rule labels: retval
+							// token list labels: 
+							// rule list labels: 
+							// wildcard labels: 
+							retval.tree = root_0;
+							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+							root_0 = (Object)adaptor.nil();
+							// 156:34: -> ^( CELL IDF coord_list )
+							{
+								dbg.location(156,37);
+								// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:156:37: ^( CELL IDF coord_list )
+								{
+								Object root_1 = (Object)adaptor.nil();
+								dbg.location(156,39);
+								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CELL, "CELL"), root_1);
+								dbg.location(156,44);
+								adaptor.addChild(root_1, stream_IDF.nextNode());dbg.location(156,48);
+								adaptor.addChild(root_1, stream_coord_list.nextTree());
+								adaptor.addChild(root_0, root_1);
+								}
+
+							}
+
+
+							retval.tree = root_0;
+
 							}
 							break;
 
 					}
 					} finally {dbg.exitSubRule(14);}
-					dbg.location(112,13);
-					match(input,30,FOLLOW_30_in_affect_or_procedure_call777); dbg.location(112,17);
-					pushFollow(FOLLOW_expr_in_affect_or_procedure_call779);
-					expr();
+					dbg.location(158,13);
+					char_literal76=(Token)match(input,81,FOLLOW_81_in_affect_or_procedure_call1354);  
+					stream_81.add(char_literal76);
+					dbg.location(158,17);
+					pushFollow(FOLLOW_expr_in_affect_or_procedure_call1356);
+					expr77=expr();
 					state._fsp--;
+
+					stream_expr.add(expr77.getTree());
+					// AST REWRITE
+					// elements: affect_or_procedure_call, expr
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 158:22: -> ^( AFFECT $affect_or_procedure_call expr )
+					{
+						dbg.location(158,25);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:158:25: ^( AFFECT $affect_or_procedure_call expr )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(158,27);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(AFFECT, "AFFECT"), root_1);
+						dbg.location(158,35);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(158,60);
+						adaptor.addChild(root_1, stream_expr.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:113:11: '(' arg_list ')'
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:159:11: '(' arg_list ')'
 					{
-					dbg.location(113,11);
-					match(input,18,FOLLOW_18_in_affect_or_procedure_call791); dbg.location(113,15);
-					pushFollow(FOLLOW_arg_list_in_affect_or_procedure_call793);
-					arg_list();
+					dbg.location(159,11);
+					char_literal78=(Token)match(input,69,FOLLOW_69_in_affect_or_procedure_call1379);  
+					stream_69.add(char_literal78);
+					dbg.location(159,15);
+					pushFollow(FOLLOW_arg_list_in_affect_or_procedure_call1381);
+					arg_list79=arg_list();
 					state._fsp--;
-					dbg.location(113,24);
-					match(input,19,FOLLOW_19_in_affect_or_procedure_call795); 
+
+					stream_arg_list.add(arg_list79.getTree());dbg.location(159,24);
+					char_literal80=(Token)match(input,70,FOLLOW_70_in_affect_or_procedure_call1383);  
+					stream_70.add(char_literal80);
+
+					// AST REWRITE
+					// elements: IDF, arg_list
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 159:28: -> ^( PROCEDURE_CALL IDF arg_list )
+					{
+						dbg.location(159,31);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:159:31: ^( PROCEDURE_CALL IDF arg_list )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(159,33);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PROCEDURE_CALL, "PROCEDURE_CALL"), root_1);
+						dbg.location(159,48);
+						adaptor.addChild(root_1, stream_IDF.nextNode());dbg.location(159,52);
+						adaptor.addChild(root_1, stream_arg_list.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 
@@ -1791,15 +3486,21 @@ public class leacParser extends DebugParser {
 
 			}
 
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(115, 4);
+		dbg.location(161, 4);
 
 		}
 		finally {
@@ -1808,29 +3509,49 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "affect_or_procedure_call"
 
 
+	public static class arg_list_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "arg_list"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:117:1: arg_list : (| expr ( ',' expr )* );
-	public final void arg_list() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:163:1: arg_list : ( -> ^( ARG_LIST ) | expr ( ',' expr )* -> ^( ARG_LIST ( expr )+ ) );
+	public final leacParser.arg_list_return arg_list() throws RecognitionException {
+		leacParser.arg_list_return retval = new leacParser.arg_list_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token char_literal82=null;
+		ParserRuleReturnScope expr81 =null;
+		ParserRuleReturnScope expr83 =null;
+
+		Object char_literal82_tree=null;
+		RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
+		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
+
 		try { dbg.enterRule(getGrammarFileName(), "arg_list");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(117, 0);
+		dbg.location(163, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:118:5: (| expr ( ',' expr )* )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:164:5: ( -> ^( ARG_LIST ) | expr ( ',' expr )* -> ^( ARG_LIST ( expr )+ ) )
 			int alt17=2;
 			try { dbg.enterDecision(17, decisionCanBacktrack[17]);
 
 			int LA17_0 = input.LA(1);
-			if ( (LA17_0==19) ) {
+			if ( (LA17_0==70) ) {
 				alt17=1;
 			}
-			else if ( ((LA17_0 >= BOOL && LA17_0 <= CHAR)||LA17_0==FLOAT||(LA17_0 >= IDF && LA17_0 <= INT)||LA17_0==STRING||LA17_0==18||LA17_0==23||LA17_0==47) ) {
+			else if ( (LA17_0==BOOL||LA17_0==CHAR||LA17_0==FLOAT||LA17_0==IDF||LA17_0==INT||LA17_0==STRING||LA17_0==69||LA17_0==74||LA17_0==98) ) {
 				alt17=2;
 			}
 
@@ -1847,21 +3568,49 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:119:5: 
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:164:21: 
 					{
+					// AST REWRITE
+					// elements: 
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 164:21: -> ^( ARG_LIST )
+					{
+						dbg.location(164,24);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:164:24: ^( ARG_LIST )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(164,26);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ARG_LIST, "ARG_LIST"), root_1);
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:119:7: expr ( ',' expr )*
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:165:7: expr ( ',' expr )*
 					{
-					dbg.location(119,7);
-					pushFollow(FOLLOW_expr_in_arg_list830);
-					expr();
+					dbg.location(165,7);
+					pushFollow(FOLLOW_expr_in_arg_list1434);
+					expr81=expr();
 					state._fsp--;
-					dbg.location(119,12);
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:119:12: ( ',' expr )*
+
+					stream_expr.add(expr81.getTree());dbg.location(165,12);
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:165:12: ( ',' expr )*
 					try { dbg.enterSubRule(16);
 
 					loop16:
@@ -1870,7 +3619,7 @@ public class leacParser extends DebugParser {
 						try { dbg.enterDecision(16, decisionCanBacktrack[16]);
 
 						int LA16_0 = input.LA(1);
-						if ( (LA16_0==22) ) {
+						if ( (LA16_0==73) ) {
 							alt16=1;
 						}
 
@@ -1880,14 +3629,17 @@ public class leacParser extends DebugParser {
 						case 1 :
 							dbg.enterAlt(1);
 
-							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:119:13: ',' expr
+							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:165:13: ',' expr
 							{
-							dbg.location(119,13);
-							match(input,22,FOLLOW_22_in_arg_list833); dbg.location(119,17);
-							pushFollow(FOLLOW_expr_in_arg_list835);
-							expr();
+							dbg.location(165,13);
+							char_literal82=(Token)match(input,73,FOLLOW_73_in_arg_list1437);  
+							stream_73.add(char_literal82);
+							dbg.location(165,17);
+							pushFollow(FOLLOW_expr_in_arg_list1439);
+							expr83=expr();
 							state._fsp--;
 
+							stream_expr.add(expr83.getTree());
 							}
 							break;
 
@@ -1897,19 +3649,62 @@ public class leacParser extends DebugParser {
 					}
 					} finally {dbg.exitSubRule(16);}
 
+					// AST REWRITE
+					// elements: expr
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 165:24: -> ^( ARG_LIST ( expr )+ )
+					{
+						dbg.location(165,27);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:165:27: ^( ARG_LIST ( expr )+ )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(165,29);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ARG_LIST, "ARG_LIST"), root_1);
+						dbg.location(165,38);
+						if ( !(stream_expr.hasNext()) ) {
+							throw new RewriteEarlyExitException();
+						}
+						while ( stream_expr.hasNext() ) {
+							dbg.location(165,38);
+							adaptor.addChild(root_1, stream_expr.nextTree());
+						}
+						stream_expr.reset();
+
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 
 			}
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(120, 4);
+		dbg.location(166, 4);
 
 		}
 		finally {
@@ -1918,37 +3713,65 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "arg_list"
 
 
+	public static class block_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "block"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:122:1: block : '{' (| statement ( ';' statement )* ) '}' ;
-	public final void block() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:168:1: block : '{' ( -> ^( BLOCK ) | statement ( ';' statement )* -> ^( BLOCK ( statement )+ ) ) '}' ;
+	public final leacParser.block_return block() throws RecognitionException {
+		leacParser.block_return retval = new leacParser.block_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token char_literal84=null;
+		Token char_literal86=null;
+		Token char_literal88=null;
+		ParserRuleReturnScope statement85 =null;
+		ParserRuleReturnScope statement87 =null;
+
+		Object char_literal84_tree=null;
+		Object char_literal86_tree=null;
+		Object char_literal88_tree=null;
+		RewriteRuleTokenStream stream_110=new RewriteRuleTokenStream(adaptor,"token 110");
+		RewriteRuleTokenStream stream_111=new RewriteRuleTokenStream(adaptor,"token 111");
+		RewriteRuleTokenStream stream_78=new RewriteRuleTokenStream(adaptor,"token 78");
+		RewriteRuleSubtreeStream stream_statement=new RewriteRuleSubtreeStream(adaptor,"rule statement");
+
 		try { dbg.enterRule(getGrammarFileName(), "block");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(122, 0);
+		dbg.location(168, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:123:5: ( '{' (| statement ( ';' statement )* ) '}' )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:169:5: ( '{' ( -> ^( BLOCK ) | statement ( ';' statement )* -> ^( BLOCK ( statement )+ ) ) '}' )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:123:7: '{' (| statement ( ';' statement )* ) '}'
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:169:7: '{' ( -> ^( BLOCK ) | statement ( ';' statement )* -> ^( BLOCK ( statement )+ ) ) '}'
 			{
-			dbg.location(123,7);
-			match(input,59,FOLLOW_59_in_block854); dbg.location(124,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:124:9: (| statement ( ';' statement )* )
+			dbg.location(169,7);
+			char_literal84=(Token)match(input,110,FOLLOW_110_in_block1467);  
+			stream_110.add(char_literal84);
+			dbg.location(170,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:170:9: ( -> ^( BLOCK ) | statement ( ';' statement )* -> ^( BLOCK ( statement )+ ) )
 			int alt19=2;
 			try { dbg.enterSubRule(19);
 			try { dbg.enterDecision(19, decisionCanBacktrack[19]);
 
 			int LA19_0 = input.LA(1);
-			if ( (LA19_0==60) ) {
+			if ( (LA19_0==111) ) {
 				alt19=1;
 			}
-			else if ( (LA19_0==IDF||LA19_0==45||LA19_0==51||LA19_0==53||(LA19_0 >= 57 && LA19_0 <= 59)) ) {
+			else if ( (LA19_0==IDF||LA19_0==96||LA19_0==102||LA19_0==104||(LA19_0 >= 108 && LA19_0 <= 110)) ) {
 				alt19=2;
 			}
 
@@ -1965,21 +3788,49 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:125:9: 
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:170:25: 
 					{
+					// AST REWRITE
+					// elements: 
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 170:25: -> ^( BLOCK )
+					{
+						dbg.location(170,28);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:170:28: ^( BLOCK )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(170,30);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(BLOCK, "BLOCK"), root_1);
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:125:11: statement ( ';' statement )*
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:171:11: statement ( ';' statement )*
 					{
-					dbg.location(125,11);
-					pushFollow(FOLLOW_statement_in_block878);
-					statement();
+					dbg.location(171,11);
+					pushFollow(FOLLOW_statement_in_block1497);
+					statement85=statement();
 					state._fsp--;
-					dbg.location(125,21);
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:125:21: ( ';' statement )*
+
+					stream_statement.add(statement85.getTree());dbg.location(171,21);
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:171:21: ( ';' statement )*
 					try { dbg.enterSubRule(18);
 
 					loop18:
@@ -1988,7 +3839,7 @@ public class leacParser extends DebugParser {
 						try { dbg.enterDecision(18, decisionCanBacktrack[18]);
 
 						int LA18_0 = input.LA(1);
-						if ( (LA18_0==27) ) {
+						if ( (LA18_0==78) ) {
 							alt18=1;
 						}
 
@@ -1998,14 +3849,17 @@ public class leacParser extends DebugParser {
 						case 1 :
 							dbg.enterAlt(1);
 
-							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:125:22: ';' statement
+							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:171:22: ';' statement
 							{
-							dbg.location(125,22);
-							match(input,27,FOLLOW_27_in_block881); dbg.location(125,26);
-							pushFollow(FOLLOW_statement_in_block883);
-							statement();
+							dbg.location(171,22);
+							char_literal86=(Token)match(input,78,FOLLOW_78_in_block1500);  
+							stream_78.add(char_literal86);
+							dbg.location(171,26);
+							pushFollow(FOLLOW_statement_in_block1502);
+							statement87=statement();
 							state._fsp--;
 
+							stream_statement.add(statement87.getTree());
 							}
 							break;
 
@@ -2015,24 +3869,69 @@ public class leacParser extends DebugParser {
 					}
 					} finally {dbg.exitSubRule(18);}
 
+					// AST REWRITE
+					// elements: statement
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 171:38: -> ^( BLOCK ( statement )+ )
+					{
+						dbg.location(171,41);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:171:41: ^( BLOCK ( statement )+ )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(171,43);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(BLOCK, "BLOCK"), root_1);
+						dbg.location(171,49);
+						if ( !(stream_statement.hasNext()) ) {
+							throw new RewriteEarlyExitException();
+						}
+						while ( stream_statement.hasNext() ) {
+							dbg.location(171,49);
+							adaptor.addChild(root_1, stream_statement.nextTree());
+						}
+						stream_statement.reset();
+
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 
 			}
 			} finally {dbg.exitSubRule(19);}
-			dbg.location(127,7);
-			match(input,60,FOLLOW_60_in_block903); 
+			dbg.location(173,7);
+			char_literal88=(Token)match(input,111,FOLLOW_111_in_block1531);  
+			stream_111.add(char_literal88);
+
 			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(128, 4);
+		dbg.location(174, 4);
 
 		}
 		finally {
@@ -2041,81 +3940,70 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "block"
 
 
+	public static class read_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "read"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:130:1: read : 'read' lvalue ;
-	public final void read() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:176:1: read : 'read' IDF ( -> ^( READ ^( VAR IDF ) ) | '[' coord_list ']' -> ^( READ ^( CELL IDF coord_list ) ) ) ;
+	public final leacParser.read_return read() throws RecognitionException {
+		leacParser.read_return retval = new leacParser.read_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token string_literal89=null;
+		Token IDF90=null;
+		Token char_literal91=null;
+		Token char_literal93=null;
+		ParserRuleReturnScope coord_list92 =null;
+
+		Object string_literal89_tree=null;
+		Object IDF90_tree=null;
+		Object char_literal91_tree=null;
+		Object char_literal93_tree=null;
+		RewriteRuleTokenStream stream_102=new RewriteRuleTokenStream(adaptor,"token 102");
+		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
+		RewriteRuleTokenStream stream_85=new RewriteRuleTokenStream(adaptor,"token 85");
+		RewriteRuleTokenStream stream_86=new RewriteRuleTokenStream(adaptor,"token 86");
+		RewriteRuleSubtreeStream stream_coord_list=new RewriteRuleSubtreeStream(adaptor,"rule coord_list");
+
 		try { dbg.enterRule(getGrammarFileName(), "read");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(130, 0);
+		dbg.location(176, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:131:5: ( 'read' lvalue )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:177:5: ( 'read' IDF ( -> ^( READ ^( VAR IDF ) ) | '[' coord_list ']' -> ^( READ ^( CELL IDF coord_list ) ) ) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:131:7: 'read' lvalue
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:177:7: 'read' IDF ( -> ^( READ ^( VAR IDF ) ) | '[' coord_list ']' -> ^( READ ^( CELL IDF coord_list ) ) )
 			{
-			dbg.location(131,7);
-			match(input,51,FOLLOW_51_in_read920); dbg.location(131,14);
-			pushFollow(FOLLOW_lvalue_in_read922);
-			lvalue();
-			state._fsp--;
-
-			}
-
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-		dbg.location(132, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "read");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
-	}
-	// $ANTLR end "read"
-
-
-
-	// $ANTLR start "write"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:134:1: write : 'write' ( lvalue | constant ) ;
-	public final void write() throws RecognitionException {
-		try { dbg.enterRule(getGrammarFileName(), "write");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(134, 0);
-
-		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:135:5: ( 'write' ( lvalue | constant ) )
-			dbg.enterAlt(1);
-
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:135:7: 'write' ( lvalue | constant )
-			{
-			dbg.location(135,7);
-			match(input,58,FOLLOW_58_in_write939); dbg.location(136,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:136:9: ( lvalue | constant )
+			dbg.location(177,7);
+			string_literal89=(Token)match(input,102,FOLLOW_102_in_read1548);  
+			stream_102.add(string_literal89);
+			dbg.location(177,14);
+			IDF90=(Token)match(input,IDF,FOLLOW_IDF_in_read1550);  
+			stream_IDF.add(IDF90);
+			dbg.location(178,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:178:9: ( -> ^( READ ^( VAR IDF ) ) | '[' coord_list ']' -> ^( READ ^( CELL IDF coord_list ) ) )
 			int alt20=2;
 			try { dbg.enterSubRule(20);
 			try { dbg.enterDecision(20, decisionCanBacktrack[20]);
 
 			int LA20_0 = input.LA(1);
-			if ( (LA20_0==IDF) ) {
+			if ( (LA20_0==EOF||LA20_0==78||LA20_0==93||LA20_0==111) ) {
 				alt20=1;
 			}
-			else if ( ((LA20_0 >= BOOL && LA20_0 <= CHAR)||LA20_0==FLOAT||LA20_0==INT||LA20_0==STRING) ) {
+			else if ( (LA20_0==85) ) {
 				alt20=2;
 			}
 
@@ -2132,24 +4020,103 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:136:11: lvalue
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:178:25: 
 					{
-					dbg.location(136,11);
-					pushFollow(FOLLOW_lvalue_in_write951);
-					lvalue();
-					state._fsp--;
+					// AST REWRITE
+					// elements: IDF
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 178:25: -> ^( READ ^( VAR IDF ) )
+					{
+						dbg.location(178,28);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:178:28: ^( READ ^( VAR IDF ) )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(178,30);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(READ, "READ"), root_1);
+						dbg.location(178,35);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:178:35: ^( VAR IDF )
+						{
+						Object root_2 = (Object)adaptor.nil();
+						dbg.location(178,37);
+						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(VAR, "VAR"), root_2);
+						dbg.location(178,41);
+						adaptor.addChild(root_2, stream_IDF.nextNode());
+						adaptor.addChild(root_1, root_2);
+						}
+
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:137:11: constant
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:179:11: '[' coord_list ']'
 					{
-					dbg.location(137,11);
-					pushFollow(FOLLOW_constant_in_write963);
-					constant();
+					dbg.location(179,11);
+					char_literal91=(Token)match(input,85,FOLLOW_85_in_read1586);  
+					stream_85.add(char_literal91);
+					dbg.location(179,15);
+					pushFollow(FOLLOW_coord_list_in_read1588);
+					coord_list92=coord_list();
 					state._fsp--;
+
+					stream_coord_list.add(coord_list92.getTree());dbg.location(179,26);
+					char_literal93=(Token)match(input,86,FOLLOW_86_in_read1590);  
+					stream_86.add(char_literal93);
+
+					// AST REWRITE
+					// elements: IDF, coord_list
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 179:30: -> ^( READ ^( CELL IDF coord_list ) )
+					{
+						dbg.location(179,33);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:179:33: ^( READ ^( CELL IDF coord_list ) )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(179,35);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(READ, "READ"), root_1);
+						dbg.location(179,40);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:179:40: ^( CELL IDF coord_list )
+						{
+						Object root_2 = (Object)adaptor.nil();
+						dbg.location(179,42);
+						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(CELL, "CELL"), root_2);
+						dbg.location(179,47);
+						adaptor.addChild(root_2, stream_IDF.nextNode());dbg.location(179,51);
+						adaptor.addChild(root_2, stream_coord_list.nextTree());
+						adaptor.addChild(root_1, root_2);
+						}
+
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
@@ -2159,161 +4126,92 @@ public class leacParser extends DebugParser {
 
 			}
 
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(139, 4);
+		dbg.location(181, 4);
 
 		}
 		finally {
-			dbg.exitRule(getGrammarFileName(), "write");
+			dbg.exitRule(getGrammarFileName(), "read");
 			decRuleLevel();
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
-	// $ANTLR end "write"
+	// $ANTLR end "read"
 
 
+	public static class write_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
 
-	// $ANTLR start "expr_0"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:141:1: expr_0 : ( idf_access | constant | '(' expr ')' );
-	public final void expr_0() throws RecognitionException {
-		try { dbg.enterRule(getGrammarFileName(), "expr_0");
+
+	// $ANTLR start "write"
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:183:1: write : 'write' ( IDF ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) ) | constant -> ^( WRITE constant ) ) ;
+	public final leacParser.write_return write() throws RecognitionException {
+		leacParser.write_return retval = new leacParser.write_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token string_literal94=null;
+		Token IDF95=null;
+		Token char_literal96=null;
+		Token char_literal98=null;
+		ParserRuleReturnScope coord_list97 =null;
+		ParserRuleReturnScope constant99 =null;
+
+		Object string_literal94_tree=null;
+		Object IDF95_tree=null;
+		Object char_literal96_tree=null;
+		Object char_literal98_tree=null;
+		RewriteRuleTokenStream stream_109=new RewriteRuleTokenStream(adaptor,"token 109");
+		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
+		RewriteRuleTokenStream stream_85=new RewriteRuleTokenStream(adaptor,"token 85");
+		RewriteRuleTokenStream stream_86=new RewriteRuleTokenStream(adaptor,"token 86");
+		RewriteRuleSubtreeStream stream_constant=new RewriteRuleSubtreeStream(adaptor,"rule constant");
+		RewriteRuleSubtreeStream stream_coord_list=new RewriteRuleSubtreeStream(adaptor,"rule coord_list");
+
+		try { dbg.enterRule(getGrammarFileName(), "write");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(141, 0);
+		dbg.location(183, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:142:5: ( idf_access | constant | '(' expr ')' )
-			int alt21=3;
-			try { dbg.enterDecision(21, decisionCanBacktrack[21]);
-
-			switch ( input.LA(1) ) {
-			case IDF:
-				{
-				alt21=1;
-				}
-				break;
-			case BOOL:
-			case CHAR:
-			case FLOAT:
-			case INT:
-			case STRING:
-				{
-				alt21=2;
-				}
-				break;
-			case 18:
-				{
-				alt21=3;
-				}
-				break;
-			default:
-				NoViableAltException nvae =
-					new NoViableAltException("", 21, 0, input);
-				dbg.recognitionException(nvae);
-				throw nvae;
-			}
-			} finally {dbg.exitDecision(21);}
-
-			switch (alt21) {
-				case 1 :
-					dbg.enterAlt(1);
-
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:142:7: idf_access
-					{
-					dbg.location(142,7);
-					pushFollow(FOLLOW_idf_access_in_expr_0990);
-					idf_access();
-					state._fsp--;
-
-					}
-					break;
-				case 2 :
-					dbg.enterAlt(2);
-
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:143:7: constant
-					{
-					dbg.location(143,7);
-					pushFollow(FOLLOW_constant_in_expr_0998);
-					constant();
-					state._fsp--;
-
-					}
-					break;
-				case 3 :
-					dbg.enterAlt(3);
-
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:144:7: '(' expr ')'
-					{
-					dbg.location(144,7);
-					match(input,18,FOLLOW_18_in_expr_01006); dbg.location(144,11);
-					pushFollow(FOLLOW_expr_in_expr_01008);
-					expr();
-					state._fsp--;
-					dbg.location(144,16);
-					match(input,19,FOLLOW_19_in_expr_01010); 
-					}
-					break;
-
-			}
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-		dbg.location(145, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "expr_0");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
-	}
-	// $ANTLR end "expr_0"
-
-
-
-	// $ANTLR start "expr_1"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:147:1: expr_1 : expr_0 (| '^' expr_1 ) ;
-	public final void expr_1() throws RecognitionException {
-		try { dbg.enterRule(getGrammarFileName(), "expr_1");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(147, 0);
-
-		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:148:5: ( expr_0 (| '^' expr_1 ) )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:184:5: ( 'write' ( IDF ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) ) | constant -> ^( WRITE constant ) ) )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:148:7: expr_0 (| '^' expr_1 )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:184:7: 'write' ( IDF ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) ) | constant -> ^( WRITE constant ) )
 			{
-			dbg.location(148,7);
-			pushFollow(FOLLOW_expr_0_in_expr_11027);
-			expr_0();
-			state._fsp--;
-			dbg.location(149,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:149:9: (| '^' expr_1 )
+			dbg.location(184,7);
+			string_literal94=(Token)match(input,109,FOLLOW_109_in_write1631);  
+			stream_109.add(string_literal94);
+			dbg.location(185,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:185:9: ( IDF ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) ) | constant -> ^( WRITE constant ) )
 			int alt22=2;
 			try { dbg.enterSubRule(22);
 			try { dbg.enterDecision(22, decisionCanBacktrack[22]);
 
 			int LA22_0 = input.LA(1);
-			if ( (LA22_0==EOF||LA22_0==17||(LA22_0 >= 19 && LA22_0 <= 23)||LA22_0==25||(LA22_0 >= 27 && LA22_0 <= 29)||(LA22_0 >= 31 && LA22_0 <= 33)||LA22_0==35||LA22_0==37||(LA22_0 >= 41 && LA22_0 <= 42)||LA22_0==49||LA22_0==54||LA22_0==60) ) {
+			if ( (LA22_0==IDF) ) {
 				alt22=1;
 			}
-			else if ( (LA22_0==36) ) {
+			else if ( (LA22_0==BOOL||LA22_0==CHAR||LA22_0==FLOAT||LA22_0==INT||LA22_0==STRING) ) {
 				alt22=2;
 			}
 
@@ -2330,20 +4228,183 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:150:9: 
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:185:11: IDF ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) )
 					{
+					dbg.location(185,11);
+					IDF95=(Token)match(input,IDF,FOLLOW_IDF_in_write1643);  
+					stream_IDF.add(IDF95);
+					dbg.location(186,13);
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:186:13: ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) )
+					int alt21=2;
+					try { dbg.enterSubRule(21);
+					try { dbg.enterDecision(21, decisionCanBacktrack[21]);
+
+					int LA21_0 = input.LA(1);
+					if ( (LA21_0==EOF||LA21_0==78||LA21_0==93||LA21_0==111) ) {
+						alt21=1;
+					}
+					else if ( (LA21_0==85) ) {
+						alt21=2;
+					}
+
+					else {
+						NoViableAltException nvae =
+							new NoViableAltException("", 21, 0, input);
+						dbg.recognitionException(nvae);
+						throw nvae;
+					}
+
+					} finally {dbg.exitDecision(21);}
+
+					switch (alt21) {
+						case 1 :
+							dbg.enterAlt(1);
+
+							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:186:29: 
+							{
+							// AST REWRITE
+							// elements: IDF
+							// token labels: 
+							// rule labels: retval
+							// token list labels: 
+							// rule list labels: 
+							// wildcard labels: 
+							retval.tree = root_0;
+							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+							root_0 = (Object)adaptor.nil();
+							// 186:29: -> ^( WRITE ^( VAR IDF ) )
+							{
+								dbg.location(186,32);
+								// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:186:32: ^( WRITE ^( VAR IDF ) )
+								{
+								Object root_1 = (Object)adaptor.nil();
+								dbg.location(186,34);
+								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(WRITE, "WRITE"), root_1);
+								dbg.location(186,40);
+								// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:186:40: ^( VAR IDF )
+								{
+								Object root_2 = (Object)adaptor.nil();
+								dbg.location(186,42);
+								root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(VAR, "VAR"), root_2);
+								dbg.location(186,46);
+								adaptor.addChild(root_2, stream_IDF.nextNode());
+								adaptor.addChild(root_1, root_2);
+								}
+
+								adaptor.addChild(root_0, root_1);
+								}
+
+							}
+
+
+							retval.tree = root_0;
+
+							}
+							break;
+						case 2 :
+							dbg.enterAlt(2);
+
+							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:187:15: '[' coord_list ']'
+							{
+							dbg.location(187,15);
+							char_literal96=(Token)match(input,85,FOLLOW_85_in_write1687);  
+							stream_85.add(char_literal96);
+							dbg.location(187,19);
+							pushFollow(FOLLOW_coord_list_in_write1689);
+							coord_list97=coord_list();
+							state._fsp--;
+
+							stream_coord_list.add(coord_list97.getTree());dbg.location(187,30);
+							char_literal98=(Token)match(input,86,FOLLOW_86_in_write1691);  
+							stream_86.add(char_literal98);
+
+							// AST REWRITE
+							// elements: coord_list, IDF
+							// token labels: 
+							// rule labels: retval
+							// token list labels: 
+							// rule list labels: 
+							// wildcard labels: 
+							retval.tree = root_0;
+							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+							root_0 = (Object)adaptor.nil();
+							// 187:34: -> ^( WRITE ^( CELL IDF coord_list ) )
+							{
+								dbg.location(187,37);
+								// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:187:37: ^( WRITE ^( CELL IDF coord_list ) )
+								{
+								Object root_1 = (Object)adaptor.nil();
+								dbg.location(187,39);
+								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(WRITE, "WRITE"), root_1);
+								dbg.location(187,45);
+								// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:187:45: ^( CELL IDF coord_list )
+								{
+								Object root_2 = (Object)adaptor.nil();
+								dbg.location(187,47);
+								root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(CELL, "CELL"), root_2);
+								dbg.location(187,52);
+								adaptor.addChild(root_2, stream_IDF.nextNode());dbg.location(187,56);
+								adaptor.addChild(root_2, stream_coord_list.nextTree());
+								adaptor.addChild(root_1, root_2);
+								}
+
+								adaptor.addChild(root_0, root_1);
+								}
+
+							}
+
+
+							retval.tree = root_0;
+
+							}
+							break;
+
+					}
+					} finally {dbg.exitSubRule(21);}
+
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:150:11: '^' expr_1
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:189:11: constant
 					{
-					dbg.location(150,11);
-					match(input,36,FOLLOW_36_in_expr_11051); dbg.location(150,15);
-					pushFollow(FOLLOW_expr_1_in_expr_11053);
-					expr_1();
+					dbg.location(189,11);
+					pushFollow(FOLLOW_constant_in_write1731);
+					constant99=constant();
 					state._fsp--;
+
+					stream_constant.add(constant99.getTree());
+					// AST REWRITE
+					// elements: constant
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 189:20: -> ^( WRITE constant )
+					{
+						dbg.location(189,23);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:189:23: ^( WRITE constant )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(189,25);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(WRITE, "WRITE"), root_1);
+						dbg.location(189,31);
+						adaptor.addChild(root_1, stream_constant.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
@@ -2353,188 +4414,104 @@ public class leacParser extends DebugParser {
 
 			}
 
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(152, 4);
+		dbg.location(191, 4);
 
 		}
 		finally {
-			dbg.exitRule(getGrammarFileName(), "expr_1");
+			dbg.exitRule(getGrammarFileName(), "write");
 			decRuleLevel();
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
-	// $ANTLR end "expr_1"
+	// $ANTLR end "write"
 
 
+	public static class expr_0_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
 
-	// $ANTLR start "expr_2"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:154:1: expr_2 : ( expr_1 | '-' expr_2 | 'not' expr_2 );
-	public final void expr_2() throws RecognitionException {
-		try { dbg.enterRule(getGrammarFileName(), "expr_2");
+
+	// $ANTLR start "expr_0"
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:193:1: expr_0 : ( IDF ( -> ^( VAR IDF ) | '(' arg_list ')' -> ^( FUNC_CALL IDF arg_list ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) | constant -> constant | '(' expr ')' -> expr );
+	public final leacParser.expr_0_return expr_0() throws RecognitionException {
+		leacParser.expr_0_return retval = new leacParser.expr_0_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token IDF100=null;
+		Token char_literal101=null;
+		Token char_literal103=null;
+		Token char_literal104=null;
+		Token char_literal106=null;
+		Token char_literal108=null;
+		Token char_literal110=null;
+		ParserRuleReturnScope arg_list102 =null;
+		ParserRuleReturnScope coord_list105 =null;
+		ParserRuleReturnScope constant107 =null;
+		ParserRuleReturnScope expr109 =null;
+
+		Object IDF100_tree=null;
+		Object char_literal101_tree=null;
+		Object char_literal103_tree=null;
+		Object char_literal104_tree=null;
+		Object char_literal106_tree=null;
+		Object char_literal108_tree=null;
+		Object char_literal110_tree=null;
+		RewriteRuleTokenStream stream_69=new RewriteRuleTokenStream(adaptor,"token 69");
+		RewriteRuleTokenStream stream_70=new RewriteRuleTokenStream(adaptor,"token 70");
+		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
+		RewriteRuleTokenStream stream_85=new RewriteRuleTokenStream(adaptor,"token 85");
+		RewriteRuleTokenStream stream_86=new RewriteRuleTokenStream(adaptor,"token 86");
+		RewriteRuleSubtreeStream stream_constant=new RewriteRuleSubtreeStream(adaptor,"rule constant");
+		RewriteRuleSubtreeStream stream_coord_list=new RewriteRuleSubtreeStream(adaptor,"rule coord_list");
+		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
+		RewriteRuleSubtreeStream stream_arg_list=new RewriteRuleSubtreeStream(adaptor,"rule arg_list");
+
+		try { dbg.enterRule(getGrammarFileName(), "expr_0");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(154, 0);
+		dbg.location(193, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:155:5: ( expr_1 | '-' expr_2 | 'not' expr_2 )
-			int alt23=3;
-			try { dbg.enterDecision(23, decisionCanBacktrack[23]);
-
-			switch ( input.LA(1) ) {
-			case BOOL:
-			case CHAR:
-			case FLOAT:
-			case IDF:
-			case INT:
-			case STRING:
-			case 18:
-				{
-				alt23=1;
-				}
-				break;
-			case 23:
-				{
-				alt23=2;
-				}
-				break;
-			case 47:
-				{
-				alt23=3;
-				}
-				break;
-			default:
-				NoViableAltException nvae =
-					new NoViableAltException("", 23, 0, input);
-				dbg.recognitionException(nvae);
-				throw nvae;
-			}
-			} finally {dbg.exitDecision(23);}
-
-			switch (alt23) {
-				case 1 :
-					dbg.enterAlt(1);
-
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:155:7: expr_1
-					{
-					dbg.location(155,7);
-					pushFollow(FOLLOW_expr_1_in_expr_21080);
-					expr_1();
-					state._fsp--;
-
-					}
-					break;
-				case 2 :
-					dbg.enterAlt(2);
-
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:156:7: '-' expr_2
-					{
-					dbg.location(156,7);
-					match(input,23,FOLLOW_23_in_expr_21088); dbg.location(156,11);
-					pushFollow(FOLLOW_expr_2_in_expr_21090);
-					expr_2();
-					state._fsp--;
-
-					}
-					break;
-				case 3 :
-					dbg.enterAlt(3);
-
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:157:7: 'not' expr_2
-					{
-					dbg.location(157,7);
-					match(input,47,FOLLOW_47_in_expr_21098); dbg.location(157,13);
-					pushFollow(FOLLOW_expr_2_in_expr_21100);
-					expr_2();
-					state._fsp--;
-
-					}
-					break;
-
-			}
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-		dbg.location(158, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "expr_2");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
-	}
-	// $ANTLR end "expr_2"
-
-
-
-	// $ANTLR start "expr_3"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:160:1: expr_3 : expr_2 (| '*' expr_3 | '/' expr_3 ) ;
-	public final void expr_3() throws RecognitionException {
-		try { dbg.enterRule(getGrammarFileName(), "expr_3");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(160, 0);
-
-		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:161:5: ( expr_2 (| '*' expr_3 | '/' expr_3 ) )
-			dbg.enterAlt(1);
-
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:161:7: expr_2 (| '*' expr_3 | '/' expr_3 )
-			{
-			dbg.location(161,7);
-			pushFollow(FOLLOW_expr_2_in_expr_31117);
-			expr_2();
-			state._fsp--;
-			dbg.location(162,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:162:9: (| '*' expr_3 | '/' expr_3 )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:194:5: ( IDF ( -> ^( VAR IDF ) | '(' arg_list ')' -> ^( FUNC_CALL IDF arg_list ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) | constant -> constant | '(' expr ')' -> expr )
 			int alt24=3;
-			try { dbg.enterSubRule(24);
 			try { dbg.enterDecision(24, decisionCanBacktrack[24]);
 
 			switch ( input.LA(1) ) {
-			case EOF:
-			case 17:
-			case 19:
-			case 21:
-			case 22:
-			case 23:
-			case 27:
-			case 28:
-			case 29:
-			case 31:
-			case 32:
-			case 33:
-			case 35:
-			case 37:
-			case 41:
-			case 42:
-			case 49:
-			case 54:
-			case 60:
+			case IDF:
 				{
 				alt24=1;
 				}
 				break;
-			case 20:
+			case BOOL:
+			case CHAR:
+			case FLOAT:
+			case INT:
+			case STRING:
 				{
 				alt24=2;
 				}
 				break;
-			case 25:
+			case 69:
 				{
 				alt24=3;
 				}
@@ -2551,51 +4528,887 @@ public class leacParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:163:9: 
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:194:7: IDF ( -> ^( VAR IDF ) | '(' arg_list ')' -> ^( FUNC_CALL IDF arg_list ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) )
 					{
+					dbg.location(194,7);
+					IDF100=(Token)match(input,IDF,FOLLOW_IDF_in_expr_01766);  
+					stream_IDF.add(IDF100);
+					dbg.location(195,9);
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:195:9: ( -> ^( VAR IDF ) | '(' arg_list ')' -> ^( FUNC_CALL IDF arg_list ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) )
+					int alt23=3;
+					try { dbg.enterSubRule(23);
+					try { dbg.enterDecision(23, decisionCanBacktrack[23]);
+
+					switch ( input.LA(1) ) {
+					case EOF:
+					case 68:
+					case 70:
+					case 71:
+					case 72:
+					case 73:
+					case 74:
+					case 76:
+					case 78:
+					case 79:
+					case 80:
+					case 82:
+					case 83:
+					case 84:
+					case 86:
+					case 87:
+					case 88:
+					case 92:
+					case 93:
+					case 100:
+					case 105:
+					case 111:
+						{
+						alt23=1;
+						}
+						break;
+					case 69:
+						{
+						alt23=2;
+						}
+						break;
+					case 85:
+						{
+						alt23=3;
+						}
+						break;
+					default:
+						NoViableAltException nvae =
+							new NoViableAltException("", 23, 0, input);
+						dbg.recognitionException(nvae);
+						throw nvae;
+					}
+					} finally {dbg.exitDecision(23);}
+
+					switch (alt23) {
+						case 1 :
+							dbg.enterAlt(1);
+
+							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:195:25: 
+							{
+							// AST REWRITE
+							// elements: IDF
+							// token labels: 
+							// rule labels: retval
+							// token list labels: 
+							// rule list labels: 
+							// wildcard labels: 
+							retval.tree = root_0;
+							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+							root_0 = (Object)adaptor.nil();
+							// 195:25: -> ^( VAR IDF )
+							{
+								dbg.location(195,28);
+								// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:195:28: ^( VAR IDF )
+								{
+								Object root_1 = (Object)adaptor.nil();
+								dbg.location(195,30);
+								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(VAR, "VAR"), root_1);
+								dbg.location(195,34);
+								adaptor.addChild(root_1, stream_IDF.nextNode());
+								adaptor.addChild(root_0, root_1);
+								}
+
+							}
+
+
+							retval.tree = root_0;
+
+							}
+							break;
+						case 2 :
+							dbg.enterAlt(2);
+
+							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:196:11: '(' arg_list ')'
+							{
+							dbg.location(196,11);
+							char_literal101=(Token)match(input,69,FOLLOW_69_in_expr_01798);  
+							stream_69.add(char_literal101);
+							dbg.location(196,15);
+							pushFollow(FOLLOW_arg_list_in_expr_01800);
+							arg_list102=arg_list();
+							state._fsp--;
+
+							stream_arg_list.add(arg_list102.getTree());dbg.location(196,24);
+							char_literal103=(Token)match(input,70,FOLLOW_70_in_expr_01802);  
+							stream_70.add(char_literal103);
+
+							// AST REWRITE
+							// elements: IDF, arg_list
+							// token labels: 
+							// rule labels: retval
+							// token list labels: 
+							// rule list labels: 
+							// wildcard labels: 
+							retval.tree = root_0;
+							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+							root_0 = (Object)adaptor.nil();
+							// 196:28: -> ^( FUNC_CALL IDF arg_list )
+							{
+								dbg.location(196,31);
+								// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:196:31: ^( FUNC_CALL IDF arg_list )
+								{
+								Object root_1 = (Object)adaptor.nil();
+								dbg.location(196,33);
+								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FUNC_CALL, "FUNC_CALL"), root_1);
+								dbg.location(196,43);
+								adaptor.addChild(root_1, stream_IDF.nextNode());dbg.location(196,47);
+								adaptor.addChild(root_1, stream_arg_list.nextTree());
+								adaptor.addChild(root_0, root_1);
+								}
+
+							}
+
+
+							retval.tree = root_0;
+
+							}
+							break;
+						case 3 :
+							dbg.enterAlt(3);
+
+							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:197:11: '[' coord_list ']'
+							{
+							dbg.location(197,11);
+							char_literal104=(Token)match(input,85,FOLLOW_85_in_expr_01824);  
+							stream_85.add(char_literal104);
+							dbg.location(197,15);
+							pushFollow(FOLLOW_coord_list_in_expr_01826);
+							coord_list105=coord_list();
+							state._fsp--;
+
+							stream_coord_list.add(coord_list105.getTree());dbg.location(197,26);
+							char_literal106=(Token)match(input,86,FOLLOW_86_in_expr_01828);  
+							stream_86.add(char_literal106);
+
+							// AST REWRITE
+							// elements: coord_list, IDF
+							// token labels: 
+							// rule labels: retval
+							// token list labels: 
+							// rule list labels: 
+							// wildcard labels: 
+							retval.tree = root_0;
+							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+							root_0 = (Object)adaptor.nil();
+							// 197:30: -> ^( CELL IDF coord_list )
+							{
+								dbg.location(197,33);
+								// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:197:33: ^( CELL IDF coord_list )
+								{
+								Object root_1 = (Object)adaptor.nil();
+								dbg.location(197,35);
+								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CELL, "CELL"), root_1);
+								dbg.location(197,40);
+								adaptor.addChild(root_1, stream_IDF.nextNode());dbg.location(197,44);
+								adaptor.addChild(root_1, stream_coord_list.nextTree());
+								adaptor.addChild(root_0, root_1);
+								}
+
+							}
+
+
+							retval.tree = root_0;
+
+							}
+							break;
+
+					}
+					} finally {dbg.exitSubRule(23);}
+
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:163:11: '*' expr_3
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:199:7: constant
 					{
-					dbg.location(163,11);
-					match(input,20,FOLLOW_20_in_expr_31141); dbg.location(163,15);
-					pushFollow(FOLLOW_expr_3_in_expr_31143);
-					expr_3();
+					dbg.location(199,7);
+					pushFollow(FOLLOW_constant_in_expr_01856);
+					constant107=constant();
 					state._fsp--;
+
+					stream_constant.add(constant107.getTree());
+					// AST REWRITE
+					// elements: constant
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 199:16: -> constant
+					{
+						dbg.location(199,19);
+						adaptor.addChild(root_0, stream_constant.nextTree());
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 				case 3 :
 					dbg.enterAlt(3);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:164:11: '/' expr_3
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:200:7: '(' expr ')'
 					{
-					dbg.location(164,11);
-					match(input,25,FOLLOW_25_in_expr_31155); dbg.location(164,15);
-					pushFollow(FOLLOW_expr_3_in_expr_31157);
-					expr_3();
+					dbg.location(200,7);
+					char_literal108=(Token)match(input,69,FOLLOW_69_in_expr_01868);  
+					stream_69.add(char_literal108);
+					dbg.location(200,11);
+					pushFollow(FOLLOW_expr_in_expr_01870);
+					expr109=expr();
 					state._fsp--;
+
+					stream_expr.add(expr109.getTree());dbg.location(200,16);
+					char_literal110=(Token)match(input,70,FOLLOW_70_in_expr_01872);  
+					stream_70.add(char_literal110);
+
+					// AST REWRITE
+					// elements: expr
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 200:20: -> expr
+					{
+						dbg.location(200,23);
+						adaptor.addChild(root_0, stream_expr.nextTree());
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 
 			}
-			} finally {dbg.exitSubRule(24);}
+			retval.stop = input.LT(-1);
 
-			}
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(166, 4);
+		dbg.location(201, 4);
+
+		}
+		finally {
+			dbg.exitRule(getGrammarFileName(), "expr_0");
+			decRuleLevel();
+			if ( getRuleLevel()==0 ) {dbg.terminate();}
+		}
+
+		return retval;
+	}
+	// $ANTLR end "expr_0"
+
+
+	public static class expr_1_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
+
+	// $ANTLR start "expr_1"
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:203:1: expr_1 : ( expr_0 -> expr_0 ) ( '^' next= expr_0 -> ^( POW $expr_1 $next) )* ;
+	public final leacParser.expr_1_return expr_1() throws RecognitionException {
+		leacParser.expr_1_return retval = new leacParser.expr_1_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token char_literal112=null;
+		ParserRuleReturnScope next =null;
+		ParserRuleReturnScope expr_0111 =null;
+
+		Object char_literal112_tree=null;
+		RewriteRuleTokenStream stream_87=new RewriteRuleTokenStream(adaptor,"token 87");
+		RewriteRuleSubtreeStream stream_expr_0=new RewriteRuleSubtreeStream(adaptor,"rule expr_0");
+
+		try { dbg.enterRule(getGrammarFileName(), "expr_1");
+		if ( getRuleLevel()==0 ) {dbg.commence();}
+		incRuleLevel();
+		dbg.location(203, 0);
+
+		try {
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:204:5: ( ( expr_0 -> expr_0 ) ( '^' next= expr_0 -> ^( POW $expr_1 $next) )* )
+			dbg.enterAlt(1);
+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:204:7: ( expr_0 -> expr_0 ) ( '^' next= expr_0 -> ^( POW $expr_1 $next) )*
+			{
+			dbg.location(204,7);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:204:7: ( expr_0 -> expr_0 )
+			dbg.enterAlt(1);
+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:204:8: expr_0
+			{
+			dbg.location(204,8);
+			pushFollow(FOLLOW_expr_0_in_expr_11894);
+			expr_0111=expr_0();
+			state._fsp--;
+
+			stream_expr_0.add(expr_0111.getTree());
+			// AST REWRITE
+			// elements: expr_0
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 204:15: -> expr_0
+			{
+				dbg.location(204,18);
+				adaptor.addChild(root_0, stream_expr_0.nextTree());
+			}
+
+
+			retval.tree = root_0;
+
+			}
+			dbg.location(205,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:205:9: ( '^' next= expr_0 -> ^( POW $expr_1 $next) )*
+			try { dbg.enterSubRule(25);
+
+			loop25:
+			while (true) {
+				int alt25=2;
+				try { dbg.enterDecision(25, decisionCanBacktrack[25]);
+
+				int LA25_0 = input.LA(1);
+				if ( (LA25_0==87) ) {
+					alt25=1;
+				}
+
+				} finally {dbg.exitDecision(25);}
+
+				switch (alt25) {
+				case 1 :
+					dbg.enterAlt(1);
+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:205:11: '^' next= expr_0
+					{
+					dbg.location(205,11);
+					char_literal112=(Token)match(input,87,FOLLOW_87_in_expr_11911);  
+					stream_87.add(char_literal112);
+					dbg.location(205,19);
+					pushFollow(FOLLOW_expr_0_in_expr_11915);
+					next=expr_0();
+					state._fsp--;
+
+					stream_expr_0.add(next.getTree());
+					// AST REWRITE
+					// elements: next, expr_1
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 205:27: -> ^( POW $expr_1 $next)
+					{
+						dbg.location(205,30);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:205:30: ^( POW $expr_1 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(205,32);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(POW, "POW"), root_1);
+						dbg.location(205,37);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(205,45);
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+
+				default :
+					break loop25;
+				}
+			}
+			} finally {dbg.exitSubRule(25);}
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		dbg.location(207, 4);
+
+		}
+		finally {
+			dbg.exitRule(getGrammarFileName(), "expr_1");
+			decRuleLevel();
+			if ( getRuleLevel()==0 ) {dbg.terminate();}
+		}
+
+		return retval;
+	}
+	// $ANTLR end "expr_1"
+
+
+	public static class expr_2_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
+
+	// $ANTLR start "expr_2"
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:209:1: expr_2 : ( '-' -> ^( UNARY_MINUS $expr_2) | 'not' -> ^( NOT $expr_2) )* ( expr_1 -> expr_1 ) ;
+	public final leacParser.expr_2_return expr_2() throws RecognitionException {
+		leacParser.expr_2_return retval = new leacParser.expr_2_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token char_literal113=null;
+		Token string_literal114=null;
+		ParserRuleReturnScope expr_1115 =null;
+
+		Object char_literal113_tree=null;
+		Object string_literal114_tree=null;
+		RewriteRuleTokenStream stream_74=new RewriteRuleTokenStream(adaptor,"token 74");
+		RewriteRuleTokenStream stream_98=new RewriteRuleTokenStream(adaptor,"token 98");
+		RewriteRuleSubtreeStream stream_expr_1=new RewriteRuleSubtreeStream(adaptor,"rule expr_1");
+
+		try { dbg.enterRule(getGrammarFileName(), "expr_2");
+		if ( getRuleLevel()==0 ) {dbg.commence();}
+		incRuleLevel();
+		dbg.location(209, 0);
+
+		try {
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:210:5: ( ( '-' -> ^( UNARY_MINUS $expr_2) | 'not' -> ^( NOT $expr_2) )* ( expr_1 -> expr_1 ) )
+			dbg.enterAlt(1);
+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:211:9: ( '-' -> ^( UNARY_MINUS $expr_2) | 'not' -> ^( NOT $expr_2) )* ( expr_1 -> expr_1 )
+			{
+			dbg.location(211,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:211:9: ( '-' -> ^( UNARY_MINUS $expr_2) | 'not' -> ^( NOT $expr_2) )*
+			try { dbg.enterSubRule(26);
+
+			loop26:
+			while (true) {
+				int alt26=3;
+				try { dbg.enterDecision(26, decisionCanBacktrack[26]);
+
+				int LA26_0 = input.LA(1);
+				if ( (LA26_0==74) ) {
+					alt26=1;
+				}
+				else if ( (LA26_0==98) ) {
+					alt26=2;
+				}
+
+				} finally {dbg.exitDecision(26);}
+
+				switch (alt26) {
+				case 1 :
+					dbg.enterAlt(1);
+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:211:11: '-'
+					{
+					dbg.location(211,11);
+					char_literal113=(Token)match(input,74,FOLLOW_74_in_expr_21965);  
+					stream_74.add(char_literal113);
+
+					// AST REWRITE
+					// elements: expr_2
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 211:15: -> ^( UNARY_MINUS $expr_2)
+					{
+						dbg.location(211,18);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:211:18: ^( UNARY_MINUS $expr_2)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(211,20);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(UNARY_MINUS, "UNARY_MINUS"), root_1);
+						dbg.location(211,33);
+						adaptor.addChild(root_1, stream_retval.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+				case 2 :
+					dbg.enterAlt(2);
+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:212:11: 'not'
+					{
+					dbg.location(212,11);
+					string_literal114=(Token)match(input,98,FOLLOW_98_in_expr_21986);  
+					stream_98.add(string_literal114);
+
+					// AST REWRITE
+					// elements: expr_2
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 212:17: -> ^( NOT $expr_2)
+					{
+						dbg.location(212,20);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:212:20: ^( NOT $expr_2)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(212,22);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(NOT, "NOT"), root_1);
+						dbg.location(212,27);
+						adaptor.addChild(root_1, stream_retval.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+
+				default :
+					break loop26;
+				}
+			}
+			} finally {dbg.exitSubRule(26);}
+			dbg.location(214,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:214:9: ( expr_1 -> expr_1 )
+			dbg.enterAlt(1);
+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:214:10: expr_1
+			{
+			dbg.location(214,10);
+			pushFollow(FOLLOW_expr_1_in_expr_22017);
+			expr_1115=expr_1();
+			state._fsp--;
+
+			stream_expr_1.add(expr_1115.getTree());
+			// AST REWRITE
+			// elements: expr_1
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 214:17: -> expr_1
+			{
+				dbg.location(214,20);
+				adaptor.addChild(root_0, stream_expr_1.nextTree());
+			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		dbg.location(215, 4);
+
+		}
+		finally {
+			dbg.exitRule(getGrammarFileName(), "expr_2");
+			decRuleLevel();
+			if ( getRuleLevel()==0 ) {dbg.terminate();}
+		}
+
+		return retval;
+	}
+	// $ANTLR end "expr_2"
+
+
+	public static class expr_3_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
+
+	// $ANTLR start "expr_3"
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:217:1: expr_3 : ( expr_2 -> expr_2 ) ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )* ;
+	public final leacParser.expr_3_return expr_3() throws RecognitionException {
+		leacParser.expr_3_return retval = new leacParser.expr_3_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token char_literal117=null;
+		Token char_literal118=null;
+		ParserRuleReturnScope next =null;
+		ParserRuleReturnScope expr_2116 =null;
+
+		Object char_literal117_tree=null;
+		Object char_literal118_tree=null;
+		RewriteRuleTokenStream stream_71=new RewriteRuleTokenStream(adaptor,"token 71");
+		RewriteRuleTokenStream stream_76=new RewriteRuleTokenStream(adaptor,"token 76");
+		RewriteRuleSubtreeStream stream_expr_2=new RewriteRuleSubtreeStream(adaptor,"rule expr_2");
+
+		try { dbg.enterRule(getGrammarFileName(), "expr_3");
+		if ( getRuleLevel()==0 ) {dbg.commence();}
+		incRuleLevel();
+		dbg.location(217, 0);
+
+		try {
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:218:5: ( ( expr_2 -> expr_2 ) ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )* )
+			dbg.enterAlt(1);
+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:218:7: ( expr_2 -> expr_2 ) ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )*
+			{
+			dbg.location(218,7);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:218:7: ( expr_2 -> expr_2 )
+			dbg.enterAlt(1);
+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:218:8: expr_2
+			{
+			dbg.location(218,8);
+			pushFollow(FOLLOW_expr_2_in_expr_32040);
+			expr_2116=expr_2();
+			state._fsp--;
+
+			stream_expr_2.add(expr_2116.getTree());
+			// AST REWRITE
+			// elements: expr_2
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 218:15: -> expr_2
+			{
+				dbg.location(218,18);
+				adaptor.addChild(root_0, stream_expr_2.nextTree());
+			}
+
+
+			retval.tree = root_0;
+
+			}
+			dbg.location(219,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:219:9: ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )*
+			try { dbg.enterSubRule(27);
+
+			loop27:
+			while (true) {
+				int alt27=3;
+				try { dbg.enterDecision(27, decisionCanBacktrack[27]);
+
+				int LA27_0 = input.LA(1);
+				if ( (LA27_0==71) ) {
+					alt27=1;
+				}
+				else if ( (LA27_0==76) ) {
+					alt27=2;
+				}
+
+				} finally {dbg.exitDecision(27);}
+
+				switch (alt27) {
+				case 1 :
+					dbg.enterAlt(1);
+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:219:11: '*' next= expr_2
+					{
+					dbg.location(219,11);
+					char_literal117=(Token)match(input,71,FOLLOW_71_in_expr_32057);  
+					stream_71.add(char_literal117);
+					dbg.location(219,19);
+					pushFollow(FOLLOW_expr_2_in_expr_32061);
+					next=expr_2();
+					state._fsp--;
+
+					stream_expr_2.add(next.getTree());
+					// AST REWRITE
+					// elements: next, expr_3
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 219:27: -> ^( MUL $expr_3 $next)
+					{
+						dbg.location(219,30);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:219:30: ^( MUL $expr_3 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(219,32);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(MUL, "MUL"), root_1);
+						dbg.location(219,37);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(219,45);
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+				case 2 :
+					dbg.enterAlt(2);
+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:220:11: '/' next= expr_2
+					{
+					dbg.location(220,11);
+					char_literal118=(Token)match(input,76,FOLLOW_76_in_expr_32085);  
+					stream_76.add(char_literal118);
+					dbg.location(220,19);
+					pushFollow(FOLLOW_expr_2_in_expr_32089);
+					next=expr_2();
+					state._fsp--;
+
+					stream_expr_2.add(next.getTree());
+					// AST REWRITE
+					// elements: next, expr_3
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 220:27: -> ^( DIV $expr_3 $next)
+					{
+						dbg.location(220,30);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:220:30: ^( DIV $expr_3 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(220,32);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(DIV, "DIV"), root_1);
+						dbg.location(220,37);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(220,45);
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+
+				default :
+					break loop27;
+				}
+			}
+			} finally {dbg.exitSubRule(27);}
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		dbg.location(222, 4);
 
 		}
 		finally {
@@ -2604,124 +5417,219 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "expr_3"
 
 
+	public static class expr_4_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "expr_4"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:168:1: expr_4 : expr_3 (| '+' expr_4 | '-' expr_4 ) ;
-	public final void expr_4() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:224:1: expr_4 : ( expr_3 -> expr_3 ) ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )* ;
+	public final leacParser.expr_4_return expr_4() throws RecognitionException {
+		leacParser.expr_4_return retval = new leacParser.expr_4_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token char_literal120=null;
+		Token char_literal121=null;
+		ParserRuleReturnScope next =null;
+		ParserRuleReturnScope expr_3119 =null;
+
+		Object char_literal120_tree=null;
+		Object char_literal121_tree=null;
+		RewriteRuleTokenStream stream_72=new RewriteRuleTokenStream(adaptor,"token 72");
+		RewriteRuleTokenStream stream_74=new RewriteRuleTokenStream(adaptor,"token 74");
+		RewriteRuleSubtreeStream stream_expr_3=new RewriteRuleSubtreeStream(adaptor,"rule expr_3");
+
 		try { dbg.enterRule(getGrammarFileName(), "expr_4");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(168, 0);
+		dbg.location(224, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:169:5: ( expr_3 (| '+' expr_4 | '-' expr_4 ) )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:225:5: ( ( expr_3 -> expr_3 ) ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )* )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:169:7: expr_3 (| '+' expr_4 | '-' expr_4 )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:225:7: ( expr_3 -> expr_3 ) ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )*
 			{
-			dbg.location(169,7);
-			pushFollow(FOLLOW_expr_3_in_expr_41184);
-			expr_3();
+			dbg.location(225,7);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:225:7: ( expr_3 -> expr_3 )
+			dbg.enterAlt(1);
+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:225:8: expr_3
+			{
+			dbg.location(225,8);
+			pushFollow(FOLLOW_expr_3_in_expr_42130);
+			expr_3119=expr_3();
 			state._fsp--;
-			dbg.location(170,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:170:9: (| '+' expr_4 | '-' expr_4 )
-			int alt25=3;
-			try { dbg.enterSubRule(25);
-			try { dbg.enterDecision(25, decisionCanBacktrack[25]);
 
-			switch ( input.LA(1) ) {
-			case EOF:
-			case 17:
-			case 19:
-			case 22:
-			case 27:
-			case 28:
-			case 29:
-			case 31:
-			case 32:
-			case 33:
-			case 35:
-			case 37:
-			case 41:
-			case 42:
-			case 49:
-			case 54:
-			case 60:
-				{
-				alt25=1;
-				}
-				break;
-			case 21:
-				{
-				alt25=2;
-				}
-				break;
-			case 23:
-				{
-				alt25=3;
-				}
-				break;
-			default:
-				NoViableAltException nvae =
-					new NoViableAltException("", 25, 0, input);
-				dbg.recognitionException(nvae);
-				throw nvae;
+			stream_expr_3.add(expr_3119.getTree());
+			// AST REWRITE
+			// elements: expr_3
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 225:15: -> expr_3
+			{
+				dbg.location(225,18);
+				adaptor.addChild(root_0, stream_expr_3.nextTree());
 			}
-			} finally {dbg.exitDecision(25);}
 
-			switch (alt25) {
+
+			retval.tree = root_0;
+
+			}
+			dbg.location(226,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:226:9: ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )*
+			try { dbg.enterSubRule(28);
+
+			loop28:
+			while (true) {
+				int alt28=3;
+				try { dbg.enterDecision(28, decisionCanBacktrack[28]);
+
+				int LA28_0 = input.LA(1);
+				if ( (LA28_0==72) ) {
+					alt28=1;
+				}
+				else if ( (LA28_0==74) ) {
+					alt28=2;
+				}
+
+				} finally {dbg.exitDecision(28);}
+
+				switch (alt28) {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:171:9: 
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:226:11: '+' next= expr_3
 					{
+					dbg.location(226,11);
+					char_literal120=(Token)match(input,72,FOLLOW_72_in_expr_42147);  
+					stream_72.add(char_literal120);
+					dbg.location(226,19);
+					pushFollow(FOLLOW_expr_3_in_expr_42151);
+					next=expr_3();
+					state._fsp--;
+
+					stream_expr_3.add(next.getTree());
+					// AST REWRITE
+					// elements: next, expr_4
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 226:27: -> ^( ADD $expr_4 $next)
+					{
+						dbg.location(226,30);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:226:30: ^( ADD $expr_4 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(226,32);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ADD, "ADD"), root_1);
+						dbg.location(226,37);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(226,45);
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:171:11: '+' expr_4
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:227:11: '-' next= expr_3
 					{
-					dbg.location(171,11);
-					match(input,21,FOLLOW_21_in_expr_41208); dbg.location(171,15);
-					pushFollow(FOLLOW_expr_4_in_expr_41210);
-					expr_4();
+					dbg.location(227,11);
+					char_literal121=(Token)match(input,74,FOLLOW_74_in_expr_42175);  
+					stream_74.add(char_literal121);
+					dbg.location(227,19);
+					pushFollow(FOLLOW_expr_3_in_expr_42179);
+					next=expr_3();
 					state._fsp--;
+
+					stream_expr_3.add(next.getTree());
+					// AST REWRITE
+					// elements: expr_4, next
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 227:27: -> ^( SUB $expr_4 $next)
+					{
+						dbg.location(227,30);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:227:30: ^( SUB $expr_4 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(227,32);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(SUB, "SUB"), root_1);
+						dbg.location(227,37);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(227,45);
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
-				case 3 :
-					dbg.enterAlt(3);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:172:11: '-' expr_4
-					{
-					dbg.location(172,11);
-					match(input,23,FOLLOW_23_in_expr_41222); dbg.location(172,15);
-					pushFollow(FOLLOW_expr_4_in_expr_41224);
-					expr_4();
-					state._fsp--;
-
-					}
-					break;
+				default :
+					break loop28;
+				}
+			}
+			} finally {dbg.exitSubRule(28);}
 
 			}
-			} finally {dbg.exitSubRule(25);}
 
-			}
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(174, 4);
+		dbg.location(229, 4);
 
 		}
 		finally {
@@ -2730,156 +5638,333 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "expr_4"
 
 
+	public static class expr_5_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "expr_5"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:176:1: expr_5 : expr_4 (| '<' expr_5 | '<=' expr_5 | '>' expr_5 | '>=' expr_5 ) ;
-	public final void expr_5() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:231:1: expr_5 : ( expr_4 -> expr_4 ) ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )* ;
+	public final leacParser.expr_5_return expr_5() throws RecognitionException {
+		leacParser.expr_5_return retval = new leacParser.expr_5_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token char_literal123=null;
+		Token string_literal124=null;
+		Token char_literal125=null;
+		Token string_literal126=null;
+		ParserRuleReturnScope next =null;
+		ParserRuleReturnScope expr_4122 =null;
+
+		Object char_literal123_tree=null;
+		Object string_literal124_tree=null;
+		Object char_literal125_tree=null;
+		Object string_literal126_tree=null;
+		RewriteRuleTokenStream stream_79=new RewriteRuleTokenStream(adaptor,"token 79");
+		RewriteRuleTokenStream stream_80=new RewriteRuleTokenStream(adaptor,"token 80");
+		RewriteRuleTokenStream stream_83=new RewriteRuleTokenStream(adaptor,"token 83");
+		RewriteRuleTokenStream stream_84=new RewriteRuleTokenStream(adaptor,"token 84");
+		RewriteRuleSubtreeStream stream_expr_4=new RewriteRuleSubtreeStream(adaptor,"rule expr_4");
+
 		try { dbg.enterRule(getGrammarFileName(), "expr_5");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(176, 0);
+		dbg.location(231, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:177:5: ( expr_4 (| '<' expr_5 | '<=' expr_5 | '>' expr_5 | '>=' expr_5 ) )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:232:5: ( ( expr_4 -> expr_4 ) ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )* )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:177:7: expr_4 (| '<' expr_5 | '<=' expr_5 | '>' expr_5 | '>=' expr_5 )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:232:7: ( expr_4 -> expr_4 ) ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )*
 			{
-			dbg.location(177,7);
-			pushFollow(FOLLOW_expr_4_in_expr_51251);
-			expr_4();
+			dbg.location(232,7);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:232:7: ( expr_4 -> expr_4 )
+			dbg.enterAlt(1);
+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:232:8: expr_4
+			{
+			dbg.location(232,8);
+			pushFollow(FOLLOW_expr_4_in_expr_52220);
+			expr_4122=expr_4();
 			state._fsp--;
-			dbg.location(178,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:178:9: (| '<' expr_5 | '<=' expr_5 | '>' expr_5 | '>=' expr_5 )
-			int alt26=5;
-			try { dbg.enterSubRule(26);
-			try { dbg.enterDecision(26, decisionCanBacktrack[26]);
 
-			switch ( input.LA(1) ) {
-			case EOF:
-			case 17:
-			case 19:
-			case 22:
-			case 27:
-			case 31:
-			case 35:
-			case 37:
-			case 41:
-			case 42:
-			case 49:
-			case 54:
-			case 60:
-				{
-				alt26=1;
-				}
-				break;
-			case 28:
-				{
-				alt26=2;
-				}
-				break;
-			case 29:
-				{
-				alt26=3;
-				}
-				break;
-			case 32:
-				{
-				alt26=4;
-				}
-				break;
-			case 33:
-				{
-				alt26=5;
-				}
-				break;
-			default:
-				NoViableAltException nvae =
-					new NoViableAltException("", 26, 0, input);
-				dbg.recognitionException(nvae);
-				throw nvae;
+			stream_expr_4.add(expr_4122.getTree());
+			// AST REWRITE
+			// elements: expr_4
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 232:15: -> expr_4
+			{
+				dbg.location(232,18);
+				adaptor.addChild(root_0, stream_expr_4.nextTree());
 			}
-			} finally {dbg.exitDecision(26);}
 
-			switch (alt26) {
+
+			retval.tree = root_0;
+
+			}
+			dbg.location(233,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:233:9: ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )*
+			try { dbg.enterSubRule(29);
+
+			loop29:
+			while (true) {
+				int alt29=5;
+				try { dbg.enterDecision(29, decisionCanBacktrack[29]);
+
+				switch ( input.LA(1) ) {
+				case 79:
+					{
+					alt29=1;
+					}
+					break;
+				case 80:
+					{
+					alt29=2;
+					}
+					break;
+				case 83:
+					{
+					alt29=3;
+					}
+					break;
+				case 84:
+					{
+					alt29=4;
+					}
+					break;
+				}
+				} finally {dbg.exitDecision(29);}
+
+				switch (alt29) {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:179:9: 
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:233:11: '<' next= expr_4
 					{
+					dbg.location(233,11);
+					char_literal123=(Token)match(input,79,FOLLOW_79_in_expr_52237);  
+					stream_79.add(char_literal123);
+					dbg.location(233,19);
+					pushFollow(FOLLOW_expr_4_in_expr_52241);
+					next=expr_4();
+					state._fsp--;
+
+					stream_expr_4.add(next.getTree());
+					// AST REWRITE
+					// elements: expr_5, next
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 233:27: -> ^( TEST_LT $expr_5 $next)
+					{
+						dbg.location(233,30);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:233:30: ^( TEST_LT $expr_5 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(233,32);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_LT, "TEST_LT"), root_1);
+						dbg.location(233,41);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(233,49);
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:179:11: '<' expr_5
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:234:11: '<=' next= expr_4
 					{
-					dbg.location(179,11);
-					match(input,28,FOLLOW_28_in_expr_51275); dbg.location(179,15);
-					pushFollow(FOLLOW_expr_5_in_expr_51277);
-					expr_5();
+					dbg.location(234,11);
+					string_literal124=(Token)match(input,80,FOLLOW_80_in_expr_52265);  
+					stream_80.add(string_literal124);
+					dbg.location(234,20);
+					pushFollow(FOLLOW_expr_4_in_expr_52269);
+					next=expr_4();
 					state._fsp--;
+
+					stream_expr_4.add(next.getTree());
+					// AST REWRITE
+					// elements: expr_5, next
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 234:28: -> ^( TEST_LE $expr_5 $next)
+					{
+						dbg.location(234,31);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:234:31: ^( TEST_LE $expr_5 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(234,33);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_LE, "TEST_LE"), root_1);
+						dbg.location(234,42);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(234,50);
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 				case 3 :
 					dbg.enterAlt(3);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:180:11: '<=' expr_5
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:235:11: '>' next= expr_4
 					{
-					dbg.location(180,11);
-					match(input,29,FOLLOW_29_in_expr_51289); dbg.location(180,16);
-					pushFollow(FOLLOW_expr_5_in_expr_51291);
-					expr_5();
+					dbg.location(235,11);
+					char_literal125=(Token)match(input,83,FOLLOW_83_in_expr_52293);  
+					stream_83.add(char_literal125);
+					dbg.location(235,19);
+					pushFollow(FOLLOW_expr_4_in_expr_52297);
+					next=expr_4();
 					state._fsp--;
+
+					stream_expr_4.add(next.getTree());
+					// AST REWRITE
+					// elements: next, expr_5
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 235:27: -> ^( TEST_GT $expr_5 $next)
+					{
+						dbg.location(235,30);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:235:30: ^( TEST_GT $expr_5 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(235,32);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_GT, "TEST_GT"), root_1);
+						dbg.location(235,41);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(235,49);
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
 				case 4 :
 					dbg.enterAlt(4);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:181:11: '>' expr_5
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:236:11: '>=' next= expr_4
 					{
-					dbg.location(181,11);
-					match(input,32,FOLLOW_32_in_expr_51303); dbg.location(181,15);
-					pushFollow(FOLLOW_expr_5_in_expr_51305);
-					expr_5();
+					dbg.location(236,11);
+					string_literal126=(Token)match(input,84,FOLLOW_84_in_expr_52321);  
+					stream_84.add(string_literal126);
+					dbg.location(236,20);
+					pushFollow(FOLLOW_expr_4_in_expr_52325);
+					next=expr_4();
 					state._fsp--;
+
+					stream_expr_4.add(next.getTree());
+					// AST REWRITE
+					// elements: next, expr_5
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 236:28: -> ^( TEST_GE $expr_5 $next)
+					{
+						dbg.location(236,31);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:236:31: ^( TEST_GE $expr_5 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(236,33);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_GE, "TEST_GE"), root_1);
+						dbg.location(236,42);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(236,50);
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
-				case 5 :
-					dbg.enterAlt(5);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:182:11: '>=' expr_5
-					{
-					dbg.location(182,11);
-					match(input,33,FOLLOW_33_in_expr_51317); dbg.location(182,16);
-					pushFollow(FOLLOW_expr_5_in_expr_51319);
-					expr_5();
-					state._fsp--;
-
-					}
-					break;
+				default :
+					break loop29;
+				}
+			}
+			} finally {dbg.exitSubRule(29);}
 
 			}
-			} finally {dbg.exitSubRule(26);}
 
-			}
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(184, 4);
+		dbg.location(238, 4);
 
 		}
 		finally {
@@ -2888,118 +5973,219 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "expr_5"
 
 
+	public static class expr_6_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "expr_6"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:186:1: expr_6 : expr_5 (| '==' expr_6 | '!=' expr_6 ) ;
-	public final void expr_6() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:240:1: expr_6 : ( expr_5 -> expr_5 ) ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )* ;
+	public final leacParser.expr_6_return expr_6() throws RecognitionException {
+		leacParser.expr_6_return retval = new leacParser.expr_6_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token string_literal128=null;
+		Token string_literal129=null;
+		ParserRuleReturnScope next =null;
+		ParserRuleReturnScope expr_5127 =null;
+
+		Object string_literal128_tree=null;
+		Object string_literal129_tree=null;
+		RewriteRuleTokenStream stream_68=new RewriteRuleTokenStream(adaptor,"token 68");
+		RewriteRuleTokenStream stream_82=new RewriteRuleTokenStream(adaptor,"token 82");
+		RewriteRuleSubtreeStream stream_expr_5=new RewriteRuleSubtreeStream(adaptor,"rule expr_5");
+
 		try { dbg.enterRule(getGrammarFileName(), "expr_6");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(186, 0);
+		dbg.location(240, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:187:5: ( expr_5 (| '==' expr_6 | '!=' expr_6 ) )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:241:5: ( ( expr_5 -> expr_5 ) ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )* )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:187:7: expr_5 (| '==' expr_6 | '!=' expr_6 )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:241:7: ( expr_5 -> expr_5 ) ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )*
 			{
-			dbg.location(187,7);
-			pushFollow(FOLLOW_expr_5_in_expr_61346);
-			expr_5();
+			dbg.location(241,7);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:241:7: ( expr_5 -> expr_5 )
+			dbg.enterAlt(1);
+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:241:8: expr_5
+			{
+			dbg.location(241,8);
+			pushFollow(FOLLOW_expr_5_in_expr_62366);
+			expr_5127=expr_5();
 			state._fsp--;
-			dbg.location(188,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:188:9: (| '==' expr_6 | '!=' expr_6 )
-			int alt27=3;
-			try { dbg.enterSubRule(27);
-			try { dbg.enterDecision(27, decisionCanBacktrack[27]);
 
-			switch ( input.LA(1) ) {
-			case EOF:
-			case 19:
-			case 22:
-			case 27:
-			case 35:
-			case 37:
-			case 41:
-			case 42:
-			case 49:
-			case 54:
-			case 60:
-				{
-				alt27=1;
-				}
-				break;
-			case 31:
-				{
-				alt27=2;
-				}
-				break;
-			case 17:
-				{
-				alt27=3;
-				}
-				break;
-			default:
-				NoViableAltException nvae =
-					new NoViableAltException("", 27, 0, input);
-				dbg.recognitionException(nvae);
-				throw nvae;
+			stream_expr_5.add(expr_5127.getTree());
+			// AST REWRITE
+			// elements: expr_5
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 241:15: -> expr_5
+			{
+				dbg.location(241,18);
+				adaptor.addChild(root_0, stream_expr_5.nextTree());
 			}
-			} finally {dbg.exitDecision(27);}
 
-			switch (alt27) {
+
+			retval.tree = root_0;
+
+			}
+			dbg.location(242,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:242:9: ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )*
+			try { dbg.enterSubRule(30);
+
+			loop30:
+			while (true) {
+				int alt30=3;
+				try { dbg.enterDecision(30, decisionCanBacktrack[30]);
+
+				int LA30_0 = input.LA(1);
+				if ( (LA30_0==82) ) {
+					alt30=1;
+				}
+				else if ( (LA30_0==68) ) {
+					alt30=2;
+				}
+
+				} finally {dbg.exitDecision(30);}
+
+				switch (alt30) {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:189:9: 
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:242:11: '==' next= expr_5
 					{
+					dbg.location(242,11);
+					string_literal128=(Token)match(input,82,FOLLOW_82_in_expr_62383);  
+					stream_82.add(string_literal128);
+					dbg.location(242,20);
+					pushFollow(FOLLOW_expr_5_in_expr_62387);
+					next=expr_5();
+					state._fsp--;
+
+					stream_expr_5.add(next.getTree());
+					// AST REWRITE
+					// elements: next, expr_6
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 242:28: -> ^( TEST_EQ $expr_6 $next)
+					{
+						dbg.location(242,31);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:242:31: ^( TEST_EQ $expr_6 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(242,33);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_EQ, "TEST_EQ"), root_1);
+						dbg.location(242,42);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(242,50);
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:189:11: '==' expr_6
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:243:11: '!=' next= expr_5
 					{
-					dbg.location(189,11);
-					match(input,31,FOLLOW_31_in_expr_61370); dbg.location(189,16);
-					pushFollow(FOLLOW_expr_6_in_expr_61372);
-					expr_6();
+					dbg.location(243,11);
+					string_literal129=(Token)match(input,68,FOLLOW_68_in_expr_62411);  
+					stream_68.add(string_literal129);
+					dbg.location(243,20);
+					pushFollow(FOLLOW_expr_5_in_expr_62415);
+					next=expr_5();
 					state._fsp--;
+
+					stream_expr_5.add(next.getTree());
+					// AST REWRITE
+					// elements: next, expr_6
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 243:28: -> ^( TEST_NE $expr_6 $next)
+					{
+						dbg.location(243,31);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:243:31: ^( TEST_NE $expr_6 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(243,33);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_NE, "TEST_NE"), root_1);
+						dbg.location(243,42);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(243,50);
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
 
 					}
 					break;
-				case 3 :
-					dbg.enterAlt(3);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:190:11: '!=' expr_6
-					{
-					dbg.location(190,11);
-					match(input,17,FOLLOW_17_in_expr_61384); dbg.location(190,16);
-					pushFollow(FOLLOW_expr_6_in_expr_61386);
-					expr_6();
-					state._fsp--;
-
-					}
-					break;
+				default :
+					break loop30;
+				}
+			}
+			} finally {dbg.exitSubRule(30);}
 
 			}
-			} finally {dbg.exitSubRule(27);}
 
-			}
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(192, 4);
+		dbg.location(245, 4);
 
 		}
 		finally {
@@ -3008,88 +6194,166 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "expr_6"
 
 
+	public static class expr_7_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "expr_7"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:194:1: expr_7 : expr_6 (| 'and' expr_7 ) ;
-	public final void expr_7() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:247:1: expr_7 : ( expr_6 -> expr_6 ) ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )* ;
+	public final leacParser.expr_7_return expr_7() throws RecognitionException {
+		leacParser.expr_7_return retval = new leacParser.expr_7_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token string_literal131=null;
+		ParserRuleReturnScope next =null;
+		ParserRuleReturnScope expr_6130 =null;
+
+		Object string_literal131_tree=null;
+		RewriteRuleTokenStream stream_88=new RewriteRuleTokenStream(adaptor,"token 88");
+		RewriteRuleSubtreeStream stream_expr_6=new RewriteRuleSubtreeStream(adaptor,"rule expr_6");
+
 		try { dbg.enterRule(getGrammarFileName(), "expr_7");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(194, 0);
+		dbg.location(247, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:195:5: ( expr_6 (| 'and' expr_7 ) )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:248:5: ( ( expr_6 -> expr_6 ) ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )* )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:195:7: expr_6 (| 'and' expr_7 )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:248:7: ( expr_6 -> expr_6 ) ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )*
 			{
-			dbg.location(195,7);
-			pushFollow(FOLLOW_expr_6_in_expr_71413);
-			expr_6();
+			dbg.location(248,7);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:248:7: ( expr_6 -> expr_6 )
+			dbg.enterAlt(1);
+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:248:8: expr_6
+			{
+			dbg.location(248,8);
+			pushFollow(FOLLOW_expr_6_in_expr_72456);
+			expr_6130=expr_6();
 			state._fsp--;
-			dbg.location(196,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:196:9: (| 'and' expr_7 )
-			int alt28=2;
-			try { dbg.enterSubRule(28);
-			try { dbg.enterDecision(28, decisionCanBacktrack[28]);
 
-			int LA28_0 = input.LA(1);
-			if ( (LA28_0==EOF||LA28_0==19||LA28_0==22||LA28_0==27||LA28_0==35||(LA28_0 >= 41 && LA28_0 <= 42)||LA28_0==49||LA28_0==54||LA28_0==60) ) {
-				alt28=1;
-			}
-			else if ( (LA28_0==37) ) {
-				alt28=2;
-			}
+			stream_expr_6.add(expr_6130.getTree());
+			// AST REWRITE
+			// elements: expr_6
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
-			else {
-				NoViableAltException nvae =
-					new NoViableAltException("", 28, 0, input);
-				dbg.recognitionException(nvae);
-				throw nvae;
+			root_0 = (Object)adaptor.nil();
+			// 248:15: -> expr_6
+			{
+				dbg.location(248,18);
+				adaptor.addChild(root_0, stream_expr_6.nextTree());
 			}
 
-			} finally {dbg.exitDecision(28);}
 
-			switch (alt28) {
+			retval.tree = root_0;
+
+			}
+			dbg.location(249,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:249:9: ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )*
+			try { dbg.enterSubRule(31);
+
+			loop31:
+			while (true) {
+				int alt31=2;
+				try { dbg.enterDecision(31, decisionCanBacktrack[31]);
+
+				int LA31_0 = input.LA(1);
+				if ( (LA31_0==88) ) {
+					alt31=1;
+				}
+
+				} finally {dbg.exitDecision(31);}
+
+				switch (alt31) {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:197:9: 
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:249:11: 'and' next= expr_6
 					{
-					}
-					break;
-				case 2 :
-					dbg.enterAlt(2);
-
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:197:11: 'and' expr_7
-					{
-					dbg.location(197,11);
-					match(input,37,FOLLOW_37_in_expr_71437); dbg.location(197,17);
-					pushFollow(FOLLOW_expr_7_in_expr_71439);
-					expr_7();
+					dbg.location(249,11);
+					string_literal131=(Token)match(input,88,FOLLOW_88_in_expr_72473);  
+					stream_88.add(string_literal131);
+					dbg.location(249,21);
+					pushFollow(FOLLOW_expr_6_in_expr_72477);
+					next=expr_6();
 					state._fsp--;
 
+					stream_expr_6.add(next.getTree());
+					// AST REWRITE
+					// elements: expr_7, next
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 249:29: -> ^( AND $expr_7 $next)
+					{
+						dbg.location(249,32);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:249:32: ^( AND $expr_7 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(249,34);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(AND, "AND"), root_1);
+						dbg.location(249,39);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(249,47);
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 
+				default :
+					break loop31;
+				}
 			}
-			} finally {dbg.exitSubRule(28);}
+			} finally {dbg.exitSubRule(31);}
 
 			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(199, 4);
+		dbg.location(251, 4);
 
 		}
 		finally {
@@ -3098,88 +6362,166 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "expr_7"
 
 
+	public static class expr_8_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "expr_8"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:201:1: expr_8 : expr_7 (| 'or' expr_8 ) ;
-	public final void expr_8() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:253:1: expr_8 : ( expr_7 -> expr_7 ) ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )* ;
+	public final leacParser.expr_8_return expr_8() throws RecognitionException {
+		leacParser.expr_8_return retval = new leacParser.expr_8_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token string_literal133=null;
+		ParserRuleReturnScope next =null;
+		ParserRuleReturnScope expr_7132 =null;
+
+		Object string_literal133_tree=null;
+		RewriteRuleTokenStream stream_100=new RewriteRuleTokenStream(adaptor,"token 100");
+		RewriteRuleSubtreeStream stream_expr_7=new RewriteRuleSubtreeStream(adaptor,"rule expr_7");
+
 		try { dbg.enterRule(getGrammarFileName(), "expr_8");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(201, 0);
+		dbg.location(253, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:202:5: ( expr_7 (| 'or' expr_8 ) )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:254:5: ( ( expr_7 -> expr_7 ) ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )* )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:202:7: expr_7 (| 'or' expr_8 )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:254:7: ( expr_7 -> expr_7 ) ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )*
 			{
-			dbg.location(202,7);
-			pushFollow(FOLLOW_expr_7_in_expr_81466);
-			expr_7();
+			dbg.location(254,7);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:254:7: ( expr_7 -> expr_7 )
+			dbg.enterAlt(1);
+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:254:8: expr_7
+			{
+			dbg.location(254,8);
+			pushFollow(FOLLOW_expr_7_in_expr_82518);
+			expr_7132=expr_7();
 			state._fsp--;
-			dbg.location(203,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:203:9: (| 'or' expr_8 )
-			int alt29=2;
-			try { dbg.enterSubRule(29);
-			try { dbg.enterDecision(29, decisionCanBacktrack[29]);
 
-			int LA29_0 = input.LA(1);
-			if ( (LA29_0==EOF||LA29_0==19||LA29_0==22||LA29_0==27||LA29_0==35||(LA29_0 >= 41 && LA29_0 <= 42)||LA29_0==54||LA29_0==60) ) {
-				alt29=1;
-			}
-			else if ( (LA29_0==49) ) {
-				alt29=2;
-			}
+			stream_expr_7.add(expr_7132.getTree());
+			// AST REWRITE
+			// elements: expr_7
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
-			else {
-				NoViableAltException nvae =
-					new NoViableAltException("", 29, 0, input);
-				dbg.recognitionException(nvae);
-				throw nvae;
+			root_0 = (Object)adaptor.nil();
+			// 254:15: -> expr_7
+			{
+				dbg.location(254,18);
+				adaptor.addChild(root_0, stream_expr_7.nextTree());
 			}
 
-			} finally {dbg.exitDecision(29);}
 
-			switch (alt29) {
+			retval.tree = root_0;
+
+			}
+			dbg.location(255,9);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:255:9: ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )*
+			try { dbg.enterSubRule(32);
+
+			loop32:
+			while (true) {
+				int alt32=2;
+				try { dbg.enterDecision(32, decisionCanBacktrack[32]);
+
+				int LA32_0 = input.LA(1);
+				if ( (LA32_0==100) ) {
+					alt32=1;
+				}
+
+				} finally {dbg.exitDecision(32);}
+
+				switch (alt32) {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:204:9: 
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:255:11: 'or' next= expr_7
 					{
-					}
-					break;
-				case 2 :
-					dbg.enterAlt(2);
-
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:204:11: 'or' expr_8
-					{
-					dbg.location(204,11);
-					match(input,49,FOLLOW_49_in_expr_81490); dbg.location(204,16);
-					pushFollow(FOLLOW_expr_8_in_expr_81492);
-					expr_8();
+					dbg.location(255,11);
+					string_literal133=(Token)match(input,100,FOLLOW_100_in_expr_82535);  
+					stream_100.add(string_literal133);
+					dbg.location(255,20);
+					pushFollow(FOLLOW_expr_7_in_expr_82539);
+					next=expr_7();
 					state._fsp--;
 
+					stream_expr_7.add(next.getTree());
+					// AST REWRITE
+					// elements: expr_8, next
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 255:28: -> ^( OR $expr_8 $next)
+					{
+						dbg.location(255,31);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:255:31: ^( OR $expr_8 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(255,33);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(OR, "OR"), root_1);
+						dbg.location(255,37);
+						adaptor.addChild(root_1, stream_retval.nextTree());dbg.location(255,45);
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 
+				default :
+					break loop32;
+				}
 			}
-			} finally {dbg.exitSubRule(29);}
+			} finally {dbg.exitSubRule(32);}
 
 			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(206, 4);
+		dbg.location(257, 4);
 
 		}
 		finally {
@@ -3188,41 +6530,84 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "expr_8"
 
 
+	public static class expr_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
 
 	// $ANTLR start "expr"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:208:1: expr : expr_8 ;
-	public final void expr() throws RecognitionException {
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:259:1: expr : expr_8 -> expr_8 ;
+	public final leacParser.expr_return expr() throws RecognitionException {
+		leacParser.expr_return retval = new leacParser.expr_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		ParserRuleReturnScope expr_8134 =null;
+
+		RewriteRuleSubtreeStream stream_expr_8=new RewriteRuleSubtreeStream(adaptor,"rule expr_8");
+
 		try { dbg.enterRule(getGrammarFileName(), "expr");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(208, 0);
+		dbg.location(259, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:209:5: ( expr_8 )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:260:5: ( expr_8 -> expr_8 )
 			dbg.enterAlt(1);
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:209:7: expr_8
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:260:7: expr_8
 			{
-			dbg.location(209,7);
-			pushFollow(FOLLOW_expr_8_in_expr1519);
-			expr_8();
+			dbg.location(260,7);
+			pushFollow(FOLLOW_expr_8_in_expr2579);
+			expr_8134=expr_8();
 			state._fsp--;
 
+			stream_expr_8.add(expr_8134.getTree());
+			// AST REWRITE
+			// elements: expr_8
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 260:14: -> expr_8
+			{
+				dbg.location(260,17);
+				adaptor.addChild(root_0, stream_expr_8.nextTree());
 			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(210, 4);
+		dbg.location(261, 4);
 
 		}
 		finally {
@@ -3231,176 +6616,310 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "expr"
 
 
+	public static class constant_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
 
-	// $ANTLR start "idf_access"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:212:1: idf_access : IDF (| '(' arg_list ')' | '[' coord_list ']' ) ;
-	public final void idf_access() throws RecognitionException {
-		try { dbg.enterRule(getGrammarFileName(), "idf_access");
+
+	// $ANTLR start "constant"
+	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:263:1: constant : ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) );
+	public final leacParser.constant_return constant() throws RecognitionException {
+		leacParser.constant_return retval = new leacParser.constant_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token INT135=null;
+		Token FLOAT136=null;
+		Token BOOL137=null;
+		Token STRING138=null;
+		Token CHAR139=null;
+
+		Object INT135_tree=null;
+		Object FLOAT136_tree=null;
+		Object BOOL137_tree=null;
+		Object STRING138_tree=null;
+		Object CHAR139_tree=null;
+		RewriteRuleTokenStream stream_FLOAT=new RewriteRuleTokenStream(adaptor,"token FLOAT");
+		RewriteRuleTokenStream stream_BOOL=new RewriteRuleTokenStream(adaptor,"token BOOL");
+		RewriteRuleTokenStream stream_STRING=new RewriteRuleTokenStream(adaptor,"token STRING");
+		RewriteRuleTokenStream stream_CHAR=new RewriteRuleTokenStream(adaptor,"token CHAR");
+		RewriteRuleTokenStream stream_INT=new RewriteRuleTokenStream(adaptor,"token INT");
+
+		try { dbg.enterRule(getGrammarFileName(), "constant");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(212, 0);
+		dbg.location(263, 0);
 
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:213:5: ( IDF (| '(' arg_list ')' | '[' coord_list ']' ) )
-			dbg.enterAlt(1);
-
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:213:7: IDF (| '(' arg_list ')' | '[' coord_list ']' )
-			{
-			dbg.location(213,7);
-			match(input,IDF,FOLLOW_IDF_in_idf_access1536); dbg.location(214,9);
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:214:9: (| '(' arg_list ')' | '[' coord_list ']' )
-			int alt30=3;
-			try { dbg.enterSubRule(30);
-			try { dbg.enterDecision(30, decisionCanBacktrack[30]);
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:264:5: ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) )
+			int alt33=5;
+			try { dbg.enterDecision(33, decisionCanBacktrack[33]);
 
 			switch ( input.LA(1) ) {
-			case EOF:
-			case 17:
-			case 19:
-			case 20:
-			case 21:
-			case 22:
-			case 23:
-			case 25:
-			case 27:
-			case 28:
-			case 29:
-			case 31:
-			case 32:
-			case 33:
-			case 35:
-			case 36:
-			case 37:
-			case 41:
-			case 42:
-			case 49:
-			case 54:
-			case 60:
+			case INT:
 				{
-				alt30=1;
+				alt33=1;
 				}
 				break;
-			case 18:
+			case FLOAT:
 				{
-				alt30=2;
+				alt33=2;
 				}
 				break;
-			case 34:
+			case BOOL:
 				{
-				alt30=3;
+				alt33=3;
+				}
+				break;
+			case STRING:
+				{
+				alt33=4;
+				}
+				break;
+			case CHAR:
+				{
+				alt33=5;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 30, 0, input);
+					new NoViableAltException("", 33, 0, input);
 				dbg.recognitionException(nvae);
 				throw nvae;
 			}
-			} finally {dbg.exitDecision(30);}
+			} finally {dbg.exitDecision(33);}
 
-			switch (alt30) {
+			switch (alt33) {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:215:9: 
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:264:7: INT
 					{
+					dbg.location(264,7);
+					INT135=(Token)match(input,INT,FOLLOW_INT_in_constant2600);  
+					stream_INT.add(INT135);
+
+					// AST REWRITE
+					// elements: INT
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 264:11: -> ^( CONST INT_TYPENAME INT )
+					{
+						dbg.location(264,14);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:264:14: ^( CONST INT_TYPENAME INT )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(264,16);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
+						dbg.location(264,22);
+						adaptor.addChild(root_1, (Object)adaptor.create(INT_TYPENAME, "INT_TYPENAME"));dbg.location(264,35);
+						adaptor.addChild(root_1, stream_INT.nextNode());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:215:11: '(' arg_list ')'
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:265:7: FLOAT
 					{
-					dbg.location(215,11);
-					match(input,18,FOLLOW_18_in_idf_access1560); dbg.location(215,15);
-					pushFollow(FOLLOW_arg_list_in_idf_access1562);
-					arg_list();
-					state._fsp--;
-					dbg.location(215,24);
-					match(input,19,FOLLOW_19_in_idf_access1564); 
+					dbg.location(265,7);
+					FLOAT136=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_constant2618);  
+					stream_FLOAT.add(FLOAT136);
+
+					// AST REWRITE
+					// elements: FLOAT
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 265:13: -> ^( CONST FLOAT_TYPENAME FLOAT )
+					{
+						dbg.location(265,16);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:265:16: ^( CONST FLOAT_TYPENAME FLOAT )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(265,18);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
+						dbg.location(265,24);
+						adaptor.addChild(root_1, (Object)adaptor.create(FLOAT_TYPENAME, "FLOAT_TYPENAME"));dbg.location(265,39);
+						adaptor.addChild(root_1, stream_FLOAT.nextNode());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 				case 3 :
 					dbg.enterAlt(3);
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:216:11: '[' coord_list ']'
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:266:7: BOOL
 					{
-					dbg.location(216,11);
-					match(input,34,FOLLOW_34_in_idf_access1576); dbg.location(216,15);
-					pushFollow(FOLLOW_coord_list_in_idf_access1578);
-					coord_list();
-					state._fsp--;
-					dbg.location(216,26);
-					match(input,35,FOLLOW_35_in_idf_access1580); 
+					dbg.location(266,7);
+					BOOL137=(Token)match(input,BOOL,FOLLOW_BOOL_in_constant2636);  
+					stream_BOOL.add(BOOL137);
+
+					// AST REWRITE
+					// elements: BOOL
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 266:12: -> ^( CONST BOOL_TYPENAME BOOL )
+					{
+						dbg.location(266,15);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:266:15: ^( CONST BOOL_TYPENAME BOOL )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(266,17);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
+						dbg.location(266,23);
+						adaptor.addChild(root_1, (Object)adaptor.create(BOOL_TYPENAME, "BOOL_TYPENAME"));dbg.location(266,37);
+						adaptor.addChild(root_1, stream_BOOL.nextNode());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+				case 4 :
+					dbg.enterAlt(4);
+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:267:7: STRING
+					{
+					dbg.location(267,7);
+					STRING138=(Token)match(input,STRING,FOLLOW_STRING_in_constant2654);  
+					stream_STRING.add(STRING138);
+
+					// AST REWRITE
+					// elements: STRING
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 267:14: -> ^( CONST STRING_TYPENAME STRING )
+					{
+						dbg.location(267,17);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:267:17: ^( CONST STRING_TYPENAME STRING )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(267,19);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
+						dbg.location(267,25);
+						adaptor.addChild(root_1, (Object)adaptor.create(STRING_TYPENAME, "STRING_TYPENAME"));dbg.location(267,41);
+						adaptor.addChild(root_1, stream_STRING.nextNode());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+				case 5 :
+					dbg.enterAlt(5);
+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:268:7: CHAR
+					{
+					dbg.location(268,7);
+					CHAR139=(Token)match(input,CHAR,FOLLOW_CHAR_in_constant2672);  
+					stream_CHAR.add(CHAR139);
+
+					// AST REWRITE
+					// elements: CHAR
+					// token labels: 
+					// rule labels: retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 268:12: -> ^( CONST CHAR_TYPENAME CHAR )
+					{
+						dbg.location(268,15);
+						// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:268:15: ^( CONST CHAR_TYPENAME CHAR )
+						{
+						Object root_1 = (Object)adaptor.nil();
+						dbg.location(268,17);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
+						dbg.location(268,23);
+						adaptor.addChild(root_1, (Object)adaptor.create(CHAR_TYPENAME, "CHAR_TYPENAME"));dbg.location(268,37);
+						adaptor.addChild(root_1, stream_CHAR.nextNode());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
 					}
 					break;
 
 			}
-			} finally {dbg.exitSubRule(30);}
+			retval.stop = input.LT(-1);
 
-			}
-
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-		dbg.location(218, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "idf_access");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
-	}
-	// $ANTLR end "idf_access"
-
-
-
-	// $ANTLR start "constant"
-	// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:220:1: constant : ( INT | FLOAT | BOOL | STRING | CHAR );
-	public final void constant() throws RecognitionException {
-		try { dbg.enterRule(getGrammarFileName(), "constant");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(220, 0);
-
-		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:221:5: ( INT | FLOAT | BOOL | STRING | CHAR )
-			dbg.enterAlt(1);
-
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:
-			{
-			dbg.location(221,5);
-			if ( (input.LA(1) >= BOOL && input.LA(1) <= CHAR)||input.LA(1)==FLOAT||input.LA(1)==INT||input.LA(1)==STRING ) {
-				input.consume();
-				state.errorRecovery=false;
-			}
-			else {
-				MismatchedSetException mse = new MismatchedSetException(null,input);
-				dbg.recognitionException(mse);
-				throw mse;
-			}
-			}
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
 
 		}
 		catch (RecognitionException re) {
 			reportError(re);
 			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 		}
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(226, 4);
+		dbg.location(269, 4);
 
 		}
 		finally {
@@ -3409,6 +6928,7 @@ public class leacParser extends DebugParser {
 			if ( getRuleLevel()==0 ) {dbg.terminate();}
 		}
 
+		return retval;
 	}
 	// $ANTLR end "constant"
 
@@ -3416,155 +6936,160 @@ public class leacParser extends DebugParser {
 
 
 
-	public static final BitSet FOLLOW_50_in_program33 = new BitSet(new long[]{0x0000000000000800L});
-	public static final BitSet FOLLOW_IDF_in_program35 = new BitSet(new long[]{0x0080000000000000L});
-	public static final BitSet FOLLOW_global_decls_in_program37 = new BitSet(new long[]{0x0E28300000000800L});
-	public static final BitSet FOLLOW_func_decls_in_program39 = new BitSet(new long[]{0x0E28200000000800L});
-	public static final BitSet FOLLOW_statement_in_program41 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_var_decls_in_global_decls53 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_var_decl_in_var_decls69 = new BitSet(new long[]{0x0080000000000002L});
-	public static final BitSet FOLLOW_55_in_var_decl86 = new BitSet(new long[]{0x0000000000000800L});
-	public static final BitSet FOLLOW_idf_list_in_var_decl88 = new BitSet(new long[]{0x0000000004000000L});
-	public static final BitSet FOLLOW_26_in_var_decl90 = new BitSet(new long[]{0x010049C000000000L});
-	public static final BitSet FOLLOW_typename_in_var_decl92 = new BitSet(new long[]{0x0000000008000000L});
-	public static final BitSet FOLLOW_27_in_var_decl94 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDF_in_idf_list110 = new BitSet(new long[]{0x0000000000400002L});
-	public static final BitSet FOLLOW_22_in_idf_list113 = new BitSet(new long[]{0x0000000000000800L});
-	public static final BitSet FOLLOW_IDF_in_idf_list115 = new BitSet(new long[]{0x0000000000400002L});
-	public static final BitSet FOLLOW_func_decl_in_func_decls134 = new BitSet(new long[]{0x0000100000000002L});
-	public static final BitSet FOLLOW_44_in_func_decl151 = new BitSet(new long[]{0x0000000000000800L});
-	public static final BitSet FOLLOW_IDF_in_func_decl153 = new BitSet(new long[]{0x0000000000040000L});
-	public static final BitSet FOLLOW_18_in_func_decl155 = new BitSet(new long[]{0x0010000000080800L});
-	public static final BitSet FOLLOW_param_list_in_func_decl157 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_19_in_func_decl159 = new BitSet(new long[]{0x0000000004000000L});
-	public static final BitSet FOLLOW_26_in_func_decl161 = new BitSet(new long[]{0x0100498000000000L});
-	public static final BitSet FOLLOW_atom_typename_in_func_decl163 = new BitSet(new long[]{0x0880000000000000L});
-	public static final BitSet FOLLOW_var_decls_in_func_decl165 = new BitSet(new long[]{0x0800000000000000L});
-	public static final BitSet FOLLOW_block_in_func_decl167 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_atom_typename_in_typename184 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_array_typename_in_typename192 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_38_in_array_typename258 = new BitSet(new long[]{0x0000000400000000L});
-	public static final BitSet FOLLOW_34_in_array_typename260 = new BitSet(new long[]{0x0000000000001000L});
-	public static final BitSet FOLLOW_range_list_in_array_typename262 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_35_in_array_typename264 = new BitSet(new long[]{0x0001000000000000L});
-	public static final BitSet FOLLOW_48_in_array_typename266 = new BitSet(new long[]{0x0100498000000000L});
-	public static final BitSet FOLLOW_atom_typename_in_array_typename268 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_range_in_range_list285 = new BitSet(new long[]{0x0000000000400002L});
-	public static final BitSet FOLLOW_22_in_range_list288 = new BitSet(new long[]{0x0000000000001000L});
-	public static final BitSet FOLLOW_range_in_range_list290 = new BitSet(new long[]{0x0000000000400002L});
-	public static final BitSet FOLLOW_INT_in_range308 = new BitSet(new long[]{0x0000000001000000L});
-	public static final BitSet FOLLOW_24_in_range310 = new BitSet(new long[]{0x0000000000001000L});
-	public static final BitSet FOLLOW_INT_in_range312 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_param_in_param_list337 = new BitSet(new long[]{0x0000000000400002L});
-	public static final BitSet FOLLOW_22_in_param_list340 = new BitSet(new long[]{0x0010000000000800L});
-	public static final BitSet FOLLOW_param_in_param_list342 = new BitSet(new long[]{0x0000000000400002L});
-	public static final BitSet FOLLOW_IDF_in_param360 = new BitSet(new long[]{0x0000000004000000L});
-	public static final BitSet FOLLOW_26_in_param362 = new BitSet(new long[]{0x010049C000000000L});
-	public static final BitSet FOLLOW_typename_in_param364 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_52_in_param372 = new BitSet(new long[]{0x0000000000000800L});
-	public static final BitSet FOLLOW_IDF_in_param374 = new BitSet(new long[]{0x0000000004000000L});
-	public static final BitSet FOLLOW_26_in_param376 = new BitSet(new long[]{0x010049C000000000L});
-	public static final BitSet FOLLOW_typename_in_param378 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_conditional_in_statement395 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_loop_in_statement403 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_affect_or_procedure_call_in_statement411 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_returning_in_statement419 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_block_in_statement427 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_read_in_statement435 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_write_in_statement443 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_45_in_conditional460 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_in_conditional462 = new BitSet(new long[]{0x0040000000000000L});
-	public static final BitSet FOLLOW_54_in_conditional464 = new BitSet(new long[]{0x0E28200000000800L});
-	public static final BitSet FOLLOW_statement_in_conditional466 = new BitSet(new long[]{0x0000040000000002L});
-	public static final BitSet FOLLOW_42_in_conditional490 = new BitSet(new long[]{0x0E28200000000800L});
-	public static final BitSet FOLLOW_statement_in_conditional492 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_57_in_loop531 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_in_loop533 = new BitSet(new long[]{0x0000020000000000L});
-	public static final BitSet FOLLOW_41_in_loop535 = new BitSet(new long[]{0x0E28200000000800L});
-	public static final BitSet FOLLOW_statement_in_loop537 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_lvalue_in_affect554 = new BitSet(new long[]{0x0000000040000000L});
-	public static final BitSet FOLLOW_30_in_affect556 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_in_affect558 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDF_in_lvalue574 = new BitSet(new long[]{0x0000000400000002L});
-	public static final BitSet FOLLOW_34_in_lvalue598 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_coord_list_in_lvalue600 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_35_in_lvalue602 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_in_coord_list628 = new BitSet(new long[]{0x0000000000400002L});
-	public static final BitSet FOLLOW_22_in_coord_list631 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_in_coord_list633 = new BitSet(new long[]{0x0000000000400002L});
-	public static final BitSet FOLLOW_53_in_returning652 = new BitSet(new long[]{0x0000800000845A32L});
-	public static final BitSet FOLLOW_expr_in_returning676 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDF_in_affect_or_procedure_call703 = new BitSet(new long[]{0x0000000440040000L});
-	public static final BitSet FOLLOW_34_in_affect_or_procedure_call745 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_coord_list_in_affect_or_procedure_call747 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_35_in_affect_or_procedure_call749 = new BitSet(new long[]{0x0000000040000000L});
-	public static final BitSet FOLLOW_30_in_affect_or_procedure_call777 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_in_affect_or_procedure_call779 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_18_in_affect_or_procedure_call791 = new BitSet(new long[]{0x00008000008C5A30L});
-	public static final BitSet FOLLOW_arg_list_in_affect_or_procedure_call793 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_19_in_affect_or_procedure_call795 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_in_arg_list830 = new BitSet(new long[]{0x0000000000400002L});
-	public static final BitSet FOLLOW_22_in_arg_list833 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_in_arg_list835 = new BitSet(new long[]{0x0000000000400002L});
-	public static final BitSet FOLLOW_59_in_block854 = new BitSet(new long[]{0x1E28200000000800L});
-	public static final BitSet FOLLOW_statement_in_block878 = new BitSet(new long[]{0x1000000008000000L});
-	public static final BitSet FOLLOW_27_in_block881 = new BitSet(new long[]{0x0E28200000000800L});
-	public static final BitSet FOLLOW_statement_in_block883 = new BitSet(new long[]{0x1000000008000000L});
-	public static final BitSet FOLLOW_60_in_block903 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_51_in_read920 = new BitSet(new long[]{0x0000000000000800L});
-	public static final BitSet FOLLOW_lvalue_in_read922 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_58_in_write939 = new BitSet(new long[]{0x0000000000005A30L});
-	public static final BitSet FOLLOW_lvalue_in_write951 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_constant_in_write963 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_idf_access_in_expr_0990 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_constant_in_expr_0998 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_18_in_expr_01006 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_in_expr_01008 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_19_in_expr_01010 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_0_in_expr_11027 = new BitSet(new long[]{0x0000001000000002L});
-	public static final BitSet FOLLOW_36_in_expr_11051 = new BitSet(new long[]{0x0000000000045A30L});
-	public static final BitSet FOLLOW_expr_1_in_expr_11053 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_1_in_expr_21080 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_23_in_expr_21088 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_2_in_expr_21090 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_47_in_expr_21098 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_2_in_expr_21100 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_2_in_expr_31117 = new BitSet(new long[]{0x0000000002100002L});
-	public static final BitSet FOLLOW_20_in_expr_31141 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_3_in_expr_31143 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_25_in_expr_31155 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_3_in_expr_31157 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_3_in_expr_41184 = new BitSet(new long[]{0x0000000000A00002L});
-	public static final BitSet FOLLOW_21_in_expr_41208 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_4_in_expr_41210 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_23_in_expr_41222 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_4_in_expr_41224 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_4_in_expr_51251 = new BitSet(new long[]{0x0000000330000002L});
-	public static final BitSet FOLLOW_28_in_expr_51275 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_5_in_expr_51277 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_29_in_expr_51289 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_5_in_expr_51291 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_32_in_expr_51303 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_5_in_expr_51305 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_33_in_expr_51317 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_5_in_expr_51319 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_5_in_expr_61346 = new BitSet(new long[]{0x0000000080020002L});
-	public static final BitSet FOLLOW_31_in_expr_61370 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_6_in_expr_61372 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_17_in_expr_61384 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_6_in_expr_61386 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_6_in_expr_71413 = new BitSet(new long[]{0x0000002000000002L});
-	public static final BitSet FOLLOW_37_in_expr_71437 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_7_in_expr_71439 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_7_in_expr_81466 = new BitSet(new long[]{0x0002000000000002L});
-	public static final BitSet FOLLOW_49_in_expr_81490 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_expr_8_in_expr_81492 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_8_in_expr1519 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDF_in_idf_access1536 = new BitSet(new long[]{0x0000000400040002L});
-	public static final BitSet FOLLOW_18_in_idf_access1560 = new BitSet(new long[]{0x00008000008C5A30L});
-	public static final BitSet FOLLOW_arg_list_in_idf_access1562 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_19_in_idf_access1564 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_34_in_idf_access1576 = new BitSet(new long[]{0x0000800000845A30L});
-	public static final BitSet FOLLOW_coord_list_in_idf_access1578 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_35_in_idf_access1580 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_101_in_program414 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_IDF_in_program416 = new BitSet(new long[]{0x0000000080000000L,0x0000754180000000L});
+	public static final BitSet FOLLOW_var_decl_list_in_program418 = new BitSet(new long[]{0x0000000080000000L,0x0000714180000000L});
+	public static final BitSet FOLLOW_func_decl_list_in_program420 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
+	public static final BitSet FOLLOW_statement_in_program422 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_var_decl_in_var_decl_list451 = new BitSet(new long[]{0x0000000000000002L,0x0000040000000000L});
+	public static final BitSet FOLLOW_106_in_var_decl477 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_idf_list_in_var_decl479 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+	public static final BitSet FOLLOW_77_in_var_decl481 = new BitSet(new long[]{0x0000000000000000L,0x000008024E000000L});
+	public static final BitSet FOLLOW_typename_in_var_decl483 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
+	public static final BitSet FOLLOW_78_in_var_decl485 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDF_in_idf_list511 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_73_in_idf_list514 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_IDF_in_idf_list516 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_func_decl_in_func_decl_list544 = new BitSet(new long[]{0x0000000000000002L,0x0000000080000000L});
+	public static final BitSet FOLLOW_95_in_func_decl570 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_IDF_in_func_decl572 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+	public static final BitSet FOLLOW_69_in_func_decl574 = new BitSet(new long[]{0x0000000080000000L,0x0000008000000040L});
+	public static final BitSet FOLLOW_param_list_in_func_decl576 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+	public static final BitSet FOLLOW_70_in_func_decl578 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+	public static final BitSet FOLLOW_77_in_func_decl580 = new BitSet(new long[]{0x0000000000000000L,0x000008024C000000L});
+	public static final BitSet FOLLOW_atom_typename_in_func_decl582 = new BitSet(new long[]{0x0000000000000000L,0x0000440000000000L});
+	public static final BitSet FOLLOW_var_decl_list_in_func_decl584 = new BitSet(new long[]{0x0000000000000000L,0x0000400000000000L});
+	public static final BitSet FOLLOW_block_in_func_decl586 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_atom_typename_in_typename617 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_array_typename_in_typename633 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_107_in_atom_typename654 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_90_in_atom_typename666 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_97_in_atom_typename678 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_94_in_atom_typename690 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_91_in_atom_typename702 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_89_in_array_typename723 = new BitSet(new long[]{0x0000000000000000L,0x0000000000200000L});
+	public static final BitSet FOLLOW_85_in_array_typename725 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_range_list_in_array_typename727 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+	public static final BitSet FOLLOW_86_in_array_typename729 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
+	public static final BitSet FOLLOW_99_in_array_typename731 = new BitSet(new long[]{0x0000000000000000L,0x000008024C000000L});
+	public static final BitSet FOLLOW_atom_typename_in_array_typename733 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_range_in_range_list760 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_73_in_range_list763 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_range_in_range_list765 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_INT_in_range794 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
+	public static final BitSet FOLLOW_75_in_range796 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_INT_in_range800 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_param_in_param_list843 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_73_in_param_list846 = new BitSet(new long[]{0x0000000080000000L,0x0000008000000000L});
+	public static final BitSet FOLLOW_param_in_param_list848 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_IDF_in_param875 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+	public static final BitSet FOLLOW_77_in_param877 = new BitSet(new long[]{0x0000000000000000L,0x000008024E000000L});
+	public static final BitSet FOLLOW_typename_in_param879 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_103_in_param899 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_IDF_in_param901 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+	public static final BitSet FOLLOW_77_in_param903 = new BitSet(new long[]{0x0000000000000000L,0x000008024E000000L});
+	public static final BitSet FOLLOW_typename_in_param905 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_conditional_in_statement934 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_loop_in_statement946 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_affect_or_procedure_call_in_statement958 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_returning_in_statement970 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_block_in_statement982 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_read_in_statement994 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_write_in_statement1006 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_96_in_conditional1027 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_in_conditional1029 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+	public static final BitSet FOLLOW_105_in_conditional1031 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
+	public static final BitSet FOLLOW_statement_in_conditional1035 = new BitSet(new long[]{0x0000000000000002L,0x0000000020000000L});
+	public static final BitSet FOLLOW_93_in_conditional1059 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
+	public static final BitSet FOLLOW_statement_in_conditional1063 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_108_in_loop1129 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_in_loop1131 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
+	public static final BitSet FOLLOW_92_in_loop1133 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
+	public static final BitSet FOLLOW_statement_in_loop1135 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_in_coord_list1162 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_73_in_coord_list1165 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_in_coord_list1167 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_104_in_returning1195 = new BitSet(new long[]{0x0008000282010802L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_in_returning1227 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDF_in_affect_or_procedure_call1262 = new BitSet(new long[]{0x0000000000000000L,0x0000000000220020L});
+	public static final BitSet FOLLOW_85_in_affect_or_procedure_call1312 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_coord_list_in_affect_or_procedure_call1314 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+	public static final BitSet FOLLOW_86_in_affect_or_procedure_call1316 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+	public static final BitSet FOLLOW_81_in_affect_or_procedure_call1354 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_in_affect_or_procedure_call1356 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_69_in_affect_or_procedure_call1379 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000460L});
+	public static final BitSet FOLLOW_arg_list_in_affect_or_procedure_call1381 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+	public static final BitSet FOLLOW_70_in_affect_or_procedure_call1383 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_in_arg_list1434 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_73_in_arg_list1437 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_in_arg_list1439 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_110_in_block1467 = new BitSet(new long[]{0x0000000080000000L,0x0000F14100000000L});
+	public static final BitSet FOLLOW_statement_in_block1497 = new BitSet(new long[]{0x0000000000000000L,0x0000800000004000L});
+	public static final BitSet FOLLOW_78_in_block1500 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
+	public static final BitSet FOLLOW_statement_in_block1502 = new BitSet(new long[]{0x0000000000000000L,0x0000800000004000L});
+	public static final BitSet FOLLOW_111_in_block1531 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_102_in_read1548 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_IDF_in_read1550 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
+	public static final BitSet FOLLOW_85_in_read1586 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_coord_list_in_read1588 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+	public static final BitSet FOLLOW_86_in_read1590 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_109_in_write1631 = new BitSet(new long[]{0x0008000282010800L});
+	public static final BitSet FOLLOW_IDF_in_write1643 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
+	public static final BitSet FOLLOW_85_in_write1687 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_coord_list_in_write1689 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+	public static final BitSet FOLLOW_86_in_write1691 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_constant_in_write1731 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDF_in_expr_01766 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200020L});
+	public static final BitSet FOLLOW_69_in_expr_01798 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000460L});
+	public static final BitSet FOLLOW_arg_list_in_expr_01800 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+	public static final BitSet FOLLOW_70_in_expr_01802 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_85_in_expr_01824 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_coord_list_in_expr_01826 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+	public static final BitSet FOLLOW_86_in_expr_01828 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_constant_in_expr_01856 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_69_in_expr_01868 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_in_expr_01870 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+	public static final BitSet FOLLOW_70_in_expr_01872 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_0_in_expr_11894 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
+	public static final BitSet FOLLOW_87_in_expr_11911 = new BitSet(new long[]{0x0008000282010800L,0x0000000000000020L});
+	public static final BitSet FOLLOW_expr_0_in_expr_11915 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
+	public static final BitSet FOLLOW_74_in_expr_21965 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_98_in_expr_21986 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_1_in_expr_22017 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_2_in_expr_32040 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
+	public static final BitSet FOLLOW_71_in_expr_32057 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_2_in_expr_32061 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
+	public static final BitSet FOLLOW_76_in_expr_32085 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_2_in_expr_32089 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
+	public static final BitSet FOLLOW_expr_3_in_expr_42130 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
+	public static final BitSet FOLLOW_72_in_expr_42147 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_3_in_expr_42151 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
+	public static final BitSet FOLLOW_74_in_expr_42175 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_3_in_expr_42179 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52220 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
+	public static final BitSet FOLLOW_79_in_expr_52237 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52241 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
+	public static final BitSet FOLLOW_80_in_expr_52265 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52269 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
+	public static final BitSet FOLLOW_83_in_expr_52293 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52297 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
+	public static final BitSet FOLLOW_84_in_expr_52321 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52325 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
+	public static final BitSet FOLLOW_expr_5_in_expr_62366 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
+	public static final BitSet FOLLOW_82_in_expr_62383 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_5_in_expr_62387 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
+	public static final BitSet FOLLOW_68_in_expr_62411 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_5_in_expr_62415 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
+	public static final BitSet FOLLOW_expr_6_in_expr_72456 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
+	public static final BitSet FOLLOW_88_in_expr_72473 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_6_in_expr_72477 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
+	public static final BitSet FOLLOW_expr_7_in_expr_82518 = new BitSet(new long[]{0x0000000000000002L,0x0000001000000000L});
+	public static final BitSet FOLLOW_100_in_expr_82535 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_7_in_expr_82539 = new BitSet(new long[]{0x0000000000000002L,0x0000001000000000L});
+	public static final BitSet FOLLOW_expr_8_in_expr2579 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INT_in_constant2600 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FLOAT_in_constant2618 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_BOOL_in_constant2636 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_STRING_in_constant2654 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CHAR_in_constant2672 = new BitSet(new long[]{0x0000000000000002L});
 }

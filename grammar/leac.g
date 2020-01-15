@@ -2,6 +2,7 @@ grammar leac;
 
 options {
     k = 1;
+    output = AST;
 }
 
 /* parser */
@@ -151,10 +152,10 @@ returning
 affect_or_procedure_call
     : IDF
         (
-            ( /* epsilon */ -> ^(AFFECT ^(VAR IDF) expr)
-            | '[' coord_list ']' -> ^(AFFECT ^(CELL IDF coord_list) expr)
+            ( /* epsilon */ -> ^(VAR IDF)
+            | '[' coord_list ']' -> ^(CELL IDF coord_list)
             )
-            '=' expr
+            '=' expr -> ^(AFFECT $affect_or_procedure_call expr)
         | '(' arg_list ')' -> ^(PROCEDURE_CALL IDF arg_list)
         )
     ;
