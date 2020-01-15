@@ -20,6 +20,7 @@ tokens {
     INT_TYPENAME;
     FLOAT_TYPENAME;
     CHAR_TYPENAME;
+    STRING_TYPENAME;
     RANGE_LIST;
     RANGE;
     PARAM_LIST;
@@ -32,7 +33,12 @@ tokens {
     CONST;
     PROCEDURE_CALL;
 	LOOP;
+	COORD_LIST;
     RETURNING;
+    BLOCK;
+    READ;
+    WRITE;
+    FUNC_CALL;
     NO_RETURN_VALUE;
     BY_REF;
     BY_COPY;
@@ -52,6 +58,8 @@ tokens {
     TEST_GE;
     TEST_EQ;
     TEST_NE;
+    AND;
+    OR;
 }
 
 program
@@ -135,8 +143,8 @@ coord_list
 
 returning
     : 'return'
-        ( /* epsilon */ -> ^(RETURN NO_RETURN_VALUE)
-        | expr -> ^(RETURN expr)
+        ( /* epsilon */ -> ^(RETURNING NO_RETURN_VALUE)
+        | expr -> ^(RETURNING expr)
         )
     ;
 
@@ -203,6 +211,7 @@ expr_2
         | 'not' -> ^(NOT $expr_2)
         )*
         (expr_1 -> expr_1)
+    ;
 
 expr_3
     : (expr_2 -> expr_2)
