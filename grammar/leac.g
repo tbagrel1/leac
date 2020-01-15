@@ -6,221 +6,256 @@ options {
 
 /* parser */
 
+tokens {
+    PROGRAM;
+    VAR_DECL_LIST;
+    VAR_DECL;
+    IDF_LIST;
+    FUNC_DECL_LIST;
+    FUNC_DECL;
+    ATOM;
+    ARRAY;
+    VOID_TYPENAME;
+    BOOL_TYPENAME;
+    INT_TYPENAME;
+    FLOAT_TYPENAME;
+    CHAR_TYPENAME;
+    RANGE_LIST;
+    RANGE;
+    PARAM_LIST;
+    PARAM;
+    CONDITIONAL;
+    AFFECT;
+    AFFECT;
+    VAR;
+    CELL;
+    CONST;
+    PROCEDURE_CALL;
+	LOOP;
+    RETURNING;
+    NO_RETURN_VALUE;
+    BY_REF;
+    BY_COPY;
+    ARG_LIST;
+    WRITE;
+    PASS;
+    POW;
+    NOT;
+    UNARY_MINUS;
+    MUL;
+    DIV;
+    ADD;
+    SUB;
+    TEST_LT;
+    TEST_LE;
+    TEST_GT;
+    TEST_GE;
+    TEST_EQ;
+    TEST_NE;
+}
+
 program
-    : 'program' IDF var_decls func_decls statement -> ^(program var_decls func_decls statement)
+    : 'program' IDF var_decl_list func_decl_list statement -> ^(PROGRAM var_decl_list func_decl_list statement)
     ;
 
-var_decls
-    : tail=var_decl* -> ^(var_decls tail*)
+var_decl_list
+    : var_decl* -> ^(VAR_DECL_LIST var_decl*)
     ;
 var_decl
-    : 'var' idf_list ':' typename ';' -> ^(var_decl typename idf_list)
+    : 'var' idf_list ':' typename ';' -> ^(VAR_DECL typename idf_list)
     ;
 idf_list
-    : head=IDF (',' tail=IDF)* -> ^(idf_list head tail*)
+    : IDF (',' IDF)* -> ^(IDF_LIST IDF+)
     ;
 
-func_decls
-    : func_decl*
+func_decl_list
+    : func_decl* -> ^(FUNC_DECL_LIST func_decl*)
     ;
 func_decl
-    : 'function' IDF '(' param_list ')' ':' atom_typename var_decls block
+    : 'function' IDF '(' param_list ')' ':' atom_typename var_decl_list block -> ^(FUNC_DECL param_list atom_typename var_decl_list block)
     ;
 
 typename
-    : atom_typename
-    | array_typename
+    : atom_typename -> ^(ATOM atom_typename)
+    | array_typename -> array_typename
     ;
 
 atom_typename
-    : 'void'
-    | 'bool'
-    | 'int'
-    | 'float'
-    | 'char'
+    : 'void' -> VOID_TYPENAME
+    | 'bool' -> BOOL_TYPENAME
+    | 'int' -> INT_TYPENAME
+    | 'float' -> FLOAT_TYPENAME
+    | 'char' -> CHAR_TYPENAME
     ;
 
 array_typename
-    : 'array' '[' range_list ']' 'of' atom_typename
+    : 'array' '[' range_list ']' 'of' atom_typename -> ^(ARRAY atom_typename range_list)
     ;
 
 range_list
-    : range (',' range)*
+    : range (',' range)* -> ^(RANGE_LIST range+)
     ;
 range
-    : INT '..' INT
+    : inf=INT '..' sup=INT -> ^(RANGE $inf $sup)
     ;
 
 param_list
-    : /* epsilon */
-    | param (',' param)*
+    : /* epsilon */ -> ^(PARAM_LIST)
+    | param (',' param)* -> ^(PARAM_LIST param+)
     ;
 param
-    : IDF ':' typename
-    | 'ref' IDF ':' typename
+    : IDF ':' typename -> ^('param typename BY_COPY IDF)
+    | 'ref' IDF ':' typename -> ^('param typename BY_REF IDF)
     ;
 
 statement
-    : conditional
-    | loop
-    | affect_or_procedure_call
-    | returning
-    | block
-    | read
-    | write
+    : conditional -> conditional
+    | loop -> loop
+    | affect_or_procedure_call -> affect_or_procedure_call
+    | returning -> returning
+    | block -> block
+    | read -> read
+    | write -> write
     ;
 
 conditional
-    : 'if' expr 'then' statement
-        ( options { greedy = true; }: 'else' statement
-        | /* epsilon */
+    : 'if' expr 'then' first=statement
+        ( options { greedy = true; }: 'else' second=statement -> ^(CONDITIONAL expr first second)
+        | /* epsilon */ -> ^(CONDITIONAL expr first PASS)
         )
     ;
 
 loop
-    : 'while' expr 'do' statement
+    : 'while' expr 'do' statement -> ^(LOOP expr statement)
     ;
 
-affect
-    : lvalue '=' expr
-    ;
-lvalue
-    : IDF
-        ( /* epsilon */
-        | '[' coord_list ']'
-        )
-    ;
 coord_list
-    : expr (',' expr)*
+    : expr (',' expr)* -> ^(COORD_LIST expr+)
     ;
 
 returning
     : 'return'
-        ( /* epsilon */
-        | expr
+        ( /* epsilon */ -> ^(RETURN NO_RETURN_VALUE)
+        | expr -> ^(RETURN expr)
         )
     ;
 
 affect_or_procedure_call
     : IDF
         (
-            ( /* epsilon */
-            | '[' coord_list ']'
+            ( /* epsilon */ -> ^(AFFECT ^(VAR IDF) expr)
+            | '[' coord_list ']' -> ^(AFFECT ^(CELL IDF coord_list) expr)
             )
             '=' expr
-        | '(' arg_list ')'
+        | '(' arg_list ')' -> ^(PROCEDURE_CALL IDF arg_list)
         )
     ;
 
 arg_list
-    : /* epsilon */
-    | expr (',' expr)*
+    : /* epsilon */ -> ^(ARG_LIST)
+    | expr (',' expr)* -> ^(ARG_LIST expr+)
     ;
 
 block
     : '{'
-        ( /* epsilon */
-        | statement (';' statement)*
+        ( /* epsilon */ -> ^(BLOCK)
+        | statement (';' statement)* -> ^(BLOCK statement+)
         )
       '}'
     ;
 
 read
-    : 'read' lvalue
+    : 'read' IDF
+        ( /* epsilon */ -> ^(READ ^(VAR IDF))
+        | '[' coord_list ']' -> ^(READ ^(CELL IDF coord_list))
+        )
     ;
 
 write
     : 'write'
-        ( lvalue
-        | constant
+        ( IDF
+            ( /* epsilon */ -> ^(WRITE ^(VAR IDF))
+            | '[' coord_list ']' -> ^(WRITE ^(CELL IDF coord_list))
+            )
+        | constant -> ^(WRITE constant)
         )
     ;
 
 expr_0
-    : idf_access
-    | constant
-    | '(' expr ')'
+    : IDF
+        ( /* epsilon */ -> ^(VAR IDF)
+        | '(' arg_list ')' -> ^(FUNC_CALL IDF arg_list)
+        | '[' coord_list ']' -> ^(CELL IDF coord_list)
+        )
+    | constant -> constant
+    | '(' expr ')' -> expr
     ;
 
 expr_1
-    : expr_0
-        ( /* epsilon */
-        | '^' expr_1
-        )
+    : (expr_0 -> expr_0)
+        ( '^' next=expr_0 -> ^(POW $expr_1 $next)
+        )*
     ;
 
 expr_2
-    : expr_1
-    | '-' expr_2
-    | 'not' expr_2
-    ;
+    :
+        ( '-' -> ^(UNARY_MINUS $expr_2)
+        | 'not' -> ^(NOT $expr_2)
+        )*
+        (expr_1 -> expr_1)
 
 expr_3
-    : expr_2
-        ( /* epsilon */
-        | '*' expr_3
-        | '/' expr_3
-        )
+    : (expr_2 -> expr_2)
+        ( '*' next=expr_2 -> ^(MUL $expr_3 $next)
+        | '/' next=expr_2 -> ^(DIV $expr_3 $next)
+        )*
     ;
 
 expr_4
-    : expr_3
-        ( /* epsilon */
-        | '+' expr_4
-        | '-' expr_4
-        )
+    : (expr_3 -> expr_3)
+        ( '+' next=expr_3 -> ^(ADD $expr_4 $next)
+        | '-' next=expr_3 -> ^(SUB $expr_4 $next)
+        )*
     ;
 
 expr_5
-    : expr_4
-        ( /* epsilon */
-        | '<' expr_5
-        | '<=' expr_5
-        | '>' expr_5
-        | '>=' expr_5
-        )
+    : (expr_4 -> expr_4)
+        ( '<' next=expr_4 -> ^(TEST_LT $expr_5 $next)
+        | '<=' next=expr_4 -> ^(TEST_LE $expr_5 $next)
+        | '>' next=expr_4 -> ^(TEST_GT $expr_5 $next)
+        | '>=' next=expr_4 -> ^(TEST_GE $expr_5 $next)
+        )*
     ;
 
 expr_6
-    : expr_5
-        ( /* epsilon */
-        | '==' expr_6
-        | '!=' expr_6
-        )
+    : (expr_5 -> expr_5)
+        ( '==' next=expr_5 -> ^(TEST_EQ $expr_6 $next)
+        | '!=' next=expr_5 -> ^(TEST_NE $expr_6 $next)
+        )*
     ;
 
 expr_7
-    : expr_6
-        ( /* epsilon */
-        | 'and' expr_7
-        )
+    : (expr_6 -> expr_6)
+        ( 'and' next=expr_6 -> ^(AND $expr_7 $next)
+        )*
     ;
 
 expr_8
-    : expr_7
-        ( /* epsilon */
-        | 'or' expr_8
-        )
+    : (expr_7 -> expr_7)
+        ( 'or' next=expr_7 -> ^(OR $expr_8 $next)
+        )*
     ;
 
 expr
-    : expr_8
-    ;
-
-idf_access
-    : IDF
-        ( /* epsilon */
-        | '(' arg_list ')'
-        | '[' coord_list ']'
-        )
+    : expr_8 -> expr_8
     ;
 
 constant
-    : INT
-    | FLOAT
-    | BOOL
-    | STRING
-    | CHAR
+    : INT -> ^(CONST INT_TYPENAME INT)
+    | FLOAT -> ^(CONST FLOAT_TYPENAME FLOAT)
+    | BOOL -> ^(CONST BOOL_TYPENAME BOOL)
+    | STRING -> ^(CONST STRING_TYPENAME STRING)
+    | CHAR -> ^(CONST CHAR_TYPENAME CHAR)
     ;
 
 /* fragments */
