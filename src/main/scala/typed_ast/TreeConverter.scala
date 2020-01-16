@@ -1,9 +1,9 @@
 package typed_ast
 
-import org.antlr.runtime.tree.Tree
 import grammar.LeacParser._
-import typed_ast.nodes.enums.{AccessMode, AtomTypename, BoolTypename, ByCopy, ByRef, CharTypename, FloatTypename, IntTypename, StringTypename, VoidTypename}
-import typed_ast.nodes.{Add, Affect, And, Array, Atom, Block, CellAccess, Conditional, Constant, Div, Expr, FuncCall, FuncDecl, IdfAccess, LeacType, Loop, Mul, Not, Or, Param, Pow, ProcedureCall, Program, RangeDef, Read, Returning, Statement, Sub, TestEqual, TestGreaterOrEqual, TestGreaterThan, TestLowerOrEqual, TestLowerThan, TestNotEqual, UnaryMinus, VarAccess, VarDecl, Write}
+import org.antlr.runtime.tree.Tree
+import typed_ast.nodes.enums._
+import typed_ast.nodes._
 
 object TreeConverter {
   def convert(antlrTree: Tree): Result[Program, Exception] = {
@@ -74,7 +74,11 @@ object TreeConverter {
       case NOT => Not(sp(s), cv(n0(s)).asInstanceOf[Expr])
       case NO_RETURN_VALUE => null
       case OR => Or(sp(s), cv(n0(s)).asInstanceOf[Expr], cv(n1(s)).asInstanceOf[Expr])
-      case PARAM => nodes.Param(sp(s), cv(n0(s)).asInstanceOf[LeacType], cv(n1(s)).asInstanceOf[AccessMode], n2(s).getText)
+      case PARAM => {
+        nodes.Param(
+          sp(s), cv(n0(s)).asInstanceOf[LeacType], cv(n1(s)).asInstanceOf[AccessMode], n2(s).getText
+          )
+      }
       case PARAM_LIST => nodeToList[Param](s)
       case POW => Pow(sp(s), cv(n0(s)).asInstanceOf[Expr], cv(n1(s)).asInstanceOf[Expr])
       case PROCEDURE_CALL => ProcedureCall(sp(s), n0(s).getText, cv(n1(s)).asInstanceOf[List[Expr]])
