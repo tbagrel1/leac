@@ -110,7 +110,7 @@ range
 
 int_ext
     : INT -> INT
-    | '-' INT -> ^(UNARY_MINUS INT)
+    | '-' INT { $INT.setText("-" + $INT.getText()); } -> INT
     ;
 
 param_list
@@ -276,8 +276,8 @@ constant
 
 constant_ext
     : '-'
-        ( INT -> ^(CONST INT_TYPENAME ^(UNARY_MINUS INT))
-        | FLOAT -> ^(CONST FLOAT_TYPENAME ^(UNARY_MINUS FLOAT))
+        ( INT { $INT.setText("-" + $INT.getText()); } -> ^(CONST INT_TYPENAME INT)
+        | FLOAT { $FLOAT.setText("-" + $FLOAT.getText()); } -> ^(CONST FLOAT_TYPENAME FLOAT)
         )
     | INT -> ^(CONST INT_TYPENAME INT)
     | FLOAT -> ^(CONST FLOAT_TYPENAME FLOAT)
