@@ -1,6 +1,8 @@
-package typed_ast
+package typed_ast.nodes
 
-sealed trait Statement
+import typed_ast.{Locatable, SemanticCheckReporter, SourcePos, SymbolTable}
+
+sealed trait Statement extends AbstractNode with Locatable
 
 case class Block(sourcePos: SourcePos, statements: List[Statement]) extends AbstractNode
   with Locatable

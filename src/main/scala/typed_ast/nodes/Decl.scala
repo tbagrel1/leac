@@ -1,6 +1,9 @@
-package typed_ast
+package typed_ast.nodes
 
-sealed trait Decl extends Locatable {
+import typed_ast.nodes.enums.AtomTypename
+import typed_ast.{Locatable, SemanticCheckReporter, SourcePos, SymbolTable}
+
+sealed trait Decl extends AbstractNode with Locatable {
   def name: String
 }
 

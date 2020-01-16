@@ -1,4 +1,4 @@
-package typed_ast
+package typed_ast.nodes.enums
 
 sealed trait AccessMode
 

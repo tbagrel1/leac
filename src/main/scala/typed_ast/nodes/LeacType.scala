@@ -1,6 +1,9 @@
-package typed_ast
+package typed_ast.nodes
 
-sealed trait LeacType
+import typed_ast.nodes.enums.AtomTypename
+import typed_ast.{Locatable, SemanticCheckReporter, SourcePos, SymbolTable}
+
+sealed trait LeacType extends AbstractNode with Locatable
 
 case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends AbstractNode with Locatable with LeacType {
   override def fancyContext: String = ???

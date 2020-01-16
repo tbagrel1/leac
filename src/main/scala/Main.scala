@@ -1,6 +1,7 @@
-import typed_ast.Err
+import grammar.{LeacLexer, LeacParser}
 import org.antlr.runtime.tree.CommonTree
 import org.antlr.runtime.{ANTLRFileStream, CommonTokenStream}
+import typed_ast.{Err, Ok, TreeConverter}
 
 object Main {
   def main(args: Array[String]): Unit = {
@@ -19,7 +20,7 @@ object Main {
     val res_program = TreeConverter.convert(tree)
     res_program match {
       case Ok(program) => println("OK!")
-      case Err(exception) => println(s"Error during ANTLR to Scala AST conversion: <${exception}>")
+      case Err(exception) => println(s"Error during ANTLR to Scala AST conversion: <${ exception }>")
     }
   }
 }

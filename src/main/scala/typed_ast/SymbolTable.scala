@@ -1,5 +1,7 @@
 package typed_ast
 
+import typed_ast.nodes.Decl
+
 import scala.collection.mutable
 
 class SymbolTable {

@@ -1,4 +1,6 @@
-package typed_ast
+package typed_ast.nodes
+
+import typed_ast.{SemanticCheckReporter, SymbolTable}
 
 abstract class AbstractNode {
   def fancyContext: String

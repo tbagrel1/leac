@@ -1,3 +1,5 @@
+package typed_ast
+
 sealed trait Result[T, E]
 
 case class Ok[T, E](value: T) extends Result[T, E]

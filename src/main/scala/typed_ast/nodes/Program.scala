@@ -1,4 +1,6 @@
-package typed_ast
+package typed_ast.nodes
+
+import typed_ast.{SemanticCheckReporter, SourcePos, SymbolTable}
 
 case class Program(
   sourcePos: SourcePos,

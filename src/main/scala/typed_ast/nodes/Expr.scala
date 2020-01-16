@@ -1,10 +1,13 @@
-package typed_ast
+package typed_ast.nodes
 
-sealed trait Expr {}
+import typed_ast.nodes.enums.AtomTypename
+import typed_ast.{Locatable, SemanticCheckReporter, SourcePos, SymbolTable}
 
-sealed trait IdfAccess extends Expr {}
+sealed trait Expr extends AbstractNode with Locatable {}
 
-sealed trait Operation extends Expr {
+sealed trait IdfAccess extends AbstractNode with Expr with Locatable {}
+
+sealed trait Operation extends AbstractNode with Expr with Locatable {
   def priority: Int
 }
 
