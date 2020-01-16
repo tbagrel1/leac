@@ -12,7 +12,7 @@ case class Constant(sourcePos: SourcePos, typename: AtomTypename, value: String)
   with Locatable
   with Expr
 
-case class FunctionCall(sourcePos: SourcePos, name: String, args: List[Expr]) extends AbstractNode
+case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extends AbstractNode
   with Locatable
   with Expr
 

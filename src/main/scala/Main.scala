@@ -14,5 +14,10 @@ object Main {
     val parser = new LeacParser(tokens)
     val result = parser.program
     val tree = result.getTree.asInstanceOf[CommonTree]
+    val res_program = TreeConverter.convert(tree)
+    res_program match {
+      case Left(program) => println("OK!")
+      case Right(exception) => throw exception
+    }
   }
 }

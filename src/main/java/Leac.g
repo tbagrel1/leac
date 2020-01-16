@@ -28,7 +28,6 @@ tokens {
     PARAM;
     CONDITIONAL;
     AFFECT;
-    AFFECT;
     VAR;
     CELL;
     CONST;
@@ -45,7 +44,6 @@ tokens {
     BY_COPY;
     ARG_LIST;
     WRITE;
-    PASS;
     POW;
     NOT;
     UNARY_MINUS;
@@ -64,7 +62,7 @@ tokens {
 }
 
 program
-    : 'program' IDF var_decl_list func_decl_list statement -> ^(PROGRAM var_decl_list func_decl_list statement)
+    : 'program' IDF var_decl_list func_decl_list statement -> ^(PROGRAM IDF var_decl_list func_decl_list statement)
     ;
 
 var_decl_list
@@ -135,7 +133,7 @@ statement
 conditional
     : 'if' expr 'then' first=statement
         ( options { greedy = true; }: 'else' second=statement -> ^(CONDITIONAL expr $first $second)
-        | /* epsilon */ -> ^(CONDITIONAL expr $first PASS)
+        | /* epsilon */ -> ^(CONDITIONAL expr $first ^(BLOCK))
         )
     ;
 
