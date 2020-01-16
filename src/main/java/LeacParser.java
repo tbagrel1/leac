@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 Leac.g 2020-01-16 10:06:36
+// $ANTLR 3.5.2 Leac.g 2020-01-16 10:39:30
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -219,7 +219,6 @@ public class LeacParser extends Parser {
 			state._fsp--;
 
 			stream_statement.add(statement5.getTree());
-			 System.out.println("coucou"); 
 			// AST REWRITE
 			// elements: func_decl_list, statement, var_decl_list
 			// token labels: 
@@ -231,9 +230,9 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 67:94: -> ^( PROGRAM var_decl_list func_decl_list statement )
+			// 67:60: -> ^( PROGRAM var_decl_list func_decl_list statement )
 			{
-				// Leac.g:67:97: ^( PROGRAM var_decl_list func_decl_list statement )
+				// Leac.g:67:63: ^( PROGRAM var_decl_list func_decl_list statement )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PROGRAM, "PROGRAM"), root_1);
@@ -305,7 +304,7 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:71:7: var_decl
 					{
-					pushFollow(FOLLOW_var_decl_in_var_decl_list453);
+					pushFollow(FOLLOW_var_decl_in_var_decl_list451);
 					var_decl6=var_decl();
 					state._fsp--;
 
@@ -404,23 +403,23 @@ public class LeacParser extends Parser {
 			// Leac.g:74:5: ( 'var' idf_list ':' typename ';' -> ^( VAR_DECL typename idf_list ) )
 			// Leac.g:74:7: 'var' idf_list ':' typename ';'
 			{
-			string_literal7=(Token)match(input,106,FOLLOW_106_in_var_decl479);  
+			string_literal7=(Token)match(input,106,FOLLOW_106_in_var_decl477);  
 			stream_106.add(string_literal7);
 
-			pushFollow(FOLLOW_idf_list_in_var_decl481);
+			pushFollow(FOLLOW_idf_list_in_var_decl479);
 			idf_list8=idf_list();
 			state._fsp--;
 
 			stream_idf_list.add(idf_list8.getTree());
-			char_literal9=(Token)match(input,77,FOLLOW_77_in_var_decl483);  
+			char_literal9=(Token)match(input,77,FOLLOW_77_in_var_decl481);  
 			stream_77.add(char_literal9);
 
-			pushFollow(FOLLOW_typename_in_var_decl485);
+			pushFollow(FOLLOW_typename_in_var_decl483);
 			typename10=typename();
 			state._fsp--;
 
 			stream_typename.add(typename10.getTree());
-			char_literal11=(Token)match(input,78,FOLLOW_78_in_var_decl487);  
+			char_literal11=(Token)match(input,78,FOLLOW_78_in_var_decl485);  
 			stream_78.add(char_literal11);
 
 			// AST REWRITE
@@ -500,7 +499,7 @@ public class LeacParser extends Parser {
 			// Leac.g:77:5: ( IDF ( ',' IDF )* -> ^( IDF_LIST ( IDF )+ ) )
 			// Leac.g:77:7: IDF ( ',' IDF )*
 			{
-			IDF12=(Token)match(input,IDF,FOLLOW_IDF_in_idf_list513);  
+			IDF12=(Token)match(input,IDF,FOLLOW_IDF_in_idf_list511);  
 			stream_IDF.add(IDF12);
 
 			// Leac.g:77:11: ( ',' IDF )*
@@ -516,10 +515,10 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:77:12: ',' IDF
 					{
-					char_literal13=(Token)match(input,73,FOLLOW_73_in_idf_list516);  
+					char_literal13=(Token)match(input,73,FOLLOW_73_in_idf_list514);  
 					stream_73.add(char_literal13);
 
-					IDF14=(Token)match(input,IDF,FOLLOW_IDF_in_idf_list518);  
+					IDF14=(Token)match(input,IDF,FOLLOW_IDF_in_idf_list516);  
 					stream_IDF.add(IDF14);
 
 					}
@@ -620,7 +619,7 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:81:7: func_decl
 					{
-					pushFollow(FOLLOW_func_decl_in_func_decl_list546);
+					pushFollow(FOLLOW_func_decl_in_func_decl_list544);
 					func_decl15=func_decl();
 					state._fsp--;
 
@@ -729,37 +728,37 @@ public class LeacParser extends Parser {
 			// Leac.g:84:5: ( 'function' IDF '(' param_list ')' ':' atom_typename var_decl_list block -> ^( FUNC_DECL param_list atom_typename var_decl_list block ) )
 			// Leac.g:84:7: 'function' IDF '(' param_list ')' ':' atom_typename var_decl_list block
 			{
-			string_literal16=(Token)match(input,95,FOLLOW_95_in_func_decl572);  
+			string_literal16=(Token)match(input,95,FOLLOW_95_in_func_decl570);  
 			stream_95.add(string_literal16);
 
-			IDF17=(Token)match(input,IDF,FOLLOW_IDF_in_func_decl574);  
+			IDF17=(Token)match(input,IDF,FOLLOW_IDF_in_func_decl572);  
 			stream_IDF.add(IDF17);
 
-			char_literal18=(Token)match(input,69,FOLLOW_69_in_func_decl576);  
+			char_literal18=(Token)match(input,69,FOLLOW_69_in_func_decl574);  
 			stream_69.add(char_literal18);
 
-			pushFollow(FOLLOW_param_list_in_func_decl578);
+			pushFollow(FOLLOW_param_list_in_func_decl576);
 			param_list19=param_list();
 			state._fsp--;
 
 			stream_param_list.add(param_list19.getTree());
-			char_literal20=(Token)match(input,70,FOLLOW_70_in_func_decl580);  
+			char_literal20=(Token)match(input,70,FOLLOW_70_in_func_decl578);  
 			stream_70.add(char_literal20);
 
-			char_literal21=(Token)match(input,77,FOLLOW_77_in_func_decl582);  
+			char_literal21=(Token)match(input,77,FOLLOW_77_in_func_decl580);  
 			stream_77.add(char_literal21);
 
-			pushFollow(FOLLOW_atom_typename_in_func_decl584);
+			pushFollow(FOLLOW_atom_typename_in_func_decl582);
 			atom_typename22=atom_typename();
 			state._fsp--;
 
 			stream_atom_typename.add(atom_typename22.getTree());
-			pushFollow(FOLLOW_var_decl_list_in_func_decl586);
+			pushFollow(FOLLOW_var_decl_list_in_func_decl584);
 			var_decl_list23=var_decl_list();
 			state._fsp--;
 
 			stream_var_decl_list.add(var_decl_list23.getTree());
-			pushFollow(FOLLOW_block_in_func_decl588);
+			pushFollow(FOLLOW_block_in_func_decl586);
 			block24=block();
 			state._fsp--;
 
@@ -856,7 +855,7 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:88:7: atom_typename
 					{
-					pushFollow(FOLLOW_atom_typename_in_typename619);
+					pushFollow(FOLLOW_atom_typename_in_typename617);
 					atom_typename25=atom_typename();
 					state._fsp--;
 
@@ -892,7 +891,7 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:89:7: array_typename
 					{
-					pushFollow(FOLLOW_array_typename_in_typename635);
+					pushFollow(FOLLOW_array_typename_in_typename633);
 					array_typename26=array_typename();
 					state._fsp--;
 
@@ -1009,7 +1008,7 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:93:7: 'void'
 					{
-					string_literal27=(Token)match(input,107,FOLLOW_107_in_atom_typename656);  
+					string_literal27=(Token)match(input,107,FOLLOW_107_in_atom_typename654);  
 					stream_107.add(string_literal27);
 
 					// AST REWRITE
@@ -1036,7 +1035,7 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:94:7: 'bool'
 					{
-					string_literal28=(Token)match(input,90,FOLLOW_90_in_atom_typename668);  
+					string_literal28=(Token)match(input,90,FOLLOW_90_in_atom_typename666);  
 					stream_90.add(string_literal28);
 
 					// AST REWRITE
@@ -1063,7 +1062,7 @@ public class LeacParser extends Parser {
 				case 3 :
 					// Leac.g:95:7: 'int'
 					{
-					string_literal29=(Token)match(input,97,FOLLOW_97_in_atom_typename680);  
+					string_literal29=(Token)match(input,97,FOLLOW_97_in_atom_typename678);  
 					stream_97.add(string_literal29);
 
 					// AST REWRITE
@@ -1090,7 +1089,7 @@ public class LeacParser extends Parser {
 				case 4 :
 					// Leac.g:96:7: 'float'
 					{
-					string_literal30=(Token)match(input,94,FOLLOW_94_in_atom_typename692);  
+					string_literal30=(Token)match(input,94,FOLLOW_94_in_atom_typename690);  
 					stream_94.add(string_literal30);
 
 					// AST REWRITE
@@ -1117,7 +1116,7 @@ public class LeacParser extends Parser {
 				case 5 :
 					// Leac.g:97:7: 'char'
 					{
-					string_literal31=(Token)match(input,91,FOLLOW_91_in_atom_typename704);  
+					string_literal31=(Token)match(input,91,FOLLOW_91_in_atom_typename702);  
 					stream_91.add(string_literal31);
 
 					// AST REWRITE
@@ -1199,24 +1198,24 @@ public class LeacParser extends Parser {
 			// Leac.g:101:5: ( 'array' '[' range_list ']' 'of' atom_typename -> ^( ARRAY atom_typename range_list ) )
 			// Leac.g:101:7: 'array' '[' range_list ']' 'of' atom_typename
 			{
-			string_literal32=(Token)match(input,89,FOLLOW_89_in_array_typename725);  
+			string_literal32=(Token)match(input,89,FOLLOW_89_in_array_typename723);  
 			stream_89.add(string_literal32);
 
-			char_literal33=(Token)match(input,85,FOLLOW_85_in_array_typename727);  
+			char_literal33=(Token)match(input,85,FOLLOW_85_in_array_typename725);  
 			stream_85.add(char_literal33);
 
-			pushFollow(FOLLOW_range_list_in_array_typename729);
+			pushFollow(FOLLOW_range_list_in_array_typename727);
 			range_list34=range_list();
 			state._fsp--;
 
 			stream_range_list.add(range_list34.getTree());
-			char_literal35=(Token)match(input,86,FOLLOW_86_in_array_typename731);  
+			char_literal35=(Token)match(input,86,FOLLOW_86_in_array_typename729);  
 			stream_86.add(char_literal35);
 
-			string_literal36=(Token)match(input,99,FOLLOW_99_in_array_typename733);  
+			string_literal36=(Token)match(input,99,FOLLOW_99_in_array_typename731);  
 			stream_99.add(string_literal36);
 
-			pushFollow(FOLLOW_atom_typename_in_array_typename735);
+			pushFollow(FOLLOW_atom_typename_in_array_typename733);
 			atom_typename37=atom_typename();
 			state._fsp--;
 
@@ -1296,7 +1295,7 @@ public class LeacParser extends Parser {
 			// Leac.g:105:5: ( range ( ',' range )* -> ^( RANGE_LIST ( range )+ ) )
 			// Leac.g:105:7: range ( ',' range )*
 			{
-			pushFollow(FOLLOW_range_in_range_list762);
+			pushFollow(FOLLOW_range_in_range_list760);
 			range38=range();
 			state._fsp--;
 
@@ -1314,10 +1313,10 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:105:14: ',' range
 					{
-					char_literal39=(Token)match(input,73,FOLLOW_73_in_range_list765);  
+					char_literal39=(Token)match(input,73,FOLLOW_73_in_range_list763);  
 					stream_73.add(char_literal39);
 
-					pushFollow(FOLLOW_range_in_range_list767);
+					pushFollow(FOLLOW_range_in_range_list765);
 					range40=range();
 					state._fsp--;
 
@@ -1411,15 +1410,15 @@ public class LeacParser extends Parser {
 			// Leac.g:108:5: (inf= int_ext '..' sup= int_ext -> ^( RANGE $inf $sup) )
 			// Leac.g:108:7: inf= int_ext '..' sup= int_ext
 			{
-			pushFollow(FOLLOW_int_ext_in_range796);
+			pushFollow(FOLLOW_int_ext_in_range794);
 			inf=int_ext();
 			state._fsp--;
 
 			stream_int_ext.add(inf.getTree());
-			string_literal41=(Token)match(input,75,FOLLOW_75_in_range798);  
+			string_literal41=(Token)match(input,75,FOLLOW_75_in_range796);  
 			stream_75.add(string_literal41);
 
-			pushFollow(FOLLOW_int_ext_in_range802);
+			pushFollow(FOLLOW_int_ext_in_range800);
 			sup=int_ext();
 			state._fsp--;
 
@@ -1482,7 +1481,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "int_ext"
-	// Leac.g:111:1: int_ext : ( INT -> INT | '-' INT -> ^( UNARY_MINUS INT ) );
+	// Leac.g:111:1: int_ext : ( INT -> INT | '-' INT -> INT );
 	public final LeacParser.int_ext_return int_ext() throws RecognitionException {
 		LeacParser.int_ext_return retval = new LeacParser.int_ext_return();
 		retval.start = input.LT(1);
@@ -1500,7 +1499,7 @@ public class LeacParser extends Parser {
 		RewriteRuleTokenStream stream_INT=new RewriteRuleTokenStream(adaptor,"token INT");
 
 		try {
-			// Leac.g:112:5: ( INT -> INT | '-' INT -> ^( UNARY_MINUS INT ) )
+			// Leac.g:112:5: ( INT -> INT | '-' INT -> INT )
 			int alt7=2;
 			int LA7_0 = input.LA(1);
 			if ( (LA7_0==INT) ) {
@@ -1520,7 +1519,7 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:112:7: INT
 					{
-					INT42=(Token)match(input,INT,FOLLOW_INT_in_int_ext831);  
+					INT42=(Token)match(input,INT,FOLLOW_INT_in_int_ext829);  
 					stream_INT.add(INT42);
 
 					// AST REWRITE
@@ -1547,12 +1546,13 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:113:7: '-' INT
 					{
-					char_literal43=(Token)match(input,74,FOLLOW_74_in_int_ext843);  
+					char_literal43=(Token)match(input,74,FOLLOW_74_in_int_ext841);  
 					stream_74.add(char_literal43);
 
-					INT44=(Token)match(input,INT,FOLLOW_INT_in_int_ext845);  
+					INT44=(Token)match(input,INT,FOLLOW_INT_in_int_ext843);  
 					stream_INT.add(INT44);
 
+					 INT44.setText("-" + INT44.getText()); 
 					// AST REWRITE
 					// elements: INT
 					// token labels: 
@@ -1564,16 +1564,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 113:15: -> ^( UNARY_MINUS INT )
+					// 113:55: -> INT
 					{
-						// Leac.g:113:18: ^( UNARY_MINUS INT )
-						{
-						Object root_1 = (Object)adaptor.nil();
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(UNARY_MINUS, "UNARY_MINUS"), root_1);
-						adaptor.addChild(root_1, stream_INT.nextNode());
-						adaptor.addChild(root_0, root_1);
-						}
-
+						adaptor.addChild(root_0, stream_INT.nextNode());
 					}
 
 
@@ -1676,7 +1669,7 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:118:7: param ( ',' param )*
 					{
-					pushFollow(FOLLOW_param_in_param_list884);
+					pushFollow(FOLLOW_param_in_param_list880);
 					param45=param();
 					state._fsp--;
 
@@ -1694,10 +1687,10 @@ public class LeacParser extends Parser {
 						case 1 :
 							// Leac.g:118:14: ',' param
 							{
-							char_literal46=(Token)match(input,73,FOLLOW_73_in_param_list887);  
+							char_literal46=(Token)match(input,73,FOLLOW_73_in_param_list883);  
 							stream_73.add(char_literal46);
 
-							pushFollow(FOLLOW_param_in_param_list889);
+							pushFollow(FOLLOW_param_in_param_list885);
 							param47=param();
 							state._fsp--;
 
@@ -1820,13 +1813,13 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:121:7: IDF ':' typename
 					{
-					IDF48=(Token)match(input,IDF,FOLLOW_IDF_in_param916);  
+					IDF48=(Token)match(input,IDF,FOLLOW_IDF_in_param912);  
 					stream_IDF.add(IDF48);
 
-					char_literal49=(Token)match(input,77,FOLLOW_77_in_param918);  
+					char_literal49=(Token)match(input,77,FOLLOW_77_in_param914);  
 					stream_77.add(char_literal49);
 
-					pushFollow(FOLLOW_typename_in_param920);
+					pushFollow(FOLLOW_typename_in_param916);
 					typename50=typename();
 					state._fsp--;
 
@@ -1864,16 +1857,16 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:122:7: 'ref' IDF ':' typename
 					{
-					string_literal51=(Token)match(input,103,FOLLOW_103_in_param940);  
+					string_literal51=(Token)match(input,103,FOLLOW_103_in_param936);  
 					stream_103.add(string_literal51);
 
-					IDF52=(Token)match(input,IDF,FOLLOW_IDF_in_param942);  
+					IDF52=(Token)match(input,IDF,FOLLOW_IDF_in_param938);  
 					stream_IDF.add(IDF52);
 
-					char_literal53=(Token)match(input,77,FOLLOW_77_in_param944);  
+					char_literal53=(Token)match(input,77,FOLLOW_77_in_param940);  
 					stream_77.add(char_literal53);
 
-					pushFollow(FOLLOW_typename_in_param946);
+					pushFollow(FOLLOW_typename_in_param942);
 					typename54=typename();
 					state._fsp--;
 
@@ -2008,7 +2001,7 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:126:7: conditional
 					{
-					pushFollow(FOLLOW_conditional_in_statement975);
+					pushFollow(FOLLOW_conditional_in_statement971);
 					conditional55=conditional();
 					state._fsp--;
 
@@ -2037,7 +2030,7 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:127:7: loop
 					{
-					pushFollow(FOLLOW_loop_in_statement987);
+					pushFollow(FOLLOW_loop_in_statement983);
 					loop56=loop();
 					state._fsp--;
 
@@ -2066,7 +2059,7 @@ public class LeacParser extends Parser {
 				case 3 :
 					// Leac.g:128:7: affect_or_procedure_call
 					{
-					pushFollow(FOLLOW_affect_or_procedure_call_in_statement999);
+					pushFollow(FOLLOW_affect_or_procedure_call_in_statement995);
 					affect_or_procedure_call57=affect_or_procedure_call();
 					state._fsp--;
 
@@ -2095,7 +2088,7 @@ public class LeacParser extends Parser {
 				case 4 :
 					// Leac.g:129:7: returning
 					{
-					pushFollow(FOLLOW_returning_in_statement1011);
+					pushFollow(FOLLOW_returning_in_statement1007);
 					returning58=returning();
 					state._fsp--;
 
@@ -2124,7 +2117,7 @@ public class LeacParser extends Parser {
 				case 5 :
 					// Leac.g:130:7: block
 					{
-					pushFollow(FOLLOW_block_in_statement1023);
+					pushFollow(FOLLOW_block_in_statement1019);
 					block59=block();
 					state._fsp--;
 
@@ -2153,7 +2146,7 @@ public class LeacParser extends Parser {
 				case 6 :
 					// Leac.g:131:7: read
 					{
-					pushFollow(FOLLOW_read_in_statement1035);
+					pushFollow(FOLLOW_read_in_statement1031);
 					read60=read();
 					state._fsp--;
 
@@ -2182,7 +2175,7 @@ public class LeacParser extends Parser {
 				case 7 :
 					// Leac.g:132:7: write
 					{
-					pushFollow(FOLLOW_write_in_statement1047);
+					pushFollow(FOLLOW_write_in_statement1043);
 					write61=write();
 					state._fsp--;
 
@@ -2264,18 +2257,18 @@ public class LeacParser extends Parser {
 			// Leac.g:136:5: ( 'if' expr 'then' first= statement ( options {greedy=true; } : 'else' second= statement -> ^( CONDITIONAL expr $first $second) | -> ^( CONDITIONAL expr $first PASS ) ) )
 			// Leac.g:136:7: 'if' expr 'then' first= statement ( options {greedy=true; } : 'else' second= statement -> ^( CONDITIONAL expr $first $second) | -> ^( CONDITIONAL expr $first PASS ) )
 			{
-			string_literal62=(Token)match(input,96,FOLLOW_96_in_conditional1068);  
+			string_literal62=(Token)match(input,96,FOLLOW_96_in_conditional1064);  
 			stream_96.add(string_literal62);
 
-			pushFollow(FOLLOW_expr_in_conditional1070);
+			pushFollow(FOLLOW_expr_in_conditional1066);
 			expr63=expr();
 			state._fsp--;
 
 			stream_expr.add(expr63.getTree());
-			string_literal64=(Token)match(input,105,FOLLOW_105_in_conditional1072);  
+			string_literal64=(Token)match(input,105,FOLLOW_105_in_conditional1068);  
 			stream_105.add(string_literal64);
 
-			pushFollow(FOLLOW_statement_in_conditional1076);
+			pushFollow(FOLLOW_statement_in_conditional1072);
 			first=statement();
 			state._fsp--;
 
@@ -2300,10 +2293,10 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:137:39: 'else' second= statement
 					{
-					string_literal65=(Token)match(input,93,FOLLOW_93_in_conditional1100);  
+					string_literal65=(Token)match(input,93,FOLLOW_93_in_conditional1096);  
 					stream_93.add(string_literal65);
 
-					pushFollow(FOLLOW_statement_in_conditional1104);
+					pushFollow(FOLLOW_statement_in_conditional1100);
 					second=statement();
 					state._fsp--;
 
@@ -2429,18 +2422,18 @@ public class LeacParser extends Parser {
 			// Leac.g:143:5: ( 'while' expr 'do' statement -> ^( LOOP expr statement ) )
 			// Leac.g:143:7: 'while' expr 'do' statement
 			{
-			string_literal66=(Token)match(input,108,FOLLOW_108_in_loop1170);  
+			string_literal66=(Token)match(input,108,FOLLOW_108_in_loop1166);  
 			stream_108.add(string_literal66);
 
-			pushFollow(FOLLOW_expr_in_loop1172);
+			pushFollow(FOLLOW_expr_in_loop1168);
 			expr67=expr();
 			state._fsp--;
 
 			stream_expr.add(expr67.getTree());
-			string_literal68=(Token)match(input,92,FOLLOW_92_in_loop1174);  
+			string_literal68=(Token)match(input,92,FOLLOW_92_in_loop1170);  
 			stream_92.add(string_literal68);
 
-			pushFollow(FOLLOW_statement_in_loop1176);
+			pushFollow(FOLLOW_statement_in_loop1172);
 			statement69=statement();
 			state._fsp--;
 
@@ -2520,7 +2513,7 @@ public class LeacParser extends Parser {
 			// Leac.g:147:5: ( expr ( ',' expr )* -> ^( COORD_LIST ( expr )+ ) )
 			// Leac.g:147:7: expr ( ',' expr )*
 			{
-			pushFollow(FOLLOW_expr_in_coord_list1203);
+			pushFollow(FOLLOW_expr_in_coord_list1199);
 			expr70=expr();
 			state._fsp--;
 
@@ -2538,10 +2531,10 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:147:13: ',' expr
 					{
-					char_literal71=(Token)match(input,73,FOLLOW_73_in_coord_list1206);  
+					char_literal71=(Token)match(input,73,FOLLOW_73_in_coord_list1202);  
 					stream_73.add(char_literal71);
 
-					pushFollow(FOLLOW_expr_in_coord_list1208);
+					pushFollow(FOLLOW_expr_in_coord_list1204);
 					expr72=expr();
 					state._fsp--;
 
@@ -2634,7 +2627,7 @@ public class LeacParser extends Parser {
 			// Leac.g:151:5: ( 'return' ( -> ^( RETURNING NO_RETURN_VALUE ) | expr -> ^( RETURNING expr ) ) )
 			// Leac.g:151:7: 'return' ( -> ^( RETURNING NO_RETURN_VALUE ) | expr -> ^( RETURNING expr ) )
 			{
-			string_literal73=(Token)match(input,104,FOLLOW_104_in_returning1236);  
+			string_literal73=(Token)match(input,104,FOLLOW_104_in_returning1232);  
 			stream_104.add(string_literal73);
 
 			// Leac.g:152:9: ( -> ^( RETURNING NO_RETURN_VALUE ) | expr -> ^( RETURNING expr ) )
@@ -2688,7 +2681,7 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:153:11: expr
 					{
-					pushFollow(FOLLOW_expr_in_returning1268);
+					pushFollow(FOLLOW_expr_in_returning1264);
 					expr74=expr();
 					state._fsp--;
 
@@ -2790,7 +2783,7 @@ public class LeacParser extends Parser {
 			// Leac.g:158:5: ( IDF ( ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr -> ^( AFFECT $affect_or_procedure_call expr ) | '(' arg_list ')' -> ^( PROCEDURE_CALL IDF arg_list ) ) )
 			// Leac.g:158:7: IDF ( ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr -> ^( AFFECT $affect_or_procedure_call expr ) | '(' arg_list ')' -> ^( PROCEDURE_CALL IDF arg_list ) )
 			{
-			IDF75=(Token)match(input,IDF,FOLLOW_IDF_in_affect_or_procedure_call1303);  
+			IDF75=(Token)match(input,IDF,FOLLOW_IDF_in_affect_or_procedure_call1299);  
 			stream_IDF.add(IDF75);
 
 			// Leac.g:159:9: ( ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr -> ^( AFFECT $affect_or_procedure_call expr ) | '(' arg_list ')' -> ^( PROCEDURE_CALL IDF arg_list ) )
@@ -2864,15 +2857,15 @@ public class LeacParser extends Parser {
 						case 2 :
 							// Leac.g:161:15: '[' coord_list ']'
 							{
-							char_literal76=(Token)match(input,85,FOLLOW_85_in_affect_or_procedure_call1353);  
+							char_literal76=(Token)match(input,85,FOLLOW_85_in_affect_or_procedure_call1349);  
 							stream_85.add(char_literal76);
 
-							pushFollow(FOLLOW_coord_list_in_affect_or_procedure_call1355);
+							pushFollow(FOLLOW_coord_list_in_affect_or_procedure_call1351);
 							coord_list77=coord_list();
 							state._fsp--;
 
 							stream_coord_list.add(coord_list77.getTree());
-							char_literal78=(Token)match(input,86,FOLLOW_86_in_affect_or_procedure_call1357);  
+							char_literal78=(Token)match(input,86,FOLLOW_86_in_affect_or_procedure_call1353);  
 							stream_86.add(char_literal78);
 
 							// AST REWRITE
@@ -2907,10 +2900,10 @@ public class LeacParser extends Parser {
 
 					}
 
-					char_literal79=(Token)match(input,81,FOLLOW_81_in_affect_or_procedure_call1395);  
+					char_literal79=(Token)match(input,81,FOLLOW_81_in_affect_or_procedure_call1391);  
 					stream_81.add(char_literal79);
 
-					pushFollow(FOLLOW_expr_in_affect_or_procedure_call1397);
+					pushFollow(FOLLOW_expr_in_affect_or_procedure_call1393);
 					expr80=expr();
 					state._fsp--;
 
@@ -2947,15 +2940,15 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:164:11: '(' arg_list ')'
 					{
-					char_literal81=(Token)match(input,69,FOLLOW_69_in_affect_or_procedure_call1420);  
+					char_literal81=(Token)match(input,69,FOLLOW_69_in_affect_or_procedure_call1416);  
 					stream_69.add(char_literal81);
 
-					pushFollow(FOLLOW_arg_list_in_affect_or_procedure_call1422);
+					pushFollow(FOLLOW_arg_list_in_affect_or_procedure_call1418);
 					arg_list82=arg_list();
 					state._fsp--;
 
 					stream_arg_list.add(arg_list82.getTree());
-					char_literal83=(Token)match(input,70,FOLLOW_70_in_affect_or_procedure_call1424);  
+					char_literal83=(Token)match(input,70,FOLLOW_70_in_affect_or_procedure_call1420);  
 					stream_70.add(char_literal83);
 
 					// AST REWRITE
@@ -3085,7 +3078,7 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:170:7: expr ( ',' expr )*
 					{
-					pushFollow(FOLLOW_expr_in_arg_list1475);
+					pushFollow(FOLLOW_expr_in_arg_list1471);
 					expr84=expr();
 					state._fsp--;
 
@@ -3103,10 +3096,10 @@ public class LeacParser extends Parser {
 						case 1 :
 							// Leac.g:170:13: ',' expr
 							{
-							char_literal85=(Token)match(input,73,FOLLOW_73_in_arg_list1478);  
+							char_literal85=(Token)match(input,73,FOLLOW_73_in_arg_list1474);  
 							stream_73.add(char_literal85);
 
-							pushFollow(FOLLOW_expr_in_arg_list1480);
+							pushFollow(FOLLOW_expr_in_arg_list1476);
 							expr86=expr();
 							state._fsp--;
 
@@ -3208,7 +3201,7 @@ public class LeacParser extends Parser {
 			// Leac.g:174:5: ( '{' ( -> ^( BLOCK ) | statement ( ';' statement )* -> ^( BLOCK ( statement )+ ) ) '}' )
 			// Leac.g:174:7: '{' ( -> ^( BLOCK ) | statement ( ';' statement )* -> ^( BLOCK ( statement )+ ) ) '}'
 			{
-			char_literal87=(Token)match(input,110,FOLLOW_110_in_block1508);  
+			char_literal87=(Token)match(input,110,FOLLOW_110_in_block1504);  
 			stream_110.add(char_literal87);
 
 			// Leac.g:175:9: ( -> ^( BLOCK ) | statement ( ';' statement )* -> ^( BLOCK ( statement )+ ) )
@@ -3261,7 +3254,7 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:176:11: statement ( ';' statement )*
 					{
-					pushFollow(FOLLOW_statement_in_block1538);
+					pushFollow(FOLLOW_statement_in_block1534);
 					statement88=statement();
 					state._fsp--;
 
@@ -3279,10 +3272,10 @@ public class LeacParser extends Parser {
 						case 1 :
 							// Leac.g:176:22: ';' statement
 							{
-							char_literal89=(Token)match(input,78,FOLLOW_78_in_block1541);  
+							char_literal89=(Token)match(input,78,FOLLOW_78_in_block1537);  
 							stream_78.add(char_literal89);
 
-							pushFollow(FOLLOW_statement_in_block1543);
+							pushFollow(FOLLOW_statement_in_block1539);
 							statement90=statement();
 							state._fsp--;
 
@@ -3333,7 +3326,7 @@ public class LeacParser extends Parser {
 
 			}
 
-			char_literal91=(Token)match(input,111,FOLLOW_111_in_block1572);  
+			char_literal91=(Token)match(input,111,FOLLOW_111_in_block1568);  
 			stream_111.add(char_literal91);
 
 			}
@@ -3392,10 +3385,10 @@ public class LeacParser extends Parser {
 			// Leac.g:182:5: ( 'read' IDF ( -> ^( READ ^( VAR IDF ) ) | '[' coord_list ']' -> ^( READ ^( CELL IDF coord_list ) ) ) )
 			// Leac.g:182:7: 'read' IDF ( -> ^( READ ^( VAR IDF ) ) | '[' coord_list ']' -> ^( READ ^( CELL IDF coord_list ) ) )
 			{
-			string_literal92=(Token)match(input,102,FOLLOW_102_in_read1589);  
+			string_literal92=(Token)match(input,102,FOLLOW_102_in_read1585);  
 			stream_102.add(string_literal92);
 
-			IDF93=(Token)match(input,IDF,FOLLOW_IDF_in_read1591);  
+			IDF93=(Token)match(input,IDF,FOLLOW_IDF_in_read1587);  
 			stream_IDF.add(IDF93);
 
 			// Leac.g:183:9: ( -> ^( READ ^( VAR IDF ) ) | '[' coord_list ']' -> ^( READ ^( CELL IDF coord_list ) ) )
@@ -3456,15 +3449,15 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:184:11: '[' coord_list ']'
 					{
-					char_literal94=(Token)match(input,85,FOLLOW_85_in_read1627);  
+					char_literal94=(Token)match(input,85,FOLLOW_85_in_read1623);  
 					stream_85.add(char_literal94);
 
-					pushFollow(FOLLOW_coord_list_in_read1629);
+					pushFollow(FOLLOW_coord_list_in_read1625);
 					coord_list95=coord_list();
 					state._fsp--;
 
 					stream_coord_list.add(coord_list95.getTree());
-					char_literal96=(Token)match(input,86,FOLLOW_86_in_read1631);  
+					char_literal96=(Token)match(input,86,FOLLOW_86_in_read1627);  
 					stream_86.add(char_literal96);
 
 					// AST REWRITE
@@ -3564,7 +3557,7 @@ public class LeacParser extends Parser {
 			// Leac.g:189:5: ( 'write' ( IDF ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) ) | constant_ext -> ^( WRITE constant_ext ) ) )
 			// Leac.g:189:7: 'write' ( IDF ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) ) | constant_ext -> ^( WRITE constant_ext ) )
 			{
-			string_literal97=(Token)match(input,109,FOLLOW_109_in_write1672);  
+			string_literal97=(Token)match(input,109,FOLLOW_109_in_write1668);  
 			stream_109.add(string_literal97);
 
 			// Leac.g:190:9: ( IDF ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) ) | constant_ext -> ^( WRITE constant_ext ) )
@@ -3587,7 +3580,7 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:190:11: IDF ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) )
 					{
-					IDF98=(Token)match(input,IDF,FOLLOW_IDF_in_write1684);  
+					IDF98=(Token)match(input,IDF,FOLLOW_IDF_in_write1680);  
 					stream_IDF.add(IDF98);
 
 					// Leac.g:191:13: ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) )
@@ -3648,15 +3641,15 @@ public class LeacParser extends Parser {
 						case 2 :
 							// Leac.g:192:15: '[' coord_list ']'
 							{
-							char_literal99=(Token)match(input,85,FOLLOW_85_in_write1728);  
+							char_literal99=(Token)match(input,85,FOLLOW_85_in_write1724);  
 							stream_85.add(char_literal99);
 
-							pushFollow(FOLLOW_coord_list_in_write1730);
+							pushFollow(FOLLOW_coord_list_in_write1726);
 							coord_list100=coord_list();
 							state._fsp--;
 
 							stream_coord_list.add(coord_list100.getTree());
-							char_literal101=(Token)match(input,86,FOLLOW_86_in_write1732);  
+							char_literal101=(Token)match(input,86,FOLLOW_86_in_write1728);  
 							stream_86.add(char_literal101);
 
 							// AST REWRITE
@@ -3703,7 +3696,7 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:194:11: constant_ext
 					{
-					pushFollow(FOLLOW_constant_ext_in_write1772);
+					pushFollow(FOLLOW_constant_ext_in_write1768);
 					constant_ext102=constant_ext();
 					state._fsp--;
 
@@ -3836,7 +3829,7 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:199:7: IDF ( -> ^( VAR IDF ) | '(' arg_list ')' -> ^( FUNC_CALL IDF arg_list ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) )
 					{
-					IDF103=(Token)match(input,IDF,FOLLOW_IDF_in_expr_01807);  
+					IDF103=(Token)match(input,IDF,FOLLOW_IDF_in_expr_01803);  
 					stream_IDF.add(IDF103);
 
 					// Leac.g:200:9: ( -> ^( VAR IDF ) | '(' arg_list ')' -> ^( FUNC_CALL IDF arg_list ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) )
@@ -3918,15 +3911,15 @@ public class LeacParser extends Parser {
 						case 2 :
 							// Leac.g:201:11: '(' arg_list ')'
 							{
-							char_literal104=(Token)match(input,69,FOLLOW_69_in_expr_01839);  
+							char_literal104=(Token)match(input,69,FOLLOW_69_in_expr_01835);  
 							stream_69.add(char_literal104);
 
-							pushFollow(FOLLOW_arg_list_in_expr_01841);
+							pushFollow(FOLLOW_arg_list_in_expr_01837);
 							arg_list105=arg_list();
 							state._fsp--;
 
 							stream_arg_list.add(arg_list105.getTree());
-							char_literal106=(Token)match(input,70,FOLLOW_70_in_expr_01843);  
+							char_literal106=(Token)match(input,70,FOLLOW_70_in_expr_01839);  
 							stream_70.add(char_literal106);
 
 							// AST REWRITE
@@ -3961,15 +3954,15 @@ public class LeacParser extends Parser {
 						case 3 :
 							// Leac.g:202:11: '[' coord_list ']'
 							{
-							char_literal107=(Token)match(input,85,FOLLOW_85_in_expr_01865);  
+							char_literal107=(Token)match(input,85,FOLLOW_85_in_expr_01861);  
 							stream_85.add(char_literal107);
 
-							pushFollow(FOLLOW_coord_list_in_expr_01867);
+							pushFollow(FOLLOW_coord_list_in_expr_01863);
 							coord_list108=coord_list();
 							state._fsp--;
 
 							stream_coord_list.add(coord_list108.getTree());
-							char_literal109=(Token)match(input,86,FOLLOW_86_in_expr_01869);  
+							char_literal109=(Token)match(input,86,FOLLOW_86_in_expr_01865);  
 							stream_86.add(char_literal109);
 
 							// AST REWRITE
@@ -4009,7 +4002,7 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:204:7: constant
 					{
-					pushFollow(FOLLOW_constant_in_expr_01897);
+					pushFollow(FOLLOW_constant_in_expr_01893);
 					constant110=constant();
 					state._fsp--;
 
@@ -4038,15 +4031,15 @@ public class LeacParser extends Parser {
 				case 3 :
 					// Leac.g:205:7: '(' expr ')'
 					{
-					char_literal111=(Token)match(input,69,FOLLOW_69_in_expr_01909);  
+					char_literal111=(Token)match(input,69,FOLLOW_69_in_expr_01905);  
 					stream_69.add(char_literal111);
 
-					pushFollow(FOLLOW_expr_in_expr_01911);
+					pushFollow(FOLLOW_expr_in_expr_01907);
 					expr112=expr();
 					state._fsp--;
 
 					stream_expr.add(expr112.getTree());
-					char_literal113=(Token)match(input,70,FOLLOW_70_in_expr_01913);  
+					char_literal113=(Token)match(input,70,FOLLOW_70_in_expr_01909);  
 					stream_70.add(char_literal113);
 
 					// AST REWRITE
@@ -4122,7 +4115,7 @@ public class LeacParser extends Parser {
 			// Leac.g:209:7: ( expr_0 -> expr_0 )
 			// Leac.g:209:8: expr_0
 			{
-			pushFollow(FOLLOW_expr_0_in_expr_11935);
+			pushFollow(FOLLOW_expr_0_in_expr_11931);
 			expr_0114=expr_0();
 			state._fsp--;
 
@@ -4158,10 +4151,10 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:210:11: '^' next= expr_1_proxy
 					{
-					char_literal115=(Token)match(input,87,FOLLOW_87_in_expr_11952);  
+					char_literal115=(Token)match(input,87,FOLLOW_87_in_expr_11948);  
 					stream_87.add(char_literal115);
 
-					pushFollow(FOLLOW_expr_1_proxy_in_expr_11956);
+					pushFollow(FOLLOW_expr_1_proxy_in_expr_11952);
 					next=expr_1_proxy();
 					state._fsp--;
 
@@ -4243,7 +4236,7 @@ public class LeacParser extends Parser {
 			// Leac.g:214:5: ( expr_1 -> expr_1 )
 			// Leac.g:214:7: expr_1
 			{
-			pushFollow(FOLLOW_expr_1_in_expr_1_proxy1995);
+			pushFollow(FOLLOW_expr_1_in_expr_1_proxy1991);
 			expr_1116=expr_1();
 			state._fsp--;
 
@@ -4349,10 +4342,10 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:218:7: '-' expr_1
 					{
-					char_literal117=(Token)match(input,74,FOLLOW_74_in_expr_22016);  
+					char_literal117=(Token)match(input,74,FOLLOW_74_in_expr_22012);  
 					stream_74.add(char_literal117);
 
-					pushFollow(FOLLOW_expr_1_in_expr_22018);
+					pushFollow(FOLLOW_expr_1_in_expr_22014);
 					expr_1118=expr_1();
 					state._fsp--;
 
@@ -4388,10 +4381,10 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:219:7: 'not' expr_1
 					{
-					string_literal119=(Token)match(input,98,FOLLOW_98_in_expr_22034);  
+					string_literal119=(Token)match(input,98,FOLLOW_98_in_expr_22030);  
 					stream_98.add(string_literal119);
 
-					pushFollow(FOLLOW_expr_1_in_expr_22036);
+					pushFollow(FOLLOW_expr_1_in_expr_22032);
 					expr_1120=expr_1();
 					state._fsp--;
 
@@ -4427,7 +4420,7 @@ public class LeacParser extends Parser {
 				case 3 :
 					// Leac.g:220:7: expr_1
 					{
-					pushFollow(FOLLOW_expr_1_in_expr_22052);
+					pushFollow(FOLLOW_expr_1_in_expr_22048);
 					expr_1121=expr_1();
 					state._fsp--;
 
@@ -4507,7 +4500,7 @@ public class LeacParser extends Parser {
 			// Leac.g:224:7: ( expr_2 -> expr_2 )
 			// Leac.g:224:8: expr_2
 			{
-			pushFollow(FOLLOW_expr_2_in_expr_32074);
+			pushFollow(FOLLOW_expr_2_in_expr_32070);
 			expr_2122=expr_2();
 			state._fsp--;
 
@@ -4549,10 +4542,10 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:225:11: '*' next= expr_2
 					{
-					char_literal123=(Token)match(input,71,FOLLOW_71_in_expr_32091);  
+					char_literal123=(Token)match(input,71,FOLLOW_71_in_expr_32087);  
 					stream_71.add(char_literal123);
 
-					pushFollow(FOLLOW_expr_2_in_expr_32095);
+					pushFollow(FOLLOW_expr_2_in_expr_32091);
 					next=expr_2();
 					state._fsp--;
 
@@ -4590,10 +4583,10 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:226:11: '/' next= expr_2
 					{
-					char_literal124=(Token)match(input,76,FOLLOW_76_in_expr_32119);  
+					char_literal124=(Token)match(input,76,FOLLOW_76_in_expr_32115);  
 					stream_76.add(char_literal124);
 
-					pushFollow(FOLLOW_expr_2_in_expr_32123);
+					pushFollow(FOLLOW_expr_2_in_expr_32119);
 					next=expr_2();
 					state._fsp--;
 
@@ -4688,7 +4681,7 @@ public class LeacParser extends Parser {
 			// Leac.g:231:7: ( expr_3 -> expr_3 )
 			// Leac.g:231:8: expr_3
 			{
-			pushFollow(FOLLOW_expr_3_in_expr_42164);
+			pushFollow(FOLLOW_expr_3_in_expr_42160);
 			expr_3125=expr_3();
 			state._fsp--;
 
@@ -4730,10 +4723,10 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:232:11: '+' next= expr_3
 					{
-					char_literal126=(Token)match(input,72,FOLLOW_72_in_expr_42181);  
+					char_literal126=(Token)match(input,72,FOLLOW_72_in_expr_42177);  
 					stream_72.add(char_literal126);
 
-					pushFollow(FOLLOW_expr_3_in_expr_42185);
+					pushFollow(FOLLOW_expr_3_in_expr_42181);
 					next=expr_3();
 					state._fsp--;
 
@@ -4771,10 +4764,10 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:233:11: '-' next= expr_3
 					{
-					char_literal127=(Token)match(input,74,FOLLOW_74_in_expr_42209);  
+					char_literal127=(Token)match(input,74,FOLLOW_74_in_expr_42205);  
 					stream_74.add(char_literal127);
 
-					pushFollow(FOLLOW_expr_3_in_expr_42213);
+					pushFollow(FOLLOW_expr_3_in_expr_42209);
 					next=expr_3();
 					state._fsp--;
 
@@ -4875,7 +4868,7 @@ public class LeacParser extends Parser {
 			// Leac.g:238:7: ( expr_4 -> expr_4 )
 			// Leac.g:238:8: expr_4
 			{
-			pushFollow(FOLLOW_expr_4_in_expr_52254);
+			pushFollow(FOLLOW_expr_4_in_expr_52250);
 			expr_4128=expr_4();
 			state._fsp--;
 
@@ -4931,10 +4924,10 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:239:11: '<' next= expr_4
 					{
-					char_literal129=(Token)match(input,79,FOLLOW_79_in_expr_52271);  
+					char_literal129=(Token)match(input,79,FOLLOW_79_in_expr_52267);  
 					stream_79.add(char_literal129);
 
-					pushFollow(FOLLOW_expr_4_in_expr_52275);
+					pushFollow(FOLLOW_expr_4_in_expr_52271);
 					next=expr_4();
 					state._fsp--;
 
@@ -4972,10 +4965,10 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:240:11: '<=' next= expr_4
 					{
-					string_literal130=(Token)match(input,80,FOLLOW_80_in_expr_52299);  
+					string_literal130=(Token)match(input,80,FOLLOW_80_in_expr_52295);  
 					stream_80.add(string_literal130);
 
-					pushFollow(FOLLOW_expr_4_in_expr_52303);
+					pushFollow(FOLLOW_expr_4_in_expr_52299);
 					next=expr_4();
 					state._fsp--;
 
@@ -5013,10 +5006,10 @@ public class LeacParser extends Parser {
 				case 3 :
 					// Leac.g:241:11: '>' next= expr_4
 					{
-					char_literal131=(Token)match(input,83,FOLLOW_83_in_expr_52327);  
+					char_literal131=(Token)match(input,83,FOLLOW_83_in_expr_52323);  
 					stream_83.add(char_literal131);
 
-					pushFollow(FOLLOW_expr_4_in_expr_52331);
+					pushFollow(FOLLOW_expr_4_in_expr_52327);
 					next=expr_4();
 					state._fsp--;
 
@@ -5054,10 +5047,10 @@ public class LeacParser extends Parser {
 				case 4 :
 					// Leac.g:242:11: '>=' next= expr_4
 					{
-					string_literal132=(Token)match(input,84,FOLLOW_84_in_expr_52355);  
+					string_literal132=(Token)match(input,84,FOLLOW_84_in_expr_52351);  
 					stream_84.add(string_literal132);
 
-					pushFollow(FOLLOW_expr_4_in_expr_52359);
+					pushFollow(FOLLOW_expr_4_in_expr_52355);
 					next=expr_4();
 					state._fsp--;
 
@@ -5152,7 +5145,7 @@ public class LeacParser extends Parser {
 			// Leac.g:247:7: ( expr_5 -> expr_5 )
 			// Leac.g:247:8: expr_5
 			{
-			pushFollow(FOLLOW_expr_5_in_expr_62400);
+			pushFollow(FOLLOW_expr_5_in_expr_62396);
 			expr_5133=expr_5();
 			state._fsp--;
 
@@ -5194,10 +5187,10 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:248:11: '==' next= expr_5
 					{
-					string_literal134=(Token)match(input,82,FOLLOW_82_in_expr_62417);  
+					string_literal134=(Token)match(input,82,FOLLOW_82_in_expr_62413);  
 					stream_82.add(string_literal134);
 
-					pushFollow(FOLLOW_expr_5_in_expr_62421);
+					pushFollow(FOLLOW_expr_5_in_expr_62417);
 					next=expr_5();
 					state._fsp--;
 
@@ -5235,10 +5228,10 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:249:11: '!=' next= expr_5
 					{
-					string_literal135=(Token)match(input,68,FOLLOW_68_in_expr_62445);  
+					string_literal135=(Token)match(input,68,FOLLOW_68_in_expr_62441);  
 					stream_68.add(string_literal135);
 
-					pushFollow(FOLLOW_expr_5_in_expr_62449);
+					pushFollow(FOLLOW_expr_5_in_expr_62445);
 					next=expr_5();
 					state._fsp--;
 
@@ -5330,7 +5323,7 @@ public class LeacParser extends Parser {
 			// Leac.g:254:7: ( expr_6 -> expr_6 )
 			// Leac.g:254:8: expr_6
 			{
-			pushFollow(FOLLOW_expr_6_in_expr_72490);
+			pushFollow(FOLLOW_expr_6_in_expr_72486);
 			expr_6136=expr_6();
 			state._fsp--;
 
@@ -5369,10 +5362,10 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:255:11: 'and' next= expr_6
 					{
-					string_literal137=(Token)match(input,88,FOLLOW_88_in_expr_72507);  
+					string_literal137=(Token)match(input,88,FOLLOW_88_in_expr_72503);  
 					stream_88.add(string_literal137);
 
-					pushFollow(FOLLOW_expr_6_in_expr_72511);
+					pushFollow(FOLLOW_expr_6_in_expr_72507);
 					next=expr_6();
 					state._fsp--;
 
@@ -5464,7 +5457,7 @@ public class LeacParser extends Parser {
 			// Leac.g:260:7: ( expr_7 -> expr_7 )
 			// Leac.g:260:8: expr_7
 			{
-			pushFollow(FOLLOW_expr_7_in_expr_82552);
+			pushFollow(FOLLOW_expr_7_in_expr_82548);
 			expr_7138=expr_7();
 			state._fsp--;
 
@@ -5503,10 +5496,10 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:261:11: 'or' next= expr_7
 					{
-					string_literal139=(Token)match(input,100,FOLLOW_100_in_expr_82569);  
+					string_literal139=(Token)match(input,100,FOLLOW_100_in_expr_82565);  
 					stream_100.add(string_literal139);
 
-					pushFollow(FOLLOW_expr_7_in_expr_82573);
+					pushFollow(FOLLOW_expr_7_in_expr_82569);
 					next=expr_7();
 					state._fsp--;
 
@@ -5591,7 +5584,7 @@ public class LeacParser extends Parser {
 			// Leac.g:266:5: ( expr_8 -> expr_8 )
 			// Leac.g:266:7: expr_8
 			{
-			pushFollow(FOLLOW_expr_8_in_expr2613);
+			pushFollow(FOLLOW_expr_8_in_expr2609);
 			expr_8140=expr_8();
 			state._fsp--;
 
@@ -5706,7 +5699,7 @@ public class LeacParser extends Parser {
 				case 1 :
 					// Leac.g:270:7: INT
 					{
-					INT141=(Token)match(input,INT,FOLLOW_INT_in_constant2634);  
+					INT141=(Token)match(input,INT,FOLLOW_INT_in_constant2630);  
 					stream_INT.add(INT141);
 
 					// AST REWRITE
@@ -5741,7 +5734,7 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:271:7: FLOAT
 					{
-					FLOAT142=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_constant2652);  
+					FLOAT142=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_constant2648);  
 					stream_FLOAT.add(FLOAT142);
 
 					// AST REWRITE
@@ -5776,7 +5769,7 @@ public class LeacParser extends Parser {
 				case 3 :
 					// Leac.g:272:7: BOOL
 					{
-					BOOL143=(Token)match(input,BOOL,FOLLOW_BOOL_in_constant2670);  
+					BOOL143=(Token)match(input,BOOL,FOLLOW_BOOL_in_constant2666);  
 					stream_BOOL.add(BOOL143);
 
 					// AST REWRITE
@@ -5811,7 +5804,7 @@ public class LeacParser extends Parser {
 				case 4 :
 					// Leac.g:273:7: STRING
 					{
-					STRING144=(Token)match(input,STRING,FOLLOW_STRING_in_constant2688);  
+					STRING144=(Token)match(input,STRING,FOLLOW_STRING_in_constant2684);  
 					stream_STRING.add(STRING144);
 
 					// AST REWRITE
@@ -5846,7 +5839,7 @@ public class LeacParser extends Parser {
 				case 5 :
 					// Leac.g:274:7: CHAR
 					{
-					CHAR145=(Token)match(input,CHAR,FOLLOW_CHAR_in_constant2706);  
+					CHAR145=(Token)match(input,CHAR,FOLLOW_CHAR_in_constant2702);  
 					stream_CHAR.add(CHAR145);
 
 					// AST REWRITE
@@ -5907,7 +5900,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "constant_ext"
-	// Leac.g:277:1: constant_ext : ( '-' ( INT -> ^( CONST INT_TYPENAME ^( UNARY_MINUS INT ) ) | FLOAT -> ^( CONST FLOAT_TYPENAME ^( UNARY_MINUS FLOAT ) ) ) | INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) );
+	// Leac.g:277:1: constant_ext : ( '-' ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) ) | INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) );
 	public final LeacParser.constant_ext_return constant_ext() throws RecognitionException {
 		LeacParser.constant_ext_return retval = new LeacParser.constant_ext_return();
 		retval.start = input.LT(1);
@@ -5939,7 +5932,7 @@ public class LeacParser extends Parser {
 		RewriteRuleTokenStream stream_INT=new RewriteRuleTokenStream(adaptor,"token INT");
 
 		try {
-			// Leac.g:278:5: ( '-' ( INT -> ^( CONST INT_TYPENAME ^( UNARY_MINUS INT ) ) | FLOAT -> ^( CONST FLOAT_TYPENAME ^( UNARY_MINUS FLOAT ) ) ) | INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) )
+			// Leac.g:278:5: ( '-' ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) ) | INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) )
 			int alt36=6;
 			switch ( input.LA(1) ) {
 			case 74:
@@ -5979,12 +5972,12 @@ public class LeacParser extends Parser {
 			}
 			switch (alt36) {
 				case 1 :
-					// Leac.g:278:7: '-' ( INT -> ^( CONST INT_TYPENAME ^( UNARY_MINUS INT ) ) | FLOAT -> ^( CONST FLOAT_TYPENAME ^( UNARY_MINUS FLOAT ) ) )
+					// Leac.g:278:7: '-' ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) )
 					{
-					char_literal146=(Token)match(input,74,FOLLOW_74_in_constant_ext2733);  
+					char_literal146=(Token)match(input,74,FOLLOW_74_in_constant_ext2729);  
 					stream_74.add(char_literal146);
 
-					// Leac.g:279:9: ( INT -> ^( CONST INT_TYPENAME ^( UNARY_MINUS INT ) ) | FLOAT -> ^( CONST FLOAT_TYPENAME ^( UNARY_MINUS FLOAT ) ) )
+					// Leac.g:279:9: ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) )
 					int alt35=2;
 					int LA35_0 = input.LA(1);
 					if ( (LA35_0==INT) ) {
@@ -6004,9 +5997,10 @@ public class LeacParser extends Parser {
 						case 1 :
 							// Leac.g:279:11: INT
 							{
-							INT147=(Token)match(input,INT,FOLLOW_INT_in_constant_ext2745);  
+							INT147=(Token)match(input,INT,FOLLOW_INT_in_constant_ext2741);  
 							stream_INT.add(INT147);
 
+							 INT147.setText("-" + INT147.getText()); 
 							// AST REWRITE
 							// elements: INT
 							// token labels: 
@@ -6018,21 +6012,14 @@ public class LeacParser extends Parser {
 							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 							root_0 = (Object)adaptor.nil();
-							// 279:15: -> ^( CONST INT_TYPENAME ^( UNARY_MINUS INT ) )
+							// 279:55: -> ^( CONST INT_TYPENAME INT )
 							{
-								// Leac.g:279:18: ^( CONST INT_TYPENAME ^( UNARY_MINUS INT ) )
+								// Leac.g:279:58: ^( CONST INT_TYPENAME INT )
 								{
 								Object root_1 = (Object)adaptor.nil();
 								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
 								adaptor.addChild(root_1, (Object)adaptor.create(INT_TYPENAME, "INT_TYPENAME"));
-								// Leac.g:279:39: ^( UNARY_MINUS INT )
-								{
-								Object root_2 = (Object)adaptor.nil();
-								root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(UNARY_MINUS, "UNARY_MINUS"), root_2);
-								adaptor.addChild(root_2, stream_INT.nextNode());
-								adaptor.addChild(root_1, root_2);
-								}
-
+								adaptor.addChild(root_1, stream_INT.nextNode());
 								adaptor.addChild(root_0, root_1);
 								}
 
@@ -6046,9 +6033,10 @@ public class LeacParser extends Parser {
 						case 2 :
 							// Leac.g:280:11: FLOAT
 							{
-							FLOAT148=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_constant_ext2771);  
+							FLOAT148=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_constant_ext2765);  
 							stream_FLOAT.add(FLOAT148);
 
+							 FLOAT148.setText("-" + FLOAT148.getText()); 
 							// AST REWRITE
 							// elements: FLOAT
 							// token labels: 
@@ -6060,21 +6048,14 @@ public class LeacParser extends Parser {
 							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 							root_0 = (Object)adaptor.nil();
-							// 280:17: -> ^( CONST FLOAT_TYPENAME ^( UNARY_MINUS FLOAT ) )
+							// 280:61: -> ^( CONST FLOAT_TYPENAME FLOAT )
 							{
-								// Leac.g:280:20: ^( CONST FLOAT_TYPENAME ^( UNARY_MINUS FLOAT ) )
+								// Leac.g:280:64: ^( CONST FLOAT_TYPENAME FLOAT )
 								{
 								Object root_1 = (Object)adaptor.nil();
 								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
 								adaptor.addChild(root_1, (Object)adaptor.create(FLOAT_TYPENAME, "FLOAT_TYPENAME"));
-								// Leac.g:280:43: ^( UNARY_MINUS FLOAT )
-								{
-								Object root_2 = (Object)adaptor.nil();
-								root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(UNARY_MINUS, "UNARY_MINUS"), root_2);
-								adaptor.addChild(root_2, stream_FLOAT.nextNode());
-								adaptor.addChild(root_1, root_2);
-								}
-
+								adaptor.addChild(root_1, stream_FLOAT.nextNode());
 								adaptor.addChild(root_0, root_1);
 								}
 
@@ -6093,7 +6074,7 @@ public class LeacParser extends Parser {
 				case 2 :
 					// Leac.g:282:7: INT
 					{
-					INT149=(Token)match(input,INT,FOLLOW_INT_in_constant_ext2803);  
+					INT149=(Token)match(input,INT,FOLLOW_INT_in_constant_ext2795);  
 					stream_INT.add(INT149);
 
 					// AST REWRITE
@@ -6128,7 +6109,7 @@ public class LeacParser extends Parser {
 				case 3 :
 					// Leac.g:283:7: FLOAT
 					{
-					FLOAT150=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_constant_ext2821);  
+					FLOAT150=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_constant_ext2813);  
 					stream_FLOAT.add(FLOAT150);
 
 					// AST REWRITE
@@ -6163,7 +6144,7 @@ public class LeacParser extends Parser {
 				case 4 :
 					// Leac.g:284:7: BOOL
 					{
-					BOOL151=(Token)match(input,BOOL,FOLLOW_BOOL_in_constant_ext2839);  
+					BOOL151=(Token)match(input,BOOL,FOLLOW_BOOL_in_constant_ext2831);  
 					stream_BOOL.add(BOOL151);
 
 					// AST REWRITE
@@ -6198,7 +6179,7 @@ public class LeacParser extends Parser {
 				case 5 :
 					// Leac.g:285:7: STRING
 					{
-					STRING152=(Token)match(input,STRING,FOLLOW_STRING_in_constant_ext2857);  
+					STRING152=(Token)match(input,STRING,FOLLOW_STRING_in_constant_ext2849);  
 					stream_STRING.add(STRING152);
 
 					// AST REWRITE
@@ -6233,7 +6214,7 @@ public class LeacParser extends Parser {
 				case 6 :
 					// Leac.g:286:7: CHAR
 					{
-					CHAR153=(Token)match(input,CHAR,FOLLOW_CHAR_in_constant_ext2875);  
+					CHAR153=(Token)match(input,CHAR,FOLLOW_CHAR_in_constant_ext2867);  
 					stream_CHAR.add(CHAR153);
 
 					// AST REWRITE
@@ -6294,169 +6275,169 @@ public class LeacParser extends Parser {
 	public static final BitSet FOLLOW_var_decl_list_in_program418 = new BitSet(new long[]{0x0000000080000000L,0x0000714180000000L});
 	public static final BitSet FOLLOW_func_decl_list_in_program420 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
 	public static final BitSet FOLLOW_statement_in_program422 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_var_decl_in_var_decl_list453 = new BitSet(new long[]{0x0000000000000002L,0x0000040000000000L});
-	public static final BitSet FOLLOW_106_in_var_decl479 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_idf_list_in_var_decl481 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-	public static final BitSet FOLLOW_77_in_var_decl483 = new BitSet(new long[]{0x0000000000000000L,0x000008024E000000L});
-	public static final BitSet FOLLOW_typename_in_var_decl485 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
-	public static final BitSet FOLLOW_78_in_var_decl487 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDF_in_idf_list513 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_73_in_idf_list516 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_IDF_in_idf_list518 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_func_decl_in_func_decl_list546 = new BitSet(new long[]{0x0000000000000002L,0x0000000080000000L});
-	public static final BitSet FOLLOW_95_in_func_decl572 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_IDF_in_func_decl574 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-	public static final BitSet FOLLOW_69_in_func_decl576 = new BitSet(new long[]{0x0000000080000000L,0x0000008000000040L});
-	public static final BitSet FOLLOW_param_list_in_func_decl578 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
-	public static final BitSet FOLLOW_70_in_func_decl580 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-	public static final BitSet FOLLOW_77_in_func_decl582 = new BitSet(new long[]{0x0000000000000000L,0x000008024C000000L});
-	public static final BitSet FOLLOW_atom_typename_in_func_decl584 = new BitSet(new long[]{0x0000000000000000L,0x0000440000000000L});
-	public static final BitSet FOLLOW_var_decl_list_in_func_decl586 = new BitSet(new long[]{0x0000000000000000L,0x0000400000000000L});
-	public static final BitSet FOLLOW_block_in_func_decl588 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_atom_typename_in_typename619 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_array_typename_in_typename635 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_107_in_atom_typename656 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_90_in_atom_typename668 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_97_in_atom_typename680 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_94_in_atom_typename692 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_91_in_atom_typename704 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_89_in_array_typename725 = new BitSet(new long[]{0x0000000000000000L,0x0000000000200000L});
-	public static final BitSet FOLLOW_85_in_array_typename727 = new BitSet(new long[]{0x0000000200000000L,0x0000000000000400L});
-	public static final BitSet FOLLOW_range_list_in_array_typename729 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-	public static final BitSet FOLLOW_86_in_array_typename731 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
-	public static final BitSet FOLLOW_99_in_array_typename733 = new BitSet(new long[]{0x0000000000000000L,0x000008024C000000L});
-	public static final BitSet FOLLOW_atom_typename_in_array_typename735 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_range_in_range_list762 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_73_in_range_list765 = new BitSet(new long[]{0x0000000200000000L,0x0000000000000400L});
-	public static final BitSet FOLLOW_range_in_range_list767 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_int_ext_in_range796 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-	public static final BitSet FOLLOW_75_in_range798 = new BitSet(new long[]{0x0000000200000000L,0x0000000000000400L});
-	public static final BitSet FOLLOW_int_ext_in_range802 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INT_in_int_ext831 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_74_in_int_ext843 = new BitSet(new long[]{0x0000000200000000L});
-	public static final BitSet FOLLOW_INT_in_int_ext845 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_param_in_param_list884 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_73_in_param_list887 = new BitSet(new long[]{0x0000000080000000L,0x0000008000000000L});
-	public static final BitSet FOLLOW_param_in_param_list889 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_IDF_in_param916 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-	public static final BitSet FOLLOW_77_in_param918 = new BitSet(new long[]{0x0000000000000000L,0x000008024E000000L});
-	public static final BitSet FOLLOW_typename_in_param920 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_103_in_param940 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_IDF_in_param942 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-	public static final BitSet FOLLOW_77_in_param944 = new BitSet(new long[]{0x0000000000000000L,0x000008024E000000L});
-	public static final BitSet FOLLOW_typename_in_param946 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_conditional_in_statement975 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_loop_in_statement987 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_affect_or_procedure_call_in_statement999 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_returning_in_statement1011 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_block_in_statement1023 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_read_in_statement1035 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_write_in_statement1047 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_96_in_conditional1068 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_in_conditional1070 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
-	public static final BitSet FOLLOW_105_in_conditional1072 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
-	public static final BitSet FOLLOW_statement_in_conditional1076 = new BitSet(new long[]{0x0000000000000002L,0x0000000020000000L});
-	public static final BitSet FOLLOW_93_in_conditional1100 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
-	public static final BitSet FOLLOW_statement_in_conditional1104 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_108_in_loop1170 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_in_loop1172 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
-	public static final BitSet FOLLOW_92_in_loop1174 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
-	public static final BitSet FOLLOW_statement_in_loop1176 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_in_coord_list1203 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_73_in_coord_list1206 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_in_coord_list1208 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_104_in_returning1236 = new BitSet(new long[]{0x0008000282010802L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_in_returning1268 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDF_in_affect_or_procedure_call1303 = new BitSet(new long[]{0x0000000000000000L,0x0000000000220020L});
-	public static final BitSet FOLLOW_85_in_affect_or_procedure_call1353 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_coord_list_in_affect_or_procedure_call1355 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-	public static final BitSet FOLLOW_86_in_affect_or_procedure_call1357 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-	public static final BitSet FOLLOW_81_in_affect_or_procedure_call1395 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_in_affect_or_procedure_call1397 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_69_in_affect_or_procedure_call1420 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000460L});
-	public static final BitSet FOLLOW_arg_list_in_affect_or_procedure_call1422 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
-	public static final BitSet FOLLOW_70_in_affect_or_procedure_call1424 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_in_arg_list1475 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_73_in_arg_list1478 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_in_arg_list1480 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_110_in_block1508 = new BitSet(new long[]{0x0000000080000000L,0x0000F14100000000L});
-	public static final BitSet FOLLOW_statement_in_block1538 = new BitSet(new long[]{0x0000000000000000L,0x0000800000004000L});
-	public static final BitSet FOLLOW_78_in_block1541 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
-	public static final BitSet FOLLOW_statement_in_block1543 = new BitSet(new long[]{0x0000000000000000L,0x0000800000004000L});
-	public static final BitSet FOLLOW_111_in_block1572 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_102_in_read1589 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_IDF_in_read1591 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
-	public static final BitSet FOLLOW_85_in_read1627 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_coord_list_in_read1629 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-	public static final BitSet FOLLOW_86_in_read1631 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_109_in_write1672 = new BitSet(new long[]{0x0008000282010800L,0x0000000000000400L});
-	public static final BitSet FOLLOW_IDF_in_write1684 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
-	public static final BitSet FOLLOW_85_in_write1728 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_coord_list_in_write1730 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-	public static final BitSet FOLLOW_86_in_write1732 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_constant_ext_in_write1772 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDF_in_expr_01807 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200020L});
-	public static final BitSet FOLLOW_69_in_expr_01839 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000460L});
-	public static final BitSet FOLLOW_arg_list_in_expr_01841 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
-	public static final BitSet FOLLOW_70_in_expr_01843 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_85_in_expr_01865 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_coord_list_in_expr_01867 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-	public static final BitSet FOLLOW_86_in_expr_01869 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_constant_in_expr_01897 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_69_in_expr_01909 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_in_expr_01911 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
-	public static final BitSet FOLLOW_70_in_expr_01913 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_0_in_expr_11935 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
-	public static final BitSet FOLLOW_87_in_expr_11952 = new BitSet(new long[]{0x0008000282010800L,0x0000000000000020L});
-	public static final BitSet FOLLOW_expr_1_proxy_in_expr_11956 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_1_in_expr_1_proxy1995 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_74_in_expr_22016 = new BitSet(new long[]{0x0008000282010800L,0x0000000000000020L});
-	public static final BitSet FOLLOW_expr_1_in_expr_22018 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_98_in_expr_22034 = new BitSet(new long[]{0x0008000282010800L,0x0000000000000020L});
-	public static final BitSet FOLLOW_expr_1_in_expr_22036 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_1_in_expr_22052 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_2_in_expr_32074 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
-	public static final BitSet FOLLOW_71_in_expr_32091 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_2_in_expr_32095 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
-	public static final BitSet FOLLOW_76_in_expr_32119 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_2_in_expr_32123 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
-	public static final BitSet FOLLOW_expr_3_in_expr_42164 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
-	public static final BitSet FOLLOW_72_in_expr_42181 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_3_in_expr_42185 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
-	public static final BitSet FOLLOW_74_in_expr_42209 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_3_in_expr_42213 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
-	public static final BitSet FOLLOW_expr_4_in_expr_52254 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
-	public static final BitSet FOLLOW_79_in_expr_52271 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_4_in_expr_52275 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
-	public static final BitSet FOLLOW_80_in_expr_52299 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_4_in_expr_52303 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
-	public static final BitSet FOLLOW_83_in_expr_52327 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_4_in_expr_52331 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
-	public static final BitSet FOLLOW_84_in_expr_52355 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_4_in_expr_52359 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
-	public static final BitSet FOLLOW_expr_5_in_expr_62400 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
-	public static final BitSet FOLLOW_82_in_expr_62417 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_5_in_expr_62421 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
-	public static final BitSet FOLLOW_68_in_expr_62445 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_5_in_expr_62449 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
-	public static final BitSet FOLLOW_expr_6_in_expr_72490 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
-	public static final BitSet FOLLOW_88_in_expr_72507 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_6_in_expr_72511 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
-	public static final BitSet FOLLOW_expr_7_in_expr_82552 = new BitSet(new long[]{0x0000000000000002L,0x0000001000000000L});
-	public static final BitSet FOLLOW_100_in_expr_82569 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_7_in_expr_82573 = new BitSet(new long[]{0x0000000000000002L,0x0000001000000000L});
-	public static final BitSet FOLLOW_expr_8_in_expr2613 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INT_in_constant2634 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FLOAT_in_constant2652 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_BOOL_in_constant2670 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_STRING_in_constant2688 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CHAR_in_constant2706 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_74_in_constant_ext2733 = new BitSet(new long[]{0x0000000202000000L});
-	public static final BitSet FOLLOW_INT_in_constant_ext2745 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FLOAT_in_constant_ext2771 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INT_in_constant_ext2803 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FLOAT_in_constant_ext2821 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_BOOL_in_constant_ext2839 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_STRING_in_constant_ext2857 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CHAR_in_constant_ext2875 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_var_decl_in_var_decl_list451 = new BitSet(new long[]{0x0000000000000002L,0x0000040000000000L});
+	public static final BitSet FOLLOW_106_in_var_decl477 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_idf_list_in_var_decl479 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+	public static final BitSet FOLLOW_77_in_var_decl481 = new BitSet(new long[]{0x0000000000000000L,0x000008024E000000L});
+	public static final BitSet FOLLOW_typename_in_var_decl483 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
+	public static final BitSet FOLLOW_78_in_var_decl485 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDF_in_idf_list511 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_73_in_idf_list514 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_IDF_in_idf_list516 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_func_decl_in_func_decl_list544 = new BitSet(new long[]{0x0000000000000002L,0x0000000080000000L});
+	public static final BitSet FOLLOW_95_in_func_decl570 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_IDF_in_func_decl572 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+	public static final BitSet FOLLOW_69_in_func_decl574 = new BitSet(new long[]{0x0000000080000000L,0x0000008000000040L});
+	public static final BitSet FOLLOW_param_list_in_func_decl576 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+	public static final BitSet FOLLOW_70_in_func_decl578 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+	public static final BitSet FOLLOW_77_in_func_decl580 = new BitSet(new long[]{0x0000000000000000L,0x000008024C000000L});
+	public static final BitSet FOLLOW_atom_typename_in_func_decl582 = new BitSet(new long[]{0x0000000000000000L,0x0000440000000000L});
+	public static final BitSet FOLLOW_var_decl_list_in_func_decl584 = new BitSet(new long[]{0x0000000000000000L,0x0000400000000000L});
+	public static final BitSet FOLLOW_block_in_func_decl586 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_atom_typename_in_typename617 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_array_typename_in_typename633 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_107_in_atom_typename654 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_90_in_atom_typename666 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_97_in_atom_typename678 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_94_in_atom_typename690 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_91_in_atom_typename702 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_89_in_array_typename723 = new BitSet(new long[]{0x0000000000000000L,0x0000000000200000L});
+	public static final BitSet FOLLOW_85_in_array_typename725 = new BitSet(new long[]{0x0000000200000000L,0x0000000000000400L});
+	public static final BitSet FOLLOW_range_list_in_array_typename727 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+	public static final BitSet FOLLOW_86_in_array_typename729 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
+	public static final BitSet FOLLOW_99_in_array_typename731 = new BitSet(new long[]{0x0000000000000000L,0x000008024C000000L});
+	public static final BitSet FOLLOW_atom_typename_in_array_typename733 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_range_in_range_list760 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_73_in_range_list763 = new BitSet(new long[]{0x0000000200000000L,0x0000000000000400L});
+	public static final BitSet FOLLOW_range_in_range_list765 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_int_ext_in_range794 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
+	public static final BitSet FOLLOW_75_in_range796 = new BitSet(new long[]{0x0000000200000000L,0x0000000000000400L});
+	public static final BitSet FOLLOW_int_ext_in_range800 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INT_in_int_ext829 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_74_in_int_ext841 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_INT_in_int_ext843 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_param_in_param_list880 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_73_in_param_list883 = new BitSet(new long[]{0x0000000080000000L,0x0000008000000000L});
+	public static final BitSet FOLLOW_param_in_param_list885 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_IDF_in_param912 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+	public static final BitSet FOLLOW_77_in_param914 = new BitSet(new long[]{0x0000000000000000L,0x000008024E000000L});
+	public static final BitSet FOLLOW_typename_in_param916 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_103_in_param936 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_IDF_in_param938 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+	public static final BitSet FOLLOW_77_in_param940 = new BitSet(new long[]{0x0000000000000000L,0x000008024E000000L});
+	public static final BitSet FOLLOW_typename_in_param942 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_conditional_in_statement971 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_loop_in_statement983 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_affect_or_procedure_call_in_statement995 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_returning_in_statement1007 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_block_in_statement1019 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_read_in_statement1031 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_write_in_statement1043 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_96_in_conditional1064 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_in_conditional1066 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+	public static final BitSet FOLLOW_105_in_conditional1068 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
+	public static final BitSet FOLLOW_statement_in_conditional1072 = new BitSet(new long[]{0x0000000000000002L,0x0000000020000000L});
+	public static final BitSet FOLLOW_93_in_conditional1096 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
+	public static final BitSet FOLLOW_statement_in_conditional1100 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_108_in_loop1166 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_in_loop1168 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
+	public static final BitSet FOLLOW_92_in_loop1170 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
+	public static final BitSet FOLLOW_statement_in_loop1172 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_in_coord_list1199 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_73_in_coord_list1202 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_in_coord_list1204 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_104_in_returning1232 = new BitSet(new long[]{0x0008000282010802L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_in_returning1264 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDF_in_affect_or_procedure_call1299 = new BitSet(new long[]{0x0000000000000000L,0x0000000000220020L});
+	public static final BitSet FOLLOW_85_in_affect_or_procedure_call1349 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_coord_list_in_affect_or_procedure_call1351 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+	public static final BitSet FOLLOW_86_in_affect_or_procedure_call1353 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+	public static final BitSet FOLLOW_81_in_affect_or_procedure_call1391 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_in_affect_or_procedure_call1393 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_69_in_affect_or_procedure_call1416 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000460L});
+	public static final BitSet FOLLOW_arg_list_in_affect_or_procedure_call1418 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+	public static final BitSet FOLLOW_70_in_affect_or_procedure_call1420 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_in_arg_list1471 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_73_in_arg_list1474 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_in_arg_list1476 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+	public static final BitSet FOLLOW_110_in_block1504 = new BitSet(new long[]{0x0000000080000000L,0x0000F14100000000L});
+	public static final BitSet FOLLOW_statement_in_block1534 = new BitSet(new long[]{0x0000000000000000L,0x0000800000004000L});
+	public static final BitSet FOLLOW_78_in_block1537 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
+	public static final BitSet FOLLOW_statement_in_block1539 = new BitSet(new long[]{0x0000000000000000L,0x0000800000004000L});
+	public static final BitSet FOLLOW_111_in_block1568 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_102_in_read1585 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_IDF_in_read1587 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
+	public static final BitSet FOLLOW_85_in_read1623 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_coord_list_in_read1625 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+	public static final BitSet FOLLOW_86_in_read1627 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_109_in_write1668 = new BitSet(new long[]{0x0008000282010800L,0x0000000000000400L});
+	public static final BitSet FOLLOW_IDF_in_write1680 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
+	public static final BitSet FOLLOW_85_in_write1724 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_coord_list_in_write1726 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+	public static final BitSet FOLLOW_86_in_write1728 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_constant_ext_in_write1768 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDF_in_expr_01803 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200020L});
+	public static final BitSet FOLLOW_69_in_expr_01835 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000460L});
+	public static final BitSet FOLLOW_arg_list_in_expr_01837 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+	public static final BitSet FOLLOW_70_in_expr_01839 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_85_in_expr_01861 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_coord_list_in_expr_01863 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+	public static final BitSet FOLLOW_86_in_expr_01865 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_constant_in_expr_01893 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_69_in_expr_01905 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_in_expr_01907 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+	public static final BitSet FOLLOW_70_in_expr_01909 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_0_in_expr_11931 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
+	public static final BitSet FOLLOW_87_in_expr_11948 = new BitSet(new long[]{0x0008000282010800L,0x0000000000000020L});
+	public static final BitSet FOLLOW_expr_1_proxy_in_expr_11952 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_1_in_expr_1_proxy1991 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_74_in_expr_22012 = new BitSet(new long[]{0x0008000282010800L,0x0000000000000020L});
+	public static final BitSet FOLLOW_expr_1_in_expr_22014 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_98_in_expr_22030 = new BitSet(new long[]{0x0008000282010800L,0x0000000000000020L});
+	public static final BitSet FOLLOW_expr_1_in_expr_22032 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_1_in_expr_22048 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_2_in_expr_32070 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
+	public static final BitSet FOLLOW_71_in_expr_32087 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_2_in_expr_32091 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
+	public static final BitSet FOLLOW_76_in_expr_32115 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_2_in_expr_32119 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
+	public static final BitSet FOLLOW_expr_3_in_expr_42160 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
+	public static final BitSet FOLLOW_72_in_expr_42177 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_3_in_expr_42181 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
+	public static final BitSet FOLLOW_74_in_expr_42205 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_3_in_expr_42209 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52250 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
+	public static final BitSet FOLLOW_79_in_expr_52267 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52271 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
+	public static final BitSet FOLLOW_80_in_expr_52295 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52299 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
+	public static final BitSet FOLLOW_83_in_expr_52323 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52327 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
+	public static final BitSet FOLLOW_84_in_expr_52351 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52355 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
+	public static final BitSet FOLLOW_expr_5_in_expr_62396 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
+	public static final BitSet FOLLOW_82_in_expr_62413 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_5_in_expr_62417 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
+	public static final BitSet FOLLOW_68_in_expr_62441 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_5_in_expr_62445 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
+	public static final BitSet FOLLOW_expr_6_in_expr_72486 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
+	public static final BitSet FOLLOW_88_in_expr_72503 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_6_in_expr_72507 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
+	public static final BitSet FOLLOW_expr_7_in_expr_82548 = new BitSet(new long[]{0x0000000000000002L,0x0000001000000000L});
+	public static final BitSet FOLLOW_100_in_expr_82565 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
+	public static final BitSet FOLLOW_expr_7_in_expr_82569 = new BitSet(new long[]{0x0000000000000002L,0x0000001000000000L});
+	public static final BitSet FOLLOW_expr_8_in_expr2609 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INT_in_constant2630 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FLOAT_in_constant2648 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_BOOL_in_constant2666 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_STRING_in_constant2684 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CHAR_in_constant2702 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_74_in_constant_ext2729 = new BitSet(new long[]{0x0000000202000000L});
+	public static final BitSet FOLLOW_INT_in_constant_ext2741 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FLOAT_in_constant_ext2765 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INT_in_constant_ext2795 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FLOAT_in_constant_ext2813 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_BOOL_in_constant_ext2831 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_STRING_in_constant_ext2849 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CHAR_in_constant_ext2867 = new BitSet(new long[]{0x0000000000000002L});
 }
