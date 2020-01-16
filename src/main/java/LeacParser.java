@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 Leac.g 2020-01-16 10:39:30
+// $ANTLR 3.5.2 Leac.g 2020-01-16 17:22:46
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -17,18 +17,19 @@ public class LeacParser extends Parser {
 		"DIV", "ESC_SEQ", "EXPONENT", "FLOAT", "FLOAT_TYPENAME", "FUNC_CALL", 
 		"FUNC_DECL", "FUNC_DECL_LIST", "HEX_DIGIT", "IDF", "IDF_LIST", "INT", 
 		"INT_TYPENAME", "LOOP", "MUL", "NOT", "NO_RETURN_VALUE", "OCTAL_ESC", 
-		"OR", "PARAM", "PARAM_LIST", "PASS", "POW", "PROCEDURE_CALL", "PROGRAM", 
-		"RANGE", "RANGE_LIST", "READ", "RETURNING", "STRING", "STRING_TYPENAME", 
-		"SUB", "TEST_EQ", "TEST_GE", "TEST_GT", "TEST_LE", "TEST_LT", "TEST_NE", 
-		"UNARY_MINUS", "UNICODE_ESC", "VAR", "VAR_DECL", "VAR_DECL_LIST", "VOID_TYPENAME", 
-		"WRITE", "WS", "'!='", "'('", "')'", "'*'", "'+'", "','", "'-'", "'..'", 
-		"'/'", "':'", "';'", "'<'", "'<='", "'='", "'=='", "'>'", "'>='", "'['", 
-		"']'", "'^'", "'and'", "'array'", "'bool'", "'char'", "'do'", "'else'", 
-		"'float'", "'function'", "'if'", "'int'", "'not'", "'of'", "'or'", "'program'", 
-		"'read'", "'ref'", "'return'", "'then'", "'var'", "'void'", "'while'", 
-		"'write'", "'{'", "'}'"
+		"OR", "PARAM", "PARAM_LIST", "POW", "PROCEDURE_CALL", "PROGRAM", "RANGE", 
+		"RANGE_LIST", "READ", "RETURNING", "STRING", "STRING_TYPENAME", "SUB", 
+		"TEST_EQ", "TEST_GE", "TEST_GT", "TEST_LE", "TEST_LT", "TEST_NE", "UNARY_MINUS", 
+		"UNICODE_ESC", "VAR", "VAR_DECL", "VAR_DECL_LIST", "VOID_TYPENAME", "WRITE", 
+		"WS", "'!='", "'('", "')'", "'*'", "'+'", "','", "'-'", "'..'", "'/'", 
+		"':'", "';'", "'<'", "'<='", "'='", "'=='", "'>'", "'>='", "'['", "']'", 
+		"'^'", "'and'", "'array'", "'bool'", "'char'", "'do'", "'else'", "'float'", 
+		"'function'", "'if'", "'int'", "'not'", "'of'", "'or'", "'program'", "'read'", 
+		"'ref'", "'return'", "'then'", "'var'", "'void'", "'while'", "'write'", 
+		"'{'", "'}'"
 	};
 	public static final int EOF=-1;
+	public static final int T__67=67;
 	public static final int T__68=68;
 	public static final int T__69=69;
 	public static final int T__70=70;
@@ -72,7 +73,6 @@ public class LeacParser extends Parser {
 	public static final int T__108=108;
 	public static final int T__109=109;
 	public static final int T__110=110;
-	public static final int T__111=111;
 	public static final int ADD=4;
 	public static final int AFFECT=5;
 	public static final int AND=6;
@@ -112,31 +112,30 @@ public class LeacParser extends Parser {
 	public static final int OR=40;
 	public static final int PARAM=41;
 	public static final int PARAM_LIST=42;
-	public static final int PASS=43;
-	public static final int POW=44;
-	public static final int PROCEDURE_CALL=45;
-	public static final int PROGRAM=46;
-	public static final int RANGE=47;
-	public static final int RANGE_LIST=48;
-	public static final int READ=49;
-	public static final int RETURNING=50;
-	public static final int STRING=51;
-	public static final int STRING_TYPENAME=52;
-	public static final int SUB=53;
-	public static final int TEST_EQ=54;
-	public static final int TEST_GE=55;
-	public static final int TEST_GT=56;
-	public static final int TEST_LE=57;
-	public static final int TEST_LT=58;
-	public static final int TEST_NE=59;
-	public static final int UNARY_MINUS=60;
-	public static final int UNICODE_ESC=61;
-	public static final int VAR=62;
-	public static final int VAR_DECL=63;
-	public static final int VAR_DECL_LIST=64;
-	public static final int VOID_TYPENAME=65;
-	public static final int WRITE=66;
-	public static final int WS=67;
+	public static final int POW=43;
+	public static final int PROCEDURE_CALL=44;
+	public static final int PROGRAM=45;
+	public static final int RANGE=46;
+	public static final int RANGE_LIST=47;
+	public static final int READ=48;
+	public static final int RETURNING=49;
+	public static final int STRING=50;
+	public static final int STRING_TYPENAME=51;
+	public static final int SUB=52;
+	public static final int TEST_EQ=53;
+	public static final int TEST_GE=54;
+	public static final int TEST_GT=55;
+	public static final int TEST_LE=56;
+	public static final int TEST_LT=57;
+	public static final int TEST_NE=58;
+	public static final int UNARY_MINUS=59;
+	public static final int UNICODE_ESC=60;
+	public static final int VAR=61;
+	public static final int VAR_DECL=62;
+	public static final int VAR_DECL_LIST=63;
+	public static final int VOID_TYPENAME=64;
+	public static final int WRITE=65;
+	public static final int WS=66;
 
 	// delegates
 	public Parser[] getDelegates() {
@@ -173,7 +172,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "program"
-	// Leac.g:66:1: program : 'program' IDF var_decl_list func_decl_list statement -> ^( PROGRAM var_decl_list func_decl_list statement ) ;
+	// Leac.g:64:1: program : 'program' IDF var_decl_list func_decl_list statement -> ^( PROGRAM IDF var_decl_list func_decl_list statement ) ;
 	public final LeacParser.program_return program() throws RecognitionException {
 		LeacParser.program_return retval = new LeacParser.program_return();
 		retval.start = input.LT(1);
@@ -188,39 +187,39 @@ public class LeacParser extends Parser {
 
 		Object string_literal1_tree=null;
 		Object IDF2_tree=null;
-		RewriteRuleTokenStream stream_101=new RewriteRuleTokenStream(adaptor,"token 101");
+		RewriteRuleTokenStream stream_100=new RewriteRuleTokenStream(adaptor,"token 100");
 		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
 		RewriteRuleSubtreeStream stream_func_decl_list=new RewriteRuleSubtreeStream(adaptor,"rule func_decl_list");
 		RewriteRuleSubtreeStream stream_statement=new RewriteRuleSubtreeStream(adaptor,"rule statement");
 		RewriteRuleSubtreeStream stream_var_decl_list=new RewriteRuleSubtreeStream(adaptor,"rule var_decl_list");
 
 		try {
-			// Leac.g:67:5: ( 'program' IDF var_decl_list func_decl_list statement -> ^( PROGRAM var_decl_list func_decl_list statement ) )
-			// Leac.g:67:7: 'program' IDF var_decl_list func_decl_list statement
+			// Leac.g:65:5: ( 'program' IDF var_decl_list func_decl_list statement -> ^( PROGRAM IDF var_decl_list func_decl_list statement ) )
+			// Leac.g:65:7: 'program' IDF var_decl_list func_decl_list statement
 			{
-			string_literal1=(Token)match(input,101,FOLLOW_101_in_program414);  
-			stream_101.add(string_literal1);
+			string_literal1=(Token)match(input,100,FOLLOW_100_in_program400);  
+			stream_100.add(string_literal1);
 
-			IDF2=(Token)match(input,IDF,FOLLOW_IDF_in_program416);  
+			IDF2=(Token)match(input,IDF,FOLLOW_IDF_in_program402);  
 			stream_IDF.add(IDF2);
 
-			pushFollow(FOLLOW_var_decl_list_in_program418);
+			pushFollow(FOLLOW_var_decl_list_in_program404);
 			var_decl_list3=var_decl_list();
 			state._fsp--;
 
 			stream_var_decl_list.add(var_decl_list3.getTree());
-			pushFollow(FOLLOW_func_decl_list_in_program420);
+			pushFollow(FOLLOW_func_decl_list_in_program406);
 			func_decl_list4=func_decl_list();
 			state._fsp--;
 
 			stream_func_decl_list.add(func_decl_list4.getTree());
-			pushFollow(FOLLOW_statement_in_program422);
+			pushFollow(FOLLOW_statement_in_program408);
 			statement5=statement();
 			state._fsp--;
 
 			stream_statement.add(statement5.getTree());
 			// AST REWRITE
-			// elements: func_decl_list, statement, var_decl_list
+			// elements: statement, var_decl_list, func_decl_list, IDF
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -230,12 +229,13 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 67:60: -> ^( PROGRAM var_decl_list func_decl_list statement )
+			// 65:60: -> ^( PROGRAM IDF var_decl_list func_decl_list statement )
 			{
-				// Leac.g:67:63: ^( PROGRAM var_decl_list func_decl_list statement )
+				// Leac.g:65:63: ^( PROGRAM IDF var_decl_list func_decl_list statement )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PROGRAM, "PROGRAM"), root_1);
+				adaptor.addChild(root_1, stream_IDF.nextNode());
 				adaptor.addChild(root_1, stream_var_decl_list.nextTree());
 				adaptor.addChild(root_1, stream_func_decl_list.nextTree());
 				adaptor.addChild(root_1, stream_statement.nextTree());
@@ -276,7 +276,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "var_decl_list"
-	// Leac.g:70:1: var_decl_list : ( var_decl )* -> ^( VAR_DECL_LIST ( var_decl )* ) ;
+	// Leac.g:68:1: var_decl_list : ( var_decl )* -> ^( VAR_DECL_LIST ( var_decl )* ) ;
 	public final LeacParser.var_decl_list_return var_decl_list() throws RecognitionException {
 		LeacParser.var_decl_list_return retval = new LeacParser.var_decl_list_return();
 		retval.start = input.LT(1);
@@ -288,23 +288,23 @@ public class LeacParser extends Parser {
 		RewriteRuleSubtreeStream stream_var_decl=new RewriteRuleSubtreeStream(adaptor,"rule var_decl");
 
 		try {
-			// Leac.g:71:5: ( ( var_decl )* -> ^( VAR_DECL_LIST ( var_decl )* ) )
-			// Leac.g:71:7: ( var_decl )*
+			// Leac.g:69:5: ( ( var_decl )* -> ^( VAR_DECL_LIST ( var_decl )* ) )
+			// Leac.g:69:7: ( var_decl )*
 			{
-			// Leac.g:71:7: ( var_decl )*
+			// Leac.g:69:7: ( var_decl )*
 			loop1:
 			while (true) {
 				int alt1=2;
 				int LA1_0 = input.LA(1);
-				if ( (LA1_0==106) ) {
+				if ( (LA1_0==105) ) {
 					alt1=1;
 				}
 
 				switch (alt1) {
 				case 1 :
-					// Leac.g:71:7: var_decl
+					// Leac.g:69:7: var_decl
 					{
-					pushFollow(FOLLOW_var_decl_in_var_decl_list451);
+					pushFollow(FOLLOW_var_decl_in_var_decl_list439);
 					var_decl6=var_decl();
 					state._fsp--;
 
@@ -328,13 +328,13 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 71:17: -> ^( VAR_DECL_LIST ( var_decl )* )
+			// 69:17: -> ^( VAR_DECL_LIST ( var_decl )* )
 			{
-				// Leac.g:71:20: ^( VAR_DECL_LIST ( var_decl )* )
+				// Leac.g:69:20: ^( VAR_DECL_LIST ( var_decl )* )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(VAR_DECL_LIST, "VAR_DECL_LIST"), root_1);
-				// Leac.g:71:36: ( var_decl )*
+				// Leac.g:69:36: ( var_decl )*
 				while ( stream_var_decl.hasNext() ) {
 					adaptor.addChild(root_1, stream_var_decl.nextTree());
 				}
@@ -377,7 +377,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "var_decl"
-	// Leac.g:73:1: var_decl : 'var' idf_list ':' typename ';' -> ^( VAR_DECL typename idf_list ) ;
+	// Leac.g:71:1: var_decl : 'var' idf_list ':' typename ';' -> ^( VAR_DECL typename idf_list ) ;
 	public final LeacParser.var_decl_return var_decl() throws RecognitionException {
 		LeacParser.var_decl_return retval = new LeacParser.var_decl_return();
 		retval.start = input.LT(1);
@@ -394,36 +394,36 @@ public class LeacParser extends Parser {
 		Object char_literal9_tree=null;
 		Object char_literal11_tree=null;
 		RewriteRuleTokenStream stream_77=new RewriteRuleTokenStream(adaptor,"token 77");
-		RewriteRuleTokenStream stream_78=new RewriteRuleTokenStream(adaptor,"token 78");
-		RewriteRuleTokenStream stream_106=new RewriteRuleTokenStream(adaptor,"token 106");
+		RewriteRuleTokenStream stream_105=new RewriteRuleTokenStream(adaptor,"token 105");
+		RewriteRuleTokenStream stream_76=new RewriteRuleTokenStream(adaptor,"token 76");
 		RewriteRuleSubtreeStream stream_idf_list=new RewriteRuleSubtreeStream(adaptor,"rule idf_list");
 		RewriteRuleSubtreeStream stream_typename=new RewriteRuleSubtreeStream(adaptor,"rule typename");
 
 		try {
-			// Leac.g:74:5: ( 'var' idf_list ':' typename ';' -> ^( VAR_DECL typename idf_list ) )
-			// Leac.g:74:7: 'var' idf_list ':' typename ';'
+			// Leac.g:72:5: ( 'var' idf_list ':' typename ';' -> ^( VAR_DECL typename idf_list ) )
+			// Leac.g:72:7: 'var' idf_list ':' typename ';'
 			{
-			string_literal7=(Token)match(input,106,FOLLOW_106_in_var_decl477);  
-			stream_106.add(string_literal7);
+			string_literal7=(Token)match(input,105,FOLLOW_105_in_var_decl465);  
+			stream_105.add(string_literal7);
 
-			pushFollow(FOLLOW_idf_list_in_var_decl479);
+			pushFollow(FOLLOW_idf_list_in_var_decl467);
 			idf_list8=idf_list();
 			state._fsp--;
 
 			stream_idf_list.add(idf_list8.getTree());
-			char_literal9=(Token)match(input,77,FOLLOW_77_in_var_decl481);  
-			stream_77.add(char_literal9);
+			char_literal9=(Token)match(input,76,FOLLOW_76_in_var_decl469);  
+			stream_76.add(char_literal9);
 
-			pushFollow(FOLLOW_typename_in_var_decl483);
+			pushFollow(FOLLOW_typename_in_var_decl471);
 			typename10=typename();
 			state._fsp--;
 
 			stream_typename.add(typename10.getTree());
-			char_literal11=(Token)match(input,78,FOLLOW_78_in_var_decl485);  
-			stream_78.add(char_literal11);
+			char_literal11=(Token)match(input,77,FOLLOW_77_in_var_decl473);  
+			stream_77.add(char_literal11);
 
 			// AST REWRITE
-			// elements: typename, idf_list
+			// elements: idf_list, typename
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -433,9 +433,9 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 74:39: -> ^( VAR_DECL typename idf_list )
+			// 72:39: -> ^( VAR_DECL typename idf_list )
 			{
-				// Leac.g:74:42: ^( VAR_DECL typename idf_list )
+				// Leac.g:72:42: ^( VAR_DECL typename idf_list )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(VAR_DECL, "VAR_DECL"), root_1);
@@ -478,7 +478,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "idf_list"
-	// Leac.g:76:1: idf_list : IDF ( ',' IDF )* -> ^( IDF_LIST ( IDF )+ ) ;
+	// Leac.g:74:1: idf_list : IDF ( ',' IDF )* -> ^( IDF_LIST ( IDF )+ ) ;
 	public final LeacParser.idf_list_return idf_list() throws RecognitionException {
 		LeacParser.idf_list_return retval = new LeacParser.idf_list_return();
 		retval.start = input.LT(1);
@@ -493,32 +493,32 @@ public class LeacParser extends Parser {
 		Object char_literal13_tree=null;
 		Object IDF14_tree=null;
 		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
-		RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
+		RewriteRuleTokenStream stream_72=new RewriteRuleTokenStream(adaptor,"token 72");
 
 		try {
-			// Leac.g:77:5: ( IDF ( ',' IDF )* -> ^( IDF_LIST ( IDF )+ ) )
-			// Leac.g:77:7: IDF ( ',' IDF )*
+			// Leac.g:75:5: ( IDF ( ',' IDF )* -> ^( IDF_LIST ( IDF )+ ) )
+			// Leac.g:75:7: IDF ( ',' IDF )*
 			{
-			IDF12=(Token)match(input,IDF,FOLLOW_IDF_in_idf_list511);  
+			IDF12=(Token)match(input,IDF,FOLLOW_IDF_in_idf_list499);  
 			stream_IDF.add(IDF12);
 
-			// Leac.g:77:11: ( ',' IDF )*
+			// Leac.g:75:11: ( ',' IDF )*
 			loop2:
 			while (true) {
 				int alt2=2;
 				int LA2_0 = input.LA(1);
-				if ( (LA2_0==73) ) {
+				if ( (LA2_0==72) ) {
 					alt2=1;
 				}
 
 				switch (alt2) {
 				case 1 :
-					// Leac.g:77:12: ',' IDF
+					// Leac.g:75:12: ',' IDF
 					{
-					char_literal13=(Token)match(input,73,FOLLOW_73_in_idf_list514);  
-					stream_73.add(char_literal13);
+					char_literal13=(Token)match(input,72,FOLLOW_72_in_idf_list502);  
+					stream_72.add(char_literal13);
 
-					IDF14=(Token)match(input,IDF,FOLLOW_IDF_in_idf_list516);  
+					IDF14=(Token)match(input,IDF,FOLLOW_IDF_in_idf_list504);  
 					stream_IDF.add(IDF14);
 
 					}
@@ -540,9 +540,9 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 77:22: -> ^( IDF_LIST ( IDF )+ )
+			// 75:22: -> ^( IDF_LIST ( IDF )+ )
 			{
-				// Leac.g:77:25: ^( IDF_LIST ( IDF )+ )
+				// Leac.g:75:25: ^( IDF_LIST ( IDF )+ )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(IDF_LIST, "IDF_LIST"), root_1);
@@ -591,7 +591,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "func_decl_list"
-	// Leac.g:80:1: func_decl_list : ( func_decl )* -> ^( FUNC_DECL_LIST ( func_decl )* ) ;
+	// Leac.g:78:1: func_decl_list : ( func_decl )* -> ^( FUNC_DECL_LIST ( func_decl )* ) ;
 	public final LeacParser.func_decl_list_return func_decl_list() throws RecognitionException {
 		LeacParser.func_decl_list_return retval = new LeacParser.func_decl_list_return();
 		retval.start = input.LT(1);
@@ -603,23 +603,23 @@ public class LeacParser extends Parser {
 		RewriteRuleSubtreeStream stream_func_decl=new RewriteRuleSubtreeStream(adaptor,"rule func_decl");
 
 		try {
-			// Leac.g:81:5: ( ( func_decl )* -> ^( FUNC_DECL_LIST ( func_decl )* ) )
-			// Leac.g:81:7: ( func_decl )*
+			// Leac.g:79:5: ( ( func_decl )* -> ^( FUNC_DECL_LIST ( func_decl )* ) )
+			// Leac.g:79:7: ( func_decl )*
 			{
-			// Leac.g:81:7: ( func_decl )*
+			// Leac.g:79:7: ( func_decl )*
 			loop3:
 			while (true) {
 				int alt3=2;
 				int LA3_0 = input.LA(1);
-				if ( (LA3_0==95) ) {
+				if ( (LA3_0==94) ) {
 					alt3=1;
 				}
 
 				switch (alt3) {
 				case 1 :
-					// Leac.g:81:7: func_decl
+					// Leac.g:79:7: func_decl
 					{
-					pushFollow(FOLLOW_func_decl_in_func_decl_list544);
+					pushFollow(FOLLOW_func_decl_in_func_decl_list532);
 					func_decl15=func_decl();
 					state._fsp--;
 
@@ -643,13 +643,13 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 81:18: -> ^( FUNC_DECL_LIST ( func_decl )* )
+			// 79:18: -> ^( FUNC_DECL_LIST ( func_decl )* )
 			{
-				// Leac.g:81:21: ^( FUNC_DECL_LIST ( func_decl )* )
+				// Leac.g:79:21: ^( FUNC_DECL_LIST ( func_decl )* )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FUNC_DECL_LIST, "FUNC_DECL_LIST"), root_1);
-				// Leac.g:81:38: ( func_decl )*
+				// Leac.g:79:38: ( func_decl )*
 				while ( stream_func_decl.hasNext() ) {
 					adaptor.addChild(root_1, stream_func_decl.nextTree());
 				}
@@ -692,7 +692,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "func_decl"
-	// Leac.g:83:1: func_decl : 'function' IDF '(' param_list ')' ':' atom_typename var_decl_list block -> ^( FUNC_DECL param_list atom_typename var_decl_list block ) ;
+	// Leac.g:81:1: func_decl : 'function' IDF '(' param_list ')' ':' atom_typename var_decl_list block -> ^( FUNC_DECL IDF param_list atom_typename var_decl_list block ) ;
 	public final LeacParser.func_decl_return func_decl() throws RecognitionException {
 		LeacParser.func_decl_return retval = new LeacParser.func_decl_return();
 		retval.start = input.LT(1);
@@ -714,57 +714,57 @@ public class LeacParser extends Parser {
 		Object char_literal18_tree=null;
 		Object char_literal20_tree=null;
 		Object char_literal21_tree=null;
-		RewriteRuleTokenStream stream_77=new RewriteRuleTokenStream(adaptor,"token 77");
+		RewriteRuleTokenStream stream_68=new RewriteRuleTokenStream(adaptor,"token 68");
 		RewriteRuleTokenStream stream_69=new RewriteRuleTokenStream(adaptor,"token 69");
-		RewriteRuleTokenStream stream_70=new RewriteRuleTokenStream(adaptor,"token 70");
 		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
-		RewriteRuleTokenStream stream_95=new RewriteRuleTokenStream(adaptor,"token 95");
+		RewriteRuleTokenStream stream_94=new RewriteRuleTokenStream(adaptor,"token 94");
+		RewriteRuleTokenStream stream_76=new RewriteRuleTokenStream(adaptor,"token 76");
 		RewriteRuleSubtreeStream stream_atom_typename=new RewriteRuleSubtreeStream(adaptor,"rule atom_typename");
 		RewriteRuleSubtreeStream stream_var_decl_list=new RewriteRuleSubtreeStream(adaptor,"rule var_decl_list");
 		RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
 		RewriteRuleSubtreeStream stream_param_list=new RewriteRuleSubtreeStream(adaptor,"rule param_list");
 
 		try {
-			// Leac.g:84:5: ( 'function' IDF '(' param_list ')' ':' atom_typename var_decl_list block -> ^( FUNC_DECL param_list atom_typename var_decl_list block ) )
-			// Leac.g:84:7: 'function' IDF '(' param_list ')' ':' atom_typename var_decl_list block
+			// Leac.g:82:5: ( 'function' IDF '(' param_list ')' ':' atom_typename var_decl_list block -> ^( FUNC_DECL IDF param_list atom_typename var_decl_list block ) )
+			// Leac.g:82:7: 'function' IDF '(' param_list ')' ':' atom_typename var_decl_list block
 			{
-			string_literal16=(Token)match(input,95,FOLLOW_95_in_func_decl570);  
-			stream_95.add(string_literal16);
+			string_literal16=(Token)match(input,94,FOLLOW_94_in_func_decl558);  
+			stream_94.add(string_literal16);
 
-			IDF17=(Token)match(input,IDF,FOLLOW_IDF_in_func_decl572);  
+			IDF17=(Token)match(input,IDF,FOLLOW_IDF_in_func_decl560);  
 			stream_IDF.add(IDF17);
 
-			char_literal18=(Token)match(input,69,FOLLOW_69_in_func_decl574);  
-			stream_69.add(char_literal18);
+			char_literal18=(Token)match(input,68,FOLLOW_68_in_func_decl562);  
+			stream_68.add(char_literal18);
 
-			pushFollow(FOLLOW_param_list_in_func_decl576);
+			pushFollow(FOLLOW_param_list_in_func_decl564);
 			param_list19=param_list();
 			state._fsp--;
 
 			stream_param_list.add(param_list19.getTree());
-			char_literal20=(Token)match(input,70,FOLLOW_70_in_func_decl578);  
-			stream_70.add(char_literal20);
+			char_literal20=(Token)match(input,69,FOLLOW_69_in_func_decl566);  
+			stream_69.add(char_literal20);
 
-			char_literal21=(Token)match(input,77,FOLLOW_77_in_func_decl580);  
-			stream_77.add(char_literal21);
+			char_literal21=(Token)match(input,76,FOLLOW_76_in_func_decl568);  
+			stream_76.add(char_literal21);
 
-			pushFollow(FOLLOW_atom_typename_in_func_decl582);
+			pushFollow(FOLLOW_atom_typename_in_func_decl570);
 			atom_typename22=atom_typename();
 			state._fsp--;
 
 			stream_atom_typename.add(atom_typename22.getTree());
-			pushFollow(FOLLOW_var_decl_list_in_func_decl584);
+			pushFollow(FOLLOW_var_decl_list_in_func_decl572);
 			var_decl_list23=var_decl_list();
 			state._fsp--;
 
 			stream_var_decl_list.add(var_decl_list23.getTree());
-			pushFollow(FOLLOW_block_in_func_decl586);
+			pushFollow(FOLLOW_block_in_func_decl574);
 			block24=block();
 			state._fsp--;
 
 			stream_block.add(block24.getTree());
 			// AST REWRITE
-			// elements: block, atom_typename, param_list, var_decl_list
+			// elements: atom_typename, var_decl_list, IDF, param_list, block
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -774,12 +774,13 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 84:79: -> ^( FUNC_DECL param_list atom_typename var_decl_list block )
+			// 82:79: -> ^( FUNC_DECL IDF param_list atom_typename var_decl_list block )
 			{
-				// Leac.g:84:82: ^( FUNC_DECL param_list atom_typename var_decl_list block )
+				// Leac.g:82:82: ^( FUNC_DECL IDF param_list atom_typename var_decl_list block )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FUNC_DECL, "FUNC_DECL"), root_1);
+				adaptor.addChild(root_1, stream_IDF.nextNode());
 				adaptor.addChild(root_1, stream_param_list.nextTree());
 				adaptor.addChild(root_1, stream_atom_typename.nextTree());
 				adaptor.addChild(root_1, stream_var_decl_list.nextTree());
@@ -821,7 +822,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "typename"
-	// Leac.g:87:1: typename : ( atom_typename -> ^( ATOM atom_typename ) | array_typename -> array_typename );
+	// Leac.g:85:1: typename : ( atom_typename -> ^( ATOM atom_typename ) | array_typename -> array_typename );
 	public final LeacParser.typename_return typename() throws RecognitionException {
 		LeacParser.typename_return retval = new LeacParser.typename_return();
 		retval.start = input.LT(1);
@@ -835,13 +836,13 @@ public class LeacParser extends Parser {
 		RewriteRuleSubtreeStream stream_atom_typename=new RewriteRuleSubtreeStream(adaptor,"rule atom_typename");
 
 		try {
-			// Leac.g:88:5: ( atom_typename -> ^( ATOM atom_typename ) | array_typename -> array_typename )
+			// Leac.g:86:5: ( atom_typename -> ^( ATOM atom_typename ) | array_typename -> array_typename )
 			int alt4=2;
 			int LA4_0 = input.LA(1);
-			if ( ((LA4_0 >= 90 && LA4_0 <= 91)||LA4_0==94||LA4_0==97||LA4_0==107) ) {
+			if ( ((LA4_0 >= 89 && LA4_0 <= 90)||LA4_0==93||LA4_0==96||LA4_0==106) ) {
 				alt4=1;
 			}
-			else if ( (LA4_0==89) ) {
+			else if ( (LA4_0==88) ) {
 				alt4=2;
 			}
 
@@ -853,9 +854,9 @@ public class LeacParser extends Parser {
 
 			switch (alt4) {
 				case 1 :
-					// Leac.g:88:7: atom_typename
+					// Leac.g:86:7: atom_typename
 					{
-					pushFollow(FOLLOW_atom_typename_in_typename617);
+					pushFollow(FOLLOW_atom_typename_in_typename607);
 					atom_typename25=atom_typename();
 					state._fsp--;
 
@@ -871,9 +872,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 88:21: -> ^( ATOM atom_typename )
+					// 86:21: -> ^( ATOM atom_typename )
 					{
-						// Leac.g:88:24: ^( ATOM atom_typename )
+						// Leac.g:86:24: ^( ATOM atom_typename )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ATOM, "ATOM"), root_1);
@@ -889,9 +890,9 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:89:7: array_typename
+					// Leac.g:87:7: array_typename
 					{
-					pushFollow(FOLLOW_array_typename_in_typename633);
+					pushFollow(FOLLOW_array_typename_in_typename623);
 					array_typename26=array_typename();
 					state._fsp--;
 
@@ -907,7 +908,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 89:22: -> array_typename
+					// 87:22: -> array_typename
 					{
 						adaptor.addChild(root_0, stream_array_typename.nextTree());
 					}
@@ -946,7 +947,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "atom_typename"
-	// Leac.g:92:1: atom_typename : ( 'void' -> VOID_TYPENAME | 'bool' -> BOOL_TYPENAME | 'int' -> INT_TYPENAME | 'float' -> FLOAT_TYPENAME | 'char' -> CHAR_TYPENAME );
+	// Leac.g:90:1: atom_typename : ( 'void' -> VOID_TYPENAME | 'bool' -> BOOL_TYPENAME | 'int' -> INT_TYPENAME | 'float' -> FLOAT_TYPENAME | 'char' -> CHAR_TYPENAME );
 	public final LeacParser.atom_typename_return atom_typename() throws RecognitionException {
 		LeacParser.atom_typename_return retval = new LeacParser.atom_typename_return();
 		retval.start = input.LT(1);
@@ -964,37 +965,37 @@ public class LeacParser extends Parser {
 		Object string_literal29_tree=null;
 		Object string_literal30_tree=null;
 		Object string_literal31_tree=null;
+		RewriteRuleTokenStream stream_89=new RewriteRuleTokenStream(adaptor,"token 89");
+		RewriteRuleTokenStream stream_106=new RewriteRuleTokenStream(adaptor,"token 106");
 		RewriteRuleTokenStream stream_90=new RewriteRuleTokenStream(adaptor,"token 90");
-		RewriteRuleTokenStream stream_107=new RewriteRuleTokenStream(adaptor,"token 107");
-		RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
-		RewriteRuleTokenStream stream_94=new RewriteRuleTokenStream(adaptor,"token 94");
-		RewriteRuleTokenStream stream_97=new RewriteRuleTokenStream(adaptor,"token 97");
+		RewriteRuleTokenStream stream_93=new RewriteRuleTokenStream(adaptor,"token 93");
+		RewriteRuleTokenStream stream_96=new RewriteRuleTokenStream(adaptor,"token 96");
 
 		try {
-			// Leac.g:93:5: ( 'void' -> VOID_TYPENAME | 'bool' -> BOOL_TYPENAME | 'int' -> INT_TYPENAME | 'float' -> FLOAT_TYPENAME | 'char' -> CHAR_TYPENAME )
+			// Leac.g:91:5: ( 'void' -> VOID_TYPENAME | 'bool' -> BOOL_TYPENAME | 'int' -> INT_TYPENAME | 'float' -> FLOAT_TYPENAME | 'char' -> CHAR_TYPENAME )
 			int alt5=5;
 			switch ( input.LA(1) ) {
-			case 107:
+			case 106:
 				{
 				alt5=1;
 				}
 				break;
-			case 90:
+			case 89:
 				{
 				alt5=2;
 				}
 				break;
-			case 97:
+			case 96:
 				{
 				alt5=3;
 				}
 				break;
-			case 94:
+			case 93:
 				{
 				alt5=4;
 				}
 				break;
-			case 91:
+			case 90:
 				{
 				alt5=5;
 				}
@@ -1006,10 +1007,10 @@ public class LeacParser extends Parser {
 			}
 			switch (alt5) {
 				case 1 :
-					// Leac.g:93:7: 'void'
+					// Leac.g:91:7: 'void'
 					{
-					string_literal27=(Token)match(input,107,FOLLOW_107_in_atom_typename654);  
-					stream_107.add(string_literal27);
+					string_literal27=(Token)match(input,106,FOLLOW_106_in_atom_typename644);  
+					stream_106.add(string_literal27);
 
 					// AST REWRITE
 					// elements: 
@@ -1022,7 +1023,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 93:14: -> VOID_TYPENAME
+					// 91:14: -> VOID_TYPENAME
 					{
 						adaptor.addChild(root_0, (Object)adaptor.create(VOID_TYPENAME, "VOID_TYPENAME"));
 					}
@@ -1033,10 +1034,10 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:94:7: 'bool'
+					// Leac.g:92:7: 'bool'
 					{
-					string_literal28=(Token)match(input,90,FOLLOW_90_in_atom_typename666);  
-					stream_90.add(string_literal28);
+					string_literal28=(Token)match(input,89,FOLLOW_89_in_atom_typename656);  
+					stream_89.add(string_literal28);
 
 					// AST REWRITE
 					// elements: 
@@ -1049,7 +1050,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 94:14: -> BOOL_TYPENAME
+					// 92:14: -> BOOL_TYPENAME
 					{
 						adaptor.addChild(root_0, (Object)adaptor.create(BOOL_TYPENAME, "BOOL_TYPENAME"));
 					}
@@ -1060,10 +1061,10 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 3 :
-					// Leac.g:95:7: 'int'
+					// Leac.g:93:7: 'int'
 					{
-					string_literal29=(Token)match(input,97,FOLLOW_97_in_atom_typename678);  
-					stream_97.add(string_literal29);
+					string_literal29=(Token)match(input,96,FOLLOW_96_in_atom_typename668);  
+					stream_96.add(string_literal29);
 
 					// AST REWRITE
 					// elements: 
@@ -1076,7 +1077,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 95:13: -> INT_TYPENAME
+					// 93:13: -> INT_TYPENAME
 					{
 						adaptor.addChild(root_0, (Object)adaptor.create(INT_TYPENAME, "INT_TYPENAME"));
 					}
@@ -1087,10 +1088,10 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 4 :
-					// Leac.g:96:7: 'float'
+					// Leac.g:94:7: 'float'
 					{
-					string_literal30=(Token)match(input,94,FOLLOW_94_in_atom_typename690);  
-					stream_94.add(string_literal30);
+					string_literal30=(Token)match(input,93,FOLLOW_93_in_atom_typename680);  
+					stream_93.add(string_literal30);
 
 					// AST REWRITE
 					// elements: 
@@ -1103,7 +1104,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 96:15: -> FLOAT_TYPENAME
+					// 94:15: -> FLOAT_TYPENAME
 					{
 						adaptor.addChild(root_0, (Object)adaptor.create(FLOAT_TYPENAME, "FLOAT_TYPENAME"));
 					}
@@ -1114,10 +1115,10 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 5 :
-					// Leac.g:97:7: 'char'
+					// Leac.g:95:7: 'char'
 					{
-					string_literal31=(Token)match(input,91,FOLLOW_91_in_atom_typename702);  
-					stream_91.add(string_literal31);
+					string_literal31=(Token)match(input,90,FOLLOW_90_in_atom_typename692);  
+					stream_90.add(string_literal31);
 
 					// AST REWRITE
 					// elements: 
@@ -1130,7 +1131,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 97:14: -> CHAR_TYPENAME
+					// 95:14: -> CHAR_TYPENAME
 					{
 						adaptor.addChild(root_0, (Object)adaptor.create(CHAR_TYPENAME, "CHAR_TYPENAME"));
 					}
@@ -1169,7 +1170,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "array_typename"
-	// Leac.g:100:1: array_typename : 'array' '[' range_list ']' 'of' atom_typename -> ^( ARRAY atom_typename range_list ) ;
+	// Leac.g:98:1: array_typename : 'array' '[' range_list ']' 'of' atom_typename -> ^( ARRAY atom_typename range_list ) ;
 	public final LeacParser.array_typename_return array_typename() throws RecognitionException {
 		LeacParser.array_typename_return retval = new LeacParser.array_typename_return();
 		retval.start = input.LT(1);
@@ -1187,41 +1188,41 @@ public class LeacParser extends Parser {
 		Object char_literal33_tree=null;
 		Object char_literal35_tree=null;
 		Object string_literal36_tree=null;
-		RewriteRuleTokenStream stream_99=new RewriteRuleTokenStream(adaptor,"token 99");
-		RewriteRuleTokenStream stream_89=new RewriteRuleTokenStream(adaptor,"token 89");
+		RewriteRuleTokenStream stream_88=new RewriteRuleTokenStream(adaptor,"token 88");
+		RewriteRuleTokenStream stream_84=new RewriteRuleTokenStream(adaptor,"token 84");
 		RewriteRuleTokenStream stream_85=new RewriteRuleTokenStream(adaptor,"token 85");
-		RewriteRuleTokenStream stream_86=new RewriteRuleTokenStream(adaptor,"token 86");
+		RewriteRuleTokenStream stream_98=new RewriteRuleTokenStream(adaptor,"token 98");
 		RewriteRuleSubtreeStream stream_atom_typename=new RewriteRuleSubtreeStream(adaptor,"rule atom_typename");
 		RewriteRuleSubtreeStream stream_range_list=new RewriteRuleSubtreeStream(adaptor,"rule range_list");
 
 		try {
-			// Leac.g:101:5: ( 'array' '[' range_list ']' 'of' atom_typename -> ^( ARRAY atom_typename range_list ) )
-			// Leac.g:101:7: 'array' '[' range_list ']' 'of' atom_typename
+			// Leac.g:99:5: ( 'array' '[' range_list ']' 'of' atom_typename -> ^( ARRAY atom_typename range_list ) )
+			// Leac.g:99:7: 'array' '[' range_list ']' 'of' atom_typename
 			{
-			string_literal32=(Token)match(input,89,FOLLOW_89_in_array_typename723);  
-			stream_89.add(string_literal32);
+			string_literal32=(Token)match(input,88,FOLLOW_88_in_array_typename713);  
+			stream_88.add(string_literal32);
 
-			char_literal33=(Token)match(input,85,FOLLOW_85_in_array_typename725);  
-			stream_85.add(char_literal33);
+			char_literal33=(Token)match(input,84,FOLLOW_84_in_array_typename715);  
+			stream_84.add(char_literal33);
 
-			pushFollow(FOLLOW_range_list_in_array_typename727);
+			pushFollow(FOLLOW_range_list_in_array_typename717);
 			range_list34=range_list();
 			state._fsp--;
 
 			stream_range_list.add(range_list34.getTree());
-			char_literal35=(Token)match(input,86,FOLLOW_86_in_array_typename729);  
-			stream_86.add(char_literal35);
+			char_literal35=(Token)match(input,85,FOLLOW_85_in_array_typename719);  
+			stream_85.add(char_literal35);
 
-			string_literal36=(Token)match(input,99,FOLLOW_99_in_array_typename731);  
-			stream_99.add(string_literal36);
+			string_literal36=(Token)match(input,98,FOLLOW_98_in_array_typename721);  
+			stream_98.add(string_literal36);
 
-			pushFollow(FOLLOW_atom_typename_in_array_typename733);
+			pushFollow(FOLLOW_atom_typename_in_array_typename723);
 			atom_typename37=atom_typename();
 			state._fsp--;
 
 			stream_atom_typename.add(atom_typename37.getTree());
 			// AST REWRITE
-			// elements: range_list, atom_typename
+			// elements: atom_typename, range_list
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1231,9 +1232,9 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 101:53: -> ^( ARRAY atom_typename range_list )
+			// 99:53: -> ^( ARRAY atom_typename range_list )
 			{
-				// Leac.g:101:56: ^( ARRAY atom_typename range_list )
+				// Leac.g:99:56: ^( ARRAY atom_typename range_list )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ARRAY, "ARRAY"), root_1);
@@ -1276,7 +1277,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "range_list"
-	// Leac.g:104:1: range_list : range ( ',' range )* -> ^( RANGE_LIST ( range )+ ) ;
+	// Leac.g:102:1: range_list : range ( ',' range )* -> ^( RANGE_LIST ( range )+ ) ;
 	public final LeacParser.range_list_return range_list() throws RecognitionException {
 		LeacParser.range_list_return retval = new LeacParser.range_list_return();
 		retval.start = input.LT(1);
@@ -1288,35 +1289,35 @@ public class LeacParser extends Parser {
 		ParserRuleReturnScope range40 =null;
 
 		Object char_literal39_tree=null;
-		RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
+		RewriteRuleTokenStream stream_72=new RewriteRuleTokenStream(adaptor,"token 72");
 		RewriteRuleSubtreeStream stream_range=new RewriteRuleSubtreeStream(adaptor,"rule range");
 
 		try {
-			// Leac.g:105:5: ( range ( ',' range )* -> ^( RANGE_LIST ( range )+ ) )
-			// Leac.g:105:7: range ( ',' range )*
+			// Leac.g:103:5: ( range ( ',' range )* -> ^( RANGE_LIST ( range )+ ) )
+			// Leac.g:103:7: range ( ',' range )*
 			{
-			pushFollow(FOLLOW_range_in_range_list760);
+			pushFollow(FOLLOW_range_in_range_list750);
 			range38=range();
 			state._fsp--;
 
 			stream_range.add(range38.getTree());
-			// Leac.g:105:13: ( ',' range )*
+			// Leac.g:103:13: ( ',' range )*
 			loop6:
 			while (true) {
 				int alt6=2;
 				int LA6_0 = input.LA(1);
-				if ( (LA6_0==73) ) {
+				if ( (LA6_0==72) ) {
 					alt6=1;
 				}
 
 				switch (alt6) {
 				case 1 :
-					// Leac.g:105:14: ',' range
+					// Leac.g:103:14: ',' range
 					{
-					char_literal39=(Token)match(input,73,FOLLOW_73_in_range_list763);  
-					stream_73.add(char_literal39);
+					char_literal39=(Token)match(input,72,FOLLOW_72_in_range_list753);  
+					stream_72.add(char_literal39);
 
-					pushFollow(FOLLOW_range_in_range_list765);
+					pushFollow(FOLLOW_range_in_range_list755);
 					range40=range();
 					state._fsp--;
 
@@ -1340,9 +1341,9 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 105:26: -> ^( RANGE_LIST ( range )+ )
+			// 103:26: -> ^( RANGE_LIST ( range )+ )
 			{
-				// Leac.g:105:29: ^( RANGE_LIST ( range )+ )
+				// Leac.g:103:29: ^( RANGE_LIST ( range )+ )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(RANGE_LIST, "RANGE_LIST"), root_1);
@@ -1391,7 +1392,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "range"
-	// Leac.g:107:1: range : inf= int_ext '..' sup= int_ext -> ^( RANGE $inf $sup) ;
+	// Leac.g:105:1: range : inf= int_ext '..' sup= int_ext -> ^( RANGE $inf $sup) ;
 	public final LeacParser.range_return range() throws RecognitionException {
 		LeacParser.range_return retval = new LeacParser.range_return();
 		retval.start = input.LT(1);
@@ -1403,28 +1404,28 @@ public class LeacParser extends Parser {
 		ParserRuleReturnScope sup =null;
 
 		Object string_literal41_tree=null;
-		RewriteRuleTokenStream stream_75=new RewriteRuleTokenStream(adaptor,"token 75");
+		RewriteRuleTokenStream stream_74=new RewriteRuleTokenStream(adaptor,"token 74");
 		RewriteRuleSubtreeStream stream_int_ext=new RewriteRuleSubtreeStream(adaptor,"rule int_ext");
 
 		try {
-			// Leac.g:108:5: (inf= int_ext '..' sup= int_ext -> ^( RANGE $inf $sup) )
-			// Leac.g:108:7: inf= int_ext '..' sup= int_ext
+			// Leac.g:106:5: (inf= int_ext '..' sup= int_ext -> ^( RANGE $inf $sup) )
+			// Leac.g:106:7: inf= int_ext '..' sup= int_ext
 			{
-			pushFollow(FOLLOW_int_ext_in_range794);
+			pushFollow(FOLLOW_int_ext_in_range784);
 			inf=int_ext();
 			state._fsp--;
 
 			stream_int_ext.add(inf.getTree());
-			string_literal41=(Token)match(input,75,FOLLOW_75_in_range796);  
-			stream_75.add(string_literal41);
+			string_literal41=(Token)match(input,74,FOLLOW_74_in_range786);  
+			stream_74.add(string_literal41);
 
-			pushFollow(FOLLOW_int_ext_in_range800);
+			pushFollow(FOLLOW_int_ext_in_range790);
 			sup=int_ext();
 			state._fsp--;
 
 			stream_int_ext.add(sup.getTree());
 			// AST REWRITE
-			// elements: inf, sup
+			// elements: sup, inf
 			// token labels: 
 			// rule labels: inf, retval, sup
 			// token list labels: 
@@ -1436,9 +1437,9 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_sup=new RewriteRuleSubtreeStream(adaptor,"rule sup",sup!=null?sup.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 108:36: -> ^( RANGE $inf $sup)
+			// 106:36: -> ^( RANGE $inf $sup)
 			{
-				// Leac.g:108:39: ^( RANGE $inf $sup)
+				// Leac.g:106:39: ^( RANGE $inf $sup)
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(RANGE, "RANGE"), root_1);
@@ -1481,7 +1482,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "int_ext"
-	// Leac.g:111:1: int_ext : ( INT -> INT | '-' INT -> INT );
+	// Leac.g:109:1: int_ext : ( INT -> INT | '-' INT -> INT );
 	public final LeacParser.int_ext_return int_ext() throws RecognitionException {
 		LeacParser.int_ext_return retval = new LeacParser.int_ext_return();
 		retval.start = input.LT(1);
@@ -1495,17 +1496,17 @@ public class LeacParser extends Parser {
 		Object INT42_tree=null;
 		Object char_literal43_tree=null;
 		Object INT44_tree=null;
-		RewriteRuleTokenStream stream_74=new RewriteRuleTokenStream(adaptor,"token 74");
+		RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
 		RewriteRuleTokenStream stream_INT=new RewriteRuleTokenStream(adaptor,"token INT");
 
 		try {
-			// Leac.g:112:5: ( INT -> INT | '-' INT -> INT )
+			// Leac.g:110:5: ( INT -> INT | '-' INT -> INT )
 			int alt7=2;
 			int LA7_0 = input.LA(1);
 			if ( (LA7_0==INT) ) {
 				alt7=1;
 			}
-			else if ( (LA7_0==74) ) {
+			else if ( (LA7_0==73) ) {
 				alt7=2;
 			}
 
@@ -1517,9 +1518,9 @@ public class LeacParser extends Parser {
 
 			switch (alt7) {
 				case 1 :
-					// Leac.g:112:7: INT
+					// Leac.g:110:7: INT
 					{
-					INT42=(Token)match(input,INT,FOLLOW_INT_in_int_ext829);  
+					INT42=(Token)match(input,INT,FOLLOW_INT_in_int_ext819);  
 					stream_INT.add(INT42);
 
 					// AST REWRITE
@@ -1533,7 +1534,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 112:11: -> INT
+					// 110:11: -> INT
 					{
 						adaptor.addChild(root_0, stream_INT.nextNode());
 					}
@@ -1544,12 +1545,12 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:113:7: '-' INT
+					// Leac.g:111:7: '-' INT
 					{
-					char_literal43=(Token)match(input,74,FOLLOW_74_in_int_ext841);  
-					stream_74.add(char_literal43);
+					char_literal43=(Token)match(input,73,FOLLOW_73_in_int_ext831);  
+					stream_73.add(char_literal43);
 
-					INT44=(Token)match(input,INT,FOLLOW_INT_in_int_ext843);  
+					INT44=(Token)match(input,INT,FOLLOW_INT_in_int_ext833);  
 					stream_INT.add(INT44);
 
 					 INT44.setText("-" + INT44.getText()); 
@@ -1564,7 +1565,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 113:55: -> INT
+					// 111:55: -> INT
 					{
 						adaptor.addChild(root_0, stream_INT.nextNode());
 					}
@@ -1603,7 +1604,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "param_list"
-	// Leac.g:116:1: param_list : ( -> ^( PARAM_LIST ) | param ( ',' param )* -> ^( PARAM_LIST ( param )+ ) );
+	// Leac.g:114:1: param_list : ( -> ^( PARAM_LIST ) | param ( ',' param )* -> ^( PARAM_LIST ( param )+ ) );
 	public final LeacParser.param_list_return param_list() throws RecognitionException {
 		LeacParser.param_list_return retval = new LeacParser.param_list_return();
 		retval.start = input.LT(1);
@@ -1615,17 +1616,17 @@ public class LeacParser extends Parser {
 		ParserRuleReturnScope param47 =null;
 
 		Object char_literal46_tree=null;
-		RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
+		RewriteRuleTokenStream stream_72=new RewriteRuleTokenStream(adaptor,"token 72");
 		RewriteRuleSubtreeStream stream_param=new RewriteRuleSubtreeStream(adaptor,"rule param");
 
 		try {
-			// Leac.g:117:5: ( -> ^( PARAM_LIST ) | param ( ',' param )* -> ^( PARAM_LIST ( param )+ ) )
+			// Leac.g:115:5: ( -> ^( PARAM_LIST ) | param ( ',' param )* -> ^( PARAM_LIST ( param )+ ) )
 			int alt9=2;
 			int LA9_0 = input.LA(1);
-			if ( (LA9_0==70) ) {
+			if ( (LA9_0==69) ) {
 				alt9=1;
 			}
-			else if ( (LA9_0==IDF||LA9_0==103) ) {
+			else if ( (LA9_0==IDF||LA9_0==102) ) {
 				alt9=2;
 			}
 
@@ -1637,7 +1638,7 @@ public class LeacParser extends Parser {
 
 			switch (alt9) {
 				case 1 :
-					// Leac.g:117:21: 
+					// Leac.g:115:21: 
 					{
 					// AST REWRITE
 					// elements: 
@@ -1650,9 +1651,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 117:21: -> ^( PARAM_LIST )
+					// 115:21: -> ^( PARAM_LIST )
 					{
-						// Leac.g:117:24: ^( PARAM_LIST )
+						// Leac.g:115:24: ^( PARAM_LIST )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PARAM_LIST, "PARAM_LIST"), root_1);
@@ -1667,30 +1668,30 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:118:7: param ( ',' param )*
+					// Leac.g:116:7: param ( ',' param )*
 					{
-					pushFollow(FOLLOW_param_in_param_list880);
+					pushFollow(FOLLOW_param_in_param_list870);
 					param45=param();
 					state._fsp--;
 
 					stream_param.add(param45.getTree());
-					// Leac.g:118:13: ( ',' param )*
+					// Leac.g:116:13: ( ',' param )*
 					loop8:
 					while (true) {
 						int alt8=2;
 						int LA8_0 = input.LA(1);
-						if ( (LA8_0==73) ) {
+						if ( (LA8_0==72) ) {
 							alt8=1;
 						}
 
 						switch (alt8) {
 						case 1 :
-							// Leac.g:118:14: ',' param
+							// Leac.g:116:14: ',' param
 							{
-							char_literal46=(Token)match(input,73,FOLLOW_73_in_param_list883);  
-							stream_73.add(char_literal46);
+							char_literal46=(Token)match(input,72,FOLLOW_72_in_param_list873);  
+							stream_72.add(char_literal46);
 
-							pushFollow(FOLLOW_param_in_param_list885);
+							pushFollow(FOLLOW_param_in_param_list875);
 							param47=param();
 							state._fsp--;
 
@@ -1714,9 +1715,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 118:26: -> ^( PARAM_LIST ( param )+ )
+					// 116:26: -> ^( PARAM_LIST ( param )+ )
 					{
-						// Leac.g:118:29: ^( PARAM_LIST ( param )+ )
+						// Leac.g:116:29: ^( PARAM_LIST ( param )+ )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PARAM_LIST, "PARAM_LIST"), root_1);
@@ -1767,7 +1768,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "param"
-	// Leac.g:120:1: param : ( IDF ':' typename -> ^( PARAM typename BY_COPY IDF ) | 'ref' IDF ':' typename -> ^( PARAM typename BY_REF IDF ) );
+	// Leac.g:118:1: param : ( IDF ':' typename -> ^( PARAM typename BY_COPY IDF ) | 'ref' IDF ':' typename -> ^( PARAM typename BY_REF IDF ) );
 	public final LeacParser.param_return param() throws RecognitionException {
 		LeacParser.param_return retval = new LeacParser.param_return();
 		retval.start = input.LT(1);
@@ -1787,19 +1788,19 @@ public class LeacParser extends Parser {
 		Object string_literal51_tree=null;
 		Object IDF52_tree=null;
 		Object char_literal53_tree=null;
-		RewriteRuleTokenStream stream_77=new RewriteRuleTokenStream(adaptor,"token 77");
-		RewriteRuleTokenStream stream_103=new RewriteRuleTokenStream(adaptor,"token 103");
+		RewriteRuleTokenStream stream_102=new RewriteRuleTokenStream(adaptor,"token 102");
 		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
+		RewriteRuleTokenStream stream_76=new RewriteRuleTokenStream(adaptor,"token 76");
 		RewriteRuleSubtreeStream stream_typename=new RewriteRuleSubtreeStream(adaptor,"rule typename");
 
 		try {
-			// Leac.g:121:5: ( IDF ':' typename -> ^( PARAM typename BY_COPY IDF ) | 'ref' IDF ':' typename -> ^( PARAM typename BY_REF IDF ) )
+			// Leac.g:119:5: ( IDF ':' typename -> ^( PARAM typename BY_COPY IDF ) | 'ref' IDF ':' typename -> ^( PARAM typename BY_REF IDF ) )
 			int alt10=2;
 			int LA10_0 = input.LA(1);
 			if ( (LA10_0==IDF) ) {
 				alt10=1;
 			}
-			else if ( (LA10_0==103) ) {
+			else if ( (LA10_0==102) ) {
 				alt10=2;
 			}
 
@@ -1811,21 +1812,21 @@ public class LeacParser extends Parser {
 
 			switch (alt10) {
 				case 1 :
-					// Leac.g:121:7: IDF ':' typename
+					// Leac.g:119:7: IDF ':' typename
 					{
-					IDF48=(Token)match(input,IDF,FOLLOW_IDF_in_param912);  
+					IDF48=(Token)match(input,IDF,FOLLOW_IDF_in_param902);  
 					stream_IDF.add(IDF48);
 
-					char_literal49=(Token)match(input,77,FOLLOW_77_in_param914);  
-					stream_77.add(char_literal49);
+					char_literal49=(Token)match(input,76,FOLLOW_76_in_param904);  
+					stream_76.add(char_literal49);
 
-					pushFollow(FOLLOW_typename_in_param916);
+					pushFollow(FOLLOW_typename_in_param906);
 					typename50=typename();
 					state._fsp--;
 
 					stream_typename.add(typename50.getTree());
 					// AST REWRITE
-					// elements: typename, IDF
+					// elements: IDF, typename
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1835,9 +1836,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 121:24: -> ^( PARAM typename BY_COPY IDF )
+					// 119:24: -> ^( PARAM typename BY_COPY IDF )
 					{
-						// Leac.g:121:27: ^( PARAM typename BY_COPY IDF )
+						// Leac.g:119:27: ^( PARAM typename BY_COPY IDF )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PARAM, "PARAM"), root_1);
@@ -1855,24 +1856,24 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:122:7: 'ref' IDF ':' typename
+					// Leac.g:120:7: 'ref' IDF ':' typename
 					{
-					string_literal51=(Token)match(input,103,FOLLOW_103_in_param936);  
-					stream_103.add(string_literal51);
+					string_literal51=(Token)match(input,102,FOLLOW_102_in_param926);  
+					stream_102.add(string_literal51);
 
-					IDF52=(Token)match(input,IDF,FOLLOW_IDF_in_param938);  
+					IDF52=(Token)match(input,IDF,FOLLOW_IDF_in_param928);  
 					stream_IDF.add(IDF52);
 
-					char_literal53=(Token)match(input,77,FOLLOW_77_in_param940);  
-					stream_77.add(char_literal53);
+					char_literal53=(Token)match(input,76,FOLLOW_76_in_param930);  
+					stream_76.add(char_literal53);
 
-					pushFollow(FOLLOW_typename_in_param942);
+					pushFollow(FOLLOW_typename_in_param932);
 					typename54=typename();
 					state._fsp--;
 
 					stream_typename.add(typename54.getTree());
 					// AST REWRITE
-					// elements: IDF, typename
+					// elements: typename, IDF
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1882,9 +1883,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 122:30: -> ^( PARAM typename BY_REF IDF )
+					// 120:30: -> ^( PARAM typename BY_REF IDF )
 					{
-						// Leac.g:122:33: ^( PARAM typename BY_REF IDF )
+						// Leac.g:120:33: ^( PARAM typename BY_REF IDF )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PARAM, "PARAM"), root_1);
@@ -1930,7 +1931,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "statement"
-	// Leac.g:125:1: statement : ( conditional -> conditional | loop -> loop | affect_or_procedure_call -> affect_or_procedure_call | returning -> returning | block -> block | read -> read | write -> write );
+	// Leac.g:123:1: statement : ( conditional -> conditional | loop -> loop | affect_or_procedure_call -> affect_or_procedure_call | returning -> returning | block -> block | read -> read | write -> write );
 	public final LeacParser.statement_return statement() throws RecognitionException {
 		LeacParser.statement_return retval = new LeacParser.statement_return();
 		retval.start = input.LT(1);
@@ -1954,15 +1955,15 @@ public class LeacParser extends Parser {
 		RewriteRuleSubtreeStream stream_write=new RewriteRuleSubtreeStream(adaptor,"rule write");
 
 		try {
-			// Leac.g:126:5: ( conditional -> conditional | loop -> loop | affect_or_procedure_call -> affect_or_procedure_call | returning -> returning | block -> block | read -> read | write -> write )
+			// Leac.g:124:5: ( conditional -> conditional | loop -> loop | affect_or_procedure_call -> affect_or_procedure_call | returning -> returning | block -> block | read -> read | write -> write )
 			int alt11=7;
 			switch ( input.LA(1) ) {
-			case 96:
+			case 95:
 				{
 				alt11=1;
 				}
 				break;
-			case 108:
+			case 107:
 				{
 				alt11=2;
 				}
@@ -1972,22 +1973,22 @@ public class LeacParser extends Parser {
 				alt11=3;
 				}
 				break;
-			case 104:
+			case 103:
 				{
 				alt11=4;
 				}
 				break;
-			case 110:
+			case 109:
 				{
 				alt11=5;
 				}
 				break;
-			case 102:
+			case 101:
 				{
 				alt11=6;
 				}
 				break;
-			case 109:
+			case 108:
 				{
 				alt11=7;
 				}
@@ -1999,9 +2000,9 @@ public class LeacParser extends Parser {
 			}
 			switch (alt11) {
 				case 1 :
-					// Leac.g:126:7: conditional
+					// Leac.g:124:7: conditional
 					{
-					pushFollow(FOLLOW_conditional_in_statement971);
+					pushFollow(FOLLOW_conditional_in_statement961);
 					conditional55=conditional();
 					state._fsp--;
 
@@ -2017,7 +2018,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 126:19: -> conditional
+					// 124:19: -> conditional
 					{
 						adaptor.addChild(root_0, stream_conditional.nextTree());
 					}
@@ -2028,9 +2029,9 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:127:7: loop
+					// Leac.g:125:7: loop
 					{
-					pushFollow(FOLLOW_loop_in_statement983);
+					pushFollow(FOLLOW_loop_in_statement973);
 					loop56=loop();
 					state._fsp--;
 
@@ -2046,7 +2047,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 127:12: -> loop
+					// 125:12: -> loop
 					{
 						adaptor.addChild(root_0, stream_loop.nextTree());
 					}
@@ -2057,9 +2058,9 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 3 :
-					// Leac.g:128:7: affect_or_procedure_call
+					// Leac.g:126:7: affect_or_procedure_call
 					{
-					pushFollow(FOLLOW_affect_or_procedure_call_in_statement995);
+					pushFollow(FOLLOW_affect_or_procedure_call_in_statement985);
 					affect_or_procedure_call57=affect_or_procedure_call();
 					state._fsp--;
 
@@ -2075,7 +2076,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 128:32: -> affect_or_procedure_call
+					// 126:32: -> affect_or_procedure_call
 					{
 						adaptor.addChild(root_0, stream_affect_or_procedure_call.nextTree());
 					}
@@ -2086,9 +2087,9 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 4 :
-					// Leac.g:129:7: returning
+					// Leac.g:127:7: returning
 					{
-					pushFollow(FOLLOW_returning_in_statement1007);
+					pushFollow(FOLLOW_returning_in_statement997);
 					returning58=returning();
 					state._fsp--;
 
@@ -2104,7 +2105,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 129:17: -> returning
+					// 127:17: -> returning
 					{
 						adaptor.addChild(root_0, stream_returning.nextTree());
 					}
@@ -2115,9 +2116,9 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 5 :
-					// Leac.g:130:7: block
+					// Leac.g:128:7: block
 					{
-					pushFollow(FOLLOW_block_in_statement1019);
+					pushFollow(FOLLOW_block_in_statement1009);
 					block59=block();
 					state._fsp--;
 
@@ -2133,7 +2134,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 130:13: -> block
+					// 128:13: -> block
 					{
 						adaptor.addChild(root_0, stream_block.nextTree());
 					}
@@ -2144,9 +2145,9 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 6 :
-					// Leac.g:131:7: read
+					// Leac.g:129:7: read
 					{
-					pushFollow(FOLLOW_read_in_statement1031);
+					pushFollow(FOLLOW_read_in_statement1021);
 					read60=read();
 					state._fsp--;
 
@@ -2162,7 +2163,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 131:12: -> read
+					// 129:12: -> read
 					{
 						adaptor.addChild(root_0, stream_read.nextTree());
 					}
@@ -2173,9 +2174,9 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 7 :
-					// Leac.g:132:7: write
+					// Leac.g:130:7: write
 					{
-					pushFollow(FOLLOW_write_in_statement1043);
+					pushFollow(FOLLOW_write_in_statement1033);
 					write61=write();
 					state._fsp--;
 
@@ -2191,7 +2192,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 132:13: -> write
+					// 130:13: -> write
 					{
 						adaptor.addChild(root_0, stream_write.nextTree());
 					}
@@ -2230,7 +2231,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "conditional"
-	// Leac.g:135:1: conditional : 'if' expr 'then' first= statement ( options {greedy=true; } : 'else' second= statement -> ^( CONDITIONAL expr $first $second) | -> ^( CONDITIONAL expr $first PASS ) ) ;
+	// Leac.g:133:1: conditional : 'if' expr 'then' first= statement ( options {greedy=true; } : 'else' second= statement -> ^( CONDITIONAL expr $first $second) | -> ^( CONDITIONAL expr $first ^( BLOCK ) ) ) ;
 	public final LeacParser.conditional_return conditional() throws RecognitionException {
 		LeacParser.conditional_return retval = new LeacParser.conditional_return();
 		retval.start = input.LT(1);
@@ -2247,39 +2248,39 @@ public class LeacParser extends Parser {
 		Object string_literal62_tree=null;
 		Object string_literal64_tree=null;
 		Object string_literal65_tree=null;
-		RewriteRuleTokenStream stream_105=new RewriteRuleTokenStream(adaptor,"token 105");
-		RewriteRuleTokenStream stream_93=new RewriteRuleTokenStream(adaptor,"token 93");
-		RewriteRuleTokenStream stream_96=new RewriteRuleTokenStream(adaptor,"token 96");
+		RewriteRuleTokenStream stream_104=new RewriteRuleTokenStream(adaptor,"token 104");
+		RewriteRuleTokenStream stream_92=new RewriteRuleTokenStream(adaptor,"token 92");
+		RewriteRuleTokenStream stream_95=new RewriteRuleTokenStream(adaptor,"token 95");
 		RewriteRuleSubtreeStream stream_statement=new RewriteRuleSubtreeStream(adaptor,"rule statement");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 
 		try {
-			// Leac.g:136:5: ( 'if' expr 'then' first= statement ( options {greedy=true; } : 'else' second= statement -> ^( CONDITIONAL expr $first $second) | -> ^( CONDITIONAL expr $first PASS ) ) )
-			// Leac.g:136:7: 'if' expr 'then' first= statement ( options {greedy=true; } : 'else' second= statement -> ^( CONDITIONAL expr $first $second) | -> ^( CONDITIONAL expr $first PASS ) )
+			// Leac.g:134:5: ( 'if' expr 'then' first= statement ( options {greedy=true; } : 'else' second= statement -> ^( CONDITIONAL expr $first $second) | -> ^( CONDITIONAL expr $first ^( BLOCK ) ) ) )
+			// Leac.g:134:7: 'if' expr 'then' first= statement ( options {greedy=true; } : 'else' second= statement -> ^( CONDITIONAL expr $first $second) | -> ^( CONDITIONAL expr $first ^( BLOCK ) ) )
 			{
-			string_literal62=(Token)match(input,96,FOLLOW_96_in_conditional1064);  
-			stream_96.add(string_literal62);
+			string_literal62=(Token)match(input,95,FOLLOW_95_in_conditional1054);  
+			stream_95.add(string_literal62);
 
-			pushFollow(FOLLOW_expr_in_conditional1066);
+			pushFollow(FOLLOW_expr_in_conditional1056);
 			expr63=expr();
 			state._fsp--;
 
 			stream_expr.add(expr63.getTree());
-			string_literal64=(Token)match(input,105,FOLLOW_105_in_conditional1068);  
-			stream_105.add(string_literal64);
+			string_literal64=(Token)match(input,104,FOLLOW_104_in_conditional1058);  
+			stream_104.add(string_literal64);
 
-			pushFollow(FOLLOW_statement_in_conditional1072);
+			pushFollow(FOLLOW_statement_in_conditional1062);
 			first=statement();
 			state._fsp--;
 
 			stream_statement.add(first.getTree());
-			// Leac.g:137:9: ( options {greedy=true; } : 'else' second= statement -> ^( CONDITIONAL expr $first $second) | -> ^( CONDITIONAL expr $first PASS ) )
+			// Leac.g:135:9: ( options {greedy=true; } : 'else' second= statement -> ^( CONDITIONAL expr $first $second) | -> ^( CONDITIONAL expr $first ^( BLOCK ) ) )
 			int alt12=2;
 			int LA12_0 = input.LA(1);
-			if ( (LA12_0==93) ) {
+			if ( (LA12_0==92) ) {
 				alt12=1;
 			}
-			else if ( (LA12_0==EOF||LA12_0==78||LA12_0==111) ) {
+			else if ( (LA12_0==EOF||LA12_0==77||LA12_0==110) ) {
 				alt12=2;
 			}
 
@@ -2291,18 +2292,18 @@ public class LeacParser extends Parser {
 
 			switch (alt12) {
 				case 1 :
-					// Leac.g:137:39: 'else' second= statement
+					// Leac.g:135:39: 'else' second= statement
 					{
-					string_literal65=(Token)match(input,93,FOLLOW_93_in_conditional1096);  
-					stream_93.add(string_literal65);
+					string_literal65=(Token)match(input,92,FOLLOW_92_in_conditional1086);  
+					stream_92.add(string_literal65);
 
-					pushFollow(FOLLOW_statement_in_conditional1100);
+					pushFollow(FOLLOW_statement_in_conditional1090);
 					second=statement();
 					state._fsp--;
 
 					stream_statement.add(second.getTree());
 					// AST REWRITE
-					// elements: second, first, expr
+					// elements: expr, first, second
 					// token labels: 
 					// rule labels: first, retval, second
 					// token list labels: 
@@ -2314,9 +2315,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_second=new RewriteRuleSubtreeStream(adaptor,"rule second",second!=null?second.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 137:63: -> ^( CONDITIONAL expr $first $second)
+					// 135:63: -> ^( CONDITIONAL expr $first $second)
 					{
-						// Leac.g:137:66: ^( CONDITIONAL expr $first $second)
+						// Leac.g:135:66: ^( CONDITIONAL expr $first $second)
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONDITIONAL, "CONDITIONAL"), root_1);
@@ -2334,10 +2335,10 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:138:25: 
+					// Leac.g:136:25: 
 					{
 					// AST REWRITE
-					// elements: expr, first
+					// elements: first, expr
 					// token labels: 
 					// rule labels: first, retval
 					// token list labels: 
@@ -2348,15 +2349,21 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 138:25: -> ^( CONDITIONAL expr $first PASS )
+					// 136:25: -> ^( CONDITIONAL expr $first ^( BLOCK ) )
 					{
-						// Leac.g:138:28: ^( CONDITIONAL expr $first PASS )
+						// Leac.g:136:28: ^( CONDITIONAL expr $first ^( BLOCK ) )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONDITIONAL, "CONDITIONAL"), root_1);
 						adaptor.addChild(root_1, stream_expr.nextTree());
 						adaptor.addChild(root_1, stream_first.nextTree());
-						adaptor.addChild(root_1, (Object)adaptor.create(PASS, "PASS"));
+						// Leac.g:136:54: ^( BLOCK )
+						{
+						Object root_2 = (Object)adaptor.nil();
+						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(BLOCK, "BLOCK"), root_2);
+						adaptor.addChild(root_1, root_2);
+						}
+
 						adaptor.addChild(root_0, root_1);
 						}
 
@@ -2399,7 +2406,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "loop"
-	// Leac.g:142:1: loop : 'while' expr 'do' statement -> ^( LOOP expr statement ) ;
+	// Leac.g:140:1: loop : 'while' expr 'do' statement -> ^( LOOP expr statement ) ;
 	public final LeacParser.loop_return loop() throws RecognitionException {
 		LeacParser.loop_return retval = new LeacParser.loop_return();
 		retval.start = input.LT(1);
@@ -2413,33 +2420,33 @@ public class LeacParser extends Parser {
 
 		Object string_literal66_tree=null;
 		Object string_literal68_tree=null;
-		RewriteRuleTokenStream stream_108=new RewriteRuleTokenStream(adaptor,"token 108");
-		RewriteRuleTokenStream stream_92=new RewriteRuleTokenStream(adaptor,"token 92");
+		RewriteRuleTokenStream stream_107=new RewriteRuleTokenStream(adaptor,"token 107");
+		RewriteRuleTokenStream stream_91=new RewriteRuleTokenStream(adaptor,"token 91");
 		RewriteRuleSubtreeStream stream_statement=new RewriteRuleSubtreeStream(adaptor,"rule statement");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 
 		try {
-			// Leac.g:143:5: ( 'while' expr 'do' statement -> ^( LOOP expr statement ) )
-			// Leac.g:143:7: 'while' expr 'do' statement
+			// Leac.g:141:5: ( 'while' expr 'do' statement -> ^( LOOP expr statement ) )
+			// Leac.g:141:7: 'while' expr 'do' statement
 			{
-			string_literal66=(Token)match(input,108,FOLLOW_108_in_loop1166);  
-			stream_108.add(string_literal66);
+			string_literal66=(Token)match(input,107,FOLLOW_107_in_loop1158);  
+			stream_107.add(string_literal66);
 
-			pushFollow(FOLLOW_expr_in_loop1168);
+			pushFollow(FOLLOW_expr_in_loop1160);
 			expr67=expr();
 			state._fsp--;
 
 			stream_expr.add(expr67.getTree());
-			string_literal68=(Token)match(input,92,FOLLOW_92_in_loop1170);  
-			stream_92.add(string_literal68);
+			string_literal68=(Token)match(input,91,FOLLOW_91_in_loop1162);  
+			stream_91.add(string_literal68);
 
-			pushFollow(FOLLOW_statement_in_loop1172);
+			pushFollow(FOLLOW_statement_in_loop1164);
 			statement69=statement();
 			state._fsp--;
 
 			stream_statement.add(statement69.getTree());
 			// AST REWRITE
-			// elements: expr, statement
+			// elements: statement, expr
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -2449,9 +2456,9 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 143:35: -> ^( LOOP expr statement )
+			// 141:35: -> ^( LOOP expr statement )
 			{
-				// Leac.g:143:38: ^( LOOP expr statement )
+				// Leac.g:141:38: ^( LOOP expr statement )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(LOOP, "LOOP"), root_1);
@@ -2494,7 +2501,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "coord_list"
-	// Leac.g:146:1: coord_list : expr ( ',' expr )* -> ^( COORD_LIST ( expr )+ ) ;
+	// Leac.g:144:1: coord_list : expr ( ',' expr )* -> ^( COORD_LIST ( expr )+ ) ;
 	public final LeacParser.coord_list_return coord_list() throws RecognitionException {
 		LeacParser.coord_list_return retval = new LeacParser.coord_list_return();
 		retval.start = input.LT(1);
@@ -2506,35 +2513,35 @@ public class LeacParser extends Parser {
 		ParserRuleReturnScope expr72 =null;
 
 		Object char_literal71_tree=null;
-		RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
+		RewriteRuleTokenStream stream_72=new RewriteRuleTokenStream(adaptor,"token 72");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 
 		try {
-			// Leac.g:147:5: ( expr ( ',' expr )* -> ^( COORD_LIST ( expr )+ ) )
-			// Leac.g:147:7: expr ( ',' expr )*
+			// Leac.g:145:5: ( expr ( ',' expr )* -> ^( COORD_LIST ( expr )+ ) )
+			// Leac.g:145:7: expr ( ',' expr )*
 			{
-			pushFollow(FOLLOW_expr_in_coord_list1199);
+			pushFollow(FOLLOW_expr_in_coord_list1191);
 			expr70=expr();
 			state._fsp--;
 
 			stream_expr.add(expr70.getTree());
-			// Leac.g:147:12: ( ',' expr )*
+			// Leac.g:145:12: ( ',' expr )*
 			loop13:
 			while (true) {
 				int alt13=2;
 				int LA13_0 = input.LA(1);
-				if ( (LA13_0==73) ) {
+				if ( (LA13_0==72) ) {
 					alt13=1;
 				}
 
 				switch (alt13) {
 				case 1 :
-					// Leac.g:147:13: ',' expr
+					// Leac.g:145:13: ',' expr
 					{
-					char_literal71=(Token)match(input,73,FOLLOW_73_in_coord_list1202);  
-					stream_73.add(char_literal71);
+					char_literal71=(Token)match(input,72,FOLLOW_72_in_coord_list1194);  
+					stream_72.add(char_literal71);
 
-					pushFollow(FOLLOW_expr_in_coord_list1204);
+					pushFollow(FOLLOW_expr_in_coord_list1196);
 					expr72=expr();
 					state._fsp--;
 
@@ -2558,9 +2565,9 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 147:24: -> ^( COORD_LIST ( expr )+ )
+			// 145:24: -> ^( COORD_LIST ( expr )+ )
 			{
-				// Leac.g:147:27: ^( COORD_LIST ( expr )+ )
+				// Leac.g:145:27: ^( COORD_LIST ( expr )+ )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(COORD_LIST, "COORD_LIST"), root_1);
@@ -2609,7 +2616,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "returning"
-	// Leac.g:150:1: returning : 'return' ( -> ^( RETURNING NO_RETURN_VALUE ) | expr -> ^( RETURNING expr ) ) ;
+	// Leac.g:148:1: returning : 'return' ( -> ^( RETURNING NO_RETURN_VALUE ) | expr -> ^( RETURNING expr ) ) ;
 	public final LeacParser.returning_return returning() throws RecognitionException {
 		LeacParser.returning_return retval = new LeacParser.returning_return();
 		retval.start = input.LT(1);
@@ -2620,23 +2627,23 @@ public class LeacParser extends Parser {
 		ParserRuleReturnScope expr74 =null;
 
 		Object string_literal73_tree=null;
-		RewriteRuleTokenStream stream_104=new RewriteRuleTokenStream(adaptor,"token 104");
+		RewriteRuleTokenStream stream_103=new RewriteRuleTokenStream(adaptor,"token 103");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 
 		try {
-			// Leac.g:151:5: ( 'return' ( -> ^( RETURNING NO_RETURN_VALUE ) | expr -> ^( RETURNING expr ) ) )
-			// Leac.g:151:7: 'return' ( -> ^( RETURNING NO_RETURN_VALUE ) | expr -> ^( RETURNING expr ) )
+			// Leac.g:149:5: ( 'return' ( -> ^( RETURNING NO_RETURN_VALUE ) | expr -> ^( RETURNING expr ) ) )
+			// Leac.g:149:7: 'return' ( -> ^( RETURNING NO_RETURN_VALUE ) | expr -> ^( RETURNING expr ) )
 			{
-			string_literal73=(Token)match(input,104,FOLLOW_104_in_returning1232);  
-			stream_104.add(string_literal73);
+			string_literal73=(Token)match(input,103,FOLLOW_103_in_returning1224);  
+			stream_103.add(string_literal73);
 
-			// Leac.g:152:9: ( -> ^( RETURNING NO_RETURN_VALUE ) | expr -> ^( RETURNING expr ) )
+			// Leac.g:150:9: ( -> ^( RETURNING NO_RETURN_VALUE ) | expr -> ^( RETURNING expr ) )
 			int alt14=2;
 			int LA14_0 = input.LA(1);
-			if ( (LA14_0==EOF||LA14_0==78||LA14_0==93||LA14_0==111) ) {
+			if ( (LA14_0==EOF||LA14_0==77||LA14_0==92||LA14_0==110) ) {
 				alt14=1;
 			}
-			else if ( (LA14_0==BOOL||LA14_0==CHAR||LA14_0==FLOAT||LA14_0==IDF||LA14_0==INT||LA14_0==STRING||LA14_0==69||LA14_0==74||LA14_0==98) ) {
+			else if ( (LA14_0==BOOL||LA14_0==CHAR||LA14_0==FLOAT||LA14_0==IDF||LA14_0==INT||LA14_0==STRING||LA14_0==68||LA14_0==73||LA14_0==97) ) {
 				alt14=2;
 			}
 
@@ -2648,7 +2655,7 @@ public class LeacParser extends Parser {
 
 			switch (alt14) {
 				case 1 :
-					// Leac.g:152:25: 
+					// Leac.g:150:25: 
 					{
 					// AST REWRITE
 					// elements: 
@@ -2661,9 +2668,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 152:25: -> ^( RETURNING NO_RETURN_VALUE )
+					// 150:25: -> ^( RETURNING NO_RETURN_VALUE )
 					{
-						// Leac.g:152:28: ^( RETURNING NO_RETURN_VALUE )
+						// Leac.g:150:28: ^( RETURNING NO_RETURN_VALUE )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(RETURNING, "RETURNING"), root_1);
@@ -2679,9 +2686,9 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:153:11: expr
+					// Leac.g:151:11: expr
 					{
-					pushFollow(FOLLOW_expr_in_returning1264);
+					pushFollow(FOLLOW_expr_in_returning1256);
 					expr74=expr();
 					state._fsp--;
 
@@ -2697,9 +2704,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 153:16: -> ^( RETURNING expr )
+					// 151:16: -> ^( RETURNING expr )
 					{
-						// Leac.g:153:19: ^( RETURNING expr )
+						// Leac.g:151:19: ^( RETURNING expr )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(RETURNING, "RETURNING"), root_1);
@@ -2746,7 +2753,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "affect_or_procedure_call"
-	// Leac.g:157:1: affect_or_procedure_call : IDF ( ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr -> ^( AFFECT $affect_or_procedure_call expr ) | '(' arg_list ')' -> ^( PROCEDURE_CALL IDF arg_list ) ) ;
+	// Leac.g:155:1: affect_or_procedure_call : IDF ( ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr -> ^( AFFECT $affect_or_procedure_call expr ) | '(' arg_list ')' -> ^( PROCEDURE_CALL IDF arg_list ) ) ;
 	public final LeacParser.affect_or_procedure_call_return affect_or_procedure_call() throws RecognitionException {
 		LeacParser.affect_or_procedure_call_return retval = new LeacParser.affect_or_procedure_call_return();
 		retval.start = input.LT(1);
@@ -2769,30 +2776,30 @@ public class LeacParser extends Parser {
 		Object char_literal79_tree=null;
 		Object char_literal81_tree=null;
 		Object char_literal83_tree=null;
+		RewriteRuleTokenStream stream_68=new RewriteRuleTokenStream(adaptor,"token 68");
 		RewriteRuleTokenStream stream_69=new RewriteRuleTokenStream(adaptor,"token 69");
-		RewriteRuleTokenStream stream_81=new RewriteRuleTokenStream(adaptor,"token 81");
-		RewriteRuleTokenStream stream_70=new RewriteRuleTokenStream(adaptor,"token 70");
+		RewriteRuleTokenStream stream_80=new RewriteRuleTokenStream(adaptor,"token 80");
 		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
+		RewriteRuleTokenStream stream_84=new RewriteRuleTokenStream(adaptor,"token 84");
 		RewriteRuleTokenStream stream_85=new RewriteRuleTokenStream(adaptor,"token 85");
-		RewriteRuleTokenStream stream_86=new RewriteRuleTokenStream(adaptor,"token 86");
 		RewriteRuleSubtreeStream stream_coord_list=new RewriteRuleSubtreeStream(adaptor,"rule coord_list");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 		RewriteRuleSubtreeStream stream_arg_list=new RewriteRuleSubtreeStream(adaptor,"rule arg_list");
 
 		try {
-			// Leac.g:158:5: ( IDF ( ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr -> ^( AFFECT $affect_or_procedure_call expr ) | '(' arg_list ')' -> ^( PROCEDURE_CALL IDF arg_list ) ) )
-			// Leac.g:158:7: IDF ( ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr -> ^( AFFECT $affect_or_procedure_call expr ) | '(' arg_list ')' -> ^( PROCEDURE_CALL IDF arg_list ) )
+			// Leac.g:156:5: ( IDF ( ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr -> ^( AFFECT $affect_or_procedure_call expr ) | '(' arg_list ')' -> ^( PROCEDURE_CALL IDF arg_list ) ) )
+			// Leac.g:156:7: IDF ( ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr -> ^( AFFECT $affect_or_procedure_call expr ) | '(' arg_list ')' -> ^( PROCEDURE_CALL IDF arg_list ) )
 			{
-			IDF75=(Token)match(input,IDF,FOLLOW_IDF_in_affect_or_procedure_call1299);  
+			IDF75=(Token)match(input,IDF,FOLLOW_IDF_in_affect_or_procedure_call1291);  
 			stream_IDF.add(IDF75);
 
-			// Leac.g:159:9: ( ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr -> ^( AFFECT $affect_or_procedure_call expr ) | '(' arg_list ')' -> ^( PROCEDURE_CALL IDF arg_list ) )
+			// Leac.g:157:9: ( ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr -> ^( AFFECT $affect_or_procedure_call expr ) | '(' arg_list ')' -> ^( PROCEDURE_CALL IDF arg_list ) )
 			int alt16=2;
 			int LA16_0 = input.LA(1);
-			if ( (LA16_0==81||LA16_0==85) ) {
+			if ( (LA16_0==80||LA16_0==84) ) {
 				alt16=1;
 			}
-			else if ( (LA16_0==69) ) {
+			else if ( (LA16_0==68) ) {
 				alt16=2;
 			}
 
@@ -2804,15 +2811,15 @@ public class LeacParser extends Parser {
 
 			switch (alt16) {
 				case 1 :
-					// Leac.g:160:13: ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr
+					// Leac.g:158:13: ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) '=' expr
 					{
-					// Leac.g:160:13: ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) )
+					// Leac.g:158:13: ( -> ^( VAR IDF ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) )
 					int alt15=2;
 					int LA15_0 = input.LA(1);
-					if ( (LA15_0==81) ) {
+					if ( (LA15_0==80) ) {
 						alt15=1;
 					}
-					else if ( (LA15_0==85) ) {
+					else if ( (LA15_0==84) ) {
 						alt15=2;
 					}
 
@@ -2824,7 +2831,7 @@ public class LeacParser extends Parser {
 
 					switch (alt15) {
 						case 1 :
-							// Leac.g:160:29: 
+							// Leac.g:158:29: 
 							{
 							// AST REWRITE
 							// elements: IDF
@@ -2837,9 +2844,9 @@ public class LeacParser extends Parser {
 							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 							root_0 = (Object)adaptor.nil();
-							// 160:29: -> ^( VAR IDF )
+							// 158:29: -> ^( VAR IDF )
 							{
-								// Leac.g:160:32: ^( VAR IDF )
+								// Leac.g:158:32: ^( VAR IDF )
 								{
 								Object root_1 = (Object)adaptor.nil();
 								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(VAR, "VAR"), root_1);
@@ -2855,18 +2862,18 @@ public class LeacParser extends Parser {
 							}
 							break;
 						case 2 :
-							// Leac.g:161:15: '[' coord_list ']'
+							// Leac.g:159:15: '[' coord_list ']'
 							{
-							char_literal76=(Token)match(input,85,FOLLOW_85_in_affect_or_procedure_call1349);  
-							stream_85.add(char_literal76);
+							char_literal76=(Token)match(input,84,FOLLOW_84_in_affect_or_procedure_call1341);  
+							stream_84.add(char_literal76);
 
-							pushFollow(FOLLOW_coord_list_in_affect_or_procedure_call1351);
+							pushFollow(FOLLOW_coord_list_in_affect_or_procedure_call1343);
 							coord_list77=coord_list();
 							state._fsp--;
 
 							stream_coord_list.add(coord_list77.getTree());
-							char_literal78=(Token)match(input,86,FOLLOW_86_in_affect_or_procedure_call1353);  
-							stream_86.add(char_literal78);
+							char_literal78=(Token)match(input,85,FOLLOW_85_in_affect_or_procedure_call1345);  
+							stream_85.add(char_literal78);
 
 							// AST REWRITE
 							// elements: coord_list, IDF
@@ -2879,9 +2886,9 @@ public class LeacParser extends Parser {
 							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 							root_0 = (Object)adaptor.nil();
-							// 161:34: -> ^( CELL IDF coord_list )
+							// 159:34: -> ^( CELL IDF coord_list )
 							{
-								// Leac.g:161:37: ^( CELL IDF coord_list )
+								// Leac.g:159:37: ^( CELL IDF coord_list )
 								{
 								Object root_1 = (Object)adaptor.nil();
 								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CELL, "CELL"), root_1);
@@ -2900,10 +2907,10 @@ public class LeacParser extends Parser {
 
 					}
 
-					char_literal79=(Token)match(input,81,FOLLOW_81_in_affect_or_procedure_call1391);  
-					stream_81.add(char_literal79);
+					char_literal79=(Token)match(input,80,FOLLOW_80_in_affect_or_procedure_call1383);  
+					stream_80.add(char_literal79);
 
-					pushFollow(FOLLOW_expr_in_affect_or_procedure_call1393);
+					pushFollow(FOLLOW_expr_in_affect_or_procedure_call1385);
 					expr80=expr();
 					state._fsp--;
 
@@ -2919,9 +2926,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 163:22: -> ^( AFFECT $affect_or_procedure_call expr )
+					// 161:22: -> ^( AFFECT $affect_or_procedure_call expr )
 					{
-						// Leac.g:163:25: ^( AFFECT $affect_or_procedure_call expr )
+						// Leac.g:161:25: ^( AFFECT $affect_or_procedure_call expr )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(AFFECT, "AFFECT"), root_1);
@@ -2938,21 +2945,21 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:164:11: '(' arg_list ')'
+					// Leac.g:162:11: '(' arg_list ')'
 					{
-					char_literal81=(Token)match(input,69,FOLLOW_69_in_affect_or_procedure_call1416);  
-					stream_69.add(char_literal81);
+					char_literal81=(Token)match(input,68,FOLLOW_68_in_affect_or_procedure_call1408);  
+					stream_68.add(char_literal81);
 
-					pushFollow(FOLLOW_arg_list_in_affect_or_procedure_call1418);
+					pushFollow(FOLLOW_arg_list_in_affect_or_procedure_call1410);
 					arg_list82=arg_list();
 					state._fsp--;
 
 					stream_arg_list.add(arg_list82.getTree());
-					char_literal83=(Token)match(input,70,FOLLOW_70_in_affect_or_procedure_call1420);  
-					stream_70.add(char_literal83);
+					char_literal83=(Token)match(input,69,FOLLOW_69_in_affect_or_procedure_call1412);  
+					stream_69.add(char_literal83);
 
 					// AST REWRITE
-					// elements: arg_list, IDF
+					// elements: IDF, arg_list
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2962,9 +2969,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 164:28: -> ^( PROCEDURE_CALL IDF arg_list )
+					// 162:28: -> ^( PROCEDURE_CALL IDF arg_list )
 					{
-						// Leac.g:164:31: ^( PROCEDURE_CALL IDF arg_list )
+						// Leac.g:162:31: ^( PROCEDURE_CALL IDF arg_list )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PROCEDURE_CALL, "PROCEDURE_CALL"), root_1);
@@ -3012,7 +3019,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "arg_list"
-	// Leac.g:168:1: arg_list : ( -> ^( ARG_LIST ) | expr ( ',' expr )* -> ^( ARG_LIST ( expr )+ ) );
+	// Leac.g:166:1: arg_list : ( -> ^( ARG_LIST ) | expr ( ',' expr )* -> ^( ARG_LIST ( expr )+ ) );
 	public final LeacParser.arg_list_return arg_list() throws RecognitionException {
 		LeacParser.arg_list_return retval = new LeacParser.arg_list_return();
 		retval.start = input.LT(1);
@@ -3024,17 +3031,17 @@ public class LeacParser extends Parser {
 		ParserRuleReturnScope expr86 =null;
 
 		Object char_literal85_tree=null;
-		RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
+		RewriteRuleTokenStream stream_72=new RewriteRuleTokenStream(adaptor,"token 72");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 
 		try {
-			// Leac.g:169:5: ( -> ^( ARG_LIST ) | expr ( ',' expr )* -> ^( ARG_LIST ( expr )+ ) )
+			// Leac.g:167:5: ( -> ^( ARG_LIST ) | expr ( ',' expr )* -> ^( ARG_LIST ( expr )+ ) )
 			int alt18=2;
 			int LA18_0 = input.LA(1);
-			if ( (LA18_0==70) ) {
+			if ( (LA18_0==69) ) {
 				alt18=1;
 			}
-			else if ( (LA18_0==BOOL||LA18_0==CHAR||LA18_0==FLOAT||LA18_0==IDF||LA18_0==INT||LA18_0==STRING||LA18_0==69||LA18_0==74||LA18_0==98) ) {
+			else if ( (LA18_0==BOOL||LA18_0==CHAR||LA18_0==FLOAT||LA18_0==IDF||LA18_0==INT||LA18_0==STRING||LA18_0==68||LA18_0==73||LA18_0==97) ) {
 				alt18=2;
 			}
 
@@ -3046,7 +3053,7 @@ public class LeacParser extends Parser {
 
 			switch (alt18) {
 				case 1 :
-					// Leac.g:169:21: 
+					// Leac.g:167:21: 
 					{
 					// AST REWRITE
 					// elements: 
@@ -3059,9 +3066,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 169:21: -> ^( ARG_LIST )
+					// 167:21: -> ^( ARG_LIST )
 					{
-						// Leac.g:169:24: ^( ARG_LIST )
+						// Leac.g:167:24: ^( ARG_LIST )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ARG_LIST, "ARG_LIST"), root_1);
@@ -3076,30 +3083,30 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:170:7: expr ( ',' expr )*
+					// Leac.g:168:7: expr ( ',' expr )*
 					{
-					pushFollow(FOLLOW_expr_in_arg_list1471);
+					pushFollow(FOLLOW_expr_in_arg_list1463);
 					expr84=expr();
 					state._fsp--;
 
 					stream_expr.add(expr84.getTree());
-					// Leac.g:170:12: ( ',' expr )*
+					// Leac.g:168:12: ( ',' expr )*
 					loop17:
 					while (true) {
 						int alt17=2;
 						int LA17_0 = input.LA(1);
-						if ( (LA17_0==73) ) {
+						if ( (LA17_0==72) ) {
 							alt17=1;
 						}
 
 						switch (alt17) {
 						case 1 :
-							// Leac.g:170:13: ',' expr
+							// Leac.g:168:13: ',' expr
 							{
-							char_literal85=(Token)match(input,73,FOLLOW_73_in_arg_list1474);  
-							stream_73.add(char_literal85);
+							char_literal85=(Token)match(input,72,FOLLOW_72_in_arg_list1466);  
+							stream_72.add(char_literal85);
 
-							pushFollow(FOLLOW_expr_in_arg_list1476);
+							pushFollow(FOLLOW_expr_in_arg_list1468);
 							expr86=expr();
 							state._fsp--;
 
@@ -3123,9 +3130,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 170:24: -> ^( ARG_LIST ( expr )+ )
+					// 168:24: -> ^( ARG_LIST ( expr )+ )
 					{
-						// Leac.g:170:27: ^( ARG_LIST ( expr )+ )
+						// Leac.g:168:27: ^( ARG_LIST ( expr )+ )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ARG_LIST, "ARG_LIST"), root_1);
@@ -3176,7 +3183,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "block"
-	// Leac.g:173:1: block : '{' ( -> ^( BLOCK ) | statement ( ';' statement )* -> ^( BLOCK ( statement )+ ) ) '}' ;
+	// Leac.g:171:1: block : '{' ( -> ^( BLOCK ) | statement ( ';' statement )* -> ^( BLOCK ( statement )+ ) ) '}' ;
 	public final LeacParser.block_return block() throws RecognitionException {
 		LeacParser.block_return retval = new LeacParser.block_return();
 		retval.start = input.LT(1);
@@ -3193,24 +3200,24 @@ public class LeacParser extends Parser {
 		Object char_literal89_tree=null;
 		Object char_literal91_tree=null;
 		RewriteRuleTokenStream stream_110=new RewriteRuleTokenStream(adaptor,"token 110");
-		RewriteRuleTokenStream stream_111=new RewriteRuleTokenStream(adaptor,"token 111");
-		RewriteRuleTokenStream stream_78=new RewriteRuleTokenStream(adaptor,"token 78");
+		RewriteRuleTokenStream stream_77=new RewriteRuleTokenStream(adaptor,"token 77");
+		RewriteRuleTokenStream stream_109=new RewriteRuleTokenStream(adaptor,"token 109");
 		RewriteRuleSubtreeStream stream_statement=new RewriteRuleSubtreeStream(adaptor,"rule statement");
 
 		try {
-			// Leac.g:174:5: ( '{' ( -> ^( BLOCK ) | statement ( ';' statement )* -> ^( BLOCK ( statement )+ ) ) '}' )
-			// Leac.g:174:7: '{' ( -> ^( BLOCK ) | statement ( ';' statement )* -> ^( BLOCK ( statement )+ ) ) '}'
+			// Leac.g:172:5: ( '{' ( -> ^( BLOCK ) | statement ( ';' statement )* -> ^( BLOCK ( statement )+ ) ) '}' )
+			// Leac.g:172:7: '{' ( -> ^( BLOCK ) | statement ( ';' statement )* -> ^( BLOCK ( statement )+ ) ) '}'
 			{
-			char_literal87=(Token)match(input,110,FOLLOW_110_in_block1504);  
-			stream_110.add(char_literal87);
+			char_literal87=(Token)match(input,109,FOLLOW_109_in_block1496);  
+			stream_109.add(char_literal87);
 
-			// Leac.g:175:9: ( -> ^( BLOCK ) | statement ( ';' statement )* -> ^( BLOCK ( statement )+ ) )
+			// Leac.g:173:9: ( -> ^( BLOCK ) | statement ( ';' statement )* -> ^( BLOCK ( statement )+ ) )
 			int alt20=2;
 			int LA20_0 = input.LA(1);
-			if ( (LA20_0==111) ) {
+			if ( (LA20_0==110) ) {
 				alt20=1;
 			}
-			else if ( (LA20_0==IDF||LA20_0==96||LA20_0==102||LA20_0==104||(LA20_0 >= 108 && LA20_0 <= 110)) ) {
+			else if ( (LA20_0==IDF||LA20_0==95||LA20_0==101||LA20_0==103||(LA20_0 >= 107 && LA20_0 <= 109)) ) {
 				alt20=2;
 			}
 
@@ -3222,7 +3229,7 @@ public class LeacParser extends Parser {
 
 			switch (alt20) {
 				case 1 :
-					// Leac.g:175:25: 
+					// Leac.g:173:25: 
 					{
 					// AST REWRITE
 					// elements: 
@@ -3235,9 +3242,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 175:25: -> ^( BLOCK )
+					// 173:25: -> ^( BLOCK )
 					{
-						// Leac.g:175:28: ^( BLOCK )
+						// Leac.g:173:28: ^( BLOCK )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(BLOCK, "BLOCK"), root_1);
@@ -3252,30 +3259,30 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:176:11: statement ( ';' statement )*
+					// Leac.g:174:11: statement ( ';' statement )*
 					{
-					pushFollow(FOLLOW_statement_in_block1534);
+					pushFollow(FOLLOW_statement_in_block1526);
 					statement88=statement();
 					state._fsp--;
 
 					stream_statement.add(statement88.getTree());
-					// Leac.g:176:21: ( ';' statement )*
+					// Leac.g:174:21: ( ';' statement )*
 					loop19:
 					while (true) {
 						int alt19=2;
 						int LA19_0 = input.LA(1);
-						if ( (LA19_0==78) ) {
+						if ( (LA19_0==77) ) {
 							alt19=1;
 						}
 
 						switch (alt19) {
 						case 1 :
-							// Leac.g:176:22: ';' statement
+							// Leac.g:174:22: ';' statement
 							{
-							char_literal89=(Token)match(input,78,FOLLOW_78_in_block1537);  
-							stream_78.add(char_literal89);
+							char_literal89=(Token)match(input,77,FOLLOW_77_in_block1529);  
+							stream_77.add(char_literal89);
 
-							pushFollow(FOLLOW_statement_in_block1539);
+							pushFollow(FOLLOW_statement_in_block1531);
 							statement90=statement();
 							state._fsp--;
 
@@ -3299,9 +3306,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 176:38: -> ^( BLOCK ( statement )+ )
+					// 174:38: -> ^( BLOCK ( statement )+ )
 					{
-						// Leac.g:176:41: ^( BLOCK ( statement )+ )
+						// Leac.g:174:41: ^( BLOCK ( statement )+ )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(BLOCK, "BLOCK"), root_1);
@@ -3326,8 +3333,8 @@ public class LeacParser extends Parser {
 
 			}
 
-			char_literal91=(Token)match(input,111,FOLLOW_111_in_block1568);  
-			stream_111.add(char_literal91);
+			char_literal91=(Token)match(input,110,FOLLOW_110_in_block1560);  
+			stream_110.add(char_literal91);
 
 			}
 
@@ -3358,7 +3365,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "read"
-	// Leac.g:181:1: read : 'read' IDF ( -> ^( READ ^( VAR IDF ) ) | '[' coord_list ']' -> ^( READ ^( CELL IDF coord_list ) ) ) ;
+	// Leac.g:179:1: read : 'read' IDF ( -> ^( READ ^( VAR IDF ) ) | '[' coord_list ']' -> ^( READ ^( CELL IDF coord_list ) ) ) ;
 	public final LeacParser.read_return read() throws RecognitionException {
 		LeacParser.read_return retval = new LeacParser.read_return();
 		retval.start = input.LT(1);
@@ -3375,29 +3382,29 @@ public class LeacParser extends Parser {
 		Object IDF93_tree=null;
 		Object char_literal94_tree=null;
 		Object char_literal96_tree=null;
-		RewriteRuleTokenStream stream_102=new RewriteRuleTokenStream(adaptor,"token 102");
+		RewriteRuleTokenStream stream_101=new RewriteRuleTokenStream(adaptor,"token 101");
 		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
+		RewriteRuleTokenStream stream_84=new RewriteRuleTokenStream(adaptor,"token 84");
 		RewriteRuleTokenStream stream_85=new RewriteRuleTokenStream(adaptor,"token 85");
-		RewriteRuleTokenStream stream_86=new RewriteRuleTokenStream(adaptor,"token 86");
 		RewriteRuleSubtreeStream stream_coord_list=new RewriteRuleSubtreeStream(adaptor,"rule coord_list");
 
 		try {
-			// Leac.g:182:5: ( 'read' IDF ( -> ^( READ ^( VAR IDF ) ) | '[' coord_list ']' -> ^( READ ^( CELL IDF coord_list ) ) ) )
-			// Leac.g:182:7: 'read' IDF ( -> ^( READ ^( VAR IDF ) ) | '[' coord_list ']' -> ^( READ ^( CELL IDF coord_list ) ) )
+			// Leac.g:180:5: ( 'read' IDF ( -> ^( READ ^( VAR IDF ) ) | '[' coord_list ']' -> ^( READ ^( CELL IDF coord_list ) ) ) )
+			// Leac.g:180:7: 'read' IDF ( -> ^( READ ^( VAR IDF ) ) | '[' coord_list ']' -> ^( READ ^( CELL IDF coord_list ) ) )
 			{
-			string_literal92=(Token)match(input,102,FOLLOW_102_in_read1585);  
-			stream_102.add(string_literal92);
+			string_literal92=(Token)match(input,101,FOLLOW_101_in_read1577);  
+			stream_101.add(string_literal92);
 
-			IDF93=(Token)match(input,IDF,FOLLOW_IDF_in_read1587);  
+			IDF93=(Token)match(input,IDF,FOLLOW_IDF_in_read1579);  
 			stream_IDF.add(IDF93);
 
-			// Leac.g:183:9: ( -> ^( READ ^( VAR IDF ) ) | '[' coord_list ']' -> ^( READ ^( CELL IDF coord_list ) ) )
+			// Leac.g:181:9: ( -> ^( READ ^( VAR IDF ) ) | '[' coord_list ']' -> ^( READ ^( CELL IDF coord_list ) ) )
 			int alt21=2;
 			int LA21_0 = input.LA(1);
-			if ( (LA21_0==EOF||LA21_0==78||LA21_0==93||LA21_0==111) ) {
+			if ( (LA21_0==EOF||LA21_0==77||LA21_0==92||LA21_0==110) ) {
 				alt21=1;
 			}
-			else if ( (LA21_0==85) ) {
+			else if ( (LA21_0==84) ) {
 				alt21=2;
 			}
 
@@ -3409,7 +3416,7 @@ public class LeacParser extends Parser {
 
 			switch (alt21) {
 				case 1 :
-					// Leac.g:183:25: 
+					// Leac.g:181:25: 
 					{
 					// AST REWRITE
 					// elements: IDF
@@ -3422,13 +3429,13 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 183:25: -> ^( READ ^( VAR IDF ) )
+					// 181:25: -> ^( READ ^( VAR IDF ) )
 					{
-						// Leac.g:183:28: ^( READ ^( VAR IDF ) )
+						// Leac.g:181:28: ^( READ ^( VAR IDF ) )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(READ, "READ"), root_1);
-						// Leac.g:183:35: ^( VAR IDF )
+						// Leac.g:181:35: ^( VAR IDF )
 						{
 						Object root_2 = (Object)adaptor.nil();
 						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(VAR, "VAR"), root_2);
@@ -3447,21 +3454,21 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:184:11: '[' coord_list ']'
+					// Leac.g:182:11: '[' coord_list ']'
 					{
-					char_literal94=(Token)match(input,85,FOLLOW_85_in_read1623);  
-					stream_85.add(char_literal94);
+					char_literal94=(Token)match(input,84,FOLLOW_84_in_read1615);  
+					stream_84.add(char_literal94);
 
-					pushFollow(FOLLOW_coord_list_in_read1625);
+					pushFollow(FOLLOW_coord_list_in_read1617);
 					coord_list95=coord_list();
 					state._fsp--;
 
 					stream_coord_list.add(coord_list95.getTree());
-					char_literal96=(Token)match(input,86,FOLLOW_86_in_read1627);  
-					stream_86.add(char_literal96);
+					char_literal96=(Token)match(input,85,FOLLOW_85_in_read1619);  
+					stream_85.add(char_literal96);
 
 					// AST REWRITE
-					// elements: IDF, coord_list
+					// elements: coord_list, IDF
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -3471,13 +3478,13 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 184:30: -> ^( READ ^( CELL IDF coord_list ) )
+					// 182:30: -> ^( READ ^( CELL IDF coord_list ) )
 					{
-						// Leac.g:184:33: ^( READ ^( CELL IDF coord_list ) )
+						// Leac.g:182:33: ^( READ ^( CELL IDF coord_list ) )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(READ, "READ"), root_1);
-						// Leac.g:184:40: ^( CELL IDF coord_list )
+						// Leac.g:182:40: ^( CELL IDF coord_list )
 						{
 						Object root_2 = (Object)adaptor.nil();
 						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(CELL, "CELL"), root_2);
@@ -3528,7 +3535,7 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "write"
-	// Leac.g:188:1: write : 'write' ( IDF ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) ) | constant_ext -> ^( WRITE constant_ext ) ) ;
+	// Leac.g:186:1: write : 'write' expr -> ^( WRITE expr ) ;
 	public final LeacParser.write_return write() throws RecognitionException {
 		LeacParser.write_return retval = new LeacParser.write_return();
 		retval.start = input.LT(1);
@@ -3536,201 +3543,49 @@ public class LeacParser extends Parser {
 		Object root_0 = null;
 
 		Token string_literal97=null;
-		Token IDF98=null;
-		Token char_literal99=null;
-		Token char_literal101=null;
-		ParserRuleReturnScope coord_list100 =null;
-		ParserRuleReturnScope constant_ext102 =null;
+		ParserRuleReturnScope expr98 =null;
 
 		Object string_literal97_tree=null;
-		Object IDF98_tree=null;
-		Object char_literal99_tree=null;
-		Object char_literal101_tree=null;
-		RewriteRuleTokenStream stream_109=new RewriteRuleTokenStream(adaptor,"token 109");
-		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
-		RewriteRuleTokenStream stream_85=new RewriteRuleTokenStream(adaptor,"token 85");
-		RewriteRuleTokenStream stream_86=new RewriteRuleTokenStream(adaptor,"token 86");
-		RewriteRuleSubtreeStream stream_constant_ext=new RewriteRuleSubtreeStream(adaptor,"rule constant_ext");
-		RewriteRuleSubtreeStream stream_coord_list=new RewriteRuleSubtreeStream(adaptor,"rule coord_list");
+		RewriteRuleTokenStream stream_108=new RewriteRuleTokenStream(adaptor,"token 108");
+		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 
 		try {
-			// Leac.g:189:5: ( 'write' ( IDF ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) ) | constant_ext -> ^( WRITE constant_ext ) ) )
-			// Leac.g:189:7: 'write' ( IDF ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) ) | constant_ext -> ^( WRITE constant_ext ) )
+			// Leac.g:187:5: ( 'write' expr -> ^( WRITE expr ) )
+			// Leac.g:187:7: 'write' expr
 			{
-			string_literal97=(Token)match(input,109,FOLLOW_109_in_write1668);  
-			stream_109.add(string_literal97);
+			string_literal97=(Token)match(input,108,FOLLOW_108_in_write1660);  
+			stream_108.add(string_literal97);
 
-			// Leac.g:190:9: ( IDF ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) ) | constant_ext -> ^( WRITE constant_ext ) )
-			int alt23=2;
-			int LA23_0 = input.LA(1);
-			if ( (LA23_0==IDF) ) {
-				alt23=1;
-			}
-			else if ( (LA23_0==BOOL||LA23_0==CHAR||LA23_0==FLOAT||LA23_0==INT||LA23_0==STRING||LA23_0==74) ) {
-				alt23=2;
-			}
+			pushFollow(FOLLOW_expr_in_write1662);
+			expr98=expr();
+			state._fsp--;
 
-			else {
-				NoViableAltException nvae =
-					new NoViableAltException("", 23, 0, input);
-				throw nvae;
-			}
+			stream_expr.add(expr98.getTree());
+			// AST REWRITE
+			// elements: expr
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
-			switch (alt23) {
-				case 1 :
-					// Leac.g:190:11: IDF ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) )
-					{
-					IDF98=(Token)match(input,IDF,FOLLOW_IDF_in_write1680);  
-					stream_IDF.add(IDF98);
-
-					// Leac.g:191:13: ( -> ^( WRITE ^( VAR IDF ) ) | '[' coord_list ']' -> ^( WRITE ^( CELL IDF coord_list ) ) )
-					int alt22=2;
-					int LA22_0 = input.LA(1);
-					if ( (LA22_0==EOF||LA22_0==78||LA22_0==93||LA22_0==111) ) {
-						alt22=1;
-					}
-					else if ( (LA22_0==85) ) {
-						alt22=2;
-					}
-
-					else {
-						NoViableAltException nvae =
-							new NoViableAltException("", 22, 0, input);
-						throw nvae;
-					}
-
-					switch (alt22) {
-						case 1 :
-							// Leac.g:191:29: 
-							{
-							// AST REWRITE
-							// elements: IDF
-							// token labels: 
-							// rule labels: retval
-							// token list labels: 
-							// rule list labels: 
-							// wildcard labels: 
-							retval.tree = root_0;
-							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-							root_0 = (Object)adaptor.nil();
-							// 191:29: -> ^( WRITE ^( VAR IDF ) )
-							{
-								// Leac.g:191:32: ^( WRITE ^( VAR IDF ) )
-								{
-								Object root_1 = (Object)adaptor.nil();
-								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(WRITE, "WRITE"), root_1);
-								// Leac.g:191:40: ^( VAR IDF )
-								{
-								Object root_2 = (Object)adaptor.nil();
-								root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(VAR, "VAR"), root_2);
-								adaptor.addChild(root_2, stream_IDF.nextNode());
-								adaptor.addChild(root_1, root_2);
-								}
-
-								adaptor.addChild(root_0, root_1);
-								}
-
-							}
-
-
-							retval.tree = root_0;
-
-							}
-							break;
-						case 2 :
-							// Leac.g:192:15: '[' coord_list ']'
-							{
-							char_literal99=(Token)match(input,85,FOLLOW_85_in_write1724);  
-							stream_85.add(char_literal99);
-
-							pushFollow(FOLLOW_coord_list_in_write1726);
-							coord_list100=coord_list();
-							state._fsp--;
-
-							stream_coord_list.add(coord_list100.getTree());
-							char_literal101=(Token)match(input,86,FOLLOW_86_in_write1728);  
-							stream_86.add(char_literal101);
-
-							// AST REWRITE
-							// elements: IDF, coord_list
-							// token labels: 
-							// rule labels: retval
-							// token list labels: 
-							// rule list labels: 
-							// wildcard labels: 
-							retval.tree = root_0;
-							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-							root_0 = (Object)adaptor.nil();
-							// 192:34: -> ^( WRITE ^( CELL IDF coord_list ) )
-							{
-								// Leac.g:192:37: ^( WRITE ^( CELL IDF coord_list ) )
-								{
-								Object root_1 = (Object)adaptor.nil();
-								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(WRITE, "WRITE"), root_1);
-								// Leac.g:192:45: ^( CELL IDF coord_list )
-								{
-								Object root_2 = (Object)adaptor.nil();
-								root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(CELL, "CELL"), root_2);
-								adaptor.addChild(root_2, stream_IDF.nextNode());
-								adaptor.addChild(root_2, stream_coord_list.nextTree());
-								adaptor.addChild(root_1, root_2);
-								}
-
-								adaptor.addChild(root_0, root_1);
-								}
-
-							}
-
-
-							retval.tree = root_0;
-
-							}
-							break;
-
-					}
-
-					}
-					break;
-				case 2 :
-					// Leac.g:194:11: constant_ext
-					{
-					pushFollow(FOLLOW_constant_ext_in_write1768);
-					constant_ext102=constant_ext();
-					state._fsp--;
-
-					stream_constant_ext.add(constant_ext102.getTree());
-					// AST REWRITE
-					// elements: constant_ext
-					// token labels: 
-					// rule labels: retval
-					// token list labels: 
-					// rule list labels: 
-					// wildcard labels: 
-					retval.tree = root_0;
-					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-					root_0 = (Object)adaptor.nil();
-					// 194:24: -> ^( WRITE constant_ext )
-					{
-						// Leac.g:194:27: ^( WRITE constant_ext )
-						{
-						Object root_1 = (Object)adaptor.nil();
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(WRITE, "WRITE"), root_1);
-						adaptor.addChild(root_1, stream_constant_ext.nextTree());
-						adaptor.addChild(root_0, root_1);
-						}
-
-					}
-
-
-					retval.tree = root_0;
-
-					}
-					break;
+			root_0 = (Object)adaptor.nil();
+			// 187:20: -> ^( WRITE expr )
+			{
+				// Leac.g:187:23: ^( WRITE expr )
+				{
+				Object root_1 = (Object)adaptor.nil();
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(WRITE, "WRITE"), root_1);
+				adaptor.addChild(root_1, stream_expr.nextTree());
+				adaptor.addChild(root_0, root_1);
+				}
 
 			}
+
+
+			retval.tree = root_0;
 
 			}
 
@@ -3761,49 +3616,49 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "expr_0"
-	// Leac.g:198:1: expr_0 : ( IDF ( -> ^( VAR IDF ) | '(' arg_list ')' -> ^( FUNC_CALL IDF arg_list ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) | constant -> constant | '(' expr ')' -> expr );
+	// Leac.g:190:1: expr_0 : ( IDF ( -> ^( VAR IDF ) | '(' arg_list ')' -> ^( FUNC_CALL IDF arg_list ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) | constant -> constant | '(' expr ')' -> expr );
 	public final LeacParser.expr_0_return expr_0() throws RecognitionException {
 		LeacParser.expr_0_return retval = new LeacParser.expr_0_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token IDF103=null;
-		Token char_literal104=null;
-		Token char_literal106=null;
+		Token IDF99=null;
+		Token char_literal100=null;
+		Token char_literal102=null;
+		Token char_literal103=null;
+		Token char_literal105=null;
 		Token char_literal107=null;
 		Token char_literal109=null;
-		Token char_literal111=null;
-		Token char_literal113=null;
-		ParserRuleReturnScope arg_list105 =null;
-		ParserRuleReturnScope coord_list108 =null;
-		ParserRuleReturnScope constant110 =null;
-		ParserRuleReturnScope expr112 =null;
+		ParserRuleReturnScope arg_list101 =null;
+		ParserRuleReturnScope coord_list104 =null;
+		ParserRuleReturnScope constant106 =null;
+		ParserRuleReturnScope expr108 =null;
 
-		Object IDF103_tree=null;
-		Object char_literal104_tree=null;
-		Object char_literal106_tree=null;
+		Object IDF99_tree=null;
+		Object char_literal100_tree=null;
+		Object char_literal102_tree=null;
+		Object char_literal103_tree=null;
+		Object char_literal105_tree=null;
 		Object char_literal107_tree=null;
 		Object char_literal109_tree=null;
-		Object char_literal111_tree=null;
-		Object char_literal113_tree=null;
+		RewriteRuleTokenStream stream_68=new RewriteRuleTokenStream(adaptor,"token 68");
 		RewriteRuleTokenStream stream_69=new RewriteRuleTokenStream(adaptor,"token 69");
-		RewriteRuleTokenStream stream_70=new RewriteRuleTokenStream(adaptor,"token 70");
 		RewriteRuleTokenStream stream_IDF=new RewriteRuleTokenStream(adaptor,"token IDF");
+		RewriteRuleTokenStream stream_84=new RewriteRuleTokenStream(adaptor,"token 84");
 		RewriteRuleTokenStream stream_85=new RewriteRuleTokenStream(adaptor,"token 85");
-		RewriteRuleTokenStream stream_86=new RewriteRuleTokenStream(adaptor,"token 86");
 		RewriteRuleSubtreeStream stream_constant=new RewriteRuleSubtreeStream(adaptor,"rule constant");
 		RewriteRuleSubtreeStream stream_coord_list=new RewriteRuleSubtreeStream(adaptor,"rule coord_list");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 		RewriteRuleSubtreeStream stream_arg_list=new RewriteRuleSubtreeStream(adaptor,"rule arg_list");
 
 		try {
-			// Leac.g:199:5: ( IDF ( -> ^( VAR IDF ) | '(' arg_list ')' -> ^( FUNC_CALL IDF arg_list ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) | constant -> constant | '(' expr ')' -> expr )
-			int alt25=3;
+			// Leac.g:191:5: ( IDF ( -> ^( VAR IDF ) | '(' arg_list ')' -> ^( FUNC_CALL IDF arg_list ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) ) | constant -> constant | '(' expr ')' -> expr )
+			int alt23=3;
 			switch ( input.LA(1) ) {
 			case IDF:
 				{
-				alt25=1;
+				alt23=1;
 				}
 				break;
 			case BOOL:
@@ -3812,73 +3667,73 @@ public class LeacParser extends Parser {
 			case INT:
 			case STRING:
 				{
-				alt25=2;
+				alt23=2;
 				}
 				break;
-			case 69:
+			case 68:
 				{
-				alt25=3;
+				alt23=3;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 25, 0, input);
+					new NoViableAltException("", 23, 0, input);
 				throw nvae;
 			}
-			switch (alt25) {
+			switch (alt23) {
 				case 1 :
-					// Leac.g:199:7: IDF ( -> ^( VAR IDF ) | '(' arg_list ')' -> ^( FUNC_CALL IDF arg_list ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) )
+					// Leac.g:191:7: IDF ( -> ^( VAR IDF ) | '(' arg_list ')' -> ^( FUNC_CALL IDF arg_list ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) )
 					{
-					IDF103=(Token)match(input,IDF,FOLLOW_IDF_in_expr_01803);  
-					stream_IDF.add(IDF103);
+					IDF99=(Token)match(input,IDF,FOLLOW_IDF_in_expr_01687);  
+					stream_IDF.add(IDF99);
 
-					// Leac.g:200:9: ( -> ^( VAR IDF ) | '(' arg_list ')' -> ^( FUNC_CALL IDF arg_list ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) )
-					int alt24=3;
+					// Leac.g:192:9: ( -> ^( VAR IDF ) | '(' arg_list ')' -> ^( FUNC_CALL IDF arg_list ) | '[' coord_list ']' -> ^( CELL IDF coord_list ) )
+					int alt22=3;
 					switch ( input.LA(1) ) {
 					case EOF:
-					case 68:
+					case 67:
+					case 69:
 					case 70:
 					case 71:
 					case 72:
 					case 73:
-					case 74:
-					case 76:
+					case 75:
+					case 77:
 					case 78:
 					case 79:
-					case 80:
+					case 81:
 					case 82:
 					case 83:
-					case 84:
+					case 85:
 					case 86:
 					case 87:
-					case 88:
+					case 91:
 					case 92:
-					case 93:
-					case 100:
-					case 105:
-					case 111:
+					case 99:
+					case 104:
+					case 110:
 						{
-						alt24=1;
+						alt22=1;
 						}
 						break;
-					case 69:
+					case 68:
 						{
-						alt24=2;
+						alt22=2;
 						}
 						break;
-					case 85:
+					case 84:
 						{
-						alt24=3;
+						alt22=3;
 						}
 						break;
 					default:
 						NoViableAltException nvae =
-							new NoViableAltException("", 24, 0, input);
+							new NoViableAltException("", 22, 0, input);
 						throw nvae;
 					}
-					switch (alt24) {
+					switch (alt22) {
 						case 1 :
-							// Leac.g:200:25: 
+							// Leac.g:192:25: 
 							{
 							// AST REWRITE
 							// elements: IDF
@@ -3891,9 +3746,9 @@ public class LeacParser extends Parser {
 							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 							root_0 = (Object)adaptor.nil();
-							// 200:25: -> ^( VAR IDF )
+							// 192:25: -> ^( VAR IDF )
 							{
-								// Leac.g:200:28: ^( VAR IDF )
+								// Leac.g:192:28: ^( VAR IDF )
 								{
 								Object root_1 = (Object)adaptor.nil();
 								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(VAR, "VAR"), root_1);
@@ -3909,18 +3764,18 @@ public class LeacParser extends Parser {
 							}
 							break;
 						case 2 :
-							// Leac.g:201:11: '(' arg_list ')'
+							// Leac.g:193:11: '(' arg_list ')'
 							{
-							char_literal104=(Token)match(input,69,FOLLOW_69_in_expr_01835);  
-							stream_69.add(char_literal104);
+							char_literal100=(Token)match(input,68,FOLLOW_68_in_expr_01719);  
+							stream_68.add(char_literal100);
 
-							pushFollow(FOLLOW_arg_list_in_expr_01837);
-							arg_list105=arg_list();
+							pushFollow(FOLLOW_arg_list_in_expr_01721);
+							arg_list101=arg_list();
 							state._fsp--;
 
-							stream_arg_list.add(arg_list105.getTree());
-							char_literal106=(Token)match(input,70,FOLLOW_70_in_expr_01839);  
-							stream_70.add(char_literal106);
+							stream_arg_list.add(arg_list101.getTree());
+							char_literal102=(Token)match(input,69,FOLLOW_69_in_expr_01723);  
+							stream_69.add(char_literal102);
 
 							// AST REWRITE
 							// elements: IDF, arg_list
@@ -3933,9 +3788,9 @@ public class LeacParser extends Parser {
 							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 							root_0 = (Object)adaptor.nil();
-							// 201:28: -> ^( FUNC_CALL IDF arg_list )
+							// 193:28: -> ^( FUNC_CALL IDF arg_list )
 							{
-								// Leac.g:201:31: ^( FUNC_CALL IDF arg_list )
+								// Leac.g:193:31: ^( FUNC_CALL IDF arg_list )
 								{
 								Object root_1 = (Object)adaptor.nil();
 								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FUNC_CALL, "FUNC_CALL"), root_1);
@@ -3952,21 +3807,21 @@ public class LeacParser extends Parser {
 							}
 							break;
 						case 3 :
-							// Leac.g:202:11: '[' coord_list ']'
+							// Leac.g:194:11: '[' coord_list ']'
 							{
-							char_literal107=(Token)match(input,85,FOLLOW_85_in_expr_01861);  
-							stream_85.add(char_literal107);
+							char_literal103=(Token)match(input,84,FOLLOW_84_in_expr_01745);  
+							stream_84.add(char_literal103);
 
-							pushFollow(FOLLOW_coord_list_in_expr_01863);
-							coord_list108=coord_list();
+							pushFollow(FOLLOW_coord_list_in_expr_01747);
+							coord_list104=coord_list();
 							state._fsp--;
 
-							stream_coord_list.add(coord_list108.getTree());
-							char_literal109=(Token)match(input,86,FOLLOW_86_in_expr_01865);  
-							stream_86.add(char_literal109);
+							stream_coord_list.add(coord_list104.getTree());
+							char_literal105=(Token)match(input,85,FOLLOW_85_in_expr_01749);  
+							stream_85.add(char_literal105);
 
 							// AST REWRITE
-							// elements: coord_list, IDF
+							// elements: IDF, coord_list
 							// token labels: 
 							// rule labels: retval
 							// token list labels: 
@@ -3976,9 +3831,9 @@ public class LeacParser extends Parser {
 							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 							root_0 = (Object)adaptor.nil();
-							// 202:30: -> ^( CELL IDF coord_list )
+							// 194:30: -> ^( CELL IDF coord_list )
 							{
-								// Leac.g:202:33: ^( CELL IDF coord_list )
+								// Leac.g:194:33: ^( CELL IDF coord_list )
 								{
 								Object root_1 = (Object)adaptor.nil();
 								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CELL, "CELL"), root_1);
@@ -4000,13 +3855,13 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:204:7: constant
+					// Leac.g:196:7: constant
 					{
-					pushFollow(FOLLOW_constant_in_expr_01893);
-					constant110=constant();
+					pushFollow(FOLLOW_constant_in_expr_01777);
+					constant106=constant();
 					state._fsp--;
 
-					stream_constant.add(constant110.getTree());
+					stream_constant.add(constant106.getTree());
 					// AST REWRITE
 					// elements: constant
 					// token labels: 
@@ -4018,7 +3873,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 204:16: -> constant
+					// 196:16: -> constant
 					{
 						adaptor.addChild(root_0, stream_constant.nextTree());
 					}
@@ -4029,18 +3884,18 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 3 :
-					// Leac.g:205:7: '(' expr ')'
+					// Leac.g:197:7: '(' expr ')'
 					{
-					char_literal111=(Token)match(input,69,FOLLOW_69_in_expr_01905);  
-					stream_69.add(char_literal111);
+					char_literal107=(Token)match(input,68,FOLLOW_68_in_expr_01789);  
+					stream_68.add(char_literal107);
 
-					pushFollow(FOLLOW_expr_in_expr_01907);
-					expr112=expr();
+					pushFollow(FOLLOW_expr_in_expr_01791);
+					expr108=expr();
 					state._fsp--;
 
-					stream_expr.add(expr112.getTree());
-					char_literal113=(Token)match(input,70,FOLLOW_70_in_expr_01909);  
-					stream_70.add(char_literal113);
+					stream_expr.add(expr108.getTree());
+					char_literal109=(Token)match(input,69,FOLLOW_69_in_expr_01793);  
+					stream_69.add(char_literal109);
 
 					// AST REWRITE
 					// elements: expr
@@ -4053,7 +3908,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 205:20: -> expr
+					// 197:20: -> expr
 					{
 						adaptor.addChild(root_0, stream_expr.nextTree());
 					}
@@ -4092,34 +3947,34 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "expr_1"
-	// Leac.g:208:1: expr_1 : ( expr_0 -> expr_0 ) ( '^' next= expr_1_proxy -> ^( POW $expr_1 $next) )? ;
+	// Leac.g:200:1: expr_1 : ( expr_0 -> expr_0 ) ( '^' next= expr_1_proxy -> ^( POW $expr_1 $next) )? ;
 	public final LeacParser.expr_1_return expr_1() throws RecognitionException {
 		LeacParser.expr_1_return retval = new LeacParser.expr_1_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token char_literal115=null;
+		Token char_literal111=null;
 		ParserRuleReturnScope next =null;
-		ParserRuleReturnScope expr_0114 =null;
+		ParserRuleReturnScope expr_0110 =null;
 
-		Object char_literal115_tree=null;
-		RewriteRuleTokenStream stream_87=new RewriteRuleTokenStream(adaptor,"token 87");
+		Object char_literal111_tree=null;
+		RewriteRuleTokenStream stream_86=new RewriteRuleTokenStream(adaptor,"token 86");
 		RewriteRuleSubtreeStream stream_expr_1_proxy=new RewriteRuleSubtreeStream(adaptor,"rule expr_1_proxy");
 		RewriteRuleSubtreeStream stream_expr_0=new RewriteRuleSubtreeStream(adaptor,"rule expr_0");
 
 		try {
-			// Leac.g:209:5: ( ( expr_0 -> expr_0 ) ( '^' next= expr_1_proxy -> ^( POW $expr_1 $next) )? )
-			// Leac.g:209:7: ( expr_0 -> expr_0 ) ( '^' next= expr_1_proxy -> ^( POW $expr_1 $next) )?
+			// Leac.g:201:5: ( ( expr_0 -> expr_0 ) ( '^' next= expr_1_proxy -> ^( POW $expr_1 $next) )? )
+			// Leac.g:201:7: ( expr_0 -> expr_0 ) ( '^' next= expr_1_proxy -> ^( POW $expr_1 $next) )?
 			{
-			// Leac.g:209:7: ( expr_0 -> expr_0 )
-			// Leac.g:209:8: expr_0
+			// Leac.g:201:7: ( expr_0 -> expr_0 )
+			// Leac.g:201:8: expr_0
 			{
-			pushFollow(FOLLOW_expr_0_in_expr_11931);
-			expr_0114=expr_0();
+			pushFollow(FOLLOW_expr_0_in_expr_11815);
+			expr_0110=expr_0();
 			state._fsp--;
 
-			stream_expr_0.add(expr_0114.getTree());
+			stream_expr_0.add(expr_0110.getTree());
 			// AST REWRITE
 			// elements: expr_0
 			// token labels: 
@@ -4131,7 +3986,7 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 209:15: -> expr_0
+			// 201:15: -> expr_0
 			{
 				adaptor.addChild(root_0, stream_expr_0.nextTree());
 			}
@@ -4141,20 +3996,20 @@ public class LeacParser extends Parser {
 
 			}
 
-			// Leac.g:210:9: ( '^' next= expr_1_proxy -> ^( POW $expr_1 $next) )?
-			int alt26=2;
-			int LA26_0 = input.LA(1);
-			if ( (LA26_0==87) ) {
-				alt26=1;
+			// Leac.g:202:9: ( '^' next= expr_1_proxy -> ^( POW $expr_1 $next) )?
+			int alt24=2;
+			int LA24_0 = input.LA(1);
+			if ( (LA24_0==86) ) {
+				alt24=1;
 			}
-			switch (alt26) {
+			switch (alt24) {
 				case 1 :
-					// Leac.g:210:11: '^' next= expr_1_proxy
+					// Leac.g:202:11: '^' next= expr_1_proxy
 					{
-					char_literal115=(Token)match(input,87,FOLLOW_87_in_expr_11948);  
-					stream_87.add(char_literal115);
+					char_literal111=(Token)match(input,86,FOLLOW_86_in_expr_11832);  
+					stream_86.add(char_literal111);
 
-					pushFollow(FOLLOW_expr_1_proxy_in_expr_11952);
+					pushFollow(FOLLOW_expr_1_proxy_in_expr_11836);
 					next=expr_1_proxy();
 					state._fsp--;
 
@@ -4171,9 +4026,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 210:33: -> ^( POW $expr_1 $next)
+					// 202:33: -> ^( POW $expr_1 $next)
 					{
-						// Leac.g:210:36: ^( POW $expr_1 $next)
+						// Leac.g:202:36: ^( POW $expr_1 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(POW, "POW"), root_1);
@@ -4221,26 +4076,26 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "expr_1_proxy"
-	// Leac.g:213:1: expr_1_proxy : expr_1 -> expr_1 ;
+	// Leac.g:205:1: expr_1_proxy : expr_1 -> expr_1 ;
 	public final LeacParser.expr_1_proxy_return expr_1_proxy() throws RecognitionException {
 		LeacParser.expr_1_proxy_return retval = new LeacParser.expr_1_proxy_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		ParserRuleReturnScope expr_1116 =null;
+		ParserRuleReturnScope expr_1112 =null;
 
 		RewriteRuleSubtreeStream stream_expr_1=new RewriteRuleSubtreeStream(adaptor,"rule expr_1");
 
 		try {
-			// Leac.g:214:5: ( expr_1 -> expr_1 )
-			// Leac.g:214:7: expr_1
+			// Leac.g:206:5: ( expr_1 -> expr_1 )
+			// Leac.g:206:7: expr_1
 			{
-			pushFollow(FOLLOW_expr_1_in_expr_1_proxy1991);
-			expr_1116=expr_1();
+			pushFollow(FOLLOW_expr_1_in_expr_1_proxy1875);
+			expr_1112=expr_1();
 			state._fsp--;
 
-			stream_expr_1.add(expr_1116.getTree());
+			stream_expr_1.add(expr_1112.getTree());
 			// AST REWRITE
 			// elements: expr_1
 			// token labels: 
@@ -4252,7 +4107,7 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 214:14: -> expr_1
+			// 206:14: -> expr_1
 			{
 				adaptor.addChild(root_0, stream_expr_1.nextTree());
 			}
@@ -4289,37 +4144,37 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "expr_2"
-	// Leac.g:217:1: expr_2 : ( '-' expr_1 -> ^( UNARY_MINUS expr_1 ) | 'not' expr_1 -> ^( NOT expr_1 ) | expr_1 -> expr_1 );
+	// Leac.g:209:1: expr_2 : ( '-' expr_1 -> ^( UNARY_MINUS expr_1 ) | 'not' expr_1 -> ^( NOT expr_1 ) | expr_1 -> expr_1 );
 	public final LeacParser.expr_2_return expr_2() throws RecognitionException {
 		LeacParser.expr_2_return retval = new LeacParser.expr_2_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token char_literal117=null;
-		Token string_literal119=null;
-		ParserRuleReturnScope expr_1118 =null;
-		ParserRuleReturnScope expr_1120 =null;
-		ParserRuleReturnScope expr_1121 =null;
+		Token char_literal113=null;
+		Token string_literal115=null;
+		ParserRuleReturnScope expr_1114 =null;
+		ParserRuleReturnScope expr_1116 =null;
+		ParserRuleReturnScope expr_1117 =null;
 
-		Object char_literal117_tree=null;
-		Object string_literal119_tree=null;
-		RewriteRuleTokenStream stream_74=new RewriteRuleTokenStream(adaptor,"token 74");
-		RewriteRuleTokenStream stream_98=new RewriteRuleTokenStream(adaptor,"token 98");
+		Object char_literal113_tree=null;
+		Object string_literal115_tree=null;
+		RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
+		RewriteRuleTokenStream stream_97=new RewriteRuleTokenStream(adaptor,"token 97");
 		RewriteRuleSubtreeStream stream_expr_1=new RewriteRuleSubtreeStream(adaptor,"rule expr_1");
 
 		try {
-			// Leac.g:218:5: ( '-' expr_1 -> ^( UNARY_MINUS expr_1 ) | 'not' expr_1 -> ^( NOT expr_1 ) | expr_1 -> expr_1 )
-			int alt27=3;
+			// Leac.g:210:5: ( '-' expr_1 -> ^( UNARY_MINUS expr_1 ) | 'not' expr_1 -> ^( NOT expr_1 ) | expr_1 -> expr_1 )
+			int alt25=3;
 			switch ( input.LA(1) ) {
-			case 74:
+			case 73:
 				{
-				alt27=1;
+				alt25=1;
 				}
 				break;
-			case 98:
+			case 97:
 				{
-				alt27=2;
+				alt25=2;
 				}
 				break;
 			case BOOL:
@@ -4328,28 +4183,28 @@ public class LeacParser extends Parser {
 			case IDF:
 			case INT:
 			case STRING:
-			case 69:
+			case 68:
 				{
-				alt27=3;
+				alt25=3;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 27, 0, input);
+					new NoViableAltException("", 25, 0, input);
 				throw nvae;
 			}
-			switch (alt27) {
+			switch (alt25) {
 				case 1 :
-					// Leac.g:218:7: '-' expr_1
+					// Leac.g:210:7: '-' expr_1
 					{
-					char_literal117=(Token)match(input,74,FOLLOW_74_in_expr_22012);  
-					stream_74.add(char_literal117);
+					char_literal113=(Token)match(input,73,FOLLOW_73_in_expr_21896);  
+					stream_73.add(char_literal113);
 
-					pushFollow(FOLLOW_expr_1_in_expr_22014);
-					expr_1118=expr_1();
+					pushFollow(FOLLOW_expr_1_in_expr_21898);
+					expr_1114=expr_1();
 					state._fsp--;
 
-					stream_expr_1.add(expr_1118.getTree());
+					stream_expr_1.add(expr_1114.getTree());
 					// AST REWRITE
 					// elements: expr_1
 					// token labels: 
@@ -4361,9 +4216,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 218:18: -> ^( UNARY_MINUS expr_1 )
+					// 210:18: -> ^( UNARY_MINUS expr_1 )
 					{
-						// Leac.g:218:21: ^( UNARY_MINUS expr_1 )
+						// Leac.g:210:21: ^( UNARY_MINUS expr_1 )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(UNARY_MINUS, "UNARY_MINUS"), root_1);
@@ -4379,16 +4234,16 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:219:7: 'not' expr_1
+					// Leac.g:211:7: 'not' expr_1
 					{
-					string_literal119=(Token)match(input,98,FOLLOW_98_in_expr_22030);  
-					stream_98.add(string_literal119);
+					string_literal115=(Token)match(input,97,FOLLOW_97_in_expr_21914);  
+					stream_97.add(string_literal115);
 
-					pushFollow(FOLLOW_expr_1_in_expr_22032);
-					expr_1120=expr_1();
+					pushFollow(FOLLOW_expr_1_in_expr_21916);
+					expr_1116=expr_1();
 					state._fsp--;
 
-					stream_expr_1.add(expr_1120.getTree());
+					stream_expr_1.add(expr_1116.getTree());
 					// AST REWRITE
 					// elements: expr_1
 					// token labels: 
@@ -4400,9 +4255,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 219:20: -> ^( NOT expr_1 )
+					// 211:20: -> ^( NOT expr_1 )
 					{
-						// Leac.g:219:23: ^( NOT expr_1 )
+						// Leac.g:211:23: ^( NOT expr_1 )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(NOT, "NOT"), root_1);
@@ -4418,13 +4273,13 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 3 :
-					// Leac.g:220:7: expr_1
+					// Leac.g:212:7: expr_1
 					{
-					pushFollow(FOLLOW_expr_1_in_expr_22048);
-					expr_1121=expr_1();
+					pushFollow(FOLLOW_expr_1_in_expr_21932);
+					expr_1117=expr_1();
 					state._fsp--;
 
-					stream_expr_1.add(expr_1121.getTree());
+					stream_expr_1.add(expr_1117.getTree());
 					// AST REWRITE
 					// elements: expr_1
 					// token labels: 
@@ -4436,7 +4291,7 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 220:14: -> expr_1
+					// 212:14: -> expr_1
 					{
 						adaptor.addChild(root_0, stream_expr_1.nextTree());
 					}
@@ -4475,36 +4330,36 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "expr_3"
-	// Leac.g:223:1: expr_3 : ( expr_2 -> expr_2 ) ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )* ;
+	// Leac.g:215:1: expr_3 : ( expr_2 -> expr_2 ) ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )* ;
 	public final LeacParser.expr_3_return expr_3() throws RecognitionException {
 		LeacParser.expr_3_return retval = new LeacParser.expr_3_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token char_literal123=null;
-		Token char_literal124=null;
+		Token char_literal119=null;
+		Token char_literal120=null;
 		ParserRuleReturnScope next =null;
-		ParserRuleReturnScope expr_2122 =null;
+		ParserRuleReturnScope expr_2118 =null;
 
-		Object char_literal123_tree=null;
-		Object char_literal124_tree=null;
-		RewriteRuleTokenStream stream_71=new RewriteRuleTokenStream(adaptor,"token 71");
-		RewriteRuleTokenStream stream_76=new RewriteRuleTokenStream(adaptor,"token 76");
+		Object char_literal119_tree=null;
+		Object char_literal120_tree=null;
+		RewriteRuleTokenStream stream_70=new RewriteRuleTokenStream(adaptor,"token 70");
+		RewriteRuleTokenStream stream_75=new RewriteRuleTokenStream(adaptor,"token 75");
 		RewriteRuleSubtreeStream stream_expr_2=new RewriteRuleSubtreeStream(adaptor,"rule expr_2");
 
 		try {
-			// Leac.g:224:5: ( ( expr_2 -> expr_2 ) ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )* )
-			// Leac.g:224:7: ( expr_2 -> expr_2 ) ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )*
+			// Leac.g:216:5: ( ( expr_2 -> expr_2 ) ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )* )
+			// Leac.g:216:7: ( expr_2 -> expr_2 ) ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )*
 			{
-			// Leac.g:224:7: ( expr_2 -> expr_2 )
-			// Leac.g:224:8: expr_2
+			// Leac.g:216:7: ( expr_2 -> expr_2 )
+			// Leac.g:216:8: expr_2
 			{
-			pushFollow(FOLLOW_expr_2_in_expr_32070);
-			expr_2122=expr_2();
+			pushFollow(FOLLOW_expr_2_in_expr_31954);
+			expr_2118=expr_2();
 			state._fsp--;
 
-			stream_expr_2.add(expr_2122.getTree());
+			stream_expr_2.add(expr_2118.getTree());
 			// AST REWRITE
 			// elements: expr_2
 			// token labels: 
@@ -4516,7 +4371,7 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 224:15: -> expr_2
+			// 216:15: -> expr_2
 			{
 				adaptor.addChild(root_0, stream_expr_2.nextTree());
 			}
@@ -4526,32 +4381,32 @@ public class LeacParser extends Parser {
 
 			}
 
-			// Leac.g:225:9: ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )*
-			loop28:
+			// Leac.g:217:9: ( '*' next= expr_2 -> ^( MUL $expr_3 $next) | '/' next= expr_2 -> ^( DIV $expr_3 $next) )*
+			loop26:
 			while (true) {
-				int alt28=3;
-				int LA28_0 = input.LA(1);
-				if ( (LA28_0==71) ) {
-					alt28=1;
+				int alt26=3;
+				int LA26_0 = input.LA(1);
+				if ( (LA26_0==70) ) {
+					alt26=1;
 				}
-				else if ( (LA28_0==76) ) {
-					alt28=2;
+				else if ( (LA26_0==75) ) {
+					alt26=2;
 				}
 
-				switch (alt28) {
+				switch (alt26) {
 				case 1 :
-					// Leac.g:225:11: '*' next= expr_2
+					// Leac.g:217:11: '*' next= expr_2
 					{
-					char_literal123=(Token)match(input,71,FOLLOW_71_in_expr_32087);  
-					stream_71.add(char_literal123);
+					char_literal119=(Token)match(input,70,FOLLOW_70_in_expr_31971);  
+					stream_70.add(char_literal119);
 
-					pushFollow(FOLLOW_expr_2_in_expr_32091);
+					pushFollow(FOLLOW_expr_2_in_expr_31975);
 					next=expr_2();
 					state._fsp--;
 
 					stream_expr_2.add(next.getTree());
 					// AST REWRITE
-					// elements: next, expr_3
+					// elements: expr_3, next
 					// token labels: 
 					// rule labels: next, retval
 					// token list labels: 
@@ -4562,9 +4417,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 225:27: -> ^( MUL $expr_3 $next)
+					// 217:27: -> ^( MUL $expr_3 $next)
 					{
-						// Leac.g:225:30: ^( MUL $expr_3 $next)
+						// Leac.g:217:30: ^( MUL $expr_3 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(MUL, "MUL"), root_1);
@@ -4581,12 +4436,12 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:226:11: '/' next= expr_2
+					// Leac.g:218:11: '/' next= expr_2
 					{
-					char_literal124=(Token)match(input,76,FOLLOW_76_in_expr_32115);  
-					stream_76.add(char_literal124);
+					char_literal120=(Token)match(input,75,FOLLOW_75_in_expr_31999);  
+					stream_75.add(char_literal120);
 
-					pushFollow(FOLLOW_expr_2_in_expr_32119);
+					pushFollow(FOLLOW_expr_2_in_expr_32003);
 					next=expr_2();
 					state._fsp--;
 
@@ -4603,12 +4458,476 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 226:27: -> ^( DIV $expr_3 $next)
+					// 218:27: -> ^( DIV $expr_3 $next)
 					{
-						// Leac.g:226:30: ^( DIV $expr_3 $next)
+						// Leac.g:218:30: ^( DIV $expr_3 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(DIV, "DIV"), root_1);
+						adaptor.addChild(root_1, stream_retval.nextTree());
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+
+				default :
+					break loop26;
+				}
+			}
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		return retval;
+	}
+	// $ANTLR end "expr_3"
+
+
+	public static class expr_4_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
+
+	// $ANTLR start "expr_4"
+	// Leac.g:222:1: expr_4 : ( expr_3 -> expr_3 ) ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )* ;
+	public final LeacParser.expr_4_return expr_4() throws RecognitionException {
+		LeacParser.expr_4_return retval = new LeacParser.expr_4_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token char_literal122=null;
+		Token char_literal123=null;
+		ParserRuleReturnScope next =null;
+		ParserRuleReturnScope expr_3121 =null;
+
+		Object char_literal122_tree=null;
+		Object char_literal123_tree=null;
+		RewriteRuleTokenStream stream_71=new RewriteRuleTokenStream(adaptor,"token 71");
+		RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
+		RewriteRuleSubtreeStream stream_expr_3=new RewriteRuleSubtreeStream(adaptor,"rule expr_3");
+
+		try {
+			// Leac.g:223:5: ( ( expr_3 -> expr_3 ) ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )* )
+			// Leac.g:223:7: ( expr_3 -> expr_3 ) ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )*
+			{
+			// Leac.g:223:7: ( expr_3 -> expr_3 )
+			// Leac.g:223:8: expr_3
+			{
+			pushFollow(FOLLOW_expr_3_in_expr_42044);
+			expr_3121=expr_3();
+			state._fsp--;
+
+			stream_expr_3.add(expr_3121.getTree());
+			// AST REWRITE
+			// elements: expr_3
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 223:15: -> expr_3
+			{
+				adaptor.addChild(root_0, stream_expr_3.nextTree());
+			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			// Leac.g:224:9: ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )*
+			loop27:
+			while (true) {
+				int alt27=3;
+				int LA27_0 = input.LA(1);
+				if ( (LA27_0==71) ) {
+					alt27=1;
+				}
+				else if ( (LA27_0==73) ) {
+					alt27=2;
+				}
+
+				switch (alt27) {
+				case 1 :
+					// Leac.g:224:11: '+' next= expr_3
+					{
+					char_literal122=(Token)match(input,71,FOLLOW_71_in_expr_42061);  
+					stream_71.add(char_literal122);
+
+					pushFollow(FOLLOW_expr_3_in_expr_42065);
+					next=expr_3();
+					state._fsp--;
+
+					stream_expr_3.add(next.getTree());
+					// AST REWRITE
+					// elements: next, expr_4
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 224:27: -> ^( ADD $expr_4 $next)
+					{
+						// Leac.g:224:30: ^( ADD $expr_4 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ADD, "ADD"), root_1);
+						adaptor.addChild(root_1, stream_retval.nextTree());
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+				case 2 :
+					// Leac.g:225:11: '-' next= expr_3
+					{
+					char_literal123=(Token)match(input,73,FOLLOW_73_in_expr_42089);  
+					stream_73.add(char_literal123);
+
+					pushFollow(FOLLOW_expr_3_in_expr_42093);
+					next=expr_3();
+					state._fsp--;
+
+					stream_expr_3.add(next.getTree());
+					// AST REWRITE
+					// elements: next, expr_4
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 225:27: -> ^( SUB $expr_4 $next)
+					{
+						// Leac.g:225:30: ^( SUB $expr_4 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(SUB, "SUB"), root_1);
+						adaptor.addChild(root_1, stream_retval.nextTree());
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+
+				default :
+					break loop27;
+				}
+			}
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		return retval;
+	}
+	// $ANTLR end "expr_4"
+
+
+	public static class expr_5_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
+
+	// $ANTLR start "expr_5"
+	// Leac.g:229:1: expr_5 : ( expr_4 -> expr_4 ) ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )* ;
+	public final LeacParser.expr_5_return expr_5() throws RecognitionException {
+		LeacParser.expr_5_return retval = new LeacParser.expr_5_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token char_literal125=null;
+		Token string_literal126=null;
+		Token char_literal127=null;
+		Token string_literal128=null;
+		ParserRuleReturnScope next =null;
+		ParserRuleReturnScope expr_4124 =null;
+
+		Object char_literal125_tree=null;
+		Object string_literal126_tree=null;
+		Object char_literal127_tree=null;
+		Object string_literal128_tree=null;
+		RewriteRuleTokenStream stream_78=new RewriteRuleTokenStream(adaptor,"token 78");
+		RewriteRuleTokenStream stream_79=new RewriteRuleTokenStream(adaptor,"token 79");
+		RewriteRuleTokenStream stream_82=new RewriteRuleTokenStream(adaptor,"token 82");
+		RewriteRuleTokenStream stream_83=new RewriteRuleTokenStream(adaptor,"token 83");
+		RewriteRuleSubtreeStream stream_expr_4=new RewriteRuleSubtreeStream(adaptor,"rule expr_4");
+
+		try {
+			// Leac.g:230:5: ( ( expr_4 -> expr_4 ) ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )* )
+			// Leac.g:230:7: ( expr_4 -> expr_4 ) ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )*
+			{
+			// Leac.g:230:7: ( expr_4 -> expr_4 )
+			// Leac.g:230:8: expr_4
+			{
+			pushFollow(FOLLOW_expr_4_in_expr_52134);
+			expr_4124=expr_4();
+			state._fsp--;
+
+			stream_expr_4.add(expr_4124.getTree());
+			// AST REWRITE
+			// elements: expr_4
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 230:15: -> expr_4
+			{
+				adaptor.addChild(root_0, stream_expr_4.nextTree());
+			}
+
+
+			retval.tree = root_0;
+
+			}
+
+			// Leac.g:231:9: ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )*
+			loop28:
+			while (true) {
+				int alt28=5;
+				switch ( input.LA(1) ) {
+				case 78:
+					{
+					alt28=1;
+					}
+					break;
+				case 79:
+					{
+					alt28=2;
+					}
+					break;
+				case 82:
+					{
+					alt28=3;
+					}
+					break;
+				case 83:
+					{
+					alt28=4;
+					}
+					break;
+				}
+				switch (alt28) {
+				case 1 :
+					// Leac.g:231:11: '<' next= expr_4
+					{
+					char_literal125=(Token)match(input,78,FOLLOW_78_in_expr_52151);  
+					stream_78.add(char_literal125);
+
+					pushFollow(FOLLOW_expr_4_in_expr_52155);
+					next=expr_4();
+					state._fsp--;
+
+					stream_expr_4.add(next.getTree());
+					// AST REWRITE
+					// elements: next, expr_5
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 231:27: -> ^( TEST_LT $expr_5 $next)
+					{
+						// Leac.g:231:30: ^( TEST_LT $expr_5 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_LT, "TEST_LT"), root_1);
+						adaptor.addChild(root_1, stream_retval.nextTree());
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+				case 2 :
+					// Leac.g:232:11: '<=' next= expr_4
+					{
+					string_literal126=(Token)match(input,79,FOLLOW_79_in_expr_52179);  
+					stream_79.add(string_literal126);
+
+					pushFollow(FOLLOW_expr_4_in_expr_52183);
+					next=expr_4();
+					state._fsp--;
+
+					stream_expr_4.add(next.getTree());
+					// AST REWRITE
+					// elements: expr_5, next
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 232:28: -> ^( TEST_LE $expr_5 $next)
+					{
+						// Leac.g:232:31: ^( TEST_LE $expr_5 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_LE, "TEST_LE"), root_1);
+						adaptor.addChild(root_1, stream_retval.nextTree());
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+				case 3 :
+					// Leac.g:233:11: '>' next= expr_4
+					{
+					char_literal127=(Token)match(input,82,FOLLOW_82_in_expr_52207);  
+					stream_82.add(char_literal127);
+
+					pushFollow(FOLLOW_expr_4_in_expr_52211);
+					next=expr_4();
+					state._fsp--;
+
+					stream_expr_4.add(next.getTree());
+					// AST REWRITE
+					// elements: expr_5, next
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 233:27: -> ^( TEST_GT $expr_5 $next)
+					{
+						// Leac.g:233:30: ^( TEST_GT $expr_5 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_GT, "TEST_GT"), root_1);
+						adaptor.addChild(root_1, stream_retval.nextTree());
+						adaptor.addChild(root_1, stream_next.nextTree());
+						adaptor.addChild(root_0, root_1);
+						}
+
+					}
+
+
+					retval.tree = root_0;
+
+					}
+					break;
+				case 4 :
+					// Leac.g:234:11: '>=' next= expr_4
+					{
+					string_literal128=(Token)match(input,83,FOLLOW_83_in_expr_52235);  
+					stream_83.add(string_literal128);
+
+					pushFollow(FOLLOW_expr_4_in_expr_52239);
+					next=expr_4();
+					state._fsp--;
+
+					stream_expr_4.add(next.getTree());
+					// AST REWRITE
+					// elements: next, expr_5
+					// token labels: 
+					// rule labels: next, retval
+					// token list labels: 
+					// rule list labels: 
+					// wildcard labels: 
+					retval.tree = root_0;
+					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+					root_0 = (Object)adaptor.nil();
+					// 234:28: -> ^( TEST_GE $expr_5 $next)
+					{
+						// Leac.g:234:31: ^( TEST_GE $expr_5 $next)
+						{
+						Object root_1 = (Object)adaptor.nil();
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_GE, "TEST_GE"), root_1);
 						adaptor.addChild(root_1, stream_retval.nextTree());
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
@@ -4645,49 +4964,49 @@ public class LeacParser extends Parser {
 		}
 		return retval;
 	}
-	// $ANTLR end "expr_3"
+	// $ANTLR end "expr_5"
 
 
-	public static class expr_4_return extends ParserRuleReturnScope {
+	public static class expr_6_return extends ParserRuleReturnScope {
 		Object tree;
 		@Override
 		public Object getTree() { return tree; }
 	};
 
 
-	// $ANTLR start "expr_4"
-	// Leac.g:230:1: expr_4 : ( expr_3 -> expr_3 ) ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )* ;
-	public final LeacParser.expr_4_return expr_4() throws RecognitionException {
-		LeacParser.expr_4_return retval = new LeacParser.expr_4_return();
+	// $ANTLR start "expr_6"
+	// Leac.g:238:1: expr_6 : ( expr_5 -> expr_5 ) ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )* ;
+	public final LeacParser.expr_6_return expr_6() throws RecognitionException {
+		LeacParser.expr_6_return retval = new LeacParser.expr_6_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token char_literal126=null;
-		Token char_literal127=null;
+		Token string_literal130=null;
+		Token string_literal131=null;
 		ParserRuleReturnScope next =null;
-		ParserRuleReturnScope expr_3125 =null;
+		ParserRuleReturnScope expr_5129 =null;
 
-		Object char_literal126_tree=null;
-		Object char_literal127_tree=null;
-		RewriteRuleTokenStream stream_72=new RewriteRuleTokenStream(adaptor,"token 72");
-		RewriteRuleTokenStream stream_74=new RewriteRuleTokenStream(adaptor,"token 74");
-		RewriteRuleSubtreeStream stream_expr_3=new RewriteRuleSubtreeStream(adaptor,"rule expr_3");
+		Object string_literal130_tree=null;
+		Object string_literal131_tree=null;
+		RewriteRuleTokenStream stream_67=new RewriteRuleTokenStream(adaptor,"token 67");
+		RewriteRuleTokenStream stream_81=new RewriteRuleTokenStream(adaptor,"token 81");
+		RewriteRuleSubtreeStream stream_expr_5=new RewriteRuleSubtreeStream(adaptor,"rule expr_5");
 
 		try {
-			// Leac.g:231:5: ( ( expr_3 -> expr_3 ) ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )* )
-			// Leac.g:231:7: ( expr_3 -> expr_3 ) ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )*
+			// Leac.g:239:5: ( ( expr_5 -> expr_5 ) ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )* )
+			// Leac.g:239:7: ( expr_5 -> expr_5 ) ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )*
 			{
-			// Leac.g:231:7: ( expr_3 -> expr_3 )
-			// Leac.g:231:8: expr_3
+			// Leac.g:239:7: ( expr_5 -> expr_5 )
+			// Leac.g:239:8: expr_5
 			{
-			pushFollow(FOLLOW_expr_3_in_expr_42160);
-			expr_3125=expr_3();
+			pushFollow(FOLLOW_expr_5_in_expr_62280);
+			expr_5129=expr_5();
 			state._fsp--;
 
-			stream_expr_3.add(expr_3125.getTree());
+			stream_expr_5.add(expr_5129.getTree());
 			// AST REWRITE
-			// elements: expr_3
+			// elements: expr_5
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -4697,9 +5016,9 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 231:15: -> expr_3
+			// 239:15: -> expr_5
 			{
-				adaptor.addChild(root_0, stream_expr_3.nextTree());
+				adaptor.addChild(root_0, stream_expr_5.nextTree());
 			}
 
 
@@ -4707,32 +5026,32 @@ public class LeacParser extends Parser {
 
 			}
 
-			// Leac.g:232:9: ( '+' next= expr_3 -> ^( ADD $expr_4 $next) | '-' next= expr_3 -> ^( SUB $expr_4 $next) )*
+			// Leac.g:240:9: ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )*
 			loop29:
 			while (true) {
 				int alt29=3;
 				int LA29_0 = input.LA(1);
-				if ( (LA29_0==72) ) {
+				if ( (LA29_0==81) ) {
 					alt29=1;
 				}
-				else if ( (LA29_0==74) ) {
+				else if ( (LA29_0==67) ) {
 					alt29=2;
 				}
 
 				switch (alt29) {
 				case 1 :
-					// Leac.g:232:11: '+' next= expr_3
+					// Leac.g:240:11: '==' next= expr_5
 					{
-					char_literal126=(Token)match(input,72,FOLLOW_72_in_expr_42177);  
-					stream_72.add(char_literal126);
+					string_literal130=(Token)match(input,81,FOLLOW_81_in_expr_62297);  
+					stream_81.add(string_literal130);
 
-					pushFollow(FOLLOW_expr_3_in_expr_42181);
-					next=expr_3();
+					pushFollow(FOLLOW_expr_5_in_expr_62301);
+					next=expr_5();
 					state._fsp--;
 
-					stream_expr_3.add(next.getTree());
+					stream_expr_5.add(next.getTree());
 					// AST REWRITE
-					// elements: next, expr_4
+					// elements: expr_6, next
 					// token labels: 
 					// rule labels: next, retval
 					// token list labels: 
@@ -4743,12 +5062,12 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 232:27: -> ^( ADD $expr_4 $next)
+					// 240:28: -> ^( TEST_EQ $expr_6 $next)
 					{
-						// Leac.g:232:30: ^( ADD $expr_4 $next)
+						// Leac.g:240:31: ^( TEST_EQ $expr_6 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ADD, "ADD"), root_1);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_EQ, "TEST_EQ"), root_1);
 						adaptor.addChild(root_1, stream_retval.nextTree());
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
@@ -4762,18 +5081,18 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:233:11: '-' next= expr_3
+					// Leac.g:241:11: '!=' next= expr_5
 					{
-					char_literal127=(Token)match(input,74,FOLLOW_74_in_expr_42205);  
-					stream_74.add(char_literal127);
+					string_literal131=(Token)match(input,67,FOLLOW_67_in_expr_62325);  
+					stream_67.add(string_literal131);
 
-					pushFollow(FOLLOW_expr_3_in_expr_42209);
-					next=expr_3();
+					pushFollow(FOLLOW_expr_5_in_expr_62329);
+					next=expr_5();
 					state._fsp--;
 
-					stream_expr_3.add(next.getTree());
+					stream_expr_5.add(next.getTree());
 					// AST REWRITE
-					// elements: expr_4, next
+					// elements: next, expr_6
 					// token labels: 
 					// rule labels: next, retval
 					// token list labels: 
@@ -4784,12 +5103,12 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 233:27: -> ^( SUB $expr_4 $next)
+					// 241:28: -> ^( TEST_NE $expr_6 $next)
 					{
-						// Leac.g:233:30: ^( SUB $expr_4 $next)
+						// Leac.g:241:31: ^( TEST_NE $expr_6 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(SUB, "SUB"), root_1);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_NE, "TEST_NE"), root_1);
 						adaptor.addChild(root_1, stream_retval.nextTree());
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
@@ -4826,55 +5145,46 @@ public class LeacParser extends Parser {
 		}
 		return retval;
 	}
-	// $ANTLR end "expr_4"
+	// $ANTLR end "expr_6"
 
 
-	public static class expr_5_return extends ParserRuleReturnScope {
+	public static class expr_7_return extends ParserRuleReturnScope {
 		Object tree;
 		@Override
 		public Object getTree() { return tree; }
 	};
 
 
-	// $ANTLR start "expr_5"
-	// Leac.g:237:1: expr_5 : ( expr_4 -> expr_4 ) ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )* ;
-	public final LeacParser.expr_5_return expr_5() throws RecognitionException {
-		LeacParser.expr_5_return retval = new LeacParser.expr_5_return();
+	// $ANTLR start "expr_7"
+	// Leac.g:245:1: expr_7 : ( expr_6 -> expr_6 ) ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )* ;
+	public final LeacParser.expr_7_return expr_7() throws RecognitionException {
+		LeacParser.expr_7_return retval = new LeacParser.expr_7_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token char_literal129=null;
-		Token string_literal130=null;
-		Token char_literal131=null;
-		Token string_literal132=null;
+		Token string_literal133=null;
 		ParserRuleReturnScope next =null;
-		ParserRuleReturnScope expr_4128 =null;
+		ParserRuleReturnScope expr_6132 =null;
 
-		Object char_literal129_tree=null;
-		Object string_literal130_tree=null;
-		Object char_literal131_tree=null;
-		Object string_literal132_tree=null;
-		RewriteRuleTokenStream stream_79=new RewriteRuleTokenStream(adaptor,"token 79");
-		RewriteRuleTokenStream stream_80=new RewriteRuleTokenStream(adaptor,"token 80");
-		RewriteRuleTokenStream stream_83=new RewriteRuleTokenStream(adaptor,"token 83");
-		RewriteRuleTokenStream stream_84=new RewriteRuleTokenStream(adaptor,"token 84");
-		RewriteRuleSubtreeStream stream_expr_4=new RewriteRuleSubtreeStream(adaptor,"rule expr_4");
+		Object string_literal133_tree=null;
+		RewriteRuleTokenStream stream_87=new RewriteRuleTokenStream(adaptor,"token 87");
+		RewriteRuleSubtreeStream stream_expr_6=new RewriteRuleSubtreeStream(adaptor,"rule expr_6");
 
 		try {
-			// Leac.g:238:5: ( ( expr_4 -> expr_4 ) ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )* )
-			// Leac.g:238:7: ( expr_4 -> expr_4 ) ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )*
+			// Leac.g:246:5: ( ( expr_6 -> expr_6 ) ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )* )
+			// Leac.g:246:7: ( expr_6 -> expr_6 ) ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )*
 			{
-			// Leac.g:238:7: ( expr_4 -> expr_4 )
-			// Leac.g:238:8: expr_4
+			// Leac.g:246:7: ( expr_6 -> expr_6 )
+			// Leac.g:246:8: expr_6
 			{
-			pushFollow(FOLLOW_expr_4_in_expr_52250);
-			expr_4128=expr_4();
+			pushFollow(FOLLOW_expr_6_in_expr_72370);
+			expr_6132=expr_6();
 			state._fsp--;
 
-			stream_expr_4.add(expr_4128.getTree());
+			stream_expr_6.add(expr_6132.getTree());
 			// AST REWRITE
-			// elements: expr_4
+			// elements: expr_6
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -4884,9 +5194,9 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 238:15: -> expr_4
+			// 246:15: -> expr_6
 			{
-				adaptor.addChild(root_0, stream_expr_4.nextTree());
+				adaptor.addChild(root_0, stream_expr_6.nextTree());
 			}
 
 
@@ -4894,46 +5204,29 @@ public class LeacParser extends Parser {
 
 			}
 
-			// Leac.g:239:9: ( '<' next= expr_4 -> ^( TEST_LT $expr_5 $next) | '<=' next= expr_4 -> ^( TEST_LE $expr_5 $next) | '>' next= expr_4 -> ^( TEST_GT $expr_5 $next) | '>=' next= expr_4 -> ^( TEST_GE $expr_5 $next) )*
+			// Leac.g:247:9: ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )*
 			loop30:
 			while (true) {
-				int alt30=5;
-				switch ( input.LA(1) ) {
-				case 79:
-					{
+				int alt30=2;
+				int LA30_0 = input.LA(1);
+				if ( (LA30_0==87) ) {
 					alt30=1;
-					}
-					break;
-				case 80:
-					{
-					alt30=2;
-					}
-					break;
-				case 83:
-					{
-					alt30=3;
-					}
-					break;
-				case 84:
-					{
-					alt30=4;
-					}
-					break;
 				}
+
 				switch (alt30) {
 				case 1 :
-					// Leac.g:239:11: '<' next= expr_4
+					// Leac.g:247:11: 'and' next= expr_6
 					{
-					char_literal129=(Token)match(input,79,FOLLOW_79_in_expr_52267);  
-					stream_79.add(char_literal129);
+					string_literal133=(Token)match(input,87,FOLLOW_87_in_expr_72387);  
+					stream_87.add(string_literal133);
 
-					pushFollow(FOLLOW_expr_4_in_expr_52271);
-					next=expr_4();
+					pushFollow(FOLLOW_expr_6_in_expr_72391);
+					next=expr_6();
 					state._fsp--;
 
-					stream_expr_4.add(next.getTree());
+					stream_expr_6.add(next.getTree());
 					// AST REWRITE
-					// elements: expr_5, next
+					// elements: expr_7, next
 					// token labels: 
 					// rule labels: next, retval
 					// token list labels: 
@@ -4944,135 +5237,12 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 239:27: -> ^( TEST_LT $expr_5 $next)
+					// 247:29: -> ^( AND $expr_7 $next)
 					{
-						// Leac.g:239:30: ^( TEST_LT $expr_5 $next)
+						// Leac.g:247:32: ^( AND $expr_7 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_LT, "TEST_LT"), root_1);
-						adaptor.addChild(root_1, stream_retval.nextTree());
-						adaptor.addChild(root_1, stream_next.nextTree());
-						adaptor.addChild(root_0, root_1);
-						}
-
-					}
-
-
-					retval.tree = root_0;
-
-					}
-					break;
-				case 2 :
-					// Leac.g:240:11: '<=' next= expr_4
-					{
-					string_literal130=(Token)match(input,80,FOLLOW_80_in_expr_52295);  
-					stream_80.add(string_literal130);
-
-					pushFollow(FOLLOW_expr_4_in_expr_52299);
-					next=expr_4();
-					state._fsp--;
-
-					stream_expr_4.add(next.getTree());
-					// AST REWRITE
-					// elements: expr_5, next
-					// token labels: 
-					// rule labels: next, retval
-					// token list labels: 
-					// rule list labels: 
-					// wildcard labels: 
-					retval.tree = root_0;
-					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
-					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-					root_0 = (Object)adaptor.nil();
-					// 240:28: -> ^( TEST_LE $expr_5 $next)
-					{
-						// Leac.g:240:31: ^( TEST_LE $expr_5 $next)
-						{
-						Object root_1 = (Object)adaptor.nil();
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_LE, "TEST_LE"), root_1);
-						adaptor.addChild(root_1, stream_retval.nextTree());
-						adaptor.addChild(root_1, stream_next.nextTree());
-						adaptor.addChild(root_0, root_1);
-						}
-
-					}
-
-
-					retval.tree = root_0;
-
-					}
-					break;
-				case 3 :
-					// Leac.g:241:11: '>' next= expr_4
-					{
-					char_literal131=(Token)match(input,83,FOLLOW_83_in_expr_52323);  
-					stream_83.add(char_literal131);
-
-					pushFollow(FOLLOW_expr_4_in_expr_52327);
-					next=expr_4();
-					state._fsp--;
-
-					stream_expr_4.add(next.getTree());
-					// AST REWRITE
-					// elements: next, expr_5
-					// token labels: 
-					// rule labels: next, retval
-					// token list labels: 
-					// rule list labels: 
-					// wildcard labels: 
-					retval.tree = root_0;
-					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
-					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-					root_0 = (Object)adaptor.nil();
-					// 241:27: -> ^( TEST_GT $expr_5 $next)
-					{
-						// Leac.g:241:30: ^( TEST_GT $expr_5 $next)
-						{
-						Object root_1 = (Object)adaptor.nil();
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_GT, "TEST_GT"), root_1);
-						adaptor.addChild(root_1, stream_retval.nextTree());
-						adaptor.addChild(root_1, stream_next.nextTree());
-						adaptor.addChild(root_0, root_1);
-						}
-
-					}
-
-
-					retval.tree = root_0;
-
-					}
-					break;
-				case 4 :
-					// Leac.g:242:11: '>=' next= expr_4
-					{
-					string_literal132=(Token)match(input,84,FOLLOW_84_in_expr_52351);  
-					stream_84.add(string_literal132);
-
-					pushFollow(FOLLOW_expr_4_in_expr_52355);
-					next=expr_4();
-					state._fsp--;
-
-					stream_expr_4.add(next.getTree());
-					// AST REWRITE
-					// elements: next, expr_5
-					// token labels: 
-					// rule labels: next, retval
-					// token list labels: 
-					// rule list labels: 
-					// wildcard labels: 
-					retval.tree = root_0;
-					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
-					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-					root_0 = (Object)adaptor.nil();
-					// 242:28: -> ^( TEST_GE $expr_5 $next)
-					{
-						// Leac.g:242:31: ^( TEST_GE $expr_5 $next)
-						{
-						Object root_1 = (Object)adaptor.nil();
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_GE, "TEST_GE"), root_1);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(AND, "AND"), root_1);
 						adaptor.addChild(root_1, stream_retval.nextTree());
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
@@ -5109,49 +5279,46 @@ public class LeacParser extends Parser {
 		}
 		return retval;
 	}
-	// $ANTLR end "expr_5"
+	// $ANTLR end "expr_7"
 
 
-	public static class expr_6_return extends ParserRuleReturnScope {
+	public static class expr_8_return extends ParserRuleReturnScope {
 		Object tree;
 		@Override
 		public Object getTree() { return tree; }
 	};
 
 
-	// $ANTLR start "expr_6"
-	// Leac.g:246:1: expr_6 : ( expr_5 -> expr_5 ) ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )* ;
-	public final LeacParser.expr_6_return expr_6() throws RecognitionException {
-		LeacParser.expr_6_return retval = new LeacParser.expr_6_return();
+	// $ANTLR start "expr_8"
+	// Leac.g:251:1: expr_8 : ( expr_7 -> expr_7 ) ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )* ;
+	public final LeacParser.expr_8_return expr_8() throws RecognitionException {
+		LeacParser.expr_8_return retval = new LeacParser.expr_8_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token string_literal134=null;
 		Token string_literal135=null;
 		ParserRuleReturnScope next =null;
-		ParserRuleReturnScope expr_5133 =null;
+		ParserRuleReturnScope expr_7134 =null;
 
-		Object string_literal134_tree=null;
 		Object string_literal135_tree=null;
-		RewriteRuleTokenStream stream_68=new RewriteRuleTokenStream(adaptor,"token 68");
-		RewriteRuleTokenStream stream_82=new RewriteRuleTokenStream(adaptor,"token 82");
-		RewriteRuleSubtreeStream stream_expr_5=new RewriteRuleSubtreeStream(adaptor,"rule expr_5");
+		RewriteRuleTokenStream stream_99=new RewriteRuleTokenStream(adaptor,"token 99");
+		RewriteRuleSubtreeStream stream_expr_7=new RewriteRuleSubtreeStream(adaptor,"rule expr_7");
 
 		try {
-			// Leac.g:247:5: ( ( expr_5 -> expr_5 ) ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )* )
-			// Leac.g:247:7: ( expr_5 -> expr_5 ) ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )*
+			// Leac.g:252:5: ( ( expr_7 -> expr_7 ) ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )* )
+			// Leac.g:252:7: ( expr_7 -> expr_7 ) ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )*
 			{
-			// Leac.g:247:7: ( expr_5 -> expr_5 )
-			// Leac.g:247:8: expr_5
+			// Leac.g:252:7: ( expr_7 -> expr_7 )
+			// Leac.g:252:8: expr_7
 			{
-			pushFollow(FOLLOW_expr_5_in_expr_62396);
-			expr_5133=expr_5();
+			pushFollow(FOLLOW_expr_7_in_expr_82432);
+			expr_7134=expr_7();
 			state._fsp--;
 
-			stream_expr_5.add(expr_5133.getTree());
+			stream_expr_7.add(expr_7134.getTree());
 			// AST REWRITE
-			// elements: expr_5
+			// elements: expr_7
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -5161,9 +5328,9 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 247:15: -> expr_5
+			// 252:15: -> expr_7
 			{
-				adaptor.addChild(root_0, stream_expr_5.nextTree());
+				adaptor.addChild(root_0, stream_expr_7.nextTree());
 			}
 
 
@@ -5171,32 +5338,29 @@ public class LeacParser extends Parser {
 
 			}
 
-			// Leac.g:248:9: ( '==' next= expr_5 -> ^( TEST_EQ $expr_6 $next) | '!=' next= expr_5 -> ^( TEST_NE $expr_6 $next) )*
+			// Leac.g:253:9: ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )*
 			loop31:
 			while (true) {
-				int alt31=3;
+				int alt31=2;
 				int LA31_0 = input.LA(1);
-				if ( (LA31_0==82) ) {
+				if ( (LA31_0==99) ) {
 					alt31=1;
-				}
-				else if ( (LA31_0==68) ) {
-					alt31=2;
 				}
 
 				switch (alt31) {
 				case 1 :
-					// Leac.g:248:11: '==' next= expr_5
+					// Leac.g:253:11: 'or' next= expr_7
 					{
-					string_literal134=(Token)match(input,82,FOLLOW_82_in_expr_62413);  
-					stream_82.add(string_literal134);
+					string_literal135=(Token)match(input,99,FOLLOW_99_in_expr_82449);  
+					stream_99.add(string_literal135);
 
-					pushFollow(FOLLOW_expr_5_in_expr_62417);
-					next=expr_5();
+					pushFollow(FOLLOW_expr_7_in_expr_82453);
+					next=expr_7();
 					state._fsp--;
 
-					stream_expr_5.add(next.getTree());
+					stream_expr_7.add(next.getTree());
 					// AST REWRITE
-					// elements: next, expr_6
+					// elements: expr_8, next
 					// token labels: 
 					// rule labels: next, retval
 					// token list labels: 
@@ -5207,53 +5371,12 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 248:28: -> ^( TEST_EQ $expr_6 $next)
+					// 253:28: -> ^( OR $expr_8 $next)
 					{
-						// Leac.g:248:31: ^( TEST_EQ $expr_6 $next)
+						// Leac.g:253:31: ^( OR $expr_8 $next)
 						{
 						Object root_1 = (Object)adaptor.nil();
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_EQ, "TEST_EQ"), root_1);
-						adaptor.addChild(root_1, stream_retval.nextTree());
-						adaptor.addChild(root_1, stream_next.nextTree());
-						adaptor.addChild(root_0, root_1);
-						}
-
-					}
-
-
-					retval.tree = root_0;
-
-					}
-					break;
-				case 2 :
-					// Leac.g:249:11: '!=' next= expr_5
-					{
-					string_literal135=(Token)match(input,68,FOLLOW_68_in_expr_62441);  
-					stream_68.add(string_literal135);
-
-					pushFollow(FOLLOW_expr_5_in_expr_62445);
-					next=expr_5();
-					state._fsp--;
-
-					stream_expr_5.add(next.getTree());
-					// AST REWRITE
-					// elements: expr_6, next
-					// token labels: 
-					// rule labels: next, retval
-					// token list labels: 
-					// rule list labels: 
-					// wildcard labels: 
-					retval.tree = root_0;
-					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
-					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-					root_0 = (Object)adaptor.nil();
-					// 249:28: -> ^( TEST_NE $expr_6 $next)
-					{
-						// Leac.g:249:31: ^( TEST_NE $expr_6 $next)
-						{
-						Object root_1 = (Object)adaptor.nil();
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TEST_NE, "TEST_NE"), root_1);
+						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(OR, "OR"), root_1);
 						adaptor.addChild(root_1, stream_retval.nextTree());
 						adaptor.addChild(root_1, stream_next.nextTree());
 						adaptor.addChild(root_0, root_1);
@@ -5290,274 +5413,6 @@ public class LeacParser extends Parser {
 		}
 		return retval;
 	}
-	// $ANTLR end "expr_6"
-
-
-	public static class expr_7_return extends ParserRuleReturnScope {
-		Object tree;
-		@Override
-		public Object getTree() { return tree; }
-	};
-
-
-	// $ANTLR start "expr_7"
-	// Leac.g:253:1: expr_7 : ( expr_6 -> expr_6 ) ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )* ;
-	public final LeacParser.expr_7_return expr_7() throws RecognitionException {
-		LeacParser.expr_7_return retval = new LeacParser.expr_7_return();
-		retval.start = input.LT(1);
-
-		Object root_0 = null;
-
-		Token string_literal137=null;
-		ParserRuleReturnScope next =null;
-		ParserRuleReturnScope expr_6136 =null;
-
-		Object string_literal137_tree=null;
-		RewriteRuleTokenStream stream_88=new RewriteRuleTokenStream(adaptor,"token 88");
-		RewriteRuleSubtreeStream stream_expr_6=new RewriteRuleSubtreeStream(adaptor,"rule expr_6");
-
-		try {
-			// Leac.g:254:5: ( ( expr_6 -> expr_6 ) ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )* )
-			// Leac.g:254:7: ( expr_6 -> expr_6 ) ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )*
-			{
-			// Leac.g:254:7: ( expr_6 -> expr_6 )
-			// Leac.g:254:8: expr_6
-			{
-			pushFollow(FOLLOW_expr_6_in_expr_72486);
-			expr_6136=expr_6();
-			state._fsp--;
-
-			stream_expr_6.add(expr_6136.getTree());
-			// AST REWRITE
-			// elements: expr_6
-			// token labels: 
-			// rule labels: retval
-			// token list labels: 
-			// rule list labels: 
-			// wildcard labels: 
-			retval.tree = root_0;
-			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-			root_0 = (Object)adaptor.nil();
-			// 254:15: -> expr_6
-			{
-				adaptor.addChild(root_0, stream_expr_6.nextTree());
-			}
-
-
-			retval.tree = root_0;
-
-			}
-
-			// Leac.g:255:9: ( 'and' next= expr_6 -> ^( AND $expr_7 $next) )*
-			loop32:
-			while (true) {
-				int alt32=2;
-				int LA32_0 = input.LA(1);
-				if ( (LA32_0==88) ) {
-					alt32=1;
-				}
-
-				switch (alt32) {
-				case 1 :
-					// Leac.g:255:11: 'and' next= expr_6
-					{
-					string_literal137=(Token)match(input,88,FOLLOW_88_in_expr_72503);  
-					stream_88.add(string_literal137);
-
-					pushFollow(FOLLOW_expr_6_in_expr_72507);
-					next=expr_6();
-					state._fsp--;
-
-					stream_expr_6.add(next.getTree());
-					// AST REWRITE
-					// elements: expr_7, next
-					// token labels: 
-					// rule labels: next, retval
-					// token list labels: 
-					// rule list labels: 
-					// wildcard labels: 
-					retval.tree = root_0;
-					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
-					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-					root_0 = (Object)adaptor.nil();
-					// 255:29: -> ^( AND $expr_7 $next)
-					{
-						// Leac.g:255:32: ^( AND $expr_7 $next)
-						{
-						Object root_1 = (Object)adaptor.nil();
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(AND, "AND"), root_1);
-						adaptor.addChild(root_1, stream_retval.nextTree());
-						adaptor.addChild(root_1, stream_next.nextTree());
-						adaptor.addChild(root_0, root_1);
-						}
-
-					}
-
-
-					retval.tree = root_0;
-
-					}
-					break;
-
-				default :
-					break loop32;
-				}
-			}
-
-			}
-
-			retval.stop = input.LT(-1);
-
-			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
-			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-		return retval;
-	}
-	// $ANTLR end "expr_7"
-
-
-	public static class expr_8_return extends ParserRuleReturnScope {
-		Object tree;
-		@Override
-		public Object getTree() { return tree; }
-	};
-
-
-	// $ANTLR start "expr_8"
-	// Leac.g:259:1: expr_8 : ( expr_7 -> expr_7 ) ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )* ;
-	public final LeacParser.expr_8_return expr_8() throws RecognitionException {
-		LeacParser.expr_8_return retval = new LeacParser.expr_8_return();
-		retval.start = input.LT(1);
-
-		Object root_0 = null;
-
-		Token string_literal139=null;
-		ParserRuleReturnScope next =null;
-		ParserRuleReturnScope expr_7138 =null;
-
-		Object string_literal139_tree=null;
-		RewriteRuleTokenStream stream_100=new RewriteRuleTokenStream(adaptor,"token 100");
-		RewriteRuleSubtreeStream stream_expr_7=new RewriteRuleSubtreeStream(adaptor,"rule expr_7");
-
-		try {
-			// Leac.g:260:5: ( ( expr_7 -> expr_7 ) ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )* )
-			// Leac.g:260:7: ( expr_7 -> expr_7 ) ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )*
-			{
-			// Leac.g:260:7: ( expr_7 -> expr_7 )
-			// Leac.g:260:8: expr_7
-			{
-			pushFollow(FOLLOW_expr_7_in_expr_82548);
-			expr_7138=expr_7();
-			state._fsp--;
-
-			stream_expr_7.add(expr_7138.getTree());
-			// AST REWRITE
-			// elements: expr_7
-			// token labels: 
-			// rule labels: retval
-			// token list labels: 
-			// rule list labels: 
-			// wildcard labels: 
-			retval.tree = root_0;
-			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-			root_0 = (Object)adaptor.nil();
-			// 260:15: -> expr_7
-			{
-				adaptor.addChild(root_0, stream_expr_7.nextTree());
-			}
-
-
-			retval.tree = root_0;
-
-			}
-
-			// Leac.g:261:9: ( 'or' next= expr_7 -> ^( OR $expr_8 $next) )*
-			loop33:
-			while (true) {
-				int alt33=2;
-				int LA33_0 = input.LA(1);
-				if ( (LA33_0==100) ) {
-					alt33=1;
-				}
-
-				switch (alt33) {
-				case 1 :
-					// Leac.g:261:11: 'or' next= expr_7
-					{
-					string_literal139=(Token)match(input,100,FOLLOW_100_in_expr_82565);  
-					stream_100.add(string_literal139);
-
-					pushFollow(FOLLOW_expr_7_in_expr_82569);
-					next=expr_7();
-					state._fsp--;
-
-					stream_expr_7.add(next.getTree());
-					// AST REWRITE
-					// elements: next, expr_8
-					// token labels: 
-					// rule labels: next, retval
-					// token list labels: 
-					// rule list labels: 
-					// wildcard labels: 
-					retval.tree = root_0;
-					RewriteRuleSubtreeStream stream_next=new RewriteRuleSubtreeStream(adaptor,"rule next",next!=null?next.getTree():null);
-					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-					root_0 = (Object)adaptor.nil();
-					// 261:28: -> ^( OR $expr_8 $next)
-					{
-						// Leac.g:261:31: ^( OR $expr_8 $next)
-						{
-						Object root_1 = (Object)adaptor.nil();
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(OR, "OR"), root_1);
-						adaptor.addChild(root_1, stream_retval.nextTree());
-						adaptor.addChild(root_1, stream_next.nextTree());
-						adaptor.addChild(root_0, root_1);
-						}
-
-					}
-
-
-					retval.tree = root_0;
-
-					}
-					break;
-
-				default :
-					break loop33;
-				}
-			}
-
-			}
-
-			retval.stop = input.LT(-1);
-
-			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
-			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-		return retval;
-	}
 	// $ANTLR end "expr_8"
 
 
@@ -5569,26 +5424,26 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "expr"
-	// Leac.g:265:1: expr : expr_8 -> expr_8 ;
+	// Leac.g:257:1: expr : expr_8 -> expr_8 ;
 	public final LeacParser.expr_return expr() throws RecognitionException {
 		LeacParser.expr_return retval = new LeacParser.expr_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		ParserRuleReturnScope expr_8140 =null;
+		ParserRuleReturnScope expr_8136 =null;
 
 		RewriteRuleSubtreeStream stream_expr_8=new RewriteRuleSubtreeStream(adaptor,"rule expr_8");
 
 		try {
-			// Leac.g:266:5: ( expr_8 -> expr_8 )
-			// Leac.g:266:7: expr_8
+			// Leac.g:258:5: ( expr_8 -> expr_8 )
+			// Leac.g:258:7: expr_8
 			{
-			pushFollow(FOLLOW_expr_8_in_expr2609);
-			expr_8140=expr_8();
+			pushFollow(FOLLOW_expr_8_in_expr2493);
+			expr_8136=expr_8();
 			state._fsp--;
 
-			stream_expr_8.add(expr_8140.getTree());
+			stream_expr_8.add(expr_8136.getTree());
 			// AST REWRITE
 			// elements: expr_8
 			// token labels: 
@@ -5600,7 +5455,7 @@ public class LeacParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 266:14: -> expr_8
+			// 258:14: -> expr_8
 			{
 				adaptor.addChild(root_0, stream_expr_8.nextTree());
 			}
@@ -5637,24 +5492,24 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "constant"
-	// Leac.g:269:1: constant : ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) );
+	// Leac.g:261:1: constant : ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) );
 	public final LeacParser.constant_return constant() throws RecognitionException {
 		LeacParser.constant_return retval = new LeacParser.constant_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token INT141=null;
-		Token FLOAT142=null;
-		Token BOOL143=null;
-		Token STRING144=null;
-		Token CHAR145=null;
+		Token INT137=null;
+		Token FLOAT138=null;
+		Token BOOL139=null;
+		Token STRING140=null;
+		Token CHAR141=null;
 
-		Object INT141_tree=null;
-		Object FLOAT142_tree=null;
-		Object BOOL143_tree=null;
-		Object STRING144_tree=null;
-		Object CHAR145_tree=null;
+		Object INT137_tree=null;
+		Object FLOAT138_tree=null;
+		Object BOOL139_tree=null;
+		Object STRING140_tree=null;
+		Object CHAR141_tree=null;
 		RewriteRuleTokenStream stream_FLOAT=new RewriteRuleTokenStream(adaptor,"token FLOAT");
 		RewriteRuleTokenStream stream_BOOL=new RewriteRuleTokenStream(adaptor,"token BOOL");
 		RewriteRuleTokenStream stream_STRING=new RewriteRuleTokenStream(adaptor,"token STRING");
@@ -5662,45 +5517,45 @@ public class LeacParser extends Parser {
 		RewriteRuleTokenStream stream_INT=new RewriteRuleTokenStream(adaptor,"token INT");
 
 		try {
-			// Leac.g:270:5: ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) )
-			int alt34=5;
+			// Leac.g:262:5: ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) )
+			int alt32=5;
 			switch ( input.LA(1) ) {
 			case INT:
 				{
-				alt34=1;
+				alt32=1;
 				}
 				break;
 			case FLOAT:
 				{
-				alt34=2;
+				alt32=2;
 				}
 				break;
 			case BOOL:
 				{
-				alt34=3;
+				alt32=3;
 				}
 				break;
 			case STRING:
 				{
-				alt34=4;
+				alt32=4;
 				}
 				break;
 			case CHAR:
 				{
-				alt34=5;
+				alt32=5;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 34, 0, input);
+					new NoViableAltException("", 32, 0, input);
 				throw nvae;
 			}
-			switch (alt34) {
+			switch (alt32) {
 				case 1 :
-					// Leac.g:270:7: INT
+					// Leac.g:262:7: INT
 					{
-					INT141=(Token)match(input,INT,FOLLOW_INT_in_constant2630);  
-					stream_INT.add(INT141);
+					INT137=(Token)match(input,INT,FOLLOW_INT_in_constant2514);  
+					stream_INT.add(INT137);
 
 					// AST REWRITE
 					// elements: INT
@@ -5713,9 +5568,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 270:11: -> ^( CONST INT_TYPENAME INT )
+					// 262:11: -> ^( CONST INT_TYPENAME INT )
 					{
-						// Leac.g:270:14: ^( CONST INT_TYPENAME INT )
+						// Leac.g:262:14: ^( CONST INT_TYPENAME INT )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
@@ -5732,10 +5587,10 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:271:7: FLOAT
+					// Leac.g:263:7: FLOAT
 					{
-					FLOAT142=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_constant2648);  
-					stream_FLOAT.add(FLOAT142);
+					FLOAT138=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_constant2532);  
+					stream_FLOAT.add(FLOAT138);
 
 					// AST REWRITE
 					// elements: FLOAT
@@ -5748,9 +5603,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 271:13: -> ^( CONST FLOAT_TYPENAME FLOAT )
+					// 263:13: -> ^( CONST FLOAT_TYPENAME FLOAT )
 					{
-						// Leac.g:271:16: ^( CONST FLOAT_TYPENAME FLOAT )
+						// Leac.g:263:16: ^( CONST FLOAT_TYPENAME FLOAT )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
@@ -5767,10 +5622,10 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 3 :
-					// Leac.g:272:7: BOOL
+					// Leac.g:264:7: BOOL
 					{
-					BOOL143=(Token)match(input,BOOL,FOLLOW_BOOL_in_constant2666);  
-					stream_BOOL.add(BOOL143);
+					BOOL139=(Token)match(input,BOOL,FOLLOW_BOOL_in_constant2550);  
+					stream_BOOL.add(BOOL139);
 
 					// AST REWRITE
 					// elements: BOOL
@@ -5783,9 +5638,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 272:12: -> ^( CONST BOOL_TYPENAME BOOL )
+					// 264:12: -> ^( CONST BOOL_TYPENAME BOOL )
 					{
-						// Leac.g:272:15: ^( CONST BOOL_TYPENAME BOOL )
+						// Leac.g:264:15: ^( CONST BOOL_TYPENAME BOOL )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
@@ -5802,10 +5657,10 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 4 :
-					// Leac.g:273:7: STRING
+					// Leac.g:265:7: STRING
 					{
-					STRING144=(Token)match(input,STRING,FOLLOW_STRING_in_constant2684);  
-					stream_STRING.add(STRING144);
+					STRING140=(Token)match(input,STRING,FOLLOW_STRING_in_constant2568);  
+					stream_STRING.add(STRING140);
 
 					// AST REWRITE
 					// elements: STRING
@@ -5818,9 +5673,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 273:14: -> ^( CONST STRING_TYPENAME STRING )
+					// 265:14: -> ^( CONST STRING_TYPENAME STRING )
 					{
-						// Leac.g:273:17: ^( CONST STRING_TYPENAME STRING )
+						// Leac.g:265:17: ^( CONST STRING_TYPENAME STRING )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
@@ -5837,10 +5692,10 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 5 :
-					// Leac.g:274:7: CHAR
+					// Leac.g:266:7: CHAR
 					{
-					CHAR145=(Token)match(input,CHAR,FOLLOW_CHAR_in_constant2702);  
-					stream_CHAR.add(CHAR145);
+					CHAR141=(Token)match(input,CHAR,FOLLOW_CHAR_in_constant2586);  
+					stream_CHAR.add(CHAR141);
 
 					// AST REWRITE
 					// elements: CHAR
@@ -5853,9 +5708,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 274:12: -> ^( CONST CHAR_TYPENAME CHAR )
+					// 266:12: -> ^( CONST CHAR_TYPENAME CHAR )
 					{
-						// Leac.g:274:15: ^( CONST CHAR_TYPENAME CHAR )
+						// Leac.g:266:15: ^( CONST CHAR_TYPENAME CHAR )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
@@ -5900,107 +5755,107 @@ public class LeacParser extends Parser {
 
 
 	// $ANTLR start "constant_ext"
-	// Leac.g:277:1: constant_ext : ( '-' ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) ) | INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) );
+	// Leac.g:269:1: constant_ext : ( '-' ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) ) | INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) );
 	public final LeacParser.constant_ext_return constant_ext() throws RecognitionException {
 		LeacParser.constant_ext_return retval = new LeacParser.constant_ext_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token char_literal146=null;
-		Token INT147=null;
-		Token FLOAT148=null;
-		Token INT149=null;
-		Token FLOAT150=null;
-		Token BOOL151=null;
-		Token STRING152=null;
-		Token CHAR153=null;
+		Token char_literal142=null;
+		Token INT143=null;
+		Token FLOAT144=null;
+		Token INT145=null;
+		Token FLOAT146=null;
+		Token BOOL147=null;
+		Token STRING148=null;
+		Token CHAR149=null;
 
-		Object char_literal146_tree=null;
-		Object INT147_tree=null;
-		Object FLOAT148_tree=null;
-		Object INT149_tree=null;
-		Object FLOAT150_tree=null;
-		Object BOOL151_tree=null;
-		Object STRING152_tree=null;
-		Object CHAR153_tree=null;
+		Object char_literal142_tree=null;
+		Object INT143_tree=null;
+		Object FLOAT144_tree=null;
+		Object INT145_tree=null;
+		Object FLOAT146_tree=null;
+		Object BOOL147_tree=null;
+		Object STRING148_tree=null;
+		Object CHAR149_tree=null;
 		RewriteRuleTokenStream stream_FLOAT=new RewriteRuleTokenStream(adaptor,"token FLOAT");
 		RewriteRuleTokenStream stream_BOOL=new RewriteRuleTokenStream(adaptor,"token BOOL");
 		RewriteRuleTokenStream stream_STRING=new RewriteRuleTokenStream(adaptor,"token STRING");
 		RewriteRuleTokenStream stream_CHAR=new RewriteRuleTokenStream(adaptor,"token CHAR");
-		RewriteRuleTokenStream stream_74=new RewriteRuleTokenStream(adaptor,"token 74");
+		RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
 		RewriteRuleTokenStream stream_INT=new RewriteRuleTokenStream(adaptor,"token INT");
 
 		try {
-			// Leac.g:278:5: ( '-' ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) ) | INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) )
-			int alt36=6;
+			// Leac.g:270:5: ( '-' ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) ) | INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) | BOOL -> ^( CONST BOOL_TYPENAME BOOL ) | STRING -> ^( CONST STRING_TYPENAME STRING ) | CHAR -> ^( CONST CHAR_TYPENAME CHAR ) )
+			int alt34=6;
 			switch ( input.LA(1) ) {
-			case 74:
+			case 73:
 				{
-				alt36=1;
+				alt34=1;
 				}
 				break;
 			case INT:
 				{
-				alt36=2;
+				alt34=2;
 				}
 				break;
 			case FLOAT:
 				{
-				alt36=3;
+				alt34=3;
 				}
 				break;
 			case BOOL:
 				{
-				alt36=4;
+				alt34=4;
 				}
 				break;
 			case STRING:
 				{
-				alt36=5;
+				alt34=5;
 				}
 				break;
 			case CHAR:
 				{
-				alt36=6;
+				alt34=6;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 36, 0, input);
+					new NoViableAltException("", 34, 0, input);
 				throw nvae;
 			}
-			switch (alt36) {
+			switch (alt34) {
 				case 1 :
-					// Leac.g:278:7: '-' ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) )
+					// Leac.g:270:7: '-' ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) )
 					{
-					char_literal146=(Token)match(input,74,FOLLOW_74_in_constant_ext2729);  
-					stream_74.add(char_literal146);
+					char_literal142=(Token)match(input,73,FOLLOW_73_in_constant_ext2613);  
+					stream_73.add(char_literal142);
 
-					// Leac.g:279:9: ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) )
-					int alt35=2;
-					int LA35_0 = input.LA(1);
-					if ( (LA35_0==INT) ) {
-						alt35=1;
+					// Leac.g:271:9: ( INT -> ^( CONST INT_TYPENAME INT ) | FLOAT -> ^( CONST FLOAT_TYPENAME FLOAT ) )
+					int alt33=2;
+					int LA33_0 = input.LA(1);
+					if ( (LA33_0==INT) ) {
+						alt33=1;
 					}
-					else if ( (LA35_0==FLOAT) ) {
-						alt35=2;
+					else if ( (LA33_0==FLOAT) ) {
+						alt33=2;
 					}
 
 					else {
 						NoViableAltException nvae =
-							new NoViableAltException("", 35, 0, input);
+							new NoViableAltException("", 33, 0, input);
 						throw nvae;
 					}
 
-					switch (alt35) {
+					switch (alt33) {
 						case 1 :
-							// Leac.g:279:11: INT
+							// Leac.g:271:11: INT
 							{
-							INT147=(Token)match(input,INT,FOLLOW_INT_in_constant_ext2741);  
-							stream_INT.add(INT147);
+							INT143=(Token)match(input,INT,FOLLOW_INT_in_constant_ext2625);  
+							stream_INT.add(INT143);
 
-							 INT147.setText("-" + INT147.getText()); 
+							 INT143.setText("-" + INT143.getText()); 
 							// AST REWRITE
 							// elements: INT
 							// token labels: 
@@ -6012,9 +5867,9 @@ public class LeacParser extends Parser {
 							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 							root_0 = (Object)adaptor.nil();
-							// 279:55: -> ^( CONST INT_TYPENAME INT )
+							// 271:55: -> ^( CONST INT_TYPENAME INT )
 							{
-								// Leac.g:279:58: ^( CONST INT_TYPENAME INT )
+								// Leac.g:271:58: ^( CONST INT_TYPENAME INT )
 								{
 								Object root_1 = (Object)adaptor.nil();
 								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
@@ -6031,12 +5886,12 @@ public class LeacParser extends Parser {
 							}
 							break;
 						case 2 :
-							// Leac.g:280:11: FLOAT
+							// Leac.g:272:11: FLOAT
 							{
-							FLOAT148=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_constant_ext2765);  
-							stream_FLOAT.add(FLOAT148);
+							FLOAT144=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_constant_ext2649);  
+							stream_FLOAT.add(FLOAT144);
 
-							 FLOAT148.setText("-" + FLOAT148.getText()); 
+							 FLOAT144.setText("-" + FLOAT144.getText()); 
 							// AST REWRITE
 							// elements: FLOAT
 							// token labels: 
@@ -6048,9 +5903,9 @@ public class LeacParser extends Parser {
 							RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 							root_0 = (Object)adaptor.nil();
-							// 280:61: -> ^( CONST FLOAT_TYPENAME FLOAT )
+							// 272:61: -> ^( CONST FLOAT_TYPENAME FLOAT )
 							{
-								// Leac.g:280:64: ^( CONST FLOAT_TYPENAME FLOAT )
+								// Leac.g:272:64: ^( CONST FLOAT_TYPENAME FLOAT )
 								{
 								Object root_1 = (Object)adaptor.nil();
 								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
@@ -6072,10 +5927,10 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 2 :
-					// Leac.g:282:7: INT
+					// Leac.g:274:7: INT
 					{
-					INT149=(Token)match(input,INT,FOLLOW_INT_in_constant_ext2795);  
-					stream_INT.add(INT149);
+					INT145=(Token)match(input,INT,FOLLOW_INT_in_constant_ext2679);  
+					stream_INT.add(INT145);
 
 					// AST REWRITE
 					// elements: INT
@@ -6088,9 +5943,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 282:11: -> ^( CONST INT_TYPENAME INT )
+					// 274:11: -> ^( CONST INT_TYPENAME INT )
 					{
-						// Leac.g:282:14: ^( CONST INT_TYPENAME INT )
+						// Leac.g:274:14: ^( CONST INT_TYPENAME INT )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
@@ -6107,10 +5962,10 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 3 :
-					// Leac.g:283:7: FLOAT
+					// Leac.g:275:7: FLOAT
 					{
-					FLOAT150=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_constant_ext2813);  
-					stream_FLOAT.add(FLOAT150);
+					FLOAT146=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_constant_ext2697);  
+					stream_FLOAT.add(FLOAT146);
 
 					// AST REWRITE
 					// elements: FLOAT
@@ -6123,9 +5978,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 283:13: -> ^( CONST FLOAT_TYPENAME FLOAT )
+					// 275:13: -> ^( CONST FLOAT_TYPENAME FLOAT )
 					{
-						// Leac.g:283:16: ^( CONST FLOAT_TYPENAME FLOAT )
+						// Leac.g:275:16: ^( CONST FLOAT_TYPENAME FLOAT )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
@@ -6142,10 +5997,10 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 4 :
-					// Leac.g:284:7: BOOL
+					// Leac.g:276:7: BOOL
 					{
-					BOOL151=(Token)match(input,BOOL,FOLLOW_BOOL_in_constant_ext2831);  
-					stream_BOOL.add(BOOL151);
+					BOOL147=(Token)match(input,BOOL,FOLLOW_BOOL_in_constant_ext2715);  
+					stream_BOOL.add(BOOL147);
 
 					// AST REWRITE
 					// elements: BOOL
@@ -6158,9 +6013,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 284:12: -> ^( CONST BOOL_TYPENAME BOOL )
+					// 276:12: -> ^( CONST BOOL_TYPENAME BOOL )
 					{
-						// Leac.g:284:15: ^( CONST BOOL_TYPENAME BOOL )
+						// Leac.g:276:15: ^( CONST BOOL_TYPENAME BOOL )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
@@ -6177,10 +6032,10 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 5 :
-					// Leac.g:285:7: STRING
+					// Leac.g:277:7: STRING
 					{
-					STRING152=(Token)match(input,STRING,FOLLOW_STRING_in_constant_ext2849);  
-					stream_STRING.add(STRING152);
+					STRING148=(Token)match(input,STRING,FOLLOW_STRING_in_constant_ext2733);  
+					stream_STRING.add(STRING148);
 
 					// AST REWRITE
 					// elements: STRING
@@ -6193,9 +6048,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 285:14: -> ^( CONST STRING_TYPENAME STRING )
+					// 277:14: -> ^( CONST STRING_TYPENAME STRING )
 					{
-						// Leac.g:285:17: ^( CONST STRING_TYPENAME STRING )
+						// Leac.g:277:17: ^( CONST STRING_TYPENAME STRING )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
@@ -6212,10 +6067,10 @@ public class LeacParser extends Parser {
 					}
 					break;
 				case 6 :
-					// Leac.g:286:7: CHAR
+					// Leac.g:278:7: CHAR
 					{
-					CHAR153=(Token)match(input,CHAR,FOLLOW_CHAR_in_constant_ext2867);  
-					stream_CHAR.add(CHAR153);
+					CHAR149=(Token)match(input,CHAR,FOLLOW_CHAR_in_constant_ext2751);  
+					stream_CHAR.add(CHAR149);
 
 					// AST REWRITE
 					// elements: CHAR
@@ -6228,9 +6083,9 @@ public class LeacParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 286:12: -> ^( CONST CHAR_TYPENAME CHAR )
+					// 278:12: -> ^( CONST CHAR_TYPENAME CHAR )
 					{
-						// Leac.g:286:15: ^( CONST CHAR_TYPENAME CHAR )
+						// Leac.g:278:15: ^( CONST CHAR_TYPENAME CHAR )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONST, "CONST"), root_1);
@@ -6270,174 +6125,170 @@ public class LeacParser extends Parser {
 
 
 
-	public static final BitSet FOLLOW_101_in_program414 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_IDF_in_program416 = new BitSet(new long[]{0x0000000080000000L,0x0000754180000000L});
-	public static final BitSet FOLLOW_var_decl_list_in_program418 = new BitSet(new long[]{0x0000000080000000L,0x0000714180000000L});
-	public static final BitSet FOLLOW_func_decl_list_in_program420 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
-	public static final BitSet FOLLOW_statement_in_program422 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_var_decl_in_var_decl_list451 = new BitSet(new long[]{0x0000000000000002L,0x0000040000000000L});
-	public static final BitSet FOLLOW_106_in_var_decl477 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_idf_list_in_var_decl479 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-	public static final BitSet FOLLOW_77_in_var_decl481 = new BitSet(new long[]{0x0000000000000000L,0x000008024E000000L});
-	public static final BitSet FOLLOW_typename_in_var_decl483 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
-	public static final BitSet FOLLOW_78_in_var_decl485 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDF_in_idf_list511 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_73_in_idf_list514 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_IDF_in_idf_list516 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_func_decl_in_func_decl_list544 = new BitSet(new long[]{0x0000000000000002L,0x0000000080000000L});
-	public static final BitSet FOLLOW_95_in_func_decl570 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_IDF_in_func_decl572 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-	public static final BitSet FOLLOW_69_in_func_decl574 = new BitSet(new long[]{0x0000000080000000L,0x0000008000000040L});
-	public static final BitSet FOLLOW_param_list_in_func_decl576 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
-	public static final BitSet FOLLOW_70_in_func_decl578 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-	public static final BitSet FOLLOW_77_in_func_decl580 = new BitSet(new long[]{0x0000000000000000L,0x000008024C000000L});
-	public static final BitSet FOLLOW_atom_typename_in_func_decl582 = new BitSet(new long[]{0x0000000000000000L,0x0000440000000000L});
-	public static final BitSet FOLLOW_var_decl_list_in_func_decl584 = new BitSet(new long[]{0x0000000000000000L,0x0000400000000000L});
-	public static final BitSet FOLLOW_block_in_func_decl586 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_atom_typename_in_typename617 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_array_typename_in_typename633 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_107_in_atom_typename654 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_90_in_atom_typename666 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_97_in_atom_typename678 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_94_in_atom_typename690 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_91_in_atom_typename702 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_89_in_array_typename723 = new BitSet(new long[]{0x0000000000000000L,0x0000000000200000L});
-	public static final BitSet FOLLOW_85_in_array_typename725 = new BitSet(new long[]{0x0000000200000000L,0x0000000000000400L});
-	public static final BitSet FOLLOW_range_list_in_array_typename727 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-	public static final BitSet FOLLOW_86_in_array_typename729 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
-	public static final BitSet FOLLOW_99_in_array_typename731 = new BitSet(new long[]{0x0000000000000000L,0x000008024C000000L});
-	public static final BitSet FOLLOW_atom_typename_in_array_typename733 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_range_in_range_list760 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_73_in_range_list763 = new BitSet(new long[]{0x0000000200000000L,0x0000000000000400L});
-	public static final BitSet FOLLOW_range_in_range_list765 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_int_ext_in_range794 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-	public static final BitSet FOLLOW_75_in_range796 = new BitSet(new long[]{0x0000000200000000L,0x0000000000000400L});
-	public static final BitSet FOLLOW_int_ext_in_range800 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INT_in_int_ext829 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_74_in_int_ext841 = new BitSet(new long[]{0x0000000200000000L});
-	public static final BitSet FOLLOW_INT_in_int_ext843 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_param_in_param_list880 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_73_in_param_list883 = new BitSet(new long[]{0x0000000080000000L,0x0000008000000000L});
-	public static final BitSet FOLLOW_param_in_param_list885 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_IDF_in_param912 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-	public static final BitSet FOLLOW_77_in_param914 = new BitSet(new long[]{0x0000000000000000L,0x000008024E000000L});
-	public static final BitSet FOLLOW_typename_in_param916 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_103_in_param936 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_IDF_in_param938 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-	public static final BitSet FOLLOW_77_in_param940 = new BitSet(new long[]{0x0000000000000000L,0x000008024E000000L});
-	public static final BitSet FOLLOW_typename_in_param942 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_conditional_in_statement971 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_loop_in_statement983 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_affect_or_procedure_call_in_statement995 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_returning_in_statement1007 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_block_in_statement1019 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_read_in_statement1031 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_write_in_statement1043 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_96_in_conditional1064 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_in_conditional1066 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
-	public static final BitSet FOLLOW_105_in_conditional1068 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
-	public static final BitSet FOLLOW_statement_in_conditional1072 = new BitSet(new long[]{0x0000000000000002L,0x0000000020000000L});
-	public static final BitSet FOLLOW_93_in_conditional1096 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
-	public static final BitSet FOLLOW_statement_in_conditional1100 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_108_in_loop1166 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_in_loop1168 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
-	public static final BitSet FOLLOW_92_in_loop1170 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
-	public static final BitSet FOLLOW_statement_in_loop1172 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_in_coord_list1199 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_73_in_coord_list1202 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_in_coord_list1204 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_104_in_returning1232 = new BitSet(new long[]{0x0008000282010802L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_in_returning1264 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDF_in_affect_or_procedure_call1299 = new BitSet(new long[]{0x0000000000000000L,0x0000000000220020L});
-	public static final BitSet FOLLOW_85_in_affect_or_procedure_call1349 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_coord_list_in_affect_or_procedure_call1351 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-	public static final BitSet FOLLOW_86_in_affect_or_procedure_call1353 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-	public static final BitSet FOLLOW_81_in_affect_or_procedure_call1391 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_in_affect_or_procedure_call1393 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_69_in_affect_or_procedure_call1416 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000460L});
-	public static final BitSet FOLLOW_arg_list_in_affect_or_procedure_call1418 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
-	public static final BitSet FOLLOW_70_in_affect_or_procedure_call1420 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_in_arg_list1471 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_73_in_arg_list1474 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_in_arg_list1476 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-	public static final BitSet FOLLOW_110_in_block1504 = new BitSet(new long[]{0x0000000080000000L,0x0000F14100000000L});
-	public static final BitSet FOLLOW_statement_in_block1534 = new BitSet(new long[]{0x0000000000000000L,0x0000800000004000L});
-	public static final BitSet FOLLOW_78_in_block1537 = new BitSet(new long[]{0x0000000080000000L,0x0000714100000000L});
-	public static final BitSet FOLLOW_statement_in_block1539 = new BitSet(new long[]{0x0000000000000000L,0x0000800000004000L});
-	public static final BitSet FOLLOW_111_in_block1568 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_102_in_read1585 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_IDF_in_read1587 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
-	public static final BitSet FOLLOW_85_in_read1623 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_coord_list_in_read1625 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-	public static final BitSet FOLLOW_86_in_read1627 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_109_in_write1668 = new BitSet(new long[]{0x0008000282010800L,0x0000000000000400L});
-	public static final BitSet FOLLOW_IDF_in_write1680 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
-	public static final BitSet FOLLOW_85_in_write1724 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_coord_list_in_write1726 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-	public static final BitSet FOLLOW_86_in_write1728 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_constant_ext_in_write1768 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDF_in_expr_01803 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200020L});
-	public static final BitSet FOLLOW_69_in_expr_01835 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000460L});
-	public static final BitSet FOLLOW_arg_list_in_expr_01837 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
-	public static final BitSet FOLLOW_70_in_expr_01839 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_85_in_expr_01861 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_coord_list_in_expr_01863 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-	public static final BitSet FOLLOW_86_in_expr_01865 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_constant_in_expr_01893 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_69_in_expr_01905 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_in_expr_01907 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
-	public static final BitSet FOLLOW_70_in_expr_01909 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_0_in_expr_11931 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
-	public static final BitSet FOLLOW_87_in_expr_11948 = new BitSet(new long[]{0x0008000282010800L,0x0000000000000020L});
-	public static final BitSet FOLLOW_expr_1_proxy_in_expr_11952 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_1_in_expr_1_proxy1991 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_74_in_expr_22012 = new BitSet(new long[]{0x0008000282010800L,0x0000000000000020L});
-	public static final BitSet FOLLOW_expr_1_in_expr_22014 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_98_in_expr_22030 = new BitSet(new long[]{0x0008000282010800L,0x0000000000000020L});
-	public static final BitSet FOLLOW_expr_1_in_expr_22032 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_1_in_expr_22048 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_2_in_expr_32070 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
-	public static final BitSet FOLLOW_71_in_expr_32087 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_2_in_expr_32091 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
-	public static final BitSet FOLLOW_76_in_expr_32115 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_2_in_expr_32119 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001080L});
-	public static final BitSet FOLLOW_expr_3_in_expr_42160 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
-	public static final BitSet FOLLOW_72_in_expr_42177 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_3_in_expr_42181 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
-	public static final BitSet FOLLOW_74_in_expr_42205 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_3_in_expr_42209 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000500L});
-	public static final BitSet FOLLOW_expr_4_in_expr_52250 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
-	public static final BitSet FOLLOW_79_in_expr_52267 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_4_in_expr_52271 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
-	public static final BitSet FOLLOW_80_in_expr_52295 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_4_in_expr_52299 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
-	public static final BitSet FOLLOW_83_in_expr_52323 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_4_in_expr_52327 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
-	public static final BitSet FOLLOW_84_in_expr_52351 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_4_in_expr_52355 = new BitSet(new long[]{0x0000000000000002L,0x0000000000198000L});
-	public static final BitSet FOLLOW_expr_5_in_expr_62396 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
-	public static final BitSet FOLLOW_82_in_expr_62413 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_5_in_expr_62417 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
-	public static final BitSet FOLLOW_68_in_expr_62441 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_5_in_expr_62445 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040010L});
-	public static final BitSet FOLLOW_expr_6_in_expr_72486 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
-	public static final BitSet FOLLOW_88_in_expr_72503 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_6_in_expr_72507 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
-	public static final BitSet FOLLOW_expr_7_in_expr_82548 = new BitSet(new long[]{0x0000000000000002L,0x0000001000000000L});
-	public static final BitSet FOLLOW_100_in_expr_82565 = new BitSet(new long[]{0x0008000282010800L,0x0000000400000420L});
-	public static final BitSet FOLLOW_expr_7_in_expr_82569 = new BitSet(new long[]{0x0000000000000002L,0x0000001000000000L});
-	public static final BitSet FOLLOW_expr_8_in_expr2609 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INT_in_constant2630 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FLOAT_in_constant2648 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_BOOL_in_constant2666 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_STRING_in_constant2684 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CHAR_in_constant2702 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_74_in_constant_ext2729 = new BitSet(new long[]{0x0000000202000000L});
-	public static final BitSet FOLLOW_INT_in_constant_ext2741 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FLOAT_in_constant_ext2765 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INT_in_constant_ext2795 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FLOAT_in_constant_ext2813 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_BOOL_in_constant_ext2831 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_STRING_in_constant_ext2849 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CHAR_in_constant_ext2867 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_100_in_program400 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_IDF_in_program402 = new BitSet(new long[]{0x0000000080000000L,0x00003AA0C0000000L});
+	public static final BitSet FOLLOW_var_decl_list_in_program404 = new BitSet(new long[]{0x0000000080000000L,0x000038A0C0000000L});
+	public static final BitSet FOLLOW_func_decl_list_in_program406 = new BitSet(new long[]{0x0000000080000000L,0x000038A080000000L});
+	public static final BitSet FOLLOW_statement_in_program408 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_var_decl_in_var_decl_list439 = new BitSet(new long[]{0x0000000000000002L,0x0000020000000000L});
+	public static final BitSet FOLLOW_105_in_var_decl465 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_idf_list_in_var_decl467 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_76_in_var_decl469 = new BitSet(new long[]{0x0000000000000000L,0x0000040127000000L});
+	public static final BitSet FOLLOW_typename_in_var_decl471 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+	public static final BitSet FOLLOW_77_in_var_decl473 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDF_in_idf_list499 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
+	public static final BitSet FOLLOW_72_in_idf_list502 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_IDF_in_idf_list504 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
+	public static final BitSet FOLLOW_func_decl_in_func_decl_list532 = new BitSet(new long[]{0x0000000000000002L,0x0000000040000000L});
+	public static final BitSet FOLLOW_94_in_func_decl558 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_IDF_in_func_decl560 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+	public static final BitSet FOLLOW_68_in_func_decl562 = new BitSet(new long[]{0x0000000080000000L,0x0000004000000020L});
+	public static final BitSet FOLLOW_param_list_in_func_decl564 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+	public static final BitSet FOLLOW_69_in_func_decl566 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_76_in_func_decl568 = new BitSet(new long[]{0x0000000000000000L,0x0000040126000000L});
+	public static final BitSet FOLLOW_atom_typename_in_func_decl570 = new BitSet(new long[]{0x0000000000000000L,0x0000220000000000L});
+	public static final BitSet FOLLOW_var_decl_list_in_func_decl572 = new BitSet(new long[]{0x0000000000000000L,0x0000200000000000L});
+	public static final BitSet FOLLOW_block_in_func_decl574 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_atom_typename_in_typename607 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_array_typename_in_typename623 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_106_in_atom_typename644 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_89_in_atom_typename656 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_96_in_atom_typename668 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_93_in_atom_typename680 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_90_in_atom_typename692 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_88_in_array_typename713 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+	public static final BitSet FOLLOW_84_in_array_typename715 = new BitSet(new long[]{0x0000000200000000L,0x0000000000000200L});
+	public static final BitSet FOLLOW_range_list_in_array_typename717 = new BitSet(new long[]{0x0000000000000000L,0x0000000000200000L});
+	public static final BitSet FOLLOW_85_in_array_typename719 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
+	public static final BitSet FOLLOW_98_in_array_typename721 = new BitSet(new long[]{0x0000000000000000L,0x0000040126000000L});
+	public static final BitSet FOLLOW_atom_typename_in_array_typename723 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_range_in_range_list750 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
+	public static final BitSet FOLLOW_72_in_range_list753 = new BitSet(new long[]{0x0000000200000000L,0x0000000000000200L});
+	public static final BitSet FOLLOW_range_in_range_list755 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
+	public static final BitSet FOLLOW_int_ext_in_range784 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
+	public static final BitSet FOLLOW_74_in_range786 = new BitSet(new long[]{0x0000000200000000L,0x0000000000000200L});
+	public static final BitSet FOLLOW_int_ext_in_range790 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INT_in_int_ext819 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_73_in_int_ext831 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_INT_in_int_ext833 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_param_in_param_list870 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
+	public static final BitSet FOLLOW_72_in_param_list873 = new BitSet(new long[]{0x0000000080000000L,0x0000004000000000L});
+	public static final BitSet FOLLOW_param_in_param_list875 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
+	public static final BitSet FOLLOW_IDF_in_param902 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_76_in_param904 = new BitSet(new long[]{0x0000000000000000L,0x0000040127000000L});
+	public static final BitSet FOLLOW_typename_in_param906 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_102_in_param926 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_IDF_in_param928 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_76_in_param930 = new BitSet(new long[]{0x0000000000000000L,0x0000040127000000L});
+	public static final BitSet FOLLOW_typename_in_param932 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_conditional_in_statement961 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_loop_in_statement973 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_affect_or_procedure_call_in_statement985 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_returning_in_statement997 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_block_in_statement1009 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_read_in_statement1021 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_write_in_statement1033 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_95_in_conditional1054 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_in_conditional1056 = new BitSet(new long[]{0x0000000000000000L,0x0000010000000000L});
+	public static final BitSet FOLLOW_104_in_conditional1058 = new BitSet(new long[]{0x0000000080000000L,0x000038A080000000L});
+	public static final BitSet FOLLOW_statement_in_conditional1062 = new BitSet(new long[]{0x0000000000000002L,0x0000000010000000L});
+	public static final BitSet FOLLOW_92_in_conditional1086 = new BitSet(new long[]{0x0000000080000000L,0x000038A080000000L});
+	public static final BitSet FOLLOW_statement_in_conditional1090 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_107_in_loop1158 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_in_loop1160 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
+	public static final BitSet FOLLOW_91_in_loop1162 = new BitSet(new long[]{0x0000000080000000L,0x000038A080000000L});
+	public static final BitSet FOLLOW_statement_in_loop1164 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_in_coord_list1191 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
+	public static final BitSet FOLLOW_72_in_coord_list1194 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_in_coord_list1196 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
+	public static final BitSet FOLLOW_103_in_returning1224 = new BitSet(new long[]{0x0004000282010802L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_in_returning1256 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDF_in_affect_or_procedure_call1291 = new BitSet(new long[]{0x0000000000000000L,0x0000000000110010L});
+	public static final BitSet FOLLOW_84_in_affect_or_procedure_call1341 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_coord_list_in_affect_or_procedure_call1343 = new BitSet(new long[]{0x0000000000000000L,0x0000000000200000L});
+	public static final BitSet FOLLOW_85_in_affect_or_procedure_call1345 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+	public static final BitSet FOLLOW_80_in_affect_or_procedure_call1383 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_in_affect_or_procedure_call1385 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_68_in_affect_or_procedure_call1408 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000230L});
+	public static final BitSet FOLLOW_arg_list_in_affect_or_procedure_call1410 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+	public static final BitSet FOLLOW_69_in_affect_or_procedure_call1412 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_in_arg_list1463 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
+	public static final BitSet FOLLOW_72_in_arg_list1466 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_in_arg_list1468 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
+	public static final BitSet FOLLOW_109_in_block1496 = new BitSet(new long[]{0x0000000080000000L,0x000078A080000000L});
+	public static final BitSet FOLLOW_statement_in_block1526 = new BitSet(new long[]{0x0000000000000000L,0x0000400000002000L});
+	public static final BitSet FOLLOW_77_in_block1529 = new BitSet(new long[]{0x0000000080000000L,0x000038A080000000L});
+	public static final BitSet FOLLOW_statement_in_block1531 = new BitSet(new long[]{0x0000000000000000L,0x0000400000002000L});
+	public static final BitSet FOLLOW_110_in_block1560 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_101_in_read1577 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_IDF_in_read1579 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
+	public static final BitSet FOLLOW_84_in_read1615 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_coord_list_in_read1617 = new BitSet(new long[]{0x0000000000000000L,0x0000000000200000L});
+	public static final BitSet FOLLOW_85_in_read1619 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_108_in_write1660 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_in_write1662 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDF_in_expr_01687 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100010L});
+	public static final BitSet FOLLOW_68_in_expr_01719 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000230L});
+	public static final BitSet FOLLOW_arg_list_in_expr_01721 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+	public static final BitSet FOLLOW_69_in_expr_01723 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_84_in_expr_01745 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_coord_list_in_expr_01747 = new BitSet(new long[]{0x0000000000000000L,0x0000000000200000L});
+	public static final BitSet FOLLOW_85_in_expr_01749 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_constant_in_expr_01777 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_68_in_expr_01789 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_in_expr_01791 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+	public static final BitSet FOLLOW_69_in_expr_01793 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_0_in_expr_11815 = new BitSet(new long[]{0x0000000000000002L,0x0000000000400000L});
+	public static final BitSet FOLLOW_86_in_expr_11832 = new BitSet(new long[]{0x0004000282010800L,0x0000000000000010L});
+	public static final BitSet FOLLOW_expr_1_proxy_in_expr_11836 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_1_in_expr_1_proxy1875 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_73_in_expr_21896 = new BitSet(new long[]{0x0004000282010800L,0x0000000000000010L});
+	public static final BitSet FOLLOW_expr_1_in_expr_21898 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_97_in_expr_21914 = new BitSet(new long[]{0x0004000282010800L,0x0000000000000010L});
+	public static final BitSet FOLLOW_expr_1_in_expr_21916 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_1_in_expr_21932 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_2_in_expr_31954 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000840L});
+	public static final BitSet FOLLOW_70_in_expr_31971 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_2_in_expr_31975 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000840L});
+	public static final BitSet FOLLOW_75_in_expr_31999 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_2_in_expr_32003 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000840L});
+	public static final BitSet FOLLOW_expr_3_in_expr_42044 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000280L});
+	public static final BitSet FOLLOW_71_in_expr_42061 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_3_in_expr_42065 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000280L});
+	public static final BitSet FOLLOW_73_in_expr_42089 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_3_in_expr_42093 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000280L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52134 = new BitSet(new long[]{0x0000000000000002L,0x00000000000CC000L});
+	public static final BitSet FOLLOW_78_in_expr_52151 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52155 = new BitSet(new long[]{0x0000000000000002L,0x00000000000CC000L});
+	public static final BitSet FOLLOW_79_in_expr_52179 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52183 = new BitSet(new long[]{0x0000000000000002L,0x00000000000CC000L});
+	public static final BitSet FOLLOW_82_in_expr_52207 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52211 = new BitSet(new long[]{0x0000000000000002L,0x00000000000CC000L});
+	public static final BitSet FOLLOW_83_in_expr_52235 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_4_in_expr_52239 = new BitSet(new long[]{0x0000000000000002L,0x00000000000CC000L});
+	public static final BitSet FOLLOW_expr_5_in_expr_62280 = new BitSet(new long[]{0x0000000000000002L,0x0000000000020008L});
+	public static final BitSet FOLLOW_81_in_expr_62297 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_5_in_expr_62301 = new BitSet(new long[]{0x0000000000000002L,0x0000000000020008L});
+	public static final BitSet FOLLOW_67_in_expr_62325 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_5_in_expr_62329 = new BitSet(new long[]{0x0000000000000002L,0x0000000000020008L});
+	public static final BitSet FOLLOW_expr_6_in_expr_72370 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
+	public static final BitSet FOLLOW_87_in_expr_72387 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_6_in_expr_72391 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
+	public static final BitSet FOLLOW_expr_7_in_expr_82432 = new BitSet(new long[]{0x0000000000000002L,0x0000000800000000L});
+	public static final BitSet FOLLOW_99_in_expr_82449 = new BitSet(new long[]{0x0004000282010800L,0x0000000200000210L});
+	public static final BitSet FOLLOW_expr_7_in_expr_82453 = new BitSet(new long[]{0x0000000000000002L,0x0000000800000000L});
+	public static final BitSet FOLLOW_expr_8_in_expr2493 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INT_in_constant2514 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FLOAT_in_constant2532 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_BOOL_in_constant2550 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_STRING_in_constant2568 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CHAR_in_constant2586 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_73_in_constant_ext2613 = new BitSet(new long[]{0x0000000202000000L});
+	public static final BitSet FOLLOW_INT_in_constant_ext2625 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FLOAT_in_constant_ext2649 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INT_in_constant_ext2679 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FLOAT_in_constant_ext2697 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_BOOL_in_constant_ext2715 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_STRING_in_constant_ext2733 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CHAR_in_constant_ext2751 = new BitSet(new long[]{0x0000000000000002L});
 }

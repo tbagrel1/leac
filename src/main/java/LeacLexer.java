@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 Leac.g 2020-01-16 10:39:30
+// $ANTLR 3.5.2 Leac.g 2020-01-16 17:22:46
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -8,6 +8,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class LeacLexer extends Lexer {
 	public static final int EOF=-1;
+	public static final int T__67=67;
 	public static final int T__68=68;
 	public static final int T__69=69;
 	public static final int T__70=70;
@@ -51,7 +52,6 @@ public class LeacLexer extends Lexer {
 	public static final int T__108=108;
 	public static final int T__109=109;
 	public static final int T__110=110;
-	public static final int T__111=111;
 	public static final int ADD=4;
 	public static final int AFFECT=5;
 	public static final int AND=6;
@@ -91,31 +91,30 @@ public class LeacLexer extends Lexer {
 	public static final int OR=40;
 	public static final int PARAM=41;
 	public static final int PARAM_LIST=42;
-	public static final int PASS=43;
-	public static final int POW=44;
-	public static final int PROCEDURE_CALL=45;
-	public static final int PROGRAM=46;
-	public static final int RANGE=47;
-	public static final int RANGE_LIST=48;
-	public static final int READ=49;
-	public static final int RETURNING=50;
-	public static final int STRING=51;
-	public static final int STRING_TYPENAME=52;
-	public static final int SUB=53;
-	public static final int TEST_EQ=54;
-	public static final int TEST_GE=55;
-	public static final int TEST_GT=56;
-	public static final int TEST_LE=57;
-	public static final int TEST_LT=58;
-	public static final int TEST_NE=59;
-	public static final int UNARY_MINUS=60;
-	public static final int UNICODE_ESC=61;
-	public static final int VAR=62;
-	public static final int VAR_DECL=63;
-	public static final int VAR_DECL_LIST=64;
-	public static final int VOID_TYPENAME=65;
-	public static final int WRITE=66;
-	public static final int WS=67;
+	public static final int POW=43;
+	public static final int PROCEDURE_CALL=44;
+	public static final int PROGRAM=45;
+	public static final int RANGE=46;
+	public static final int RANGE_LIST=47;
+	public static final int READ=48;
+	public static final int RETURNING=49;
+	public static final int STRING=50;
+	public static final int STRING_TYPENAME=51;
+	public static final int SUB=52;
+	public static final int TEST_EQ=53;
+	public static final int TEST_GE=54;
+	public static final int TEST_GT=55;
+	public static final int TEST_LE=56;
+	public static final int TEST_LT=57;
+	public static final int TEST_NE=58;
+	public static final int UNARY_MINUS=59;
+	public static final int UNICODE_ESC=60;
+	public static final int VAR=61;
+	public static final int VAR_DECL=62;
+	public static final int VAR_DECL_LIST=63;
+	public static final int VOID_TYPENAME=64;
+	public static final int WRITE=65;
+	public static final int WS=66;
 
 	// delegates
 	// delegators
@@ -132,16 +131,36 @@ public class LeacLexer extends Lexer {
 	}
 	@Override public String getGrammarFileName() { return "Leac.g"; }
 
-	// $ANTLR start "T__68"
-	public final void mT__68() throws RecognitionException {
+	// $ANTLR start "T__67"
+	public final void mT__67() throws RecognitionException {
 		try {
-			int _type = T__68;
+			int _type = T__67;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
 			// Leac.g:2:7: ( '!=' )
 			// Leac.g:2:9: '!='
 			{
 			match("!="); 
 
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__67"
+
+	// $ANTLR start "T__68"
+	public final void mT__68() throws RecognitionException {
+		try {
+			int _type = T__68;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// Leac.g:3:7: ( '(' )
+			// Leac.g:3:9: '('
+			{
+			match('('); 
 			}
 
 			state.type = _type;
@@ -158,10 +177,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__69;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:3:7: ( '(' )
-			// Leac.g:3:9: '('
+			// Leac.g:4:7: ( ')' )
+			// Leac.g:4:9: ')'
 			{
-			match('('); 
+			match(')'); 
 			}
 
 			state.type = _type;
@@ -178,10 +197,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__70;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:4:7: ( ')' )
-			// Leac.g:4:9: ')'
+			// Leac.g:5:7: ( '*' )
+			// Leac.g:5:9: '*'
 			{
-			match(')'); 
+			match('*'); 
 			}
 
 			state.type = _type;
@@ -198,10 +217,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__71;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:5:7: ( '*' )
-			// Leac.g:5:9: '*'
+			// Leac.g:6:7: ( '+' )
+			// Leac.g:6:9: '+'
 			{
-			match('*'); 
+			match('+'); 
 			}
 
 			state.type = _type;
@@ -218,10 +237,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__72;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:6:7: ( '+' )
-			// Leac.g:6:9: '+'
+			// Leac.g:7:7: ( ',' )
+			// Leac.g:7:9: ','
 			{
-			match('+'); 
+			match(','); 
 			}
 
 			state.type = _type;
@@ -238,10 +257,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__73;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:7:7: ( ',' )
-			// Leac.g:7:9: ','
+			// Leac.g:8:7: ( '-' )
+			// Leac.g:8:9: '-'
 			{
-			match(','); 
+			match('-'); 
 			}
 
 			state.type = _type;
@@ -258,10 +277,11 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__74;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:8:7: ( '-' )
-			// Leac.g:8:9: '-'
+			// Leac.g:9:7: ( '..' )
+			// Leac.g:9:9: '..'
 			{
-			match('-'); 
+			match(".."); 
+
 			}
 
 			state.type = _type;
@@ -278,11 +298,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__75;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:9:7: ( '..' )
-			// Leac.g:9:9: '..'
+			// Leac.g:10:7: ( '/' )
+			// Leac.g:10:9: '/'
 			{
-			match(".."); 
-
+			match('/'); 
 			}
 
 			state.type = _type;
@@ -299,10 +318,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__76;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:10:7: ( '/' )
-			// Leac.g:10:9: '/'
+			// Leac.g:11:7: ( ':' )
+			// Leac.g:11:9: ':'
 			{
-			match('/'); 
+			match(':'); 
 			}
 
 			state.type = _type;
@@ -319,10 +338,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__77;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:11:7: ( ':' )
-			// Leac.g:11:9: ':'
+			// Leac.g:12:7: ( ';' )
+			// Leac.g:12:9: ';'
 			{
-			match(':'); 
+			match(';'); 
 			}
 
 			state.type = _type;
@@ -339,10 +358,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__78;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:12:7: ( ';' )
-			// Leac.g:12:9: ';'
+			// Leac.g:13:7: ( '<' )
+			// Leac.g:13:9: '<'
 			{
-			match(';'); 
+			match('<'); 
 			}
 
 			state.type = _type;
@@ -359,10 +378,11 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__79;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:13:7: ( '<' )
-			// Leac.g:13:9: '<'
+			// Leac.g:14:7: ( '<=' )
+			// Leac.g:14:9: '<='
 			{
-			match('<'); 
+			match("<="); 
+
 			}
 
 			state.type = _type;
@@ -379,11 +399,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__80;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:14:7: ( '<=' )
-			// Leac.g:14:9: '<='
+			// Leac.g:15:7: ( '=' )
+			// Leac.g:15:9: '='
 			{
-			match("<="); 
-
+			match('='); 
 			}
 
 			state.type = _type;
@@ -400,10 +419,11 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__81;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:15:7: ( '=' )
-			// Leac.g:15:9: '='
+			// Leac.g:16:7: ( '==' )
+			// Leac.g:16:9: '=='
 			{
-			match('='); 
+			match("=="); 
+
 			}
 
 			state.type = _type;
@@ -420,11 +440,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__82;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:16:7: ( '==' )
-			// Leac.g:16:9: '=='
+			// Leac.g:17:7: ( '>' )
+			// Leac.g:17:9: '>'
 			{
-			match("=="); 
-
+			match('>'); 
 			}
 
 			state.type = _type;
@@ -441,10 +460,11 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__83;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:17:7: ( '>' )
-			// Leac.g:17:9: '>'
+			// Leac.g:18:7: ( '>=' )
+			// Leac.g:18:9: '>='
 			{
-			match('>'); 
+			match(">="); 
+
 			}
 
 			state.type = _type;
@@ -461,11 +481,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__84;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:18:7: ( '>=' )
-			// Leac.g:18:9: '>='
+			// Leac.g:19:7: ( '[' )
+			// Leac.g:19:9: '['
 			{
-			match(">="); 
-
+			match('['); 
 			}
 
 			state.type = _type;
@@ -482,10 +501,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__85;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:19:7: ( '[' )
-			// Leac.g:19:9: '['
+			// Leac.g:20:7: ( ']' )
+			// Leac.g:20:9: ']'
 			{
-			match('['); 
+			match(']'); 
 			}
 
 			state.type = _type;
@@ -502,10 +521,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__86;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:20:7: ( ']' )
-			// Leac.g:20:9: ']'
+			// Leac.g:21:7: ( '^' )
+			// Leac.g:21:9: '^'
 			{
-			match(']'); 
+			match('^'); 
 			}
 
 			state.type = _type;
@@ -522,10 +541,11 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__87;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:21:7: ( '^' )
-			// Leac.g:21:9: '^'
+			// Leac.g:22:7: ( 'and' )
+			// Leac.g:22:9: 'and'
 			{
-			match('^'); 
+			match("and"); 
+
 			}
 
 			state.type = _type;
@@ -542,10 +562,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__88;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:22:7: ( 'and' )
-			// Leac.g:22:9: 'and'
+			// Leac.g:23:7: ( 'array' )
+			// Leac.g:23:9: 'array'
 			{
-			match("and"); 
+			match("array"); 
 
 			}
 
@@ -563,10 +583,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__89;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:23:7: ( 'array' )
-			// Leac.g:23:9: 'array'
+			// Leac.g:24:7: ( 'bool' )
+			// Leac.g:24:9: 'bool'
 			{
-			match("array"); 
+			match("bool"); 
 
 			}
 
@@ -584,10 +604,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__90;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:24:7: ( 'bool' )
-			// Leac.g:24:9: 'bool'
+			// Leac.g:25:7: ( 'char' )
+			// Leac.g:25:9: 'char'
 			{
-			match("bool"); 
+			match("char"); 
 
 			}
 
@@ -605,10 +625,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__91;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:25:7: ( 'char' )
-			// Leac.g:25:9: 'char'
+			// Leac.g:26:7: ( 'do' )
+			// Leac.g:26:9: 'do'
 			{
-			match("char"); 
+			match("do"); 
 
 			}
 
@@ -626,10 +646,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__92;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:26:7: ( 'do' )
-			// Leac.g:26:9: 'do'
+			// Leac.g:27:7: ( 'else' )
+			// Leac.g:27:9: 'else'
 			{
-			match("do"); 
+			match("else"); 
 
 			}
 
@@ -647,10 +667,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__93;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:27:7: ( 'else' )
-			// Leac.g:27:9: 'else'
+			// Leac.g:28:7: ( 'float' )
+			// Leac.g:28:9: 'float'
 			{
-			match("else"); 
+			match("float"); 
 
 			}
 
@@ -668,10 +688,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__94;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:28:7: ( 'float' )
-			// Leac.g:28:9: 'float'
+			// Leac.g:29:7: ( 'function' )
+			// Leac.g:29:9: 'function'
 			{
-			match("float"); 
+			match("function"); 
 
 			}
 
@@ -689,10 +709,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__95;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:29:7: ( 'function' )
-			// Leac.g:29:9: 'function'
+			// Leac.g:30:7: ( 'if' )
+			// Leac.g:30:9: 'if'
 			{
-			match("function"); 
+			match("if"); 
 
 			}
 
@@ -710,10 +730,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__96;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:30:7: ( 'if' )
-			// Leac.g:30:9: 'if'
+			// Leac.g:31:7: ( 'int' )
+			// Leac.g:31:9: 'int'
 			{
-			match("if"); 
+			match("int"); 
 
 			}
 
@@ -731,10 +751,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__97;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:31:7: ( 'int' )
-			// Leac.g:31:9: 'int'
+			// Leac.g:32:7: ( 'not' )
+			// Leac.g:32:9: 'not'
 			{
-			match("int"); 
+			match("not"); 
 
 			}
 
@@ -752,10 +772,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__98;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:32:7: ( 'not' )
-			// Leac.g:32:9: 'not'
+			// Leac.g:33:7: ( 'of' )
+			// Leac.g:33:9: 'of'
 			{
-			match("not"); 
+			match("of"); 
 
 			}
 
@@ -773,10 +793,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__99;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:33:7: ( 'of' )
-			// Leac.g:33:9: 'of'
+			// Leac.g:34:7: ( 'or' )
+			// Leac.g:34:9: 'or'
 			{
-			match("of"); 
+			match("or"); 
 
 			}
 
@@ -794,10 +814,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__100;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:34:8: ( 'or' )
-			// Leac.g:34:10: 'or'
+			// Leac.g:35:8: ( 'program' )
+			// Leac.g:35:10: 'program'
 			{
-			match("or"); 
+			match("program"); 
 
 			}
 
@@ -815,10 +835,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__101;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:35:8: ( 'program' )
-			// Leac.g:35:10: 'program'
+			// Leac.g:36:8: ( 'read' )
+			// Leac.g:36:10: 'read'
 			{
-			match("program"); 
+			match("read"); 
 
 			}
 
@@ -836,10 +856,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__102;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:36:8: ( 'read' )
-			// Leac.g:36:10: 'read'
+			// Leac.g:37:8: ( 'ref' )
+			// Leac.g:37:10: 'ref'
 			{
-			match("read"); 
+			match("ref"); 
 
 			}
 
@@ -857,10 +877,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__103;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:37:8: ( 'ref' )
-			// Leac.g:37:10: 'ref'
+			// Leac.g:38:8: ( 'return' )
+			// Leac.g:38:10: 'return'
 			{
-			match("ref"); 
+			match("return"); 
 
 			}
 
@@ -878,10 +898,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__104;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:38:8: ( 'return' )
-			// Leac.g:38:10: 'return'
+			// Leac.g:39:8: ( 'then' )
+			// Leac.g:39:10: 'then'
 			{
-			match("return"); 
+			match("then"); 
 
 			}
 
@@ -899,10 +919,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__105;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:39:8: ( 'then' )
-			// Leac.g:39:10: 'then'
+			// Leac.g:40:8: ( 'var' )
+			// Leac.g:40:10: 'var'
 			{
-			match("then"); 
+			match("var"); 
 
 			}
 
@@ -920,10 +940,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__106;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:40:8: ( 'var' )
-			// Leac.g:40:10: 'var'
+			// Leac.g:41:8: ( 'void' )
+			// Leac.g:41:10: 'void'
 			{
-			match("var"); 
+			match("void"); 
 
 			}
 
@@ -941,10 +961,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__107;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:41:8: ( 'void' )
-			// Leac.g:41:10: 'void'
+			// Leac.g:42:8: ( 'while' )
+			// Leac.g:42:10: 'while'
 			{
-			match("void"); 
+			match("while"); 
 
 			}
 
@@ -962,10 +982,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__108;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:42:8: ( 'while' )
-			// Leac.g:42:10: 'while'
+			// Leac.g:43:8: ( 'write' )
+			// Leac.g:43:10: 'write'
 			{
-			match("while"); 
+			match("write"); 
 
 			}
 
@@ -983,11 +1003,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__109;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:43:8: ( 'write' )
-			// Leac.g:43:10: 'write'
+			// Leac.g:44:8: ( '{' )
+			// Leac.g:44:10: '{'
 			{
-			match("write"); 
-
+			match('{'); 
 			}
 
 			state.type = _type;
@@ -1004,26 +1023,6 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__110;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:44:8: ( '{' )
-			// Leac.g:44:10: '{'
-			{
-			match('{'); 
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "T__110"
-
-	// $ANTLR start "T__111"
-	public final void mT__111() throws RecognitionException {
-		try {
-			int _type = T__111;
-			int _channel = DEFAULT_TOKEN_CHANNEL;
 			// Leac.g:45:8: ( '}' )
 			// Leac.g:45:10: '}'
 			{
@@ -1037,13 +1036,13 @@ public class LeacLexer extends Lexer {
 			// do for sure before leaving
 		}
 	}
-	// $ANTLR end "T__111"
+	// $ANTLR end "T__110"
 
 	// $ANTLR start "EXPONENT"
 	public final void mEXPONENT() throws RecognitionException {
 		try {
-			// Leac.g:292:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-			// Leac.g:292:7: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+			// Leac.g:284:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+			// Leac.g:284:7: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
 			{
 			if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
 				input.consume();
@@ -1053,7 +1052,7 @@ public class LeacLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// Leac.g:292:21: ( '+' | '-' )?
+			// Leac.g:284:21: ( '+' | '-' )?
 			int alt1=2;
 			int LA1_0 = input.LA(1);
 			if ( (LA1_0=='+'||LA1_0=='-') ) {
@@ -1076,7 +1075,7 @@ public class LeacLexer extends Lexer {
 
 			}
 
-			// Leac.g:292:36: ( '0' .. '9' )+
+			// Leac.g:284:36: ( '0' .. '9' )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -1121,7 +1120,7 @@ public class LeacLexer extends Lexer {
 	// $ANTLR start "HEX_DIGIT"
 	public final void mHEX_DIGIT() throws RecognitionException {
 		try {
-			// Leac.g:295:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+			// Leac.g:287:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
 			// Leac.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -1144,7 +1143,7 @@ public class LeacLexer extends Lexer {
 	// $ANTLR start "OCTAL_ESC"
 	public final void mOCTAL_ESC() throws RecognitionException {
 		try {
-			// Leac.g:298:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+			// Leac.g:290:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
 			int alt3=3;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0=='\\') ) {
@@ -1202,7 +1201,7 @@ public class LeacLexer extends Lexer {
 
 			switch (alt3) {
 				case 1 :
-					// Leac.g:298:7: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+					// Leac.g:290:7: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '3') ) {
@@ -1232,7 +1231,7 @@ public class LeacLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// Leac.g:299:7: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+					// Leac.g:291:7: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
@@ -1254,7 +1253,7 @@ public class LeacLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// Leac.g:300:7: '\\\\' ( '0' .. '7' )
+					// Leac.g:292:7: '\\\\' ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
@@ -1279,8 +1278,8 @@ public class LeacLexer extends Lexer {
 	// $ANTLR start "UNICODE_ESC"
 	public final void mUNICODE_ESC() throws RecognitionException {
 		try {
-			// Leac.g:303:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-			// Leac.g:303:7: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+			// Leac.g:295:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+			// Leac.g:295:7: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
 			{
 			match('\\'); 
 			match('u'); 
@@ -1304,7 +1303,7 @@ public class LeacLexer extends Lexer {
 	// $ANTLR start "ESC_SEQ"
 	public final void mESC_SEQ() throws RecognitionException {
 		try {
-			// Leac.g:306:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+			// Leac.g:298:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
 			int alt4=3;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0=='\\') ) {
@@ -1359,7 +1358,7 @@ public class LeacLexer extends Lexer {
 
 			switch (alt4) {
 				case 1 :
-					// Leac.g:306:7: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+					// Leac.g:298:7: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
 					{
 					match('\\'); 
 					if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -1373,14 +1372,14 @@ public class LeacLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// Leac.g:307:7: UNICODE_ESC
+					// Leac.g:299:7: UNICODE_ESC
 					{
 					mUNICODE_ESC(); 
 
 					}
 					break;
 				case 3 :
-					// Leac.g:308:7: OCTAL_ESC
+					// Leac.g:300:7: OCTAL_ESC
 					{
 					mOCTAL_ESC(); 
 
@@ -1400,7 +1399,7 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = BOOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:316:5: ( 'true' | 'false' )
+			// Leac.g:308:5: ( 'true' | 'false' )
 			int alt5=2;
 			int LA5_0 = input.LA(1);
 			if ( (LA5_0=='t') ) {
@@ -1418,14 +1417,14 @@ public class LeacLexer extends Lexer {
 
 			switch (alt5) {
 				case 1 :
-					// Leac.g:316:7: 'true'
+					// Leac.g:308:7: 'true'
 					{
 					match("true"); 
 
 					}
 					break;
 				case 2 :
-					// Leac.g:317:7: 'false'
+					// Leac.g:309:7: 'false'
 					{
 					match("false"); 
 
@@ -1447,8 +1446,8 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = IDF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:321:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-			// Leac.g:321:7: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+			// Leac.g:313:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+			// Leac.g:313:7: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -1458,7 +1457,7 @@ public class LeacLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// Leac.g:321:37: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+			// Leac.g:313:37: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			loop6:
 			while (true) {
 				int alt6=2;
@@ -1503,10 +1502,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = INT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:324:5: ( ( '0' .. '9' )+ )
-			// Leac.g:324:7: ( '0' .. '9' )+
+			// Leac.g:316:5: ( ( '0' .. '9' )+ )
+			// Leac.g:316:7: ( '0' .. '9' )+
 			{
-			// Leac.g:324:7: ( '0' .. '9' )+
+			// Leac.g:316:7: ( '0' .. '9' )+
 			int cnt7=0;
 			loop7:
 			while (true) {
@@ -1555,14 +1554,14 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = FLOAT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:328:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT )
+			// Leac.g:320:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT )
 			int alt14=3;
 			alt14 = dfa14.predict(input);
 			switch (alt14) {
 				case 1 :
-					// Leac.g:328:7: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
+					// Leac.g:320:7: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
 					{
-					// Leac.g:328:7: ( '0' .. '9' )+
+					// Leac.g:320:7: ( '0' .. '9' )+
 					int cnt8=0;
 					loop8:
 					while (true) {
@@ -1596,7 +1595,7 @@ public class LeacLexer extends Lexer {
 					}
 
 					match('.'); 
-					// Leac.g:328:25: ( '0' .. '9' )*
+					// Leac.g:320:25: ( '0' .. '9' )*
 					loop9:
 					while (true) {
 						int alt9=2;
@@ -1625,7 +1624,7 @@ public class LeacLexer extends Lexer {
 						}
 					}
 
-					// Leac.g:328:39: ( EXPONENT )?
+					// Leac.g:320:39: ( EXPONENT )?
 					int alt10=2;
 					int LA10_0 = input.LA(1);
 					if ( (LA10_0=='E'||LA10_0=='e') ) {
@@ -1633,7 +1632,7 @@ public class LeacLexer extends Lexer {
 					}
 					switch (alt10) {
 						case 1 :
-							// Leac.g:328:39: EXPONENT
+							// Leac.g:320:39: EXPONENT
 							{
 							mEXPONENT(); 
 
@@ -1645,10 +1644,10 @@ public class LeacLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// Leac.g:329:7: '.' ( '0' .. '9' )+ ( EXPONENT )?
+					// Leac.g:321:7: '.' ( '0' .. '9' )+ ( EXPONENT )?
 					{
 					match('.'); 
-					// Leac.g:329:11: ( '0' .. '9' )+
+					// Leac.g:321:11: ( '0' .. '9' )+
 					int cnt11=0;
 					loop11:
 					while (true) {
@@ -1681,7 +1680,7 @@ public class LeacLexer extends Lexer {
 						cnt11++;
 					}
 
-					// Leac.g:329:25: ( EXPONENT )?
+					// Leac.g:321:25: ( EXPONENT )?
 					int alt12=2;
 					int LA12_0 = input.LA(1);
 					if ( (LA12_0=='E'||LA12_0=='e') ) {
@@ -1689,7 +1688,7 @@ public class LeacLexer extends Lexer {
 					}
 					switch (alt12) {
 						case 1 :
-							// Leac.g:329:25: EXPONENT
+							// Leac.g:321:25: EXPONENT
 							{
 							mEXPONENT(); 
 
@@ -1701,9 +1700,9 @@ public class LeacLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// Leac.g:330:7: ( '0' .. '9' )+ EXPONENT
+					// Leac.g:322:7: ( '0' .. '9' )+ EXPONENT
 					{
-					// Leac.g:330:7: ( '0' .. '9' )+
+					// Leac.g:322:7: ( '0' .. '9' )+
 					int cnt13=0;
 					loop13:
 					while (true) {
@@ -1756,12 +1755,12 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:334:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-			// Leac.g:334:7: '/*' ( options {greedy=false; } : . )* '*/'
+			// Leac.g:326:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+			// Leac.g:326:7: '/*' ( options {greedy=false; } : . )* '*/'
 			{
 			match("/*"); 
 
-			// Leac.g:334:12: ( options {greedy=false; } : . )*
+			// Leac.g:326:12: ( options {greedy=false; } : . )*
 			loop15:
 			while (true) {
 				int alt15=2;
@@ -1782,7 +1781,7 @@ public class LeacLexer extends Lexer {
 
 				switch (alt15) {
 				case 1 :
-					// Leac.g:334:44: .
+					// Leac.g:326:44: .
 					{
 					matchAny(); 
 					}
@@ -1812,8 +1811,8 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:338:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-			// Leac.g:338:7: ( ' ' | '\\t' | '\\r' | '\\n' )
+			// Leac.g:330:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+			// Leac.g:330:7: ( ' ' | '\\t' | '\\r' | '\\n' )
 			{
 			if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
 				input.consume();
@@ -1840,11 +1839,11 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = STRING;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:342:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
-			// Leac.g:342:7: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
+			// Leac.g:334:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
+			// Leac.g:334:7: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
 			{
 			match('\"'); 
-			// Leac.g:342:11: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
+			// Leac.g:334:11: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
 			loop16:
 			while (true) {
 				int alt16=3;
@@ -1858,14 +1857,14 @@ public class LeacLexer extends Lexer {
 
 				switch (alt16) {
 				case 1 :
-					// Leac.g:342:13: ESC_SEQ
+					// Leac.g:334:13: ESC_SEQ
 					{
 					mESC_SEQ(); 
 
 					}
 					break;
 				case 2 :
-					// Leac.g:342:23: ~ ( '\\\\' | '\"' )
+					// Leac.g:334:23: ~ ( '\\\\' | '\"' )
 					{
 					if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
 						input.consume();
@@ -1900,11 +1899,11 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = CHAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:346:5: ( '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\'' )
-			// Leac.g:346:7: '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\''
+			// Leac.g:338:5: ( '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\'' )
+			// Leac.g:338:7: '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\''
 			{
 			match('\''); 
-			// Leac.g:346:12: ( ESC_SEQ |~ ( '\\'' | '\\\\' ) )
+			// Leac.g:338:12: ( ESC_SEQ |~ ( '\\'' | '\\\\' ) )
 			int alt17=2;
 			int LA17_0 = input.LA(1);
 			if ( (LA17_0=='\\') ) {
@@ -1922,14 +1921,14 @@ public class LeacLexer extends Lexer {
 
 			switch (alt17) {
 				case 1 :
-					// Leac.g:346:14: ESC_SEQ
+					// Leac.g:338:14: ESC_SEQ
 					{
 					mESC_SEQ(); 
 
 					}
 					break;
 				case 2 :
-					// Leac.g:346:24: ~ ( '\\'' | '\\\\' )
+					// Leac.g:338:24: ~ ( '\\'' | '\\\\' )
 					{
 					if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
 						input.consume();
@@ -1958,369 +1957,369 @@ public class LeacLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// Leac.g:1:8: ( T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | BOOL | IDF | INT | FLOAT | COMMENT | WS | STRING | CHAR )
+		// Leac.g:1:8: ( T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | BOOL | IDF | INT | FLOAT | COMMENT | WS | STRING | CHAR )
 		int alt18=52;
 		alt18 = dfa18.predict(input);
 		switch (alt18) {
 			case 1 :
-				// Leac.g:1:10: T__68
+				// Leac.g:1:10: T__67
+				{
+				mT__67(); 
+
+				}
+				break;
+			case 2 :
+				// Leac.g:1:16: T__68
 				{
 				mT__68(); 
 
 				}
 				break;
-			case 2 :
-				// Leac.g:1:16: T__69
+			case 3 :
+				// Leac.g:1:22: T__69
 				{
 				mT__69(); 
 
 				}
 				break;
-			case 3 :
-				// Leac.g:1:22: T__70
+			case 4 :
+				// Leac.g:1:28: T__70
 				{
 				mT__70(); 
 
 				}
 				break;
-			case 4 :
-				// Leac.g:1:28: T__71
+			case 5 :
+				// Leac.g:1:34: T__71
 				{
 				mT__71(); 
 
 				}
 				break;
-			case 5 :
-				// Leac.g:1:34: T__72
+			case 6 :
+				// Leac.g:1:40: T__72
 				{
 				mT__72(); 
 
 				}
 				break;
-			case 6 :
-				// Leac.g:1:40: T__73
+			case 7 :
+				// Leac.g:1:46: T__73
 				{
 				mT__73(); 
 
 				}
 				break;
-			case 7 :
-				// Leac.g:1:46: T__74
+			case 8 :
+				// Leac.g:1:52: T__74
 				{
 				mT__74(); 
 
 				}
 				break;
-			case 8 :
-				// Leac.g:1:52: T__75
+			case 9 :
+				// Leac.g:1:58: T__75
 				{
 				mT__75(); 
 
 				}
 				break;
-			case 9 :
-				// Leac.g:1:58: T__76
+			case 10 :
+				// Leac.g:1:64: T__76
 				{
 				mT__76(); 
 
 				}
 				break;
-			case 10 :
-				// Leac.g:1:64: T__77
+			case 11 :
+				// Leac.g:1:70: T__77
 				{
 				mT__77(); 
 
 				}
 				break;
-			case 11 :
-				// Leac.g:1:70: T__78
+			case 12 :
+				// Leac.g:1:76: T__78
 				{
 				mT__78(); 
 
 				}
 				break;
-			case 12 :
-				// Leac.g:1:76: T__79
+			case 13 :
+				// Leac.g:1:82: T__79
 				{
 				mT__79(); 
 
 				}
 				break;
-			case 13 :
-				// Leac.g:1:82: T__80
+			case 14 :
+				// Leac.g:1:88: T__80
 				{
 				mT__80(); 
 
 				}
 				break;
-			case 14 :
-				// Leac.g:1:88: T__81
+			case 15 :
+				// Leac.g:1:94: T__81
 				{
 				mT__81(); 
 
 				}
 				break;
-			case 15 :
-				// Leac.g:1:94: T__82
+			case 16 :
+				// Leac.g:1:100: T__82
 				{
 				mT__82(); 
 
 				}
 				break;
-			case 16 :
-				// Leac.g:1:100: T__83
+			case 17 :
+				// Leac.g:1:106: T__83
 				{
 				mT__83(); 
 
 				}
 				break;
-			case 17 :
-				// Leac.g:1:106: T__84
+			case 18 :
+				// Leac.g:1:112: T__84
 				{
 				mT__84(); 
 
 				}
 				break;
-			case 18 :
-				// Leac.g:1:112: T__85
+			case 19 :
+				// Leac.g:1:118: T__85
 				{
 				mT__85(); 
 
 				}
 				break;
-			case 19 :
-				// Leac.g:1:118: T__86
+			case 20 :
+				// Leac.g:1:124: T__86
 				{
 				mT__86(); 
 
 				}
 				break;
-			case 20 :
-				// Leac.g:1:124: T__87
+			case 21 :
+				// Leac.g:1:130: T__87
 				{
 				mT__87(); 
 
 				}
 				break;
-			case 21 :
-				// Leac.g:1:130: T__88
+			case 22 :
+				// Leac.g:1:136: T__88
 				{
 				mT__88(); 
 
 				}
 				break;
-			case 22 :
-				// Leac.g:1:136: T__89
+			case 23 :
+				// Leac.g:1:142: T__89
 				{
 				mT__89(); 
 
 				}
 				break;
-			case 23 :
-				// Leac.g:1:142: T__90
+			case 24 :
+				// Leac.g:1:148: T__90
 				{
 				mT__90(); 
 
 				}
 				break;
-			case 24 :
-				// Leac.g:1:148: T__91
+			case 25 :
+				// Leac.g:1:154: T__91
 				{
 				mT__91(); 
 
 				}
 				break;
-			case 25 :
-				// Leac.g:1:154: T__92
+			case 26 :
+				// Leac.g:1:160: T__92
 				{
 				mT__92(); 
 
 				}
 				break;
-			case 26 :
-				// Leac.g:1:160: T__93
+			case 27 :
+				// Leac.g:1:166: T__93
 				{
 				mT__93(); 
 
 				}
 				break;
-			case 27 :
-				// Leac.g:1:166: T__94
+			case 28 :
+				// Leac.g:1:172: T__94
 				{
 				mT__94(); 
 
 				}
 				break;
-			case 28 :
-				// Leac.g:1:172: T__95
+			case 29 :
+				// Leac.g:1:178: T__95
 				{
 				mT__95(); 
 
 				}
 				break;
-			case 29 :
-				// Leac.g:1:178: T__96
+			case 30 :
+				// Leac.g:1:184: T__96
 				{
 				mT__96(); 
 
 				}
 				break;
-			case 30 :
-				// Leac.g:1:184: T__97
+			case 31 :
+				// Leac.g:1:190: T__97
 				{
 				mT__97(); 
 
 				}
 				break;
-			case 31 :
-				// Leac.g:1:190: T__98
+			case 32 :
+				// Leac.g:1:196: T__98
 				{
 				mT__98(); 
 
 				}
 				break;
-			case 32 :
-				// Leac.g:1:196: T__99
+			case 33 :
+				// Leac.g:1:202: T__99
 				{
 				mT__99(); 
 
 				}
 				break;
-			case 33 :
-				// Leac.g:1:202: T__100
+			case 34 :
+				// Leac.g:1:208: T__100
 				{
 				mT__100(); 
 
 				}
 				break;
-			case 34 :
-				// Leac.g:1:209: T__101
+			case 35 :
+				// Leac.g:1:215: T__101
 				{
 				mT__101(); 
 
 				}
 				break;
-			case 35 :
-				// Leac.g:1:216: T__102
+			case 36 :
+				// Leac.g:1:222: T__102
 				{
 				mT__102(); 
 
 				}
 				break;
-			case 36 :
-				// Leac.g:1:223: T__103
+			case 37 :
+				// Leac.g:1:229: T__103
 				{
 				mT__103(); 
 
 				}
 				break;
-			case 37 :
-				// Leac.g:1:230: T__104
+			case 38 :
+				// Leac.g:1:236: T__104
 				{
 				mT__104(); 
 
 				}
 				break;
-			case 38 :
-				// Leac.g:1:237: T__105
+			case 39 :
+				// Leac.g:1:243: T__105
 				{
 				mT__105(); 
 
 				}
 				break;
-			case 39 :
-				// Leac.g:1:244: T__106
+			case 40 :
+				// Leac.g:1:250: T__106
 				{
 				mT__106(); 
 
 				}
 				break;
-			case 40 :
-				// Leac.g:1:251: T__107
+			case 41 :
+				// Leac.g:1:257: T__107
 				{
 				mT__107(); 
 
 				}
 				break;
-			case 41 :
-				// Leac.g:1:258: T__108
+			case 42 :
+				// Leac.g:1:264: T__108
 				{
 				mT__108(); 
 
 				}
 				break;
-			case 42 :
-				// Leac.g:1:265: T__109
+			case 43 :
+				// Leac.g:1:271: T__109
 				{
 				mT__109(); 
 
 				}
 				break;
-			case 43 :
-				// Leac.g:1:272: T__110
+			case 44 :
+				// Leac.g:1:278: T__110
 				{
 				mT__110(); 
 
 				}
 				break;
-			case 44 :
-				// Leac.g:1:279: T__111
-				{
-				mT__111(); 
-
-				}
-				break;
 			case 45 :
-				// Leac.g:1:286: BOOL
+				// Leac.g:1:285: BOOL
 				{
 				mBOOL(); 
 
 				}
 				break;
 			case 46 :
-				// Leac.g:1:291: IDF
+				// Leac.g:1:290: IDF
 				{
 				mIDF(); 
 
 				}
 				break;
 			case 47 :
-				// Leac.g:1:295: INT
+				// Leac.g:1:294: INT
 				{
 				mINT(); 
 
 				}
 				break;
 			case 48 :
-				// Leac.g:1:299: FLOAT
+				// Leac.g:1:298: FLOAT
 				{
 				mFLOAT(); 
 
 				}
 				break;
 			case 49 :
-				// Leac.g:1:305: COMMENT
+				// Leac.g:1:304: COMMENT
 				{
 				mCOMMENT(); 
 
 				}
 				break;
 			case 50 :
-				// Leac.g:1:313: WS
+				// Leac.g:1:312: WS
 				{
 				mWS(); 
 
 				}
 				break;
 			case 51 :
-				// Leac.g:1:316: STRING
+				// Leac.g:1:315: STRING
 				{
 				mSTRING(); 
 
 				}
 				break;
 			case 52 :
-				// Leac.g:1:323: CHAR
+				// Leac.g:1:322: CHAR
 				{
 				mCHAR(); 
 
@@ -2384,7 +2383,7 @@ public class LeacLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "327:1: FLOAT : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT );";
+			return "319:1: FLOAT : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT );";
 		}
 	}
 
@@ -2609,7 +2608,7 @@ public class LeacLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "1:1: Tokens : ( T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | BOOL | IDF | INT | FLOAT | COMMENT | WS | STRING | CHAR );";
+			return "1:1: Tokens : ( T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | BOOL | IDF | INT | FLOAT | COMMENT | WS | STRING | CHAR );";
 		}
 	}
 

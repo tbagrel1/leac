@@ -1,3 +1,4 @@
+import nodes.{Err, Ok}
 import org.antlr.runtime.tree.CommonTree
 import org.antlr.runtime.{ANTLRFileStream, CommonTokenStream}
 
@@ -14,10 +15,11 @@ object Main {
     val parser = new LeacParser(tokens)
     val result = parser.program
     val tree = result.getTree.asInstanceOf[CommonTree]
+    println(tree.getType, tree.getChild(0), tree.getChild(1), tree.getChild(2))
     val res_program = TreeConverter.convert(tree)
     res_program match {
-      case Left(program) => println("OK!")
-      case Right(exception) => throw exception
+      case Ok(program) => println("OK!")
+      case Err(exception) => println(s"Error during ANTLR to Scala AST conversion: <${exception}>")
     }
   }
 }
