@@ -105,7 +105,12 @@ range_list
     : range (',' range)* -> ^(RANGE_LIST range+)
     ;
 range
-    : inf=INT '..' sup=INT -> ^(RANGE $inf $sup)
+    : inf=int_ext '..' sup=int_ext -> ^(RANGE $inf $sup)
+    ;
+
+int_ext
+    : INT -> INT
+    | '-' INT -> ^(UNARY_MINUS INT)
     ;
 
 param_list
@@ -186,7 +191,7 @@ write
             ( /* epsilon */ -> ^(WRITE ^(VAR IDF))
             | '[' coord_list ']' -> ^(WRITE ^(CELL IDF coord_list))
             )
-        | constant -> ^(WRITE constant)
+        | constant_ext -> ^(WRITE constant_ext)
         )
     ;
 
@@ -210,11 +215,9 @@ expr_1_proxy
     ;
 
 expr_2
-    :
-        ( '-' -> ^(UNARY_MINUS $expr_2)
-        | 'not' -> ^(NOT $expr_2)
-        )*
-        (expr_1 -> expr_1)
+    : '-' expr_1 -> ^(UNARY_MINUS expr_1)
+    | 'not' expr_1 -> ^(NOT expr_1)
+    | expr_1 -> expr_1
     ;
 
 expr_3
@@ -265,6 +268,18 @@ expr
 
 constant
     : INT -> ^(CONST INT_TYPENAME INT)
+    | FLOAT -> ^(CONST FLOAT_TYPENAME FLOAT)
+    | BOOL -> ^(CONST BOOL_TYPENAME BOOL)
+    | STRING -> ^(CONST STRING_TYPENAME STRING)
+    | CHAR -> ^(CONST CHAR_TYPENAME CHAR)
+    ;
+
+constant_ext
+    : '-'
+        ( INT -> ^(CONST INT_TYPENAME ^(UNARY_MINUS INT))
+        | FLOAT -> ^(CONST FLOAT_TYPENAME ^(UNARY_MINUS FLOAT))
+        )
+    | INT -> ^(CONST INT_TYPENAME INT)
     | FLOAT -> ^(CONST FLOAT_TYPENAME FLOAT)
     | BOOL -> ^(CONST BOOL_TYPENAME BOOL)
     | STRING -> ^(CONST STRING_TYPENAME STRING)

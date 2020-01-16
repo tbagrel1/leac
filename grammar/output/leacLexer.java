@@ -1,4 +1,4 @@
-// $ANTLR null /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g 2020-01-15 17:48:17
+// $ANTLR null /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g 2020-01-16 09:19:52
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -1042,8 +1042,8 @@ public class leacLexer extends Lexer {
 	// $ANTLR start "EXPONENT"
 	public final void mEXPONENT() throws RecognitionException {
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:277:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:277:7: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:292:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:292:7: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
 			{
 			if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
 				input.consume();
@@ -1053,7 +1053,7 @@ public class leacLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:277:21: ( '+' | '-' )?
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:292:21: ( '+' | '-' )?
 			int alt1=2;
 			int LA1_0 = input.LA(1);
 			if ( (LA1_0=='+'||LA1_0=='-') ) {
@@ -1076,7 +1076,7 @@ public class leacLexer extends Lexer {
 
 			}
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:277:36: ( '0' .. '9' )+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:292:36: ( '0' .. '9' )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -1121,7 +1121,7 @@ public class leacLexer extends Lexer {
 	// $ANTLR start "HEX_DIGIT"
 	public final void mHEX_DIGIT() throws RecognitionException {
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:280:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:295:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
 			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -1144,7 +1144,7 @@ public class leacLexer extends Lexer {
 	// $ANTLR start "OCTAL_ESC"
 	public final void mOCTAL_ESC() throws RecognitionException {
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:283:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:298:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
 			int alt3=3;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0=='\\') ) {
@@ -1202,7 +1202,7 @@ public class leacLexer extends Lexer {
 
 			switch (alt3) {
 				case 1 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:283:7: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:298:7: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '3') ) {
@@ -1232,7 +1232,7 @@ public class leacLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:284:7: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:299:7: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
@@ -1254,7 +1254,7 @@ public class leacLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:285:7: '\\\\' ( '0' .. '7' )
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:300:7: '\\\\' ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
@@ -1279,8 +1279,8 @@ public class leacLexer extends Lexer {
 	// $ANTLR start "UNICODE_ESC"
 	public final void mUNICODE_ESC() throws RecognitionException {
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:288:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:288:7: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:303:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:303:7: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
 			{
 			match('\\'); 
 			match('u'); 
@@ -1304,7 +1304,7 @@ public class leacLexer extends Lexer {
 	// $ANTLR start "ESC_SEQ"
 	public final void mESC_SEQ() throws RecognitionException {
 		try {
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:291:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:306:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
 			int alt4=3;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0=='\\') ) {
@@ -1359,7 +1359,7 @@ public class leacLexer extends Lexer {
 
 			switch (alt4) {
 				case 1 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:291:7: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:306:7: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
 					{
 					match('\\'); 
 					if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -1373,14 +1373,14 @@ public class leacLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:292:7: UNICODE_ESC
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:307:7: UNICODE_ESC
 					{
 					mUNICODE_ESC(); 
 
 					}
 					break;
 				case 3 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:293:7: OCTAL_ESC
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:308:7: OCTAL_ESC
 					{
 					mOCTAL_ESC(); 
 
@@ -1400,7 +1400,7 @@ public class leacLexer extends Lexer {
 		try {
 			int _type = BOOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:301:5: ( 'true' | 'false' )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:316:5: ( 'true' | 'false' )
 			int alt5=2;
 			int LA5_0 = input.LA(1);
 			if ( (LA5_0=='t') ) {
@@ -1418,14 +1418,14 @@ public class leacLexer extends Lexer {
 
 			switch (alt5) {
 				case 1 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:301:7: 'true'
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:316:7: 'true'
 					{
 					match("true"); 
 
 					}
 					break;
 				case 2 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:302:7: 'false'
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:317:7: 'false'
 					{
 					match("false"); 
 
@@ -1447,8 +1447,8 @@ public class leacLexer extends Lexer {
 		try {
 			int _type = IDF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:306:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:306:7: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:321:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:321:7: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -1458,7 +1458,7 @@ public class leacLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:306:37: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:321:37: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			loop6:
 			while (true) {
 				int alt6=2;
@@ -1503,10 +1503,10 @@ public class leacLexer extends Lexer {
 		try {
 			int _type = INT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:309:5: ( ( '0' .. '9' )+ )
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:309:7: ( '0' .. '9' )+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:324:5: ( ( '0' .. '9' )+ )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:324:7: ( '0' .. '9' )+
 			{
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:309:7: ( '0' .. '9' )+
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:324:7: ( '0' .. '9' )+
 			int cnt7=0;
 			loop7:
 			while (true) {
@@ -1555,14 +1555,14 @@ public class leacLexer extends Lexer {
 		try {
 			int _type = FLOAT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:313:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:328:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT )
 			int alt14=3;
 			alt14 = dfa14.predict(input);
 			switch (alt14) {
 				case 1 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:313:7: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:328:7: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
 					{
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:313:7: ( '0' .. '9' )+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:328:7: ( '0' .. '9' )+
 					int cnt8=0;
 					loop8:
 					while (true) {
@@ -1596,7 +1596,7 @@ public class leacLexer extends Lexer {
 					}
 
 					match('.'); 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:313:25: ( '0' .. '9' )*
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:328:25: ( '0' .. '9' )*
 					loop9:
 					while (true) {
 						int alt9=2;
@@ -1625,7 +1625,7 @@ public class leacLexer extends Lexer {
 						}
 					}
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:313:39: ( EXPONENT )?
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:328:39: ( EXPONENT )?
 					int alt10=2;
 					int LA10_0 = input.LA(1);
 					if ( (LA10_0=='E'||LA10_0=='e') ) {
@@ -1633,7 +1633,7 @@ public class leacLexer extends Lexer {
 					}
 					switch (alt10) {
 						case 1 :
-							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:313:39: EXPONENT
+							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:328:39: EXPONENT
 							{
 							mEXPONENT(); 
 
@@ -1645,10 +1645,10 @@ public class leacLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:314:7: '.' ( '0' .. '9' )+ ( EXPONENT )?
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:329:7: '.' ( '0' .. '9' )+ ( EXPONENT )?
 					{
 					match('.'); 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:314:11: ( '0' .. '9' )+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:329:11: ( '0' .. '9' )+
 					int cnt11=0;
 					loop11:
 					while (true) {
@@ -1681,7 +1681,7 @@ public class leacLexer extends Lexer {
 						cnt11++;
 					}
 
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:314:25: ( EXPONENT )?
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:329:25: ( EXPONENT )?
 					int alt12=2;
 					int LA12_0 = input.LA(1);
 					if ( (LA12_0=='E'||LA12_0=='e') ) {
@@ -1689,7 +1689,7 @@ public class leacLexer extends Lexer {
 					}
 					switch (alt12) {
 						case 1 :
-							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:314:25: EXPONENT
+							// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:329:25: EXPONENT
 							{
 							mEXPONENT(); 
 
@@ -1701,9 +1701,9 @@ public class leacLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:315:7: ( '0' .. '9' )+ EXPONENT
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:330:7: ( '0' .. '9' )+ EXPONENT
 					{
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:315:7: ( '0' .. '9' )+
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:330:7: ( '0' .. '9' )+
 					int cnt13=0;
 					loop13:
 					while (true) {
@@ -1756,12 +1756,12 @@ public class leacLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:319:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:319:7: '/*' ( options {greedy=false; } : . )* '*/'
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:334:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:334:7: '/*' ( options {greedy=false; } : . )* '*/'
 			{
 			match("/*"); 
 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:319:12: ( options {greedy=false; } : . )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:334:12: ( options {greedy=false; } : . )*
 			loop15:
 			while (true) {
 				int alt15=2;
@@ -1782,7 +1782,7 @@ public class leacLexer extends Lexer {
 
 				switch (alt15) {
 				case 1 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:319:44: .
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:334:44: .
 					{
 					matchAny(); 
 					}
@@ -1812,8 +1812,8 @@ public class leacLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:323:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:323:7: ( ' ' | '\\t' | '\\r' | '\\n' )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:338:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:338:7: ( ' ' | '\\t' | '\\r' | '\\n' )
 			{
 			if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
 				input.consume();
@@ -1840,11 +1840,11 @@ public class leacLexer extends Lexer {
 		try {
 			int _type = STRING;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:327:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:327:7: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:342:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:342:7: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
 			{
 			match('\"'); 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:327:11: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:342:11: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
 			loop16:
 			while (true) {
 				int alt16=3;
@@ -1858,14 +1858,14 @@ public class leacLexer extends Lexer {
 
 				switch (alt16) {
 				case 1 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:327:13: ESC_SEQ
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:342:13: ESC_SEQ
 					{
 					mESC_SEQ(); 
 
 					}
 					break;
 				case 2 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:327:23: ~ ( '\\\\' | '\"' )
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:342:23: ~ ( '\\\\' | '\"' )
 					{
 					if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
 						input.consume();
@@ -1900,11 +1900,11 @@ public class leacLexer extends Lexer {
 		try {
 			int _type = CHAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:331:5: ( '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\'' )
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:331:7: '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\''
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:346:5: ( '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\'' )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:346:7: '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\''
 			{
 			match('\''); 
-			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:331:12: ( ESC_SEQ |~ ( '\\'' | '\\\\' ) )
+			// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:346:12: ( ESC_SEQ |~ ( '\\'' | '\\\\' ) )
 			int alt17=2;
 			int LA17_0 = input.LA(1);
 			if ( (LA17_0=='\\') ) {
@@ -1922,14 +1922,14 @@ public class leacLexer extends Lexer {
 
 			switch (alt17) {
 				case 1 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:331:14: ESC_SEQ
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:346:14: ESC_SEQ
 					{
 					mESC_SEQ(); 
 
 					}
 					break;
 				case 2 :
-					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:331:24: ~ ( '\\'' | '\\\\' )
+					// /home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/grammar/leac.g:346:24: ~ ( '\\'' | '\\\\' )
 					{
 					if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
 						input.consume();
@@ -2384,7 +2384,7 @@ public class leacLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "312:1: FLOAT : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT );";
+			return "327:1: FLOAT : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT );";
 		}
 	}
 
