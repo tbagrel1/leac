@@ -1,4 +1,4 @@
-package nodes
+package typed_ast
 
 sealed trait AtomTypename {
   def c_name: String

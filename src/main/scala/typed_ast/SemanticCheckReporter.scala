@@ -1,6 +1,6 @@
-package nodes
+package typed_ast
 
-import collection.mutable
+import scala.collection.mutable
 
 class SemanticCheckReporter {
   var warningCount: Int = 0
@@ -18,7 +18,7 @@ class SemanticCheckReporter {
 
   def conclude(strictModeEnabled: Boolean): Boolean = {
     for (report <- reports) {
-      println(s"[${report._1}] ${report._2}")
+      println(s"[${ report._1 }] ${ report._2 }")
     }
     if (strictModeEnabled) {
       warningCount + errorCount == 0

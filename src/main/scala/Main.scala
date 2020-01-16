@@ -1,4 +1,4 @@
-import nodes.{Err, Ok}
+import typed_ast.Err
 import org.antlr.runtime.tree.CommonTree
 import org.antlr.runtime.{ANTLRFileStream, CommonTokenStream}
 
