@@ -7,7 +7,7 @@ object Main {
   def main(args: Array[String]): Unit = {
     val lexer = new LeacLexer(
       new ANTLRFileStream(
-        "/home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/src/main/java/output/__Test___input.txt",
+        "/home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/src/main/java/grammar/output/__Test___input.txt",
         "UTF8"
         )
       )
@@ -16,7 +16,6 @@ object Main {
     val parser = new LeacParser(tokens)
     val result = parser.program
     val tree = result.getTree.asInstanceOf[CommonTree]
-    println(tree.getType, tree.getChild(0), tree.getChild(1), tree.getChild(2))
     val res_program = TreeConverter.convert(tree)
     res_program match {
       case Ok(program) => println("OK!")

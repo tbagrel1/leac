@@ -11,15 +11,18 @@ case class Program(
 ) extends AbstractNode {
   override def fancyContext: String = ???
 
-  override def fillSymbolTable(
-    symbolTable: SymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = ???
-
-  override def semanticCheck(
-    symbolTable: SymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = ???
 
   override def generateCode(): String = ???
+
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+
+  override protected def _fillSymbolTable(
+    symbolTable: SymbolTable,
+    reporter: SemanticCheckReporter
+  ): Unit = ???
+
+  override protected def _semanticCheck(
+    symbolTable: SymbolTable,
+    reporter: SemanticCheckReporter
+  ): Unit = ???
 }

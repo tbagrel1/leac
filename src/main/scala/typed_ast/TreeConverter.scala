@@ -2,8 +2,8 @@ package typed_ast
 
 import grammar.LeacParser._
 import org.antlr.runtime.tree.Tree
-import typed_ast.nodes.enums._
 import typed_ast.nodes._
+import typed_ast.nodes.enums._
 
 object TreeConverter {
   def convert(antlrTree: Tree): Result[Program, Exception] = {
