@@ -1,4 +1,4 @@
-grammar leac;
+grammar Leac;
 
 options {
     k = 1;
