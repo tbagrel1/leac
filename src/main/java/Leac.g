@@ -81,7 +81,7 @@ func_decl_list
     : func_decl* -> ^(FUNC_DECL_LIST func_decl*)
     ;
 func_decl
-    : 'function' IDF '(' param_list ')' ':' atom_typename var_decl_list block -> ^(FUNC_DECL param_list atom_typename var_decl_list block)
+    : 'function' IDF '(' param_list ')' ':' atom_typename var_decl_list block -> ^(FUNC_DECL IDF param_list atom_typename var_decl_list block)
     ;
 
 typename
@@ -186,13 +186,7 @@ read
     ;
 
 write
-    : 'write'
-        ( IDF
-            ( /* epsilon */ -> ^(WRITE ^(VAR IDF))
-            | '[' coord_list ']' -> ^(WRITE ^(CELL IDF coord_list))
-            )
-        | constant_ext -> ^(WRITE constant_ext)
-        )
+    : 'write' expr -> ^(WRITE expr)
     ;
 
 expr_0
