@@ -69,16 +69,17 @@ case class FuncDecl(
               Severity.Error, this,
               s"function '${ name }' return type is void, but an unsure return statement with type ${ typename } has " +
                 s"been found in its body at ${
-                returning
-                  .sourcePos
-              }"
+                  returning
+                    .sourcePos
+                }"
               )
           }
         } else {
           if (typename cantAccept returnTypename) {
             reporter.report(
               Severity.Error, this,
-              s"function '${ name }' return type is ${ returnTypename }, but a return statement with type ${ typename
+              s"function '${ name }' return type is ${ returnTypename }, but a return statement with type ${
+                typename
               } has been found in its body at ${
                 returning
                   .sourcePos
@@ -98,9 +99,9 @@ case class FuncDecl(
             Severity.Error, this,
             s"function '${ name }' return type is ${ returnTypename }, but a return statement with type ${ typename }" +
               s" has been found in its body at ${
-              returning
-                .sourcePos
-            }"
+                returning
+                  .sourcePos
+              }"
             )
         }
       }

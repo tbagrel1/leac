@@ -140,6 +140,7 @@ case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extend
   override def atomTypename(): AtomTypename = this.getSymbolTable.get(name) match {
     case None => Unknown
     case Some(VarDecl(_, _, _)) => Unknown
+    case Some(ParamDecl(_, _, _, _)) => Unknown
     case Some(FuncDecl(_, _, _, returnTypename, _, _)) => returnTypename
   }
 }
@@ -162,11 +163,35 @@ case class VarOrParamAccess(sourcePos: SourcePos, name: String) extends Abstract
         case Array(_, _, _) => Unknown
       }
     }
+    case Some(ParamDecl(_, leacType, _, _)) => {
+      leacType match {
+        case Atom(_, typename) => typename
+        case Array(_, _, _) => Unknown
+      }
+    }
     case Some(FuncDecl(_, _, _, _, _, _)) => Unknown
+  }
+
+  def getArrayOpt: Option[Array] = this.getSymbolTable.get(name) match {
+    case None => None
+    case Some(VarDecl(_, leacType, _)) => {
+      leacType match {
+        case Atom(_, _) => None
+        case Array(sourcePos, atomTypename, rangeDefs) => Some(Array(sourcePos, atomTypename, rangeDefs))
+      }
+    }
+    case Some(ParamDecl(_, leacType, _, _)) => {
+      leacType match {
+        case Atom(_, _) => None
+        case Array(sourcePos, atomTypename, rangeDefs) => Some(Array(sourcePos, atomTypename, rangeDefs))
+      }
+    }
+    case Some(FuncDecl(_, _, _, _, _, _)) => None
   }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
     // TODO: dont forget param case
+    // TODO: if is array, check parent is mandatory a func call ? => check this affirmation
   }
 }
 
@@ -192,6 +217,12 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
   override def atomTypename(): AtomTypename = this.getSymbolTable.get(arrayName) match {
     case None => Unknown
     case Some(VarDecl(_, leacType, _)) => {
+      leacType match {
+        case Atom(_, _) => Unknown
+        case Array(_, typename, _) => typename
+      }
+    }
+    case Some(ParamDecl(_, leacType, _, _)) => {
       leacType match {
         case Atom(_, _) => Unknown
         case Array(_, typename, _) => typename
