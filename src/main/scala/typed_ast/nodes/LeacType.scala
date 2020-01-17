@@ -1,11 +1,11 @@
 package typed_ast.nodes
 
 import typed_ast.nodes.enums.AtomTypename
-import typed_ast.{Locatable, SemanticCheckReporter, SourcePos, ScopedSymbolTable}
+import typed_ast.{SemanticCheckReporter, SourcePos, ScopedSymbolTable}
 
-sealed trait LeacType extends AbstractNode with Locatable
+sealed trait LeacType extends AbstractNode
 
-case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends AbstractNode with Locatable with LeacType {
+case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends AbstractNode  with LeacType {
   override def fancyContext: String = "basic type use"
 
 
@@ -14,17 +14,10 @@ case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends Abstra
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
   }
-
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: List[RangeDef]) extends AbstractNode
-  with Locatable
+
   with LeacType {
   for (rangeDef <- rangeDefs) {
     rangeDef.setParent(this)
@@ -41,11 +34,4 @@ case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: Li
       rangeDef.dispatch(f, newPayload)
     }
   }
-
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }

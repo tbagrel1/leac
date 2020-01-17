@@ -15,11 +15,4 @@ case class Param(sourcePos: SourcePos, leacType: LeacType, accessMode: AccessMod
     val newPayload = f(this, payload)
     leacType.dispatch(f, newPayload)
   }
-
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }

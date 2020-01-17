@@ -1,8 +1,5 @@
 package typed_ast
 
-class SourcePos(val line: Int, val column: Int, val source: String, var symbolTable: ScopedSymbolTable) {
+case class SourcePos(line: Int, column: Int, source: String) {
   override def toString: String = f"(${ line }, ${ column })"
-  def setSymbolTable(_symbolTable: ScopedSymbolTable): Unit = {
-    this.symbolTable = _symbolTable
-  }
 }

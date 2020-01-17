@@ -32,11 +32,4 @@ case class Program(
     }
     statement.dispatch(f, newPayload)
   }
-
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }

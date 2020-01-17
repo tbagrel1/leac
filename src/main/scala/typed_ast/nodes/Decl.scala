@@ -1,9 +1,9 @@
 package typed_ast.nodes
 
 import typed_ast.nodes.enums.AtomTypename
-import typed_ast.{Locatable, SemanticCheckReporter, SourcePos, ScopedSymbolTable}
+import typed_ast.{SemanticCheckReporter, SourcePos, ScopedSymbolTable}
 
-sealed trait Decl extends AbstractNode with Locatable {
+sealed trait Decl extends AbstractNode  {
   def name: String
 }
 
@@ -38,15 +38,6 @@ case class FuncDecl(
     }
     statementBlock.dispatch(f, newPayload)
   }
-
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {
-    symbolTable.register(this, reporter)
-  }
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) extends AbstractNode with Decl {
@@ -60,13 +51,4 @@ case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) exten
     val newPayload = f(this, payload)
     leacType.dispatch(f, newPayload)
   }
-
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {
-    symbolTable.register(this, reporter)
-  }
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }

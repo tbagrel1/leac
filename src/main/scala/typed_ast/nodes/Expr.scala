@@ -1,19 +1,19 @@
 package typed_ast.nodes
 
 import typed_ast.nodes.enums.{AtomTypename, BoolTypename, FloatTypename, IntTypename, Unknown}
-import typed_ast.{Locatable, SemanticCheckReporter, SourcePos, ScopedSymbolTable}
+import typed_ast.{SemanticCheckReporter, SourcePos, ScopedSymbolTable}
 
-sealed trait Expr extends AbstractNode with Locatable {
+sealed trait Expr extends AbstractNode  {
   def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename
 }
 
-sealed trait IdfAccess extends AbstractNode with Expr with Locatable {}
+sealed trait IdfAccess extends AbstractNode with Expr  {}
 
-sealed trait Operation extends AbstractNode with Expr with Locatable {
+sealed trait Operation extends AbstractNode with Expr  {
   def priority: Int
 }
 
-sealed trait BinaryIntFloatOperation extends Operation with Expr {
+sealed trait BinaryIntFloatOperation extends Operation {
   def a: Expr
   def b: Expr
 
@@ -21,46 +21,36 @@ sealed trait BinaryIntFloatOperation extends Operation with Expr {
     val aTypename = a.atomTypename(symbolTable)
     val bTypename = b.atomTypename(symbolTable)
     (aTypename, bTypename) match {
-      case (IntTypename, IntTypename) => IntTypename
-      case (IntTypename, FloatTypename) | (FloatTypename, IntTypename) | (FloatTypename, FloatTypename) => FloatTypename
-      case _ => Unknown
+      case (FloatTypename, _) | (_, FloatTypename) => FloatTypename
+      case _ => IntTypename
     }
   }
 }
 
-sealed trait BinaryOrdOperation extends Operation with Expr {
+sealed trait BinaryOrdOperation extends Operation {
   def a: Expr
   def b: Expr
 
-  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = {
-    val aTypename = a.atomTypename(symbolTable)
-    val bTypename = b.atomTypename(symbolTable)
-    (aTypename, bTypename) match {
-
-    }
-  }
+  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = BoolTypename
 }
 
-sealed trait BinaryEqOperation extends Operation with Expr {
+sealed trait BinaryEqOperation extends Operation {
   def a: Expr
   def b: Expr
 
-  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = {
-
-  }
+  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = BoolTypename
 }
 
-sealed trait BinaryLogicalOperation extends Operation with Expr {
+sealed trait BinaryLogicalOperation extends Operation {
   def a: Expr
   def b: Expr
 
-  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = {
-
-  }
+  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = BoolTypename
 }
+
 
 case class Constant(sourcePos: SourcePos, typename: AtomTypename, value: String) extends AbstractNode
-  with Locatable
+
   with Expr {
   override def fancyContext: String = s"${ typename.c_name } constant usage"
 
@@ -71,18 +61,11 @@ case class Constant(sourcePos: SourcePos, typename: AtomTypename, value: String)
     val newPayload = f(this, payload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
-
   override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = typename
 }
 
 case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extends AbstractNode
-  with Locatable
+
   with Expr {
   for (arg <- args) {
     arg.setParent(this)
@@ -100,13 +83,6 @@ case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extend
     }
   }
 
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
-
   override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = symbolTable.get(name) match {
     case None => Unknown
     case Some(VarDecl(_, _, _)) => Unknown
@@ -114,7 +90,7 @@ case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extend
   }
 }
 
-case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode with Locatable with IdfAccess {
+case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode  with IdfAccess {
   override def fancyContext: String = s"variable \"${ name }\" access"
 
 
@@ -123,13 +99,6 @@ case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode wi
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
   }
-
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 
   override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = symbolTable.get(name) match {
     case None => Unknown
@@ -142,7 +111,7 @@ case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode wi
 }
 
 case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr]) extends AbstractNode
-  with Locatable
+
   with IdfAccess {
   for (coord <- coords) {
     coord.setParent(this)
@@ -160,13 +129,6 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
     }
   }
 
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
-
   override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = {
     case None => Unknown
     case Some(VarDecl(_, leacType, _)) => leacType match {
@@ -177,7 +139,7 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
   }
 }
 
-case class Pow(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+case class Pow(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryIntFloatOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -193,26 +155,9 @@ case class Pow(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
   }
-
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
-
-  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = {
-    val aTypename = a.atomTypename(symbolTable)
-    val bTypename = b.atomTypename(symbolTable)
-    (aTypename, bTypename) match {
-      case (IntTypename, IntTypename) => IntTypename
-      case (IntTypename, FloatTypename) | (FloatTypename, IntTypename) | (FloatTypename, FloatTypename) => FloatTypename
-      case _ => Unknown
-    }
-  }
 }
 
-case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode with Locatable with Operation {
+case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode  with Operation {
   a.setParent(this)
 
   val priority = 2
@@ -227,23 +172,16 @@ case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode with L
     a.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
-
   override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = {
     val aTypename = a.atomTypename(symbolTable)
     aTypename match {
-      case IntTypename | FloatTypename => aTypename
-      case _ => Unknown
+      case FloatTypename => FloatTypename
+      case _ => IntTypename
     }
   }
 }
 
-case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode with Locatable with Operation {
+case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode  with Operation {
   a.setParent(this)
 
   val priority = 2
@@ -258,23 +196,10 @@ case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode with Locatabl
     a.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
-
-  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = {
-    val aTypename = a.atomTypename(symbolTable)
-    aTypename match {
-      case BoolTypename => BoolTypename
-      case _ => Unknown
-    }
-  }
+  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = BoolTypename
 }
 
-case class Mul(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+case class Mul(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryIntFloatOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -291,15 +216,9 @@ case class Mul(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
     b.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
-case class Div(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+case class Div(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryIntFloatOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -316,15 +235,9 @@ case class Div(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
     b.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
-case class Add(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+case class Add(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryIntFloatOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -341,15 +254,9 @@ case class Add(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
     b.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
-case class Sub(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+case class Sub(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryIntFloatOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -366,17 +273,9 @@ case class Sub(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
     b.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
-case class TestLowerThan(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode
-  with Locatable
-  with Operation {
+case class TestLowerThan(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryOrdOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -393,17 +292,11 @@ case class TestLowerThan(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstrac
     b.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class TestLowerOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode
-  with Locatable
-  with Operation {
+
+  with BinaryOrdOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -420,17 +313,11 @@ case class TestLowerOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Abst
     b.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class TestGreaterThan(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode
-  with Locatable
-  with Operation {
+
+  with BinaryOrdOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -446,18 +333,11 @@ case class TestGreaterThan(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstr
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
   }
-
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class TestGreaterOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode
-  with Locatable
-  with Operation {
+
+  with BinaryOrdOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -474,15 +354,9 @@ case class TestGreaterOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Ab
     b.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
-case class TestEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+case class TestEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryEqOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -499,15 +373,9 @@ case class TestEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNod
     b.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
-case class TestNotEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+case class TestNotEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryEqOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -524,15 +392,9 @@ case class TestNotEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstract
     b.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
-case class And(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+case class And(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryLogicalOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -549,15 +411,9 @@ case class And(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
     b.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
-case class Or(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+case class Or(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryLogicalOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -573,13 +429,6 @@ case class Or(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with 
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
   }
-
-  override protected def _fillAndLinkSymbolTable(
-    symbolTable: ScopedSymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = {}
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 

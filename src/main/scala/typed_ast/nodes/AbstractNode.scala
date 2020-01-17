@@ -1,8 +1,14 @@
 package typed_ast.nodes
 
-import typed_ast.{SemanticCheckReporter, ScopedSymbolTable}
+import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
 
 abstract class AbstractNode {
+  def sourcePos: SourcePos
+
+  def setSymbolTable(_symbolTable: ScopedSymbolTable): Unit = {
+    this.symbolTable = _symbolTable
+  }
+
   def fancyContext: String
 
   def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit
@@ -32,7 +38,8 @@ abstract class AbstractNode {
 
   def generateCode(): String
 
-  protected var parent: AbstractNode = this
+  var parent: AbstractNode = this
+  var symbolTable: ScopedSymbolTable
 
   def setParent(_parent: AbstractNode): Unit = {
     this.parent = _parent
