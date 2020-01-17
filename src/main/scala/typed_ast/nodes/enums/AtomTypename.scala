@@ -28,3 +28,6 @@ case object VoidTypename extends AtomTypename {
   val c_name: String = "void"
 }
 
+case object Unknown extends AtomTypename {
+  val c_name: String = "<unknow>"
+}

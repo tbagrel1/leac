@@ -1,6 +1,6 @@
 package typed_ast.nodes
 
-import typed_ast.{Locatable, SemanticCheckReporter, SourcePos, SymbolTable}
+import typed_ast.{Locatable, SemanticCheckReporter, SourcePos, ScopedSymbolTable}
 
 sealed trait Statement extends AbstractNode with Locatable
 
@@ -16,22 +16,19 @@ case class Block(sourcePos: SourcePos, statements: List[Statement]) extends Abst
 
   override def generateCode(): String = ""
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
-    f(this, payload)
+  override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
+    val newPayload = f(this, payload)
     for (statement <- statements) {
-      statement.dispatch(f, payload)
+      statement.dispatch(f, newPayload)
     }
   }
 
-  override protected def _fillSymbolTable(
-    symbolTable: SymbolTable,
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): Unit = {}
 
-  override protected def _semanticCheck(
-    symbolTable: SymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Conditional(
@@ -49,22 +46,19 @@ case class Conditional(
 
   override def generateCode(): String = ""
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
-    f(this, payload)
-    condition.dispatch(f, payload)
-    statementIfTrue.dispatch(f, payload)
-    statementIfFalse.dispatch(f, payload)
+  override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
+    val newPayload = f(this, payload)
+    condition.dispatch(f, newPayload)
+    statementIfTrue.dispatch(f, newPayload)
+    statementIfFalse.dispatch(f, newPayload)
   }
 
-  override protected def _fillSymbolTable(
-    symbolTable: SymbolTable,
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): Unit = {}
 
-  override protected def _semanticCheck(
-    symbolTable: SymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Loop(sourcePos: SourcePos, condition: Expr, statementWhileTrue: Statement) extends AbstractNode
@@ -78,21 +72,18 @@ case class Loop(sourcePos: SourcePos, condition: Expr, statementWhileTrue: State
 
   override def generateCode(): String = ""
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
-    f(this, payload)
-    condition.dispatch(f, payload)
-    statementWhileTrue.dispatch(f, payload)
+  override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
+    val newPayload = f(this, payload)
+    condition.dispatch(f, newPayload)
+    statementWhileTrue.dispatch(f, newPayload)
   }
 
-  override protected def _fillSymbolTable(
-    symbolTable: SymbolTable,
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): Unit = {}
 
-  override protected def _semanticCheck(
-    symbolTable: SymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Returning(sourcePos: SourcePos, returnValue: Option[Expr]) extends AbstractNode
@@ -108,23 +99,20 @@ case class Returning(sourcePos: SourcePos, returnValue: Option[Expr]) extends Ab
 
   override def generateCode(): String = ""
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
-    f(this, payload)
+  override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
+    val newPayload = f(this, payload)
     returnValue match {
-      case Some(expr) => expr.dispatch(f, payload)
+      case Some(expr) => expr.dispatch(f, newPayload)
       case None => ()
     }
   }
 
-  override protected def _fillSymbolTable(
-    symbolTable: SymbolTable,
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): Unit = {}
 
-  override protected def _semanticCheck(
-    symbolTable: SymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Affect(sourcePos: SourcePos, target: IdfAccess, value: Expr) extends AbstractNode
@@ -138,21 +126,18 @@ case class Affect(sourcePos: SourcePos, target: IdfAccess, value: Expr) extends 
 
   override def generateCode(): String = ""
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
-    f(this, payload)
-    target.dispatch(f, payload)
-    value.dispatch(f, payload)
+  override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
+    val newPayload = f(this, payload)
+    target.dispatch(f, newPayload)
+    value.dispatch(f, newPayload)
   }
 
-  override protected def _fillSymbolTable(
-    symbolTable: SymbolTable,
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): Unit = {}
 
-  override protected def _semanticCheck(
-    symbolTable: SymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class ProcedureCall(sourcePos: SourcePos, name: String, args: List[Expr]) extends AbstractNode
@@ -167,22 +152,19 @@ case class ProcedureCall(sourcePos: SourcePos, name: String, args: List[Expr]) e
 
   override def generateCode(): String = ""
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
-    f(this, payload)
+  override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
+    val newPayload = f(this, payload)
     for (arg <- args) {
-      arg.dispatch(f, payload)
+      arg.dispatch(f, newPayload)
     }
   }
 
-  override protected def _fillSymbolTable(
-    symbolTable: SymbolTable,
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): Unit = {}
 
-  override protected def _semanticCheck(
-    symbolTable: SymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Read(sourcePos: SourcePos, target: IdfAccess) extends AbstractNode with Locatable with Statement {
@@ -193,20 +175,17 @@ case class Read(sourcePos: SourcePos, target: IdfAccess) extends AbstractNode wi
 
   override def generateCode(): String = ""
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
-    f(this, payload)
-    target.dispatch(f, payload)
+  override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
+    val newPayload = f(this, payload)
+    target.dispatch(f, newPayload)
   }
 
-  override protected def _fillSymbolTable(
-    symbolTable: SymbolTable,
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): Unit = {}
 
-  override protected def _semanticCheck(
-    symbolTable: SymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Write(sourcePos: SourcePos, value: Expr) extends AbstractNode with Locatable with Statement {
@@ -217,19 +196,16 @@ case class Write(sourcePos: SourcePos, value: Expr) extends AbstractNode with Lo
 
   override def generateCode(): String = ""
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
-    f(this, payload)
-    value.dispatch(f, payload)
+  override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
+    val newPayload = f(this, payload)
+    value.dispatch(f, newPayload)
   }
 
-  override protected def _fillSymbolTable(
-    symbolTable: SymbolTable,
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): Unit = {}
 
-  override protected def _semanticCheck(
-    symbolTable: SymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 

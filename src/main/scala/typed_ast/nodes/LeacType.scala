@@ -1,7 +1,7 @@
 package typed_ast.nodes
 
 import typed_ast.nodes.enums.AtomTypename
-import typed_ast.{Locatable, SemanticCheckReporter, SourcePos, SymbolTable}
+import typed_ast.{Locatable, SemanticCheckReporter, SourcePos, ScopedSymbolTable}
 
 sealed trait LeacType extends AbstractNode with Locatable
 
@@ -11,19 +11,16 @@ case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends Abstra
 
   override def generateCode(): String = ""
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
-    f(this, payload)
+  override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
+    val newPayload = f(this, payload)
   }
 
-  override protected def _fillSymbolTable(
-    symbolTable: SymbolTable,
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): Unit = {}
 
-  override protected def _semanticCheck(
-    symbolTable: SymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: List[RangeDef]) extends AbstractNode
@@ -38,20 +35,17 @@ case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: Li
 
   override def generateCode(): String = ""
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
-    f(this, payload)
+  override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
+    val newPayload = f(this, payload)
     for (rangeDef <- rangeDefs) {
-      rangeDef.dispatch(f, payload)
+      rangeDef.dispatch(f, newPayload)
     }
   }
 
-  override protected def _fillSymbolTable(
-    symbolTable: SymbolTable,
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): Unit = {}
 
-  override protected def _semanticCheck(
-    symbolTable: SymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }

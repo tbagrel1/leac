@@ -1,7 +1,7 @@
 package typed_ast.nodes
 
 import typed_ast.nodes.enums.AtomTypename
-import typed_ast.{Locatable, SemanticCheckReporter, SourcePos, SymbolTable}
+import typed_ast.{Locatable, SemanticCheckReporter, SourcePos, ScopedSymbolTable}
 
 sealed trait Decl extends AbstractNode with Locatable {
   def name: String
@@ -28,28 +28,25 @@ case class FuncDecl(
 
   override def generateCode(): String = ""
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
-    f(this, payload)
+  override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
+    val newPayload = f(this, payload)
     for (param <- params) {
-      param.dispatch(f, payload)
+      param.dispatch(f, newPayload)
     }
     for (varDecl <- varDecls) {
-      varDecl.dispatch(f, payload)
+      varDecl.dispatch(f, newPayload)
     }
-    statementBlock.dispatch(f, payload)
+    statementBlock.dispatch(f, newPayload)
   }
 
-  override protected def _fillSymbolTable(
-    symbolTable: SymbolTable,
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): Unit = {
     symbolTable.register(this, reporter)
   }
 
-  override protected def _semanticCheck(
-    symbolTable: SymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) extends AbstractNode with Decl {
@@ -59,20 +56,17 @@ case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) exten
 
   override def generateCode(): String = ""
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
-    f(this, payload)
-    leacType.dispatch(f, payload)
+  override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
+    val newPayload = f(this, payload)
+    leacType.dispatch(f, newPayload)
   }
 
-  override protected def _fillSymbolTable(
-    symbolTable: SymbolTable,
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): Unit = {
     symbolTable.register(this, reporter)
   }
 
-  override protected def _semanticCheck(
-    symbolTable: SymbolTable,
-    reporter: SemanticCheckReporter
-  ): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
