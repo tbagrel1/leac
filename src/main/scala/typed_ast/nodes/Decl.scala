@@ -53,27 +53,55 @@ case class FuncDecl(
     // Check returning presence and type
     import ReturnPrediction._
     this.statementBlock.returnPrediction(reporter, this) match {
-      case None => if (returnTypename != VoidTypename) {
-        reporter.report(
-          Severity.Error, this,
-          s"function '${ name }' return type is ${ returnTypename }, but no return statement has been found in its body"
-          )
+      case None => {
+        if (returnTypename != VoidTypename) {
+          reporter.report(
+            Severity.Error, this,
+            s"function '${ name }' return type is ${ returnTypename }, but no return statement has been found in its " +
+              s"body"
+            )
+        }
       }
       case Unsure(typename, returning) => {
         if (returnTypename == VoidTypename) {
-          if (typename != VoidTypename) {
-            reporter.report(Severity.Error, this, s"function '${ name }' return type is void, but an unsure return statement with type ${ typename } has been found in its body at ${ returning.sourcePos }")
+          if (typename cantAccept VoidTypename) {
+            reporter.report(
+              Severity.Error, this,
+              s"function '${ name }' return type is void, but an unsure return statement with type ${ typename } has " +
+                s"been found in its body at ${
+                returning
+                  .sourcePos
+              }"
+              )
           }
         } else {
-          if (typename != returnTypename) {
-            reporter.report(Severity.Error, this, s"function '${ name }' return type is ${ returnTypename }, but a return statement with type ${ typename } has been found in its body at ${ returning.sourcePos }")
+          if (typename cantAccept returnTypename) {
+            reporter.report(
+              Severity.Error, this,
+              s"function '${ name }' return type is ${ returnTypename }, but a return statement with type ${ typename
+              } has been found in its body at ${
+                returning
+                  .sourcePos
+              }"
+              )
           }
-          reporter.report(Severity.Error, this, s"function '${ name }' must return a ${ returnTypename } in all cases, but only unsure return statement(s) with this type have been found in its body")
+          reporter.report(
+            Severity.Error, this,
+            s"function '${ name }' must return a ${ returnTypename } in all cases, but only unsure return statement" +
+              s"(s) with this type have been found in its body"
+            )
         }
       }
       case Sure(typename, returning) => {
-        if (typename != returnTypename) {
-          reporter.report(Severity.Error, this, s"function '${ name }' return type is ${ returnTypename }, but a return statement with type ${ typename } has been found in its body at ${ returning.sourcePos }")
+        if (typename cantAccept returnTypename) {
+          reporter.report(
+            Severity.Error, this,
+            s"function '${ name }' return type is ${ returnTypename }, but a return statement with type ${ typename }" +
+              s" has been found in its body at ${
+              returning
+                .sourcePos
+            }"
+            )
         }
       }
     }
@@ -105,7 +133,12 @@ case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) exten
   override def toString: String = s"${ leacType } ${ name }"
 }
 
-case class ParamDecl(sourcePos: SourcePos, leacType: LeacType, accessMode: AccessMode, name: String) extends AbstractNode with Decl {
+case class ParamDecl(
+  sourcePos: SourcePos,
+  leacType: LeacType,
+  accessMode: AccessMode,
+  name: String
+) extends AbstractNode with Decl {
   leacType.setParent(this)
 
   override def fancyContext: String = s"function parameter '${ name }' declaration"
@@ -128,8 +161,12 @@ case class ParamDecl(sourcePos: SourcePos, leacType: LeacType, accessMode: Acces
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
     leacType match {
-      case Array(_, _, _) => if (accessMode == ByCopy) {
-        reporter.report(Severity.Error, this, "array parameters can only be passed by reference using the 'ref' keyword")
+      case Array(_, _, _) => {
+        if (accessMode == ByCopy) {
+          reporter.report(
+            Severity.Error, this, "array parameters can only be passed by reference using the 'ref' keyword"
+            )
+        }
       }
     }
   }

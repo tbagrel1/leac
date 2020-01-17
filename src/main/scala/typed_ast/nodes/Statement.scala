@@ -4,6 +4,7 @@ import typed_ast.nodes.enums.{AtomTypename, Unknown}
 import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
 
 sealed trait ReturnPrediction {
+
   import ReturnPrediction._
 
   def reduce(other: ReturnPrediction, reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
@@ -15,26 +16,46 @@ sealed trait ReturnPrediction {
       case (Unsure(Unknown, _), _) | (Sure(Unknown, _), _) => other
       case (_, Sure(Unknown, _)) | (_, Unsure(Unknown, _)) => this
       case (Unsure(thisTypename, thisReturning), Unsure(otherTypename, otherReturning)) => {
-        if (thisTypename != otherTypename) {
-          reporter.report(Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${ otherReturning.sourcePos }: ${ thisTypename } != ${ otherTypename }")
+        if (thisTypename cantAccept otherTypename) {
+          reporter.report(
+            Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${
+              otherReturning
+                .sourcePos
+            }: ${ thisTypename } != ${ otherTypename }"
+            )
         }
         this
       }
       case (Unsure(thisTypename, thisReturning), Sure(otherTypename, otherReturning)) => {
-        if (thisTypename != otherTypename) {
-          reporter.report(Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${ otherReturning.sourcePos }: ${ thisTypename } != ${ otherTypename }")
+        if (thisTypename cantAccept otherTypename) {
+          reporter.report(
+            Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${
+              otherReturning
+                .sourcePos
+            }: ${ thisTypename } != ${ otherTypename }"
+            )
         }
         other
       }
       case (Sure(thisTypename, thisReturning), Unsure(otherTypename, otherReturning)) => {
-        if (thisTypename != otherTypename) {
-          reporter.report(Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${ otherReturning.sourcePos }: ${ thisTypename } != ${ otherTypename }")
+        if (thisTypename cantAccept otherTypename) {
+          reporter.report(
+            Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${
+              otherReturning
+                .sourcePos
+            }: ${ thisTypename } != ${ otherTypename }"
+            )
         }
         this
       }
       case (Sure(thisTypename, thisReturning), Sure(otherTypename, otherReturning)) => {
-        if (thisTypename != otherTypename) {
-          reporter.report(Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${ otherReturning.sourcePos }: ${ thisTypename } != ${ otherTypename }")
+        if (thisTypename cantAccept otherTypename) {
+          reporter.report(
+            Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${
+              otherReturning
+                .sourcePos
+            }: ${ thisTypename } != ${ otherTypename }"
+            )
         }
         this
       }
@@ -46,11 +67,20 @@ sealed trait ReturnPrediction {
     case _ => this
   }
 }
+
 object ReturnPrediction {
+
   case object None extends ReturnPrediction
+
   case class Unsure(typename: AtomTypename, returning: Returning) extends ReturnPrediction
+
   case class Sure(typename: AtomTypename, returning: Returning) extends ReturnPrediction
-  def reduce(returnPredictions: List[ReturnPrediction], reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
+
+  def reduce(
+    returnPredictions: List[ReturnPrediction],
+    reporter: SemanticCheckReporter,
+    contextNode: AbstractNode
+  ): ReturnPrediction = {
     returnPredictions.foldLeft(None: ReturnPrediction)((r1, r2) => r1.reduce(r2, reporter, contextNode))
   }
 }
@@ -154,7 +184,7 @@ case class Loop(sourcePos: SourcePos, condition: Expr, statementWhileTrue: State
 case class Returning(sourcePos: SourcePos, returnValue: Expr) extends AbstractNode
 
   with Statement {
-    returnValue.setParent(this)
+  returnValue.setParent(this)
 
   override def fancyContext: String = "return statement"
 
@@ -199,7 +229,7 @@ case class Affect(sourcePos: SourcePos, target: IdfAccess, value: Expr) extends 
   }
 }
 
-case class ProcedureCall(sourcePos: SourcePos, name: String, args: List[Expr]) extends AbstractNode
+case class ProcedureCall(sourcePos: SourcePos, name: String, args: List[Expr]) extends AbstractNode with Call
 
   with Statement {
   for (arg <- args) {
@@ -218,7 +248,10 @@ case class ProcedureCall(sourcePos: SourcePos, name: String, args: List[Expr]) e
     }
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    super._semanticCheck(reporter)
+    // TODO: special check for procedure for dropped return values
+  }
 
   override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     import ReturnPrediction._

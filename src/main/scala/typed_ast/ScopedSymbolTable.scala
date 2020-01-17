@@ -46,7 +46,15 @@ class ScopedSymbolTable(val fancyContext: String) {
   }
 
   def _toString(indent: Int): String = {
-    (List((" " * indent) + s"# Symbol table of ${fancyContext} (parent: ${ if (isRootSymbolTable) { "none" } else { parent.fancyContext } }) #") ++ (for ((_, decl) <- data) yield (" " * (indent + 4)) + decl.toString).toList).mkString("\n") + "\n\n" + (for (child <- children) yield child._toString(indent + 4)).mkString("\n")
+    (List(
+      (" " * indent) + s"# Symbol table of ${ fancyContext } (parent: ${
+        if (isRootSymbolTable) { "none" } else {
+          parent
+            .fancyContext
+        }
+      }) #"
+      ) ++ (for ((_, decl) <- data) yield (" " * (indent + 4)) + decl.toString).toList).mkString("\n") + "\n\n" +
+      (for (child <- children) yield child._toString(indent + 4)).mkString("\n")
   }
 
   override def toString: String = _toString(0)

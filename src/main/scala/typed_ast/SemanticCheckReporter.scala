@@ -1,7 +1,8 @@
 package typed_ast
 
-import scala.collection.mutable
 import typed_ast.nodes.AbstractNode
+
+import scala.collection.mutable
 
 class SemanticCheckReporter {
   var warningCount: Int = 0

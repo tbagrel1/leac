@@ -103,7 +103,7 @@ object TreeConverter {
       case TEST_LT => TestLowerThan(sp(s), cv(n0(s)).asInstanceOf[Expr], cv(n1(s)).asInstanceOf[Expr])
       case TEST_NE => TestNotEqual(sp(s), cv(n0(s)).asInstanceOf[Expr], cv(n1(s)).asInstanceOf[Expr])
       case UNARY_MINUS => UnaryMinus(sp(s), cv(n0(s)).asInstanceOf[Expr])
-      case VAR => VarAccess(sp(s), n0(s).getText)
+      case VAR => VarOrParamAccess(sp(s), n0(s).getText)
       case VAR_DECL => {
         val leacType = cv(n0(s)).asInstanceOf[LeacType]
         val names = cv(n1(s)).asInstanceOf[List[String]]

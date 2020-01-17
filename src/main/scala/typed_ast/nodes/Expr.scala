@@ -1,7 +1,7 @@
 package typed_ast.nodes
 
 import typed_ast.nodes.enums._
-import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
+import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
 
 sealed trait Expr extends AbstractNode {
   def atomTypename(): AtomTypename
@@ -32,7 +32,16 @@ sealed trait BinaryIntFloatOperation extends Operation {
     }
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    val aTypename = a.atomTypename()
+    val bTypename = b.atomTypename()
+    if (aTypename cantAccept FloatTypename) {
+      reporter.report(Severity.Error, this, s"type mismatch: expecting float or int, got ${ aTypename }")
+    }
+    if (bTypename cantAccept FloatTypename) {
+      reporter.report(Severity.Error, this, s"type mismatch: expecting float or int, got ${ bTypename }")
+    }
+  }
 }
 
 sealed trait BinaryOrdOperation extends Operation {
@@ -42,7 +51,16 @@ sealed trait BinaryOrdOperation extends Operation {
 
   override def atomTypename(): AtomTypename = BoolTypename
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    val aTypename = a.atomTypename()
+    val bTypename = b.atomTypename()
+    if (aTypename cantAccept FloatTypename) {
+      reporter.report(Severity.Error, this, s"type mismatch: expecting float or int, got ${ aTypename }")
+    }
+    if (bTypename cantAccept FloatTypename) {
+      reporter.report(Severity.Error, this, s"type mismatch: expecting float or int, got ${ bTypename }")
+    }
+  }
 }
 
 sealed trait BinaryEqOperation extends Operation {
@@ -52,7 +70,13 @@ sealed trait BinaryEqOperation extends Operation {
 
   override def atomTypename(): AtomTypename = BoolTypename
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    val aTypename = a.atomTypename()
+    val bTypename = b.atomTypename()
+    if (aTypename cantAccept bTypename) {
+      reporter.report(Severity.Error, this, s"type mismatch: cannot compare types ${ aTypename } and ${ bTypename }")
+    }
+  }
 }
 
 sealed trait BinaryLogicalOperation extends Operation {
@@ -62,7 +86,16 @@ sealed trait BinaryLogicalOperation extends Operation {
 
   override def atomTypename(): AtomTypename = BoolTypename
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    val aTypename = a.atomTypename()
+    val bTypename = b.atomTypename()
+    if (aTypename cantAccept BoolTypename) {
+      reporter.report(Severity.Error, this, s"type mismatch: expecting bool, got ${ aTypename }")
+    }
+    if (bTypename cantAccept BoolTypename) {
+      reporter.report(Severity.Error, this, s"type mismatch: expecting bool, got ${ bTypename }")
+    }
+  }
 }
 
 
@@ -80,10 +113,12 @@ case class Constant(sourcePos: SourcePos, typename: AtomTypename, value: String)
 
   override def atomTypename(): AtomTypename = typename
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    // TODO: check for int and float sizes
+  }
 }
 
-case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extends AbstractNode
+case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extends AbstractNode with Call
 
   with Expr {
   for (arg <- args) {
@@ -107,11 +142,9 @@ case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extend
     case Some(VarDecl(_, _, _)) => Unknown
     case Some(FuncDecl(_, _, _, returnTypename, _, _)) => returnTypename
   }
-
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
-case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode with IdfAccess {
+case class VarOrParamAccess(sourcePos: SourcePos, name: String) extends AbstractNode with IdfAccess {
   override def fancyContext: String = s"variable '${ name }' access"
 
 
@@ -132,7 +165,9 @@ case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode wi
     case Some(FuncDecl(_, _, _, _, _, _)) => Unknown
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    // TODO: dont forget param case
+  }
 }
 
 case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr]) extends AbstractNode
@@ -165,7 +200,9 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
     case Some(FuncDecl(_, _, _, _, _, _)) => Unknown
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    // TODO: don't forget param case
+  }
 }
 
 case class Pow(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryIntFloatOperation {
