@@ -7,7 +7,8 @@ object Main {
   def main(args: Array[String]): Unit = {
     val lexer = new LeacLexer(
       new ANTLRFileStream(
-        "/home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/src/main/java/grammar/output/__Test___input.txt",
+        "/home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/src/main/java/grammar/output" +
+          "/__Test___input.txt",
         "UTF8"
         )
       )

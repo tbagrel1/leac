@@ -15,7 +15,16 @@ case class FuncDecl(
   varDecls: List[VarDecl],
   statementBlock: Block
 ) extends AbstractNode with Decl {
-  override def fancyContext: String = "function declaration"
+
+  for (param <- params) {
+    param.setParent(this)
+  }
+  for (varDecl <- varDecls) {
+    varDecl.setParent(this)
+  }
+  statementBlock.setParent(this)
+
+  override def fancyContext: String = s"\"${ name }\" function declaration"
 
   override def generateCode(): String = ""
 
@@ -33,7 +42,9 @@ case class FuncDecl(
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {
+    symbolTable.register(this, reporter)
+  }
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -42,7 +53,9 @@ case class FuncDecl(
 }
 
 case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) extends AbstractNode with Decl {
-  override def fancyContext: String = "variable declaration"
+  leacType.setParent(this)
+
+  override def fancyContext: String = s"\"${ name }\" variable declaration"
 
   override def generateCode(): String = ""
 
@@ -54,7 +67,9 @@ case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) exten
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {
+    symbolTable.register(this, reporter)
+  }
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,

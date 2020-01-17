@@ -6,10 +6,10 @@ import typed_ast.{Locatable, SemanticCheckReporter, SourcePos, SymbolTable}
 sealed trait LeacType extends AbstractNode with Locatable
 
 case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends AbstractNode with Locatable with LeacType {
-  override def fancyContext: String = ???
+  override def fancyContext: String = "basic type use"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -18,7 +18,7 @@ case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends Abstra
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -29,10 +29,14 @@ case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends Abstra
 case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: List[RangeDef]) extends AbstractNode
   with Locatable
   with LeacType {
-  override def fancyContext: String = ???
+  for (rangeDef <- rangeDefs) {
+    rangeDef.setParent(this)
+  }
+
+  override def fancyContext: String = "array type use"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -44,7 +48,7 @@ case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: Li
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,

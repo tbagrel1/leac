@@ -28,4 +28,10 @@ abstract class AbstractNode {
   protected def _semanticCheck(symbolTable: SymbolTable, reporter: SemanticCheckReporter): Unit
 
   def generateCode(): String
+
+  protected var parent: AbstractNode = this
+
+  def setParent(_parent: AbstractNode): Unit = {
+    this.parent = _parent
+  }
 }

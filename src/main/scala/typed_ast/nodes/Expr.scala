@@ -14,10 +14,10 @@ sealed trait Operation extends AbstractNode with Expr with Locatable {
 case class Constant(sourcePos: SourcePos, typename: AtomTypename, value: String) extends AbstractNode
   with Locatable
   with Expr {
-  override def fancyContext: String = ???
+  override def fancyContext: String = s"${ typename.c_name } constant usage"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -26,7 +26,7 @@ case class Constant(sourcePos: SourcePos, typename: AtomTypename, value: String)
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -37,10 +37,14 @@ case class Constant(sourcePos: SourcePos, typename: AtomTypename, value: String)
 case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extends AbstractNode
   with Locatable
   with Expr {
-  override def fancyContext: String = ???
+  for (arg <- args) {
+    arg.setParent(this)
+  }
+
+  override def fancyContext: String = s"function \"${ name }\" call"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -52,7 +56,7 @@ case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extend
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -61,10 +65,10 @@ case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extend
 }
 
 case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode with Locatable with IdfAccess {
-  override def fancyContext: String = ???
+  override def fancyContext: String = s"variable \"${ name }\" access"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -73,7 +77,7 @@ case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode wi
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -84,10 +88,14 @@ case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode wi
 case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr]) extends AbstractNode
   with Locatable
   with IdfAccess {
-  override def fancyContext: String = ???
+  for (coord <- coords) {
+    coord.setParent(this)
+  }
+
+  override def fancyContext: String = s"access to a cell of array \"${ arrayName }\""
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -99,7 +107,7 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -108,12 +116,15 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
 }
 
 case class Pow(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+  a.setParent(this)
+  b.setParent(this)
+
   val priority = 1
 
-  override def fancyContext: String = ???
+  override def fancyContext: String = "exponentiation"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -124,7 +135,7 @@ case class Pow(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -133,12 +144,14 @@ case class Pow(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
 }
 
 case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode with Locatable with Operation {
+  a.setParent(this)
+
   val priority = 2
 
-  override def fancyContext: String = ???
+  override def fancyContext: String = "unary minus"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -148,7 +161,7 @@ case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode with L
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -157,12 +170,14 @@ case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode with L
 }
 
 case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode with Locatable with Operation {
+  a.setParent(this)
+
   val priority = 2
 
-  override def fancyContext: String = ???
+  override def fancyContext: String = "logical NOT"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -172,7 +187,7 @@ case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode with Locatabl
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -181,12 +196,15 @@ case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode with Locatabl
 }
 
 case class Mul(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+  a.setParent(this)
+  b.setParent(this)
+
   val priority = 3
 
-  override def fancyContext: String = ???
+  override def fancyContext: String = "product"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -197,7 +215,7 @@ case class Mul(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -206,12 +224,15 @@ case class Mul(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
 }
 
 case class Div(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+  a.setParent(this)
+  b.setParent(this)
+
   val priority = 3
 
-  override def fancyContext: String = ???
+  override def fancyContext: String = "division"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -222,7 +243,7 @@ case class Div(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -231,12 +252,15 @@ case class Div(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
 }
 
 case class Add(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+  a.setParent(this)
+  b.setParent(this)
+
   val priority = 4
 
-  override def fancyContext: String = ???
+  override def fancyContext: String = "sum"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -247,7 +271,7 @@ case class Add(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -256,12 +280,15 @@ case class Add(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
 }
 
 case class Sub(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+  a.setParent(this)
+  b.setParent(this)
+
   val priority = 4
 
-  override def fancyContext: String = ???
+  override def fancyContext: String = "subtraction"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -272,7 +299,7 @@ case class Sub(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -283,12 +310,15 @@ case class Sub(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
 case class TestLowerThan(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode
   with Locatable
   with Operation {
+  a.setParent(this)
+  b.setParent(this)
+
   val priority = 5
 
-  override def fancyContext: String = ???
+  override def fancyContext: String = "\"lower than\" test"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -299,7 +329,7 @@ case class TestLowerThan(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstrac
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -310,12 +340,15 @@ case class TestLowerThan(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstrac
 case class TestLowerOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode
   with Locatable
   with Operation {
+  a.setParent(this)
+  b.setParent(this)
+
   val priority = 5
 
-  override def fancyContext: String = ???
+  override def fancyContext: String = "\"lower or equal\" test"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -326,7 +359,7 @@ case class TestLowerOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Abst
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -337,12 +370,15 @@ case class TestLowerOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Abst
 case class TestGreaterThan(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode
   with Locatable
   with Operation {
+  a.setParent(this)
+  b.setParent(this)
+
   val priority = 5
 
-  override def fancyContext: String = ???
+  override def fancyContext: String = "\"greater than\" test"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -353,7 +389,7 @@ case class TestGreaterThan(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstr
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -364,12 +400,15 @@ case class TestGreaterThan(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstr
 case class TestGreaterOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode
   with Locatable
   with Operation {
+  a.setParent(this)
+  b.setParent(this)
+
   val priority = 5
 
-  override def fancyContext: String = ???
+  override def fancyContext: String = "\"greater or equal\" test"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -380,7 +419,7 @@ case class TestGreaterOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Ab
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -389,12 +428,15 @@ case class TestGreaterOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Ab
 }
 
 case class TestEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+  a.setParent(this)
+  b.setParent(this)
+
   val priority = 6
 
-  override def fancyContext: String = ???
+  override def fancyContext: String = "equality test"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -405,7 +447,7 @@ case class TestEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNod
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -414,12 +456,15 @@ case class TestEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNod
 }
 
 case class TestNotEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+  a.setParent(this)
+  b.setParent(this)
+
   val priority = 6
 
-  override def fancyContext: String = ???
+  override def fancyContext: String = "\"not equal\" test"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -430,7 +475,7 @@ case class TestNotEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstract
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -439,12 +484,15 @@ case class TestNotEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstract
 }
 
 case class And(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+  a.setParent(this)
+  b.setParent(this)
+
   val priority = 7
 
-  override def fancyContext: String = ???
+  override def fancyContext: String = "logical AND"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -455,7 +503,7 @@ case class And(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
@@ -464,12 +512,15 @@ case class And(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
 }
 
 case class Or(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with Locatable with Operation {
+  a.setParent(this)
+  b.setParent(this)
+
   val priority = 8
 
-  override def fancyContext: String = ???
+  override def fancyContext: String = "logical OR"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -480,7 +531,7 @@ case class Or(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,

@@ -9,10 +9,18 @@ case class Program(
   funcDecls: List[FuncDecl],
   statement: Statement
 ) extends AbstractNode {
-  override def fancyContext: String = ???
+  for (varDecl <- varDecls) {
+    varDecl.setParent(this)
+  }
+  for (funcDecl <- funcDecls) {
+    funcDecl.setParent(this)
+  }
+  statement.setParent(this)
+
+  override def fancyContext: String = s"program \"${ name }\" definition"
 
 
-  override def generateCode(): String = ???
+  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
     f(this, payload)
@@ -28,7 +36,7 @@ case class Program(
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
     reporter: SemanticCheckReporter
-  ): Unit = ???
+  ): Unit = {}
 
   override protected def _semanticCheck(
     symbolTable: SymbolTable,
