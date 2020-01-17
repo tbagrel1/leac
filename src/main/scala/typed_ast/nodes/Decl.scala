@@ -169,6 +169,7 @@ case class ParamDecl(
             )
         }
       }
+      case _ => ()
     }
   }
 
