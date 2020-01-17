@@ -62,7 +62,7 @@ object TreeConverter {
       case FUNC_CALL => FuncCall(sp(s), n0(s).getText, cv(n1(s)).asInstanceOf[List[Expr]])
       case FUNC_DECL => {
         FuncDecl(
-          sp(s), n0(s).getText, cv(n1(s)).asInstanceOf[List[Param]], cv(n2(s)).asInstanceOf[AtomTypename],
+          sp(s), n0(s).getText, cv(n1(s)).asInstanceOf[List[ParamDecl]], cv(n2(s)).asInstanceOf[AtomTypename],
           cv(n3(s)).asInstanceOf[List[VarDecl]], cv(n4(s)).asInstanceOf[Block]
           )
       }
@@ -75,11 +75,11 @@ object TreeConverter {
       case NO_RETURN_VALUE => Nothing
       case OR => Or(sp(s), cv(n0(s)).asInstanceOf[Expr], cv(n1(s)).asInstanceOf[Expr])
       case PARAM => {
-        nodes.Param(
+        nodes.ParamDecl(
           sp(s), cv(n0(s)).asInstanceOf[LeacType], cv(n1(s)).asInstanceOf[AccessMode], n2(s).getText
           )
       }
-      case PARAM_LIST => nodeToList[Param](s)
+      case PARAM_LIST => nodeToList[ParamDecl](s)
       case POW => Pow(sp(s), cv(n0(s)).asInstanceOf[Expr], cv(n1(s)).asInstanceOf[Expr])
       case PROCEDURE_CALL => ProcedureCall(sp(s), n0(s).getText, cv(n1(s)).asInstanceOf[List[Expr]])
       case PROGRAM => {

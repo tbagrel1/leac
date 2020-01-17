@@ -1,6 +1,6 @@
 package typed_ast.nodes
 
-import typed_ast.nodes.enums.AtomTypename
+import typed_ast.nodes.enums.{AccessMode, AtomTypename}
 import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
 
 sealed trait Decl extends AbstractNode {
@@ -10,7 +10,7 @@ sealed trait Decl extends AbstractNode {
 case class FuncDecl(
   sourcePos: SourcePos,
   name: String,
-  params: List[Param],
+  params: List[ParamDecl],
   returnTypename: AtomTypename,
   varDecls: List[VarDecl],
   statementBlock: Block
@@ -47,9 +47,9 @@ case class FuncDecl(
     (symbolTable.spawnChild(fancyContext), reporter)
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
-
   override def toString: String = s"${ returnTypename } ${ name }(${ params.map(_.toString).mkString(", ") })"
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) extends AbstractNode with Decl {
@@ -75,4 +75,30 @@ case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) exten
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 
   override def toString: String = s"${ leacType } ${ name }"
+}
+
+case class ParamDecl(sourcePos: SourcePos, leacType: LeacType, accessMode: AccessMode, name: String) extends AbstractNode with Decl {
+  leacType.setParent(this)
+
+  override def fancyContext: String = s"function parameter '${ name }' declaration"
+
+
+  override def generateCode(): String = ""
+
+  override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
+    val newPayload = f(this, payload)
+    leacType.dispatch(f, newPayload)
+  }
+
+  override protected def _fillSymbolTable(
+    symbolTable: ScopedSymbolTable,
+    reporter: SemanticCheckReporter
+  ): (ScopedSymbolTable, SemanticCheckReporter) = {
+    symbolTable.register(this, reporter)
+    (symbolTable, reporter)
+  }
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+
+  override def toString: String = s"${ accessMode }${ leacType } ${ name }"
 }
