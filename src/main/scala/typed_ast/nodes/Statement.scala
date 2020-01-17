@@ -1,6 +1,6 @@
 package typed_ast.nodes
 
-import typed_ast.{SemanticCheckReporter, SourcePos, ScopedSymbolTable}
+import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
 
 sealed trait Statement extends AbstractNode {
   override protected def _fillAndLinkSymbolTable(
@@ -36,7 +36,7 @@ case class Conditional(
   condition: Expr,
   statementIfTrue: Statement,
   statementIfFalse: Statement
-) extends AbstractNode  with Statement {
+) extends AbstractNode with Statement {
   condition.setParent(this)
   statementIfTrue.setParent(this)
   statementIfFalse.setParent(this)
@@ -142,7 +142,7 @@ case class ProcedureCall(sourcePos: SourcePos, name: String, args: List[Expr]) e
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
-case class Read(sourcePos: SourcePos, target: IdfAccess) extends AbstractNode  with Statement {
+case class Read(sourcePos: SourcePos, target: IdfAccess) extends AbstractNode with Statement {
   target.setParent(this)
 
   override def fancyContext: String = "read user input"
@@ -158,7 +158,7 @@ case class Read(sourcePos: SourcePos, target: IdfAccess) extends AbstractNode  w
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
-case class Write(sourcePos: SourcePos, value: Expr) extends AbstractNode  with Statement {
+case class Write(sourcePos: SourcePos, value: Expr) extends AbstractNode with Statement {
   value.setParent(this)
 
   override def fancyContext: String = "write to the console"

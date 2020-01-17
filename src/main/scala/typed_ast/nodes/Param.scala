@@ -1,7 +1,7 @@
 package typed_ast.nodes
 
 import typed_ast.nodes.enums.AccessMode
-import typed_ast.{SemanticCheckReporter, SourcePos, ScopedSymbolTable}
+import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
 
 case class Param(sourcePos: SourcePos, leacType: LeacType, accessMode: AccessMode, name: String) extends AbstractNode {
   leacType.setParent(this)

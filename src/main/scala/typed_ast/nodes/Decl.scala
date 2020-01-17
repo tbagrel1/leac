@@ -1,9 +1,9 @@
 package typed_ast.nodes
 
 import typed_ast.nodes.enums.AtomTypename
-import typed_ast.{SemanticCheckReporter, SourcePos, ScopedSymbolTable}
+import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
 
-sealed trait Decl extends AbstractNode  {
+sealed trait Decl extends AbstractNode {
   def name: String
 }
 

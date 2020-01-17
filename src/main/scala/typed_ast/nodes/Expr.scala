@@ -1,9 +1,9 @@
 package typed_ast.nodes
 
-import typed_ast.nodes.enums.{AtomTypename, BoolTypename, FloatTypename, IntTypename, Unknown}
-import typed_ast.{SemanticCheckReporter, SourcePos, ScopedSymbolTable}
+import typed_ast.nodes.enums._
+import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
 
-sealed trait Expr extends AbstractNode  {
+sealed trait Expr extends AbstractNode {
   def atomTypename(): AtomTypename
 
   override protected def _fillAndLinkSymbolTable(
@@ -12,14 +12,15 @@ sealed trait Expr extends AbstractNode  {
   ): (ScopedSymbolTable, SemanticCheckReporter) = (symbolTable, reporter)
 }
 
-sealed trait IdfAccess extends AbstractNode with Expr  {}
+sealed trait IdfAccess extends AbstractNode with Expr {}
 
-sealed trait Operation extends AbstractNode with Expr  {
+sealed trait Operation extends AbstractNode with Expr {
   def priority: Int
 }
 
 sealed trait BinaryIntFloatOperation extends Operation {
   def a: Expr
+
   def b: Expr
 
   override def atomTypename(): AtomTypename = {
@@ -36,6 +37,7 @@ sealed trait BinaryIntFloatOperation extends Operation {
 
 sealed trait BinaryOrdOperation extends Operation {
   def a: Expr
+
   def b: Expr
 
   override def atomTypename(): AtomTypename = BoolTypename
@@ -45,6 +47,7 @@ sealed trait BinaryOrdOperation extends Operation {
 
 sealed trait BinaryEqOperation extends Operation {
   def a: Expr
+
   def b: Expr
 
   override def atomTypename(): AtomTypename = BoolTypename
@@ -54,6 +57,7 @@ sealed trait BinaryEqOperation extends Operation {
 
 sealed trait BinaryLogicalOperation extends Operation {
   def a: Expr
+
   def b: Expr
 
   override def atomTypename(): AtomTypename = BoolTypename
@@ -107,7 +111,7 @@ case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extend
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
-case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode  with IdfAccess {
+case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode with IdfAccess {
   override def fancyContext: String = s"variable '${ name }' access"
 
 
@@ -119,9 +123,11 @@ case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode  w
 
   override def atomTypename(): AtomTypename = this.getSymbolTable.get(name) match {
     case None => Unknown
-    case Some(VarDecl(_, leacType, _)) => leacType match {
-      case Atom(_, typename) => typename
-      case Array(_, _, _) => Unknown
+    case Some(VarDecl(_, leacType, _)) => {
+      leacType match {
+        case Atom(_, typename) => typename
+        case Array(_, _, _) => Unknown
+      }
     }
     case Some(FuncDecl(_, _, _, _, _, _)) => Unknown
   }
@@ -150,9 +156,11 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
 
   override def atomTypename(): AtomTypename = this.getSymbolTable.get(arrayName) match {
     case None => Unknown
-    case Some(VarDecl(_, leacType, _)) => leacType match {
-      case Atom(_, _) => Unknown
-      case Array(_, typename, _) => typename
+    case Some(VarDecl(_, leacType, _)) => {
+      leacType match {
+        case Atom(_, _) => Unknown
+        case Array(_, typename, _) => typename
+      }
     }
     case Some(FuncDecl(_, _, _, _, _, _)) => Unknown
   }
@@ -178,7 +186,7 @@ case class Pow(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
   }
 }
 
-case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode  with Operation {
+case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode with Operation {
   a.setParent(this)
 
   val priority = 2
@@ -204,7 +212,7 @@ case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode  with 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
-case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode  with Operation {
+case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode with Operation {
   a.setParent(this)
 
   val priority = 2
@@ -224,7 +232,7 @@ case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode  with Operati
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
-case class Mul(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryIntFloatOperation {
+case class Mul(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryIntFloatOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -243,7 +251,7 @@ case class Mul(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  wit
 
 }
 
-case class Div(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryIntFloatOperation {
+case class Div(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryIntFloatOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -262,7 +270,7 @@ case class Div(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  wit
 
 }
 
-case class Add(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryIntFloatOperation {
+case class Add(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryIntFloatOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -281,7 +289,7 @@ case class Add(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  wit
 
 }
 
-case class Sub(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryIntFloatOperation {
+case class Sub(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryIntFloatOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -381,7 +389,7 @@ case class TestGreaterOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Ab
 
 }
 
-case class TestEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryEqOperation {
+case class TestEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryEqOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -400,7 +408,7 @@ case class TestEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNod
 
 }
 
-case class TestNotEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryEqOperation {
+case class TestNotEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryEqOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -419,7 +427,7 @@ case class TestNotEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstract
 
 }
 
-case class And(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryLogicalOperation {
+case class And(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryLogicalOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -438,7 +446,7 @@ case class And(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  wit
 
 }
 
-case class Or(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryLogicalOperation {
+case class Or(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryLogicalOperation {
   a.setParent(this)
   b.setParent(this)
 

@@ -1,7 +1,7 @@
 package typed_ast.nodes
 
 import typed_ast.nodes.enums.AtomTypename
-import typed_ast.{SemanticCheckReporter, SourcePos, ScopedSymbolTable}
+import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
 
 sealed trait LeacType extends AbstractNode {
   override protected def _fillAndLinkSymbolTable(
@@ -10,7 +10,7 @@ sealed trait LeacType extends AbstractNode {
   ): (ScopedSymbolTable, SemanticCheckReporter) = (symbolTable, reporter)
 }
 
-case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends AbstractNode  with LeacType {
+case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends AbstractNode with LeacType {
   override def fancyContext: String = "basic type use"
 
 

@@ -23,7 +23,7 @@ abstract class AbstractNode {
         node._fillAndLinkSymbolTable(symbolTableReporter._1, symbolTableReporter._2)
       },
       (symbolTable, reporter)
-    )
+      )
   }
 
   def semanticCheck(symbolTable: ScopedSymbolTable, reporter: SemanticCheckReporter): Unit = {
@@ -33,10 +33,13 @@ abstract class AbstractNode {
         symbolTableReporter
       },
       (symbolTable, reporter)
-    )
+      )
   }
 
-  protected def _fillAndLinkSymbolTable(symbolTable: ScopedSymbolTable, reporter: SemanticCheckReporter): (ScopedSymbolTable, SemanticCheckReporter)
+  protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
+    reporter: SemanticCheckReporter
+  ): (ScopedSymbolTable, SemanticCheckReporter)
 
   protected def _semanticCheck(reporter: SemanticCheckReporter): Unit
 

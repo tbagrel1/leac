@@ -12,10 +12,12 @@ class ScopedSymbolTable(val fancyContext: String) {
   def get(name: String): Option[Decl] = {
     internal.get(name) match {
       case Some(decl) => Some(decl)
-      case None => if (!isRootSymbolTable) {
-        parent.get(name)
-      } else {
-        None
+      case None => {
+        if (!isRootSymbolTable) {
+          parent.get(name)
+        } else {
+          None
+        }
       }
     }
   }
