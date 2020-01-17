@@ -464,4 +464,18 @@ case class Or(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with 
   }
 }
 
+case object Nothing extends AbstractNode with Expr {
+  override def sourcePos: SourcePos = parent.sourcePos
 
+  override def fancyContext: String = "expr representing an absence of return value"
+
+  override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
+    val newPayload = f(this, payload)
+  }
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {}
+
+  override def generateCode(): String = ""
+
+  override def atomTypename(): AtomTypename = VoidTypename
+}

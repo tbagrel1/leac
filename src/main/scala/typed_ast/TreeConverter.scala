@@ -72,7 +72,7 @@ object TreeConverter {
       case LOOP => Loop(sp(s), cv(n0(s)).asInstanceOf[Expr], cv(n1(s)).asInstanceOf[Statement])
       case MUL => Mul(sp(s), cv(n0(s)).asInstanceOf[Expr], cv(n1(s)).asInstanceOf[Expr])
       case NOT => Not(sp(s), cv(n0(s)).asInstanceOf[Expr])
-      case NO_RETURN_VALUE => null
+      case NO_RETURN_VALUE => Nothing
       case OR => Or(sp(s), cv(n0(s)).asInstanceOf[Expr], cv(n1(s)).asInstanceOf[Expr])
       case PARAM => {
         nodes.Param(
@@ -92,8 +92,7 @@ object TreeConverter {
       case RANGE_LIST => nodeToList[Range](s)
       case READ => Read(sp(s), cv(n0(s)).asInstanceOf[IdfAccess])
       case RETURNING => {
-        val optReturnValue = cv(n0(s)).asInstanceOf[Expr]
-        Returning(sp(s), Option(optReturnValue))
+        Returning(sp(s), cv(n0(s)).asInstanceOf[Expr])
       }
       case STRING_TYPENAME => StringTypename
       case SUB => Sub(sp(s), cv(n0(s)).asInstanceOf[Expr], cv(n1(s)).asInstanceOf[Expr])

@@ -10,8 +10,8 @@ class SemanticCheckReporter {
   def report(severity: Severity, message: String): Unit = {
     reports.addOne((severity, message))
     severity match {
-      case Error => errorCount += 1
-      case Warning => warningCount += 1
+      case Severity.Error => errorCount += 1
+      case Severity.Warning => warningCount += 1
       case _ => ()
     }
   }
