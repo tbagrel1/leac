@@ -16,10 +16,12 @@ case class Param(sourcePos: SourcePos, leacType: LeacType, accessMode: AccessMod
     leacType.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
+  override protected def _fillSymbolTable(
     symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): (ScopedSymbolTable, SemanticCheckReporter) = (symbolTable, reporter)
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+
+  override def toString: String = s"${ accessMode }${ leacType } ${ name }"
 }

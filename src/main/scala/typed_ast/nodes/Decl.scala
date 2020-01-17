@@ -39,12 +39,17 @@ case class FuncDecl(
     statementBlock.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
+  override protected def _fillSymbolTable(
     symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
-  ): (ScopedSymbolTable, SemanticCheckReporter) = ???
+  ): (ScopedSymbolTable, SemanticCheckReporter) = {
+    symbolTable.register(this, reporter)
+    (symbolTable.spawnChild(fancyContext), reporter)
+  }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+
+  override def toString: String = s"${ returnTypename } ${ name }(${ params.map(_.toString).mkString(", ") })"
 }
 
 case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) extends AbstractNode with Decl {
@@ -59,10 +64,15 @@ case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) exten
     leacType.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
+  override protected def _fillSymbolTable(
     symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
-  ): (ScopedSymbolTable, SemanticCheckReporter) = ???
+  ): (ScopedSymbolTable, SemanticCheckReporter) = {
+    symbolTable.register(this, reporter)
+    (symbolTable, reporter)
+  }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+
+  override def toString: String = s"${ leacType } ${ name }"
 }

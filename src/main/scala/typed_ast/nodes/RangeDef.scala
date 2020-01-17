@@ -2,7 +2,7 @@ package typed_ast.nodes
 
 import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
 
-case class RangeDef(sourcePos: SourcePos, inf: Int, Sup: Int) extends AbstractNode {
+case class RangeDef(sourcePos: SourcePos, inf: Int, sup: Int) extends AbstractNode {
   override def fancyContext: String = "array range definition"
 
 
@@ -12,10 +12,12 @@ case class RangeDef(sourcePos: SourcePos, inf: Int, Sup: Int) extends AbstractNo
     val newPayload = f(this, payload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
+  override protected def _fillSymbolTable(
     symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): (ScopedSymbolTable, SemanticCheckReporter) = (symbolTable, reporter)
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+
+  override def toString: String = s"${ inf }..${ sup }"
 }

@@ -33,10 +33,12 @@ case class Program(
     statement.dispatch(f, newPayload)
   }
 
-  override protected def _fillAndLinkSymbolTable(
+  override protected def _fillSymbolTable(
     symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
-  ): (ScopedSymbolTable, SemanticCheckReporter) = (symbolTable, reporter)
+  ): (ScopedSymbolTable, SemanticCheckReporter) = {
+    (new ScopedSymbolTable(fancyContext), reporter)
+  }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }

@@ -6,7 +6,7 @@ import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
 sealed trait Expr extends AbstractNode {
   def atomTypename(): AtomTypename
 
-  override protected def _fillAndLinkSymbolTable(
+  override protected def _fillSymbolTable(
     symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): (ScopedSymbolTable, SemanticCheckReporter) = (symbolTable, reporter)

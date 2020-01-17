@@ -1,7 +1,7 @@
 import grammar.{LeacLexer, LeacParser}
 import org.antlr.runtime.tree.CommonTree
 import org.antlr.runtime.{ANTLRFileStream, CommonTokenStream}
-import typed_ast.{Err, Ok, TreeConverter}
+import typed_ast.{Err, Ok, SemanticCheckReporter, TreeConverter}
 
 object Main {
   def main(args: Array[String]): Unit = {
@@ -19,7 +19,12 @@ object Main {
     val tree = result.getTree.asInstanceOf[CommonTree]
     val res_program = TreeConverter.convert(tree)
     res_program match {
-      case Ok(program) => println("OK!")
+      case Ok(program) => {
+        println("OK!")
+        val reporter = new SemanticCheckReporter()
+        program.fillAndLinkSymbolTable(null, reporter)
+        println(program.statement.getSymbolTable)
+      }
       case Err(exception) => println(s"Error during ANTLR to Scala AST conversion: <${ exception }>")
     }
   }

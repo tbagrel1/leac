@@ -4,7 +4,7 @@ import typed_ast.nodes.enums.AtomTypename
 import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
 
 sealed trait LeacType extends AbstractNode {
-  override protected def _fillAndLinkSymbolTable(
+  override protected def _fillSymbolTable(
     symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): (ScopedSymbolTable, SemanticCheckReporter) = (symbolTable, reporter)
@@ -21,6 +21,8 @@ case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends Abstra
   }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+
+  override def toString: String = atomTypename.toString
 }
 
 case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: List[RangeDef]) extends AbstractNode
@@ -43,4 +45,6 @@ case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: Li
   }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+
+  override def toString: String = s"[${ atomTypename }; ${ rangeDefs.map(_.toString).mkString(", ") }]"
 }

@@ -20,7 +20,8 @@ abstract class AbstractNode {
   def fillAndLinkSymbolTable(symbolTable: ScopedSymbolTable, reporter: SemanticCheckReporter): Unit = {
     dispatch(
       (node: AbstractNode, symbolTableReporter: (ScopedSymbolTable, SemanticCheckReporter)) => {
-        node._fillAndLinkSymbolTable(symbolTableReporter._1, symbolTableReporter._2)
+        node.setSymbolTable(symbolTableReporter._1)
+        node._fillSymbolTable(symbolTableReporter._1, symbolTableReporter._2)
       },
       (symbolTable, reporter)
       )
@@ -36,7 +37,7 @@ abstract class AbstractNode {
       )
   }
 
-  protected def _fillAndLinkSymbolTable(
+  protected def _fillSymbolTable(
     symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): (ScopedSymbolTable, SemanticCheckReporter)
