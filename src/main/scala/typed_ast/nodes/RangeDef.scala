@@ -11,4 +11,11 @@ case class RangeDef(sourcePos: SourcePos, inf: Int, Sup: Int) extends AbstractNo
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
   }
+
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
+    reporter: SemanticCheckReporter
+  ): (ScopedSymbolTable, SemanticCheckReporter) = (symbolTable, reporter)
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }

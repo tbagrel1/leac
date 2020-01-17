@@ -2,7 +2,12 @@ package typed_ast.nodes
 
 import typed_ast.{SemanticCheckReporter, SourcePos, ScopedSymbolTable}
 
-sealed trait Statement extends AbstractNode
+sealed trait Statement extends AbstractNode {
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
+    reporter: SemanticCheckReporter
+  ): (ScopedSymbolTable, SemanticCheckReporter) = (symbolTable, reporter)
+}
 
 case class Block(sourcePos: SourcePos, statements: List[Statement]) extends AbstractNode
 
@@ -22,6 +27,8 @@ case class Block(sourcePos: SourcePos, statements: List[Statement]) extends Abst
       statement.dispatch(f, newPayload)
     }
   }
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Conditional(
@@ -45,6 +52,8 @@ case class Conditional(
     statementIfTrue.dispatch(f, newPayload)
     statementIfFalse.dispatch(f, newPayload)
   }
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Loop(sourcePos: SourcePos, condition: Expr, statementWhileTrue: Statement) extends AbstractNode
@@ -63,6 +72,8 @@ case class Loop(sourcePos: SourcePos, condition: Expr, statementWhileTrue: State
     condition.dispatch(f, newPayload)
     statementWhileTrue.dispatch(f, newPayload)
   }
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Returning(sourcePos: SourcePos, returnValue: Option[Expr]) extends AbstractNode
@@ -85,6 +96,8 @@ case class Returning(sourcePos: SourcePos, returnValue: Option[Expr]) extends Ab
       case None => ()
     }
   }
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Affect(sourcePos: SourcePos, target: IdfAccess, value: Expr) extends AbstractNode
@@ -103,6 +116,8 @@ case class Affect(sourcePos: SourcePos, target: IdfAccess, value: Expr) extends 
     target.dispatch(f, newPayload)
     value.dispatch(f, newPayload)
   }
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class ProcedureCall(sourcePos: SourcePos, name: String, args: List[Expr]) extends AbstractNode
@@ -112,7 +127,7 @@ case class ProcedureCall(sourcePos: SourcePos, name: String, args: List[Expr]) e
     arg.setParent(this)
   }
 
-  override def fancyContext: String = s"procedure \"${ name }\" call"
+  override def fancyContext: String = s"procedure '${ name }' call"
 
 
   override def generateCode(): String = ""
@@ -123,6 +138,8 @@ case class ProcedureCall(sourcePos: SourcePos, name: String, args: List[Expr]) e
       arg.dispatch(f, newPayload)
     }
   }
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Read(sourcePos: SourcePos, target: IdfAccess) extends AbstractNode  with Statement {
@@ -137,6 +154,8 @@ case class Read(sourcePos: SourcePos, target: IdfAccess) extends AbstractNode  w
     val newPayload = f(this, payload)
     target.dispatch(f, newPayload)
   }
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Write(sourcePos: SourcePos, value: Expr) extends AbstractNode  with Statement {
@@ -151,5 +170,7 @@ case class Write(sourcePos: SourcePos, value: Expr) extends AbstractNode  with S
     val newPayload = f(this, payload)
     value.dispatch(f, newPayload)
   }
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 

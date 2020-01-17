@@ -5,8 +5,12 @@ import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
 abstract class AbstractNode {
   def sourcePos: SourcePos
 
-  def setSymbolTable(_symbolTable: ScopedSymbolTable): Unit = {
-    this.symbolTable = _symbolTable
+  def setSymbolTable(symbolTable: ScopedSymbolTable): Unit = {
+    this.sourcePos.setSymbolTable(symbolTable)
+  }
+
+  def getSymbolTable: ScopedSymbolTable = {
+    sourcePos.symbolTable
   }
 
   def fancyContext: String
@@ -39,7 +43,6 @@ abstract class AbstractNode {
   def generateCode(): String
 
   var parent: AbstractNode = this
-  var symbolTable: ScopedSymbolTable
 
   def setParent(_parent: AbstractNode): Unit = {
     this.parent = _parent

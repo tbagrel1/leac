@@ -31,7 +31,7 @@ object TreeConverter {
 
   private def n(s: Tree, n: Int): Tree = s.getChild(n)
 
-  private def sp(s: Tree): SourcePos = SourcePos(s.getLine, s.getCharPositionInLine, s.getText)
+  private def sp(s: Tree): SourcePos = new SourcePos(s.getLine, s.getCharPositionInLine, s.getText)
 
   private def nodeToList[T](s: Tree): List[T] = (for (i <- 0 until s.getChildCount) yield cv(n(s, i)).asInstanceOf[T])
     .toList

@@ -17,7 +17,7 @@ case class Program(
   }
   statement.setParent(this)
 
-  override def fancyContext: String = s"program \"${ name }\" definition"
+  override def fancyContext: String = s"program '${ name }' definition"
 
 
   override def generateCode(): String = ""
@@ -32,4 +32,11 @@ case class Program(
     }
     statement.dispatch(f, newPayload)
   }
+
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
+    reporter: SemanticCheckReporter
+  ): (ScopedSymbolTable, SemanticCheckReporter) = (symbolTable, reporter)
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }

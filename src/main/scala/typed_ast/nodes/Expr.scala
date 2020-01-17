@@ -4,7 +4,12 @@ import typed_ast.nodes.enums.{AtomTypename, BoolTypename, FloatTypename, IntType
 import typed_ast.{SemanticCheckReporter, SourcePos, ScopedSymbolTable}
 
 sealed trait Expr extends AbstractNode  {
-  def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename
+  def atomTypename(): AtomTypename
+
+  override protected def _fillAndLinkSymbolTable(
+    symbolTable: ScopedSymbolTable,
+    reporter: SemanticCheckReporter
+  ): (ScopedSymbolTable, SemanticCheckReporter) = (symbolTable, reporter)
 }
 
 sealed trait IdfAccess extends AbstractNode with Expr  {}
@@ -17,35 +22,43 @@ sealed trait BinaryIntFloatOperation extends Operation {
   def a: Expr
   def b: Expr
 
-  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = {
-    val aTypename = a.atomTypename(symbolTable)
-    val bTypename = b.atomTypename(symbolTable)
+  override def atomTypename(): AtomTypename = {
+    val aTypename = a.atomTypename()
+    val bTypename = b.atomTypename()
     (aTypename, bTypename) match {
       case (FloatTypename, _) | (_, FloatTypename) => FloatTypename
       case _ => IntTypename
     }
   }
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 sealed trait BinaryOrdOperation extends Operation {
   def a: Expr
   def b: Expr
 
-  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = BoolTypename
+  override def atomTypename(): AtomTypename = BoolTypename
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 sealed trait BinaryEqOperation extends Operation {
   def a: Expr
   def b: Expr
 
-  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = BoolTypename
+  override def atomTypename(): AtomTypename = BoolTypename
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 sealed trait BinaryLogicalOperation extends Operation {
   def a: Expr
   def b: Expr
 
-  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = BoolTypename
+  override def atomTypename(): AtomTypename = BoolTypename
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 
@@ -61,7 +74,9 @@ case class Constant(sourcePos: SourcePos, typename: AtomTypename, value: String)
     val newPayload = f(this, payload)
   }
 
-  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = typename
+  override def atomTypename(): AtomTypename = typename
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extends AbstractNode
@@ -71,7 +86,7 @@ case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extend
     arg.setParent(this)
   }
 
-  override def fancyContext: String = s"function \"${ name }\" call"
+  override def fancyContext: String = s"function '${ name }' call"
 
 
   override def generateCode(): String = ""
@@ -83,15 +98,17 @@ case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extend
     }
   }
 
-  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = symbolTable.get(name) match {
+  override def atomTypename(): AtomTypename = this.getSymbolTable.get(name) match {
     case None => Unknown
     case Some(VarDecl(_, _, _)) => Unknown
     case Some(FuncDecl(_, _, _, returnTypename, _, _)) => returnTypename
   }
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode  with IdfAccess {
-  override def fancyContext: String = s"variable \"${ name }\" access"
+  override def fancyContext: String = s"variable '${ name }' access"
 
 
   override def generateCode(): String = ""
@@ -100,7 +117,7 @@ case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode  w
     val newPayload = f(this, payload)
   }
 
-  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = symbolTable.get(name) match {
+  override def atomTypename(): AtomTypename = this.getSymbolTable.get(name) match {
     case None => Unknown
     case Some(VarDecl(_, leacType, _)) => leacType match {
       case Atom(_, typename) => typename
@@ -108,6 +125,8 @@ case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode  w
     }
     case Some(FuncDecl(_, _, _, _, _, _)) => Unknown
   }
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr]) extends AbstractNode
@@ -117,7 +136,7 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
     coord.setParent(this)
   }
 
-  override def fancyContext: String = s"access to a cell of array \"${ arrayName }\""
+  override def fancyContext: String = s"access to a cell of array '${ arrayName }'"
 
 
   override def generateCode(): String = ""
@@ -129,7 +148,7 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
     }
   }
 
-  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = {
+  override def atomTypename(): AtomTypename = this.getSymbolTable.get(arrayName) match {
     case None => Unknown
     case Some(VarDecl(_, leacType, _)) => leacType match {
       case Atom(_, _) => Unknown
@@ -137,6 +156,8 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
     }
     case Some(FuncDecl(_, _, _, _, _, _)) => Unknown
   }
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Pow(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryIntFloatOperation {
@@ -172,13 +193,15 @@ case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode  with 
     a.dispatch(f, newPayload)
   }
 
-  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = {
-    val aTypename = a.atomTypename(symbolTable)
+  override def atomTypename(): AtomTypename = {
+    val aTypename = a.atomTypename()
     aTypename match {
       case FloatTypename => FloatTypename
       case _ => IntTypename
     }
   }
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode  with Operation {
@@ -196,7 +219,9 @@ case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode  with Operati
     a.dispatch(f, newPayload)
   }
 
-  override def atomTypename(symbolTable: ScopedSymbolTable): AtomTypename = BoolTypename
+  override def atomTypename(): AtomTypename = BoolTypename
+
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 }
 
 case class Mul(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode  with BinaryIntFloatOperation {
@@ -281,7 +306,7 @@ case class TestLowerThan(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstrac
 
   val priority = 5
 
-  override def fancyContext: String = "\"lower than\" test"
+  override def fancyContext: String = "'lower than' test"
 
 
   override def generateCode(): String = ""
@@ -302,7 +327,7 @@ case class TestLowerOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Abst
 
   val priority = 5
 
-  override def fancyContext: String = "\"lower or equal\" test"
+  override def fancyContext: String = "'lower or equal' test"
 
 
   override def generateCode(): String = ""
@@ -323,7 +348,7 @@ case class TestGreaterThan(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstr
 
   val priority = 5
 
-  override def fancyContext: String = "\"greater than\" test"
+  override def fancyContext: String = "'greater than' test"
 
 
   override def generateCode(): String = ""
@@ -343,7 +368,7 @@ case class TestGreaterOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Ab
 
   val priority = 5
 
-  override def fancyContext: String = "\"greater or equal\" test"
+  override def fancyContext: String = "'greater or equal' test"
 
 
   override def generateCode(): String = ""
@@ -381,7 +406,7 @@ case class TestNotEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstract
 
   val priority = 6
 
-  override def fancyContext: String = "\"not equal\" test"
+  override def fancyContext: String = "'not equal' test"
 
 
   override def generateCode(): String = ""
