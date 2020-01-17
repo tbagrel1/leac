@@ -14,7 +14,16 @@ case class Program(
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    for (varDecl <- varDecls) {
+      varDecl.dispatch(f, payload)
+    }
+    for (funcDecl <- funcDecls) {
+      funcDecl.dispatch(f, payload)
+    }
+    statement.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,

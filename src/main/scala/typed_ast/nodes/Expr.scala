@@ -19,7 +19,9 @@ case class Constant(sourcePos: SourcePos, typename: AtomTypename, value: String)
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -40,7 +42,12 @@ case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extend
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    for (arg <- args) {
+      arg.dispatch(f, payload)
+    }
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -59,7 +66,9 @@ case class VarAccess(sourcePos: SourcePos, name: String) extends AbstractNode wi
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -80,7 +89,12 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    for (coord <- coords) {
+      coord.dispatch(f, payload)
+    }
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -101,7 +115,11 @@ case class Pow(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    a.dispatch(f, payload)
+    b.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -122,7 +140,10 @@ case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode with L
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    a.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -143,7 +164,10 @@ case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode with Locatabl
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    a.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -164,7 +188,11 @@ case class Mul(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    a.dispatch(f, payload)
+    b.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -185,7 +213,11 @@ case class Div(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    a.dispatch(f, payload)
+    b.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -206,7 +238,11 @@ case class Add(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    a.dispatch(f, payload)
+    b.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -227,7 +263,11 @@ case class Sub(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    a.dispatch(f, payload)
+    b.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -250,7 +290,11 @@ case class TestLowerThan(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstrac
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    a.dispatch(f, payload)
+    b.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -273,7 +317,11 @@ case class TestLowerOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Abst
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    a.dispatch(f, payload)
+    b.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -296,7 +344,11 @@ case class TestGreaterThan(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstr
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    a.dispatch(f, payload)
+    b.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -319,7 +371,11 @@ case class TestGreaterOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Ab
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    a.dispatch(f, payload)
+    b.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -340,7 +396,11 @@ case class TestEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNod
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    a.dispatch(f, payload)
+    b.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -361,7 +421,11 @@ case class TestNotEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstract
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    a.dispatch(f, payload)
+    b.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -382,7 +446,11 @@ case class And(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    a.dispatch(f, payload)
+    b.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -403,7 +471,11 @@ case class Or(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with 
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    a.dispatch(f, payload)
+    b.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,

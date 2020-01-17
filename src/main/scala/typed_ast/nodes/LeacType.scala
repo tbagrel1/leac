@@ -11,7 +11,9 @@ case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends Abstra
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -32,7 +34,12 @@ case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: Li
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    for (rangeDef <- rangeDefs) {
+      rangeDef.dispatch(f, payload)
+    }
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,

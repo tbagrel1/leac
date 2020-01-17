@@ -9,7 +9,10 @@ case class Param(sourcePos: SourcePos, leacType: LeacType, accessMode: AccessMod
 
   override def generateCode(): String = ???
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    leacType.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,

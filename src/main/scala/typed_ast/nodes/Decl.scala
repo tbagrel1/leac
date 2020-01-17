@@ -19,7 +19,16 @@ case class FuncDecl(
 
   override def generateCode(): String = ""
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    for (param <- params) {
+      param.dispatch(f, payload)
+    }
+    for (varDecl <- varDecls) {
+      varDecl.dispatch(f, payload)
+    }
+    statementBlock.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
@@ -37,7 +46,10 @@ case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) exten
 
   override def generateCode(): String = ""
 
-  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = ???
+  override def dispatch[T](f: (AbstractNode, T) => Unit, payload: T): Unit = {
+    f(this, payload)
+    leacType.dispatch(f, payload)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: SymbolTable,
