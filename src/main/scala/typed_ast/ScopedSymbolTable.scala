@@ -1,6 +1,6 @@
 package typed_ast
 
-import typed_ast.nodes.Decl
+import typed_ast.nodes.{AbstractNode, Decl}
 
 import scala.collection.mutable
 
@@ -22,9 +22,9 @@ class ScopedSymbolTable(val fancyContext: String) {
     }
   }
 
-  def register(decl: Decl, reporter: SemanticCheckReporter): Unit = {
+  def register(decl: Decl, reporter: SemanticCheckReporter, contextNode: AbstractNode): Unit = {
     if (data.contains(decl.name)) {
-      reporter.report(Severity.Error, s"${ decl.name } already declared at ${ decl.sourcePos }")
+      reporter.report(Severity.Error, contextNode, s"${ decl.name } already declared at ${ decl.sourcePos }")
       return
     }
     data.addOne((decl.name, decl))

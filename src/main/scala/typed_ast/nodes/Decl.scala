@@ -1,7 +1,7 @@
 package typed_ast.nodes
 
-import typed_ast.nodes.enums.{AccessMode, AtomTypename}
-import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
+import typed_ast.nodes.enums.{AccessMode, AtomTypename, ByCopy, VoidTypename}
+import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
 
 sealed trait Decl extends AbstractNode {
   def name: String
@@ -43,13 +43,41 @@ case class FuncDecl(
     symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): (ScopedSymbolTable, SemanticCheckReporter) = {
-    symbolTable.register(this, reporter)
+    symbolTable.register(this, reporter, this.parent)
     (symbolTable.spawnChild(fancyContext), reporter)
   }
 
   override def toString: String = s"${ returnTypename } ${ name }(${ params.map(_.toString).mkString(", ") })"
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    // Check returning presence and type
+    import ReturnPrediction._
+    this.statementBlock.returnPrediction(reporter, this) match {
+      case None => if (returnTypename != VoidTypename) {
+        reporter.report(
+          Severity.Error, this,
+          s"function '${ name }' return type is ${ returnTypename }, but no return statement has been found in its body"
+          )
+      }
+      case Unsure(typename, returning) => {
+        if (returnTypename == VoidTypename) {
+          if (typename != VoidTypename) {
+            reporter.report(Severity.Error, this, s"function '${ name }' return type is void, but an unsure return statement with type ${ typename } has been found in its body at ${ returning.sourcePos }")
+          }
+        } else {
+          if (typename != returnTypename) {
+            reporter.report(Severity.Error, this, s"function '${ name }' return type is ${ returnTypename }, but a return statement with type ${ typename } has been found in its body at ${ returning.sourcePos }")
+          }
+          reporter.report(Severity.Error, this, s"function '${ name }' must return a ${ returnTypename } in all cases, but only unsure return statement(s) with this type have been found in its body")
+        }
+      }
+      case Sure(typename, returning) => {
+        if (typename != returnTypename) {
+          reporter.report(Severity.Error, this, s"function '${ name }' return type is ${ returnTypename }, but a return statement with type ${ typename } has been found in its body at ${ returning.sourcePos }")
+        }
+      }
+    }
+  }
 }
 
 case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) extends AbstractNode with Decl {
@@ -68,11 +96,11 @@ case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) exten
     symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): (ScopedSymbolTable, SemanticCheckReporter) = {
-    symbolTable.register(this, reporter)
+    symbolTable.register(this, reporter, this.parent)
     (symbolTable, reporter)
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {}
 
   override def toString: String = s"${ leacType } ${ name }"
 }
@@ -94,11 +122,17 @@ case class ParamDecl(sourcePos: SourcePos, leacType: LeacType, accessMode: Acces
     symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
   ): (ScopedSymbolTable, SemanticCheckReporter) = {
-    symbolTable.register(this, reporter)
+    symbolTable.register(this, reporter, this.parent)
     (symbolTable, reporter)
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    leacType match {
+      case Array(_, _, _) => if (accessMode == ByCopy) {
+        reporter.report(Severity.Error, this, "array parameters can only be passed by reference using the 'ref' keyword")
+      }
+    }
+  }
 
   override def toString: String = s"${ accessMode }${ leacType } ${ name }"
 }

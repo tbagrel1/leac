@@ -1,14 +1,15 @@
 package typed_ast
 
 import scala.collection.mutable
+import typed_ast.nodes.AbstractNode
 
 class SemanticCheckReporter {
   var warningCount: Int = 0
   var errorCount: Int = 0
-  val reports: mutable.ArrayBuffer[(Severity, String)] = mutable.ArrayBuffer.empty
+  val reports: mutable.ArrayBuffer[(Severity, AbstractNode, String)] = mutable.ArrayBuffer.empty
 
-  def report(severity: Severity, message: String): Unit = {
-    reports.addOne((severity, message))
+  def report(severity: Severity, contextNode: AbstractNode, message: String): Unit = {
+    reports.addOne((severity, contextNode, message))
     severity match {
       case Severity.Error => errorCount += 1
       case Severity.Warning => warningCount += 1
@@ -18,7 +19,7 @@ class SemanticCheckReporter {
 
   def conclude(strictModeEnabled: Boolean): Boolean = {
     for (report <- reports) {
-      println(s"[${ report._1 }] ${ report._2 }")
+      println(s"[${ report._1 }] in ${ report._2.fancyContext } at ${ report._2.sourcePos }: ${ report._3 }")
     }
     if (strictModeEnabled) {
       warningCount + errorCount == 0
