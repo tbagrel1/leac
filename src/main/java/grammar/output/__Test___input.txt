@@ -23,7 +23,7 @@
 { /* début du programme principal */
     i = -3;
     j = 0;
-    maximum = t[-3, 0];
+    maximum = Tval[-3, 0];
     while i <= 3 do
         {while j <= 5 do
         {     read Tval[i, j];

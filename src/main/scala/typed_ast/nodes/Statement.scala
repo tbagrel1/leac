@@ -12,53 +12,77 @@ sealed trait ReturnPrediction {
     (this, other) match {
       case (None, _) => other
       case (_, None) => this
-      case (Sure(Unknown, _), Unsure(typename, returning)) => Sure(typename, returning)
-      case (Unsure(typename, returning), Sure(Unknown, _)) => Sure(typename, returning)
-      case (Unsure(Unknown, _), _) | (Sure(Unknown, _), _) => other
-      case (_, Sure(Unknown, _)) | (_, Unsure(Unknown, _)) => this
       case (Unsure(thisTypename, thisReturning), Unsure(otherTypename, otherReturning)) => {
-        if (thisTypename cantAccept otherTypename) {
+        val (resTypename, resReturning) = if ((thisTypename cantAccept otherTypename) && (otherTypename cantAccept thisTypename)) {
           reporter.report(
             Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${
               otherReturning
                 .sourcePos
             }: ${ thisTypename } != ${ otherTypename }"
             )
+          (thisTypename, thisReturning)
+        } else {
+          if (thisTypename > otherTypename) {
+            (thisTypename, thisReturning)
+          } else {
+            (otherTypename, otherReturning)
+          }
         }
-        this
+        Unsure(resTypename, resReturning)
       }
       case (Unsure(thisTypename, thisReturning), Sure(otherTypename, otherReturning)) => {
-        if (thisTypename cantAccept otherTypename) {
+        val (resTypename, resReturning) = if ((thisTypename cantAccept otherTypename) && (otherTypename cantAccept thisTypename)) {
           reporter.report(
             Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${
               otherReturning
                 .sourcePos
             }: ${ thisTypename } != ${ otherTypename }"
             )
+          (thisTypename, thisReturning)
+        } else {
+          if (thisTypename > otherTypename) {
+            (thisTypename, thisReturning)
+          } else {
+            (otherTypename, otherReturning)
+          }
         }
-        other
+        Sure(resTypename, resReturning)
       }
       case (Sure(thisTypename, thisReturning), Unsure(otherTypename, otherReturning)) => {
-        if (thisTypename cantAccept otherTypename) {
+        val (resTypename, resReturning) = if ((thisTypename cantAccept otherTypename) && (otherTypename cantAccept thisTypename)) {
           reporter.report(
             Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${
               otherReturning
                 .sourcePos
             }: ${ thisTypename } != ${ otherTypename }"
             )
+          (thisTypename, thisReturning)
+        } else {
+          if (thisTypename > otherTypename) {
+            (thisTypename, thisReturning)
+          } else {
+            (otherTypename, otherReturning)
+          }
         }
-        this
+        Sure(resTypename, resReturning)
       }
       case (Sure(thisTypename, thisReturning), Sure(otherTypename, otherReturning)) => {
-        if (thisTypename cantAccept otherTypename) {
+        val (resTypename, resReturning) = if ((thisTypename cantAccept otherTypename) && (otherTypename cantAccept thisTypename)) {
           reporter.report(
             Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${
               otherReturning
                 .sourcePos
             }: ${ thisTypename } != ${ otherTypename }"
             )
+          (thisTypename, thisReturning)
+        } else {
+          if (thisTypename > otherTypename) {
+            (thisTypename, thisReturning)
+          } else {
+            (otherTypename, otherReturning)
+          }
         }
-        this
+        Sure(resTypename, resReturning)
       }
     }
   }

@@ -1,6 +1,11 @@
 package typed_ast.nodes.enums
 
 sealed trait AtomTypename {
+  def >(otherTypename: AtomTypename): Boolean = otherTypename match {
+    case Unknown => true
+    case _ => false
+  }
+
   def c_name: String
 
   def accept(other: AtomTypename): Boolean
@@ -21,6 +26,11 @@ case object FloatTypename extends AtomTypename {
 
   override def accept(other: AtomTypename): Boolean = (other == Unknown || other == IntTypename ||
     other == FloatTypename)
+
+  override def >(otherTypename: AtomTypename): Boolean = otherTypename match {
+    case Unknown | IntTypename => true
+    case _ => false
+  }
 }
 
 case object CharTypename extends AtomTypename {
