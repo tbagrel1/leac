@@ -200,7 +200,7 @@ case class Returning(sourcePos: SourcePos, returnValue: Expr) extends AbstractNo
 
   override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     import ReturnPrediction._
-    Sure(returnValue.atomTypename(), this)
+    Sure(returnValue.atomTypename, this)
   }
 }
 

@@ -3,8 +3,27 @@ package typed_ast.nodes
 import typed_ast.nodes.enums._
 import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
 
+object Expr {
+  def ensureNotArray(e: Expr, reporter: SemanticCheckReporter): Unit = {
+    if (e.getArrayOpt.isDefined) {
+      reporter.report(
+        Severity.Error, e.parent,
+        "whole arrays can only be used in function arguments. They can't be used as values and no operation can use " +
+          "them directly"
+        )
+    }
+  }
+}
+
 sealed trait Expr extends AbstractNode {
-  def atomTypename(): AtomTypename
+  def atomTypename: AtomTypename
+
+  def getArrayOpt: Option[Array] = None
+
+  def leacType: LeacType = this.getArrayOpt match {
+    case Some(array) => array
+    case None => Atom(SourcePos.virtual, atomTypename)
+  }
 
   override protected def _fillSymbolTable(
     symbolTable: ScopedSymbolTable,
@@ -23,9 +42,9 @@ sealed trait BinaryIntFloatOperation extends Operation {
 
   def b: Expr
 
-  override def atomTypename(): AtomTypename = {
-    val aTypename = a.atomTypename()
-    val bTypename = b.atomTypename()
+  override def atomTypename: AtomTypename = {
+    val aTypename = a.atomTypename
+    val bTypename = b.atomTypename
     (aTypename, bTypename) match {
       case (FloatTypename, _) | (_, FloatTypename) => FloatTypename
       case _ => IntTypename
@@ -33,8 +52,11 @@ sealed trait BinaryIntFloatOperation extends Operation {
   }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    val aTypename = a.atomTypename()
-    val bTypename = b.atomTypename()
+    Expr.ensureNotArray(a, reporter)
+    Expr.ensureNotArray(b, reporter)
+
+    val aTypename = a.atomTypename
+    val bTypename = b.atomTypename
     if (aTypename cantAccept FloatTypename) {
       reporter.report(Severity.Error, this, s"type mismatch: expecting float or int, got ${ aTypename }")
     }
@@ -49,11 +71,14 @@ sealed trait BinaryOrdOperation extends Operation {
 
   def b: Expr
 
-  override def atomTypename(): AtomTypename = BoolTypename
+  override def atomTypename: AtomTypename = BoolTypename
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    val aTypename = a.atomTypename()
-    val bTypename = b.atomTypename()
+    Expr.ensureNotArray(a, reporter)
+    Expr.ensureNotArray(b, reporter)
+
+    val aTypename = a.atomTypename
+    val bTypename = b.atomTypename
     if (aTypename cantAccept FloatTypename) {
       reporter.report(Severity.Error, this, s"type mismatch: expecting float or int, got ${ aTypename }")
     }
@@ -68,11 +93,14 @@ sealed trait BinaryEqOperation extends Operation {
 
   def b: Expr
 
-  override def atomTypename(): AtomTypename = BoolTypename
+  override def atomTypename: AtomTypename = BoolTypename
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    val aTypename = a.atomTypename()
-    val bTypename = b.atomTypename()
+    Expr.ensureNotArray(a, reporter)
+    Expr.ensureNotArray(b, reporter)
+
+    val aTypename = a.atomTypename
+    val bTypename = b.atomTypename
     if (aTypename cantAccept bTypename) {
       reporter.report(Severity.Error, this, s"type mismatch: cannot compare types ${ aTypename } and ${ bTypename }")
     }
@@ -84,11 +112,14 @@ sealed trait BinaryLogicalOperation extends Operation {
 
   def b: Expr
 
-  override def atomTypename(): AtomTypename = BoolTypename
+  override def atomTypename: AtomTypename = BoolTypename
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    val aTypename = a.atomTypename()
-    val bTypename = b.atomTypename()
+    Expr.ensureNotArray(a, reporter)
+    Expr.ensureNotArray(b, reporter)
+
+    val aTypename = a.atomTypename
+    val bTypename = b.atomTypename
     if (aTypename cantAccept BoolTypename) {
       reporter.report(Severity.Error, this, s"type mismatch: expecting bool, got ${ aTypename }")
     }
@@ -111,7 +142,7 @@ case class Constant(sourcePos: SourcePos, typename: AtomTypename, value: String)
     val newPayload = f(this, payload)
   }
 
-  override def atomTypename(): AtomTypename = typename
+  override def atomTypename: AtomTypename = typename
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
     // TODO: check for int and float sizes
@@ -137,7 +168,7 @@ case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extend
     }
   }
 
-  override def atomTypename(): AtomTypename = this.getSymbolTable.get(name) match {
+  override def atomTypename: AtomTypename = this.getSymbolTable.get(name) match {
     case None => Unknown
     case Some(VarDecl(_, _, _)) => Unknown
     case Some(ParamDecl(_, _, _, _)) => Unknown
@@ -155,7 +186,7 @@ case class VarOrParamAccess(sourcePos: SourcePos, name: String) extends Abstract
     val newPayload = f(this, payload)
   }
 
-  override def atomTypename(): AtomTypename = this.getSymbolTable.get(name) match {
+  override def atomTypename: AtomTypename = this.getSymbolTable.get(name) match {
     case None => Unknown
     case Some(VarDecl(_, leacType, _)) => {
       leacType match {
@@ -172,7 +203,7 @@ case class VarOrParamAccess(sourcePos: SourcePos, name: String) extends Abstract
     case Some(FuncDecl(_, _, _, _, _, _)) => Unknown
   }
 
-  def getArrayOpt: Option[Array] = this.getSymbolTable.get(name) match {
+  override def getArrayOpt: Option[Array] = this.getSymbolTable.get(name) match {
     case None => None
     case Some(VarDecl(_, leacType, _)) => {
       leacType match {
@@ -189,9 +220,19 @@ case class VarOrParamAccess(sourcePos: SourcePos, name: String) extends Abstract
     case Some(FuncDecl(_, _, _, _, _, _)) => None
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    // TODO: dont forget param case
-    // TODO: if is array, check parent is mandatory a func call ? => check this affirmation
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = this.getSymbolTable.get(name) match {
+    case None => {
+      reporter.report(
+        Severity.Error, this, s"'${ name }' is not defined"
+        )
+    }
+    case Some(FuncDecl(_, _, _, _, _, _)) => {
+      reporter.report(
+        Severity.Error, this,
+        s"'${ name }' is a function, not a variable. Consider adding parentheses to make a function call"
+        )
+    }
+    case _ => ()
   }
 }
 
@@ -214,7 +255,7 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
     }
   }
 
-  override def atomTypename(): AtomTypename = this.getSymbolTable.get(arrayName) match {
+  override def atomTypename: AtomTypename = this.getSymbolTable.get(arrayName) match {
     case None => Unknown
     case Some(VarDecl(_, leacType, _)) => {
       leacType match {
@@ -232,7 +273,73 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
   }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    // TODO: don't forget param case
+    for ((coord, i) <- coords.zipWithIndex) {
+      Expr.ensureNotArray(coord, reporter)
+      if (coord.atomTypename cantAccept IntTypename) {
+        reporter.report(
+          Severity.Error, this, s"type mismatch in index for the dimension ${
+            i + 1
+          } of array '${ arrayName }': expecting int, got ${ coord.atomTypename }"
+          )
+      }
+    }
+
+    this.getSymbolTable.get(arrayName) match {
+      case None => {
+        reporter.report(
+          Severity.Error, this, s"array '${ arrayName }' is not defined"
+          )
+      }
+      case Some(VarDecl(_, leacType, _)) => {
+        leacType match {
+          case Atom(_, typename) => {
+            reporter.report(
+              Severity.Error, this, s"'${ arrayName }' has type ${ typename }, not array"
+              )
+          }
+          case Array(_, _, rangeDefs) => {
+            if (rangeDefs.length != coords.length) {
+              reporter.report(
+                Severity.Error, this, s"dimension mismatch: ${
+                  coords
+                    .length
+                } indexes have been used to access an element of array '${ arrayName }', but this array has ${
+                  rangeDefs
+                    .length
+                } dimensions"
+                )
+            }
+          }
+        }
+      }
+      case Some(ParamDecl(_, leacType, _, _)) => {
+        leacType match {
+          case Atom(_, typename) => {
+            reporter.report(
+              Severity.Error, this, s"'${ arrayName }' has type ${ typename }, not array"
+              )
+          }
+          case Array(_, _, rangeDefs) => {
+            if (rangeDefs.length != coords.length) {
+              reporter.report(
+                Severity.Error, this, s"dimension mismatch: ${
+                  coords
+                    .length
+                } indexes have been used to access an element of array '${ arrayName }', but this array has ${
+                  rangeDefs
+                    .length
+                } dimensions"
+                )
+            }
+          }
+        }
+      }
+      case Some(FuncDecl(_, _, _, _, _, _)) => {
+        reporter.report(
+          Severity.Error, this, s"'${ arrayName }' is a function, not an array"
+          )
+      }
+    }
   }
 }
 
@@ -269,15 +376,22 @@ case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode with O
     a.dispatch(f, newPayload)
   }
 
-  override def atomTypename(): AtomTypename = {
-    val aTypename = a.atomTypename()
+  override def atomTypename: AtomTypename = {
+    val aTypename = a.atomTypename
     aTypename match {
       case FloatTypename => FloatTypename
       case _ => IntTypename
     }
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    Expr.ensureNotArray(a, reporter)
+
+    val aTypename = a.atomTypename
+    if (aTypename cantAccept FloatTypename) {
+      reporter.report(Severity.Error, this, s"type mismatch: expecting float or int, got ${ aTypename }")
+    }
+  }
 }
 
 case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode with Operation {
@@ -295,9 +409,16 @@ case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode with Operatio
     a.dispatch(f, newPayload)
   }
 
-  override def atomTypename(): AtomTypename = BoolTypename
+  override def atomTypename: AtomTypename = BoolTypename
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    Expr.ensureNotArray(a, reporter)
+
+    val aTypename = a.atomTypename
+    if (aTypename cantAccept BoolTypename) {
+      reporter.report(Severity.Error, this, s"type mismatch: expecting bool, got ${ aTypename }")
+    }
+  }
 }
 
 case class Mul(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryIntFloatOperation {
@@ -545,5 +666,5 @@ case object Nothing extends AbstractNode with Expr {
 
   override def generateCode(): String = ""
 
-  override def atomTypename(): AtomTypename = VoidTypename
+  override def atomTypename: AtomTypename = VoidTypename
 }

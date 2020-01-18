@@ -8,9 +8,30 @@ trait Call extends AbstractNode {
   def args: List[Expr]
 
   def checkSlots(params: List[ParamDecl], reporter: SemanticCheckReporter): Unit = {
-    // TODO: test number
-    // TODO: test 1 to 1
-    // TODO: special case for array
+    if (params.length > args.length) {
+      reporter.report(Severity.Error, this, s"not enough arguments specified to call function '${ name }': expecting ${
+        params
+          .length
+      }, got ${ args.length }"
+                      )
+    }
+    if (params.length < args.length) {
+      reporter.report(Severity.Error, this, s"too many arguments specified to call function '${ name }': expecting ${
+        params
+          .length
+      }, got ${ args.length }"
+                      )
+    }
+    for ((param, arg) <- params.zip(args)) {
+      if (param.leacType cantAccept arg.leacType) {
+        reporter.report(Severity.Error, this,
+                        s"type mismatch in function '${ name }' call for parameter ${ param.name }: expecting ${
+                          param
+                            .leacType
+                        }, got ${ arg.leacType }"
+                        )
+      }
+    }
   }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {

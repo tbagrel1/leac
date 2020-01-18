@@ -4,6 +4,10 @@ import typed_ast.nodes.enums.AtomTypename
 import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
 
 sealed trait LeacType extends AbstractNode {
+  def accept(other: LeacType): Boolean
+
+  def cantAccept(other: LeacType): Boolean = !accept(other)
+
   override protected def _fillSymbolTable(
     symbolTable: ScopedSymbolTable,
     reporter: SemanticCheckReporter
@@ -23,6 +27,11 @@ case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends Abstra
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 
   override def toString: String = atomTypename.toString
+
+  override def accept(other: LeacType): Boolean = other match {
+    case Atom(_, otherTypename) => atomTypename accept otherTypename
+    case Array(_, _, _) => false
+  }
 }
 
 case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: List[RangeDef]) extends AbstractNode
@@ -47,4 +56,9 @@ case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: Li
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 
   override def toString: String = s"[${ atomTypename }; ${ rangeDefs.map(_.toString).mkString(", ") }]"
+
+  override def accept(other: LeacType): Boolean = other match {
+    case Atom(_, _) => false
+    case Array(_, otherTypename, otherRangeDefs) => (atomTypename accept otherTypename) && (rangeDefs == otherRangeDefs)
+  }
 }

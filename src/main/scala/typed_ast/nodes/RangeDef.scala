@@ -20,4 +20,15 @@ case class RangeDef(sourcePos: SourcePos, inf: Int, sup: Int) extends AbstractNo
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
 
   override def toString: String = s"${ inf }..${ sup }"
+
+  override def canEqual(that: Any): Boolean = {
+    that.isInstanceOf[RangeDef]
+  }
+
+  override def equals(obj: Any): Boolean = {
+    obj match {
+      case RangeDef(_, otherInf, otherSup) => (inf == otherInf) && (sup == otherSup)
+      case _ => false
+    }
+  }
 }
