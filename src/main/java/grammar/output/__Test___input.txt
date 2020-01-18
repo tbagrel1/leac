@@ -2,8 +2,8 @@
  program essai
     var i, j, maximum: int;
     var Tval : array[-3 .. 3, 0 .. 5] of int;
-    
-    function maxTAB (t: array[-3 .. 3, 0 .. 5] of int) : int 
+
+    function maxTAB (ref t: array[-3 .. 3, 0 .. 5] of int) : int
         var i, j, max: int;
         { i = -3;
         j = 0;
@@ -15,12 +15,12 @@
                     };
                 i = i + 1
                 };
-            return max 
+            return max
             }
         function theEnd () : void
         { write "that’s all !" }
-        
-{ /* début du programme principal */ 
+
+{ /* début du programme principal */
     i = -3;
     j = 0;
     maximum = t[-3, 0];

@@ -21,9 +21,12 @@ object Main {
     res_program match {
       case Ok(program) => {
         println("OK!")
-        val reporter = new SemanticCheckReporter()
-        program.fillAndLinkSymbolTable(null, reporter)
-        println(program.statement.getSymbolTable)
+        var reporter = new SemanticCheckReporter()
+        program.fillAndLinkSymbolTable(reporter)
+        reporter.conclude(false)
+        reporter = new SemanticCheckReporter()
+        program.semanticCheck(reporter)
+        reporter.conclude(false)
       }
       case Err(exception) => println(s"Error during ANTLR to Scala AST conversion: <${ exception }>")
     }

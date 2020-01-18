@@ -17,23 +17,23 @@ abstract class AbstractNode {
 
   def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit
 
-  def fillAndLinkSymbolTable(symbolTable: ScopedSymbolTable, reporter: SemanticCheckReporter): Unit = {
+  def fillAndLinkSymbolTable(reporter: SemanticCheckReporter): Unit = {
     dispatch(
       (node: AbstractNode, symbolTableReporter: (ScopedSymbolTable, SemanticCheckReporter)) => {
         node.setSymbolTable(symbolTableReporter._1)
         node._fillSymbolTable(symbolTableReporter._1, symbolTableReporter._2)
       },
-      (symbolTable, reporter)
+      (null, reporter)
       )
   }
 
-  def semanticCheck(symbolTable: ScopedSymbolTable, reporter: SemanticCheckReporter): Unit = {
+  def semanticCheck(reporter: SemanticCheckReporter): Unit = {
     dispatch(
-      (node: AbstractNode, symbolTableReporter: (ScopedSymbolTable, SemanticCheckReporter)) => {
-        node._semanticCheck(symbolTableReporter._2)
-        symbolTableReporter
+      (node: AbstractNode, reporter: SemanticCheckReporter) => {
+        node._semanticCheck(reporter)
+        reporter
       },
-      (symbolTable, reporter)
+      reporter
       )
   }
 

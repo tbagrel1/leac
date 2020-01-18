@@ -18,7 +18,7 @@ class SemanticCheckReporter {
     }
   }
 
-  def conclude(strictModeEnabled: Boolean): Boolean = {
+  def conclude(strictModeEnabled: Boolean = false): Boolean = {
     for (report <- reports) {
       println(s"[${ report._1 }] in ${ report._2.fancyContext } at ${ report._2.sourcePos }: ${ report._3 }")
     }

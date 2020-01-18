@@ -8,6 +8,7 @@ sealed trait ReturnPrediction {
   import ReturnPrediction._
 
   def reduce(other: ReturnPrediction, reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
+    // TODO: in case Int, Float return Float
     (this, other) match {
       case (None, _) => other
       case (_, None) => this

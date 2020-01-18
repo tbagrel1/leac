@@ -101,7 +101,7 @@ sealed trait BinaryEqOperation extends Operation {
 
     val aTypename = a.atomTypename
     val bTypename = b.atomTypename
-    if (aTypename cantAccept bTypename) {
+    if ((aTypename cantAccept bTypename) && (bTypename cantAccept aTypename)) {
       reporter.report(Severity.Error, this, s"type mismatch: cannot compare types ${ aTypename } and ${ bTypename }")
     }
   }
