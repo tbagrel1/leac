@@ -19,7 +19,10 @@ case class RangeDef(sourcePos: SourcePos, inf: Int, sup: Int) extends AbstractNo
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
     if (inf >= sup) {
-      reporter.report(Severity.Error, this, "cannot declare the dimension range of an array with a lower bound greater or equal to the upper bound")
+      reporter.report(
+        Severity.Error, this,
+        "cannot declare the dimension range of an array with a lower bound greater or equal to the upper bound"
+        )
     }
   }
 

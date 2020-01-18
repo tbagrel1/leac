@@ -45,11 +45,27 @@ case class Program(
     import ReturnPrediction._
     this.statement.returnPrediction(reporter, this) match {
       case None => ()
-      case Unsure(typename, returning) => if (typename cantAccept VoidTypename) {
-        reporter.report(Severity.Error, this, s"an unsure return statement of type ${ typename } has been found in the program's body at ${ returning.sourcePos }, but only return statements with no return value can be used to make early returns")
+      case Unsure(typename, returning) => {
+        if (typename cantAccept VoidTypename) {
+          reporter.report(
+            Severity.Error, this,
+            s"an unsure return statement of type ${ typename } has been found in the program's body at ${
+              returning
+                .sourcePos
+            }, but only return statements with no return value can be used to make early returns"
+            )
+        }
       }
-      case Sure(typename, returning) => if (typename cantAccept VoidTypename) {
-        reporter.report(Severity.Error, this, s"an unsure return statement of type ${ typename } has been found in the program's body at ${ returning.sourcePos }, but only return statements with no return value can be used to make early returns")
+      case Sure(typename, returning) => {
+        if (typename cantAccept VoidTypename) {
+          reporter.report(
+            Severity.Error, this,
+            s"an unsure return statement of type ${ typename } has been found in the program's body at ${
+              returning
+                .sourcePos
+            }, but only return statements with no return value can be used to make early returns"
+            )
+        }
       }
     }
   }

@@ -1,6 +1,6 @@
 package typed_ast.nodes
 
-import typed_ast.nodes.enums.{AtomTypename, BoolTypename, StringTypename, Unknown, VoidTypename}
+import typed_ast.nodes.enums._
 import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
 
 sealed trait ReturnPrediction {
@@ -91,7 +91,20 @@ sealed trait Statement extends AbstractNode {
     reporter: SemanticCheckReporter
   ): (ScopedSymbolTable, SemanticCheckReporter) = (symbolTable, reporter)
 
-  def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction
+  protected var computedReturnPrediction: Option[ReturnPrediction] = None
+
+  def _returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction
+
+  def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
+    computedReturnPrediction match {
+      case Some(pred) => pred
+      case None => {
+        val pred = _returnPrediction(reporter, contextNode)
+        computedReturnPrediction = Some(pred)
+        pred
+      }
+    }
+  }
 }
 
 case class Block(sourcePos: SourcePos, statements: List[Statement]) extends AbstractNode
@@ -116,11 +129,15 @@ case class Block(sourcePos: SourcePos, statements: List[Statement]) extends Abst
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
     import ReturnPrediction._
     var foundSure = false
+    var messageEmitted = false
     for (statement <- statements) {
-      if (foundSure) {
-        reporter.report(Severity.Warning, this, "statements after a sure return have been found in this block, leading to unreachable code")
+      if (foundSure && !messageEmitted) {
+        reporter.report(
+          Severity.Warning, this,
+          "statements after a sure return have been found in this block, leading to unreachable code"
+          )
+        messageEmitted = true
       } else {
-        // TODO; make this silent
         statement.returnPrediction(reporter, this) match {
           case None | Unsure(_, _) => ()
           case Sure(_, _) => foundSure = true
@@ -129,7 +146,7 @@ case class Block(sourcePos: SourcePos, statements: List[Statement]) extends Abst
     }
   }
 
-  override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
+  override def _returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     ReturnPrediction.reduce(statements.map(_.returnPrediction(reporter, contextNode)), reporter, contextNode)
   }
 }
@@ -160,11 +177,13 @@ case class Conditional(
     Expr.ensureNotArray(condition, reporter)
     val conditionTypename = condition.atomTypename
     if (conditionTypename cantAccept BoolTypename) {
-      reporter.report(Severity.Error, this, s"type mismatch: expecting bool for condition type, got ${ conditionTypename }")
+      reporter.report(
+        Severity.Error, this, s"type mismatch: expecting bool for condition type, got ${ conditionTypename }"
+        )
     }
   }
 
-  override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
+  override def _returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     import ReturnPrediction._
 
     val ifTrueReturnPrediction = statementIfTrue.returnPrediction(reporter, contextNode)
@@ -198,16 +217,22 @@ case class Loop(sourcePos: SourcePos, condition: Expr, statementWhileTrue: State
     Expr.ensureNotArray(condition, reporter)
     val conditionTypename = condition.atomTypename
     if (conditionTypename cantAccept BoolTypename) {
-      reporter.report(Severity.Error, this, s"type mismatch: expecting bool for condition type, got ${ conditionTypename }")
+      reporter.report(
+        Severity.Error, this, s"type mismatch: expecting bool for condition type, got ${ conditionTypename }"
+        )
     }
 
     condition match {
-      case Constant(_, BoolTypename, "true") => reporter.report(Severity.Warning, this, "this while loop might be infinite")
+      case Constant(_, BoolTypename, "true") => {
+        reporter.report(
+          Severity.Warning, this, "this while loop might be infinite"
+          )
+      }
       case _ => ()
     }
   }
 
-  override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
+  override def _returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     statementWhileTrue.returnPrediction(reporter, contextNode).unsure
   }
 }
@@ -232,13 +257,15 @@ case class Returning(sourcePos: SourcePos, returnValue: Expr) extends AbstractNo
 
     returnValue match {
       case Nothing => ()
-      case _ => if (returnValue.atomTypename == VoidTypename) {
-        reporter.report(Severity.Warning, this, "returning an expression of type void won't return any real value")
+      case _ => {
+        if (returnValue.atomTypename == VoidTypename) {
+          reporter.report(Severity.Warning, this, "returning an expression of type void won't return any real value")
+        }
       }
     }
   }
 
-  override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
+  override def _returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     import ReturnPrediction._
     Sure(returnValue.atomTypename, this)
   }
@@ -266,11 +293,17 @@ case class Affect(sourcePos: SourcePos, target: IdfAccess, value: Expr) extends 
     Expr.ensureNotArray(target, reporter)
 
     if (target.atomTypename cantAccept value.atomTypename) {
-      reporter.report(Severity.Error, this, s"type mismatch: left value has type ${ target.atomTypename }, while right value has type ${ value.atomTypename }")
+      reporter.report(
+        Severity.Error, this, s"type mismatch: left value has type ${ target.atomTypename }, while right value has " +
+          s"type ${
+            value
+              .atomTypename
+          }"
+        )
     }
   }
 
-  override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
+  override def _returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     import ReturnPrediction._
     None
   }
@@ -307,7 +340,7 @@ case class ProcedureCall(sourcePos: SourcePos, name: String, args: List[Expr]) e
     }
   }
 
-  override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
+  override def _returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     import ReturnPrediction._
     None
   }
@@ -333,7 +366,7 @@ case class Read(sourcePos: SourcePos, target: IdfAccess) extends AbstractNode wi
     }
   }
 
-  override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
+  override def _returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     import ReturnPrediction._
     None
   }
@@ -354,7 +387,7 @@ case class Write(sourcePos: SourcePos, value: Expr) extends AbstractNode with St
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {}
 
-  override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
+  override def _returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     import ReturnPrediction._
     None
   }
