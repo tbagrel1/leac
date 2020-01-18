@@ -22,6 +22,8 @@ class SemanticCheckReporter {
     for (report <- reports) {
       println(s"[${ report._1 }] in ${ report._2.fancyContext } at ${ report._2.sourcePos }: ${ report._3 }")
     }
+
+    println(s"\n${ errorCount } errors, ${ warningCount } warnings.")
     if (strictModeEnabled) {
       warningCount + errorCount == 0
     } else {

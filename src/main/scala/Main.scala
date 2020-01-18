@@ -20,11 +20,9 @@ object Main {
     val res_program = TreeConverter.convert(tree)
     res_program match {
       case Ok(program) => {
-        println("OK!")
-        var reporter = new SemanticCheckReporter()
+        println("### Semantic check ###\n")
+        val reporter = new SemanticCheckReporter()
         program.fillAndLinkSymbolTable(reporter)
-        reporter.conclude(false)
-        reporter = new SemanticCheckReporter()
         program.semanticCheck(reporter)
         reporter.conclude(false)
       }

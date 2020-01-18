@@ -303,7 +303,7 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
                 Severity.Error, this, s"dimension mismatch: ${
                   coords
                     .length
-                } indexes have been used to access an element of array '${ arrayName }', but this array has ${
+                } indexe(s) have been used to access an element of array '${ arrayName }', but this array has ${
                   rangeDefs
                     .length
                 } dimensions"
@@ -325,7 +325,7 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
                 Severity.Error, this, s"dimension mismatch: ${
                   coords
                     .length
-                } indexes have been used to access an element of array '${ arrayName }', but this array has ${
+                } indexe(s) have been used to access an element of array '${ arrayName }', but this array has ${
                   rangeDefs
                     .length
                 } dimensions"
