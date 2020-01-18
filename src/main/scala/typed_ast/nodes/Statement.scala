@@ -177,7 +177,7 @@ case class Conditional(
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
     Expr.ensureNotArray(condition, reporter)
     val conditionTypename = condition.atomTypename
-    if (conditionTypename cantAccept BoolTypename) {
+    if (BoolTypename cantAccept conditionTypename) {
       reporter.report(
         Severity.Error, this, s"type mismatch: expecting bool for condition type, got ${ conditionTypename }"
         )
@@ -217,7 +217,7 @@ case class Loop(sourcePos: SourcePos, condition: Expr, statementWhileTrue: State
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
     Expr.ensureNotArray(condition, reporter)
     val conditionTypename = condition.atomTypename
-    if (conditionTypename cantAccept BoolTypename) {
+    if (BoolTypename cantAccept conditionTypename) {
       reporter.report(
         Severity.Error, this, s"type mismatch: expecting bool for condition type, got ${ conditionTypename }"
         )

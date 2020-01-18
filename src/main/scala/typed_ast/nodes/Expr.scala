@@ -57,10 +57,10 @@ sealed trait BinaryIntFloatOperation extends Operation {
 
     val aTypename = a.atomTypename
     val bTypename = b.atomTypename
-    if (aTypename cantAccept FloatTypename) {
+    if (FloatTypename cantAccept aTypename) {
       reporter.report(Severity.Error, this, s"type mismatch: expecting float or int, got ${ aTypename }")
     }
-    if (bTypename cantAccept FloatTypename) {
+    if (FloatTypename cantAccept bTypename) {
       reporter.report(Severity.Error, this, s"type mismatch: expecting float or int, got ${ bTypename }")
     }
   }
@@ -79,10 +79,10 @@ sealed trait BinaryOrdOperation extends Operation {
 
     val aTypename = a.atomTypename
     val bTypename = b.atomTypename
-    if (aTypename cantAccept FloatTypename) {
+    if (FloatTypename cantAccept aTypename) {
       reporter.report(Severity.Error, this, s"type mismatch: expecting float or int, got ${ aTypename }")
     }
-    if (bTypename cantAccept FloatTypename) {
+    if (FloatTypename cantAccept bTypename) {
       reporter.report(Severity.Error, this, s"type mismatch: expecting float or int, got ${ bTypename }")
     }
   }
@@ -120,10 +120,10 @@ sealed trait BinaryLogicalOperation extends Operation {
 
     val aTypename = a.atomTypename
     val bTypename = b.atomTypename
-    if (aTypename cantAccept BoolTypename) {
+    if (BoolTypename cantAccept aTypename) {
       reporter.report(Severity.Error, this, s"type mismatch: expecting bool, got ${ aTypename }")
     }
-    if (bTypename cantAccept BoolTypename) {
+    if (BoolTypename cantAccept bTypename) {
       reporter.report(Severity.Error, this, s"type mismatch: expecting bool, got ${ bTypename }")
     }
   }
@@ -275,7 +275,7 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
     for ((coord, i) <- coords.zipWithIndex) {
       Expr.ensureNotArray(coord, reporter)
-      if (coord.atomTypename cantAccept IntTypename) {
+      if (IntTypename cantAccept coord.atomTypename) {
         reporter.report(
           Severity.Error, this, s"type mismatch in index for the dimension ${
             i + 1
@@ -388,7 +388,7 @@ case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode with O
     Expr.ensureNotArray(a, reporter)
 
     val aTypename = a.atomTypename
-    if (aTypename cantAccept FloatTypename) {
+    if (FloatTypename cantAccept aTypename) {
       reporter.report(Severity.Error, this, s"type mismatch: expecting float or int, got ${ aTypename }")
     }
   }
@@ -415,7 +415,7 @@ case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode with Operatio
     Expr.ensureNotArray(a, reporter)
 
     val aTypename = a.atomTypename
-    if (aTypename cantAccept BoolTypename) {
+    if (BoolTypename cantAccept aTypename) {
       reporter.report(Severity.Error, this, s"type mismatch: expecting bool, got ${ aTypename }")
     }
   }

@@ -46,7 +46,7 @@ case class Program(
     this.statement.returnPrediction(reporter, this) match {
       case None => ()
       case Unsure(typename, returning) => {
-        if (typename cantAccept VoidTypename) {
+        if (VoidTypename cantAccept typename) {
           reporter.report(
             Severity.Error, this,
             s"an unsure return statement of type ${ typename } has been found in the program's body at ${
@@ -57,7 +57,7 @@ case class Program(
         }
       }
       case Sure(typename, returning) => {
-        if (typename cantAccept VoidTypename) {
+        if (VoidTypename cantAccept typename) {
           reporter.report(
             Severity.Error, this,
             s"an unsure return statement of type ${ typename } has been found in the program's body at ${

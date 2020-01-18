@@ -64,7 +64,7 @@ case class FuncDecl(
       }
       case Unsure(typename, returning) => {
         if (returnTypename == VoidTypename) {
-          if (typename cantAccept VoidTypename) {
+          if (VoidTypename cantAccept typename) {
             reporter.report(
               Severity.Error, this,
               s"function '${ name }' return type is void, but an unsure return statement with type ${ typename } has " +
@@ -75,7 +75,7 @@ case class FuncDecl(
               )
           }
         } else {
-          if (typename cantAccept returnTypename) {
+          if (returnTypename cantAccept typename) {
             reporter.report(
               Severity.Error, this,
               s"function '${ name }' return type is ${ returnTypename }, but a return statement with type ${
@@ -94,7 +94,7 @@ case class FuncDecl(
         }
       }
       case Sure(typename, returning) => {
-        if (typename cantAccept returnTypename) {
+        if (returnTypename cantAccept typename) {
           reporter.report(
             Severity.Error, this,
             s"function '${ name }' return type is ${ returnTypename }, but a return statement with type ${ typename }" +
