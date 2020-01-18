@@ -1,7 +1,7 @@
 package typed_ast.nodes
 
-import typed_ast.nodes.enums.AtomTypename
-import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
+import typed_ast.nodes.enums.{AtomTypename, VoidTypename}
+import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
 
 sealed trait LeacType extends AbstractNode {
   def accept(other: LeacType): Boolean
@@ -24,7 +24,7 @@ case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends Abstra
     val newPayload = f(this, payload)
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {}
 
   override def toString: String = atomTypename.toString
 
@@ -53,7 +53,11 @@ case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: Li
     }
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    if (atomTypename == VoidTypename) {
+      reporter.report(Severity.Error, this, "cannot create an array containing void elements")
+    }
+  }
 
   override def toString: String = s"[${ atomTypename }; ${ rangeDefs.map(_.toString).mkString(", ") }]"
 

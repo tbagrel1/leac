@@ -129,7 +129,12 @@ case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) exten
     (symbolTable, reporter)
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {}
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    leacType match {
+      case Atom(_, VoidTypename) => reporter.report(Severity.Error, this, "cannot declare a variable of type void")
+      case _ => ()
+    }
+  }
 
   override def toString: String = s"${ leacType } ${ name }"
 }
@@ -169,6 +174,11 @@ case class ParamDecl(
             )
         }
       }
+      case _ => ()
+    }
+
+    leacType match {
+      case Atom(_, VoidTypename) => reporter.report(Severity.Error, this, "cannot declare a parameter of type void")
       case _ => ()
     }
   }

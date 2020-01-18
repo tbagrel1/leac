@@ -1,6 +1,7 @@
 package typed_ast.nodes
 
-import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, SourcePos}
+import typed_ast.nodes.enums.VoidTypename
+import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
 
 case class Program(
   sourcePos: SourcePos,
@@ -40,5 +41,16 @@ case class Program(
     (new ScopedSymbolTable(fancyContext), reporter)
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    import ReturnPrediction._
+    this.statement.returnPrediction(reporter, this) match {
+      case None => ()
+      case Unsure(typename, returning) => if (typename cantAccept VoidTypename) {
+        reporter.report(Severity.Error, this, s"an unsure return statement of type ${ typename } has been found in the program's body at ${ returning.sourcePos }, but only return statements with no return value can be used to make early returns")
+      }
+      case Sure(typename, returning) => if (typename cantAccept VoidTypename) {
+        reporter.report(Severity.Error, this, s"an unsure return statement of type ${ typename } has been found in the program's body at ${ returning.sourcePos }, but only return statements with no return value can be used to make early returns")
+      }
+    }
+  }
 }

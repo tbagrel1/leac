@@ -1,6 +1,6 @@
 package typed_ast.nodes
 
-import typed_ast.nodes.enums.{AtomTypename, Unknown}
+import typed_ast.nodes.enums.{AtomTypename, BoolTypename, StringTypename, Unknown, VoidTypename}
 import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
 
 sealed trait ReturnPrediction {
@@ -113,7 +113,21 @@ case class Block(sourcePos: SourcePos, statements: List[Statement]) extends Abst
     }
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    import ReturnPrediction._
+    var foundSure = false
+    for (statement <- statements) {
+      if (foundSure) {
+        reporter.report(Severity.Warning, this, "statements after a sure return have been found in this block, leading to unreachable code")
+      } else {
+        // TODO; make this silent
+        statement.returnPrediction(reporter, this) match {
+          case None | Unsure(_, _) => ()
+          case Sure(_, _) => foundSure = true
+        }
+      }
+    }
+  }
 
   override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     ReturnPrediction.reduce(statements.map(_.returnPrediction(reporter, contextNode)), reporter, contextNode)
@@ -142,7 +156,13 @@ case class Conditional(
     statementIfFalse.dispatch(f, newPayload)
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    Expr.ensureNotArray(condition, reporter)
+    val conditionTypename = condition.atomTypename
+    if (conditionTypename cantAccept BoolTypename) {
+      reporter.report(Severity.Error, this, s"type mismatch: expecting bool for condition type, got ${ conditionTypename }")
+    }
+  }
 
   override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     import ReturnPrediction._
@@ -174,7 +194,18 @@ case class Loop(sourcePos: SourcePos, condition: Expr, statementWhileTrue: State
     statementWhileTrue.dispatch(f, newPayload)
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    Expr.ensureNotArray(condition, reporter)
+    val conditionTypename = condition.atomTypename
+    if (conditionTypename cantAccept BoolTypename) {
+      reporter.report(Severity.Error, this, s"type mismatch: expecting bool for condition type, got ${ conditionTypename }")
+    }
+
+    condition match {
+      case Constant(_, BoolTypename, "true") => reporter.report(Severity.Warning, this, "this while loop might be infinite")
+      case _ => ()
+    }
+  }
 
   override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     statementWhileTrue.returnPrediction(reporter, contextNode).unsure
@@ -196,7 +227,16 @@ case class Returning(sourcePos: SourcePos, returnValue: Expr) extends AbstractNo
     returnValue.dispatch(f, newPayload)
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    Expr.ensureNotArray(returnValue, reporter)
+
+    returnValue match {
+      case Nothing => ()
+      case _ => if (returnValue.atomTypename == VoidTypename) {
+        reporter.report(Severity.Warning, this, "returning an expression of type void won't return any real value")
+      }
+    }
+  }
 
   override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     import ReturnPrediction._
@@ -221,7 +261,14 @@ case class Affect(sourcePos: SourcePos, target: IdfAccess, value: Expr) extends 
     value.dispatch(f, newPayload)
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    Expr.ensureNotArray(value, reporter)
+    Expr.ensureNotArray(target, reporter)
+
+    if (target.atomTypename cantAccept value.atomTypename) {
+      reporter.report(Severity.Error, this, s"type mismatch: left value has type ${ target.atomTypename }, while right value has type ${ value.atomTypename }")
+    }
+  }
 
   override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     import ReturnPrediction._
@@ -250,7 +297,14 @@ case class ProcedureCall(sourcePos: SourcePos, name: String, args: List[Expr]) e
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
     super._semanticCheck(reporter)
-    // TODO: special check for procedure for dropped return values
+    this.getSymbolTable.get(name) match {
+      case None | Some(VarDecl(_, _, _)) | Some(ParamDecl(_, _, _, _)) => ()
+      case Some(FuncDecl(_, _, _, returnTypename, _, _)) => {
+        if (returnTypename != VoidTypename) {
+          reporter.report(Severity.Warning, this, s"return value of function '${ name }' is dropped")
+        }
+      }
+    }
   }
 
   override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
@@ -272,7 +326,12 @@ case class Read(sourcePos: SourcePos, target: IdfAccess) extends AbstractNode wi
     target.dispatch(f, newPayload)
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    Expr.ensureNotArray(target, reporter)
+    if (target.atomTypename == StringTypename) {
+      reporter.report(Severity.Error, this, "reading a string is not possible with the leac language")
+    }
+  }
 
   override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     import ReturnPrediction._
@@ -293,7 +352,7 @@ case class Write(sourcePos: SourcePos, value: Expr) extends AbstractNode with St
     value.dispatch(f, newPayload)
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = ???
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {}
 
   override def returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     import ReturnPrediction._
