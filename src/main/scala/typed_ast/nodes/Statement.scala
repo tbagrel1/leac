@@ -199,7 +199,7 @@ case class Conditional(
   }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    Expr.ensureNotArray(condition, reporter)
+
     val conditionTypename = condition.atomTypename
     if (BoolTypename cantAccept conditionTypename) {
       reporter.report(
@@ -239,7 +239,7 @@ case class Loop(sourcePos: SourcePos, condition: Expr, statementWhileTrue: State
   }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    Expr.ensureNotArray(condition, reporter)
+
     val conditionTypename = condition.atomTypename
     if (BoolTypename cantAccept conditionTypename) {
       reporter.report(
@@ -278,7 +278,7 @@ case class Returning(sourcePos: SourcePos, returnValue: Expr) extends AbstractNo
   }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    Expr.ensureNotArray(returnValue, reporter)
+
 
     returnValue match {
       case Nothing => ()
@@ -314,8 +314,8 @@ case class Affect(sourcePos: SourcePos, target: IdfAccess, value: Expr) extends 
   }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    Expr.ensureNotArray(value, reporter)
-    Expr.ensureNotArray(target, reporter)
+
+
 
     if (target.atomTypename cantAccept value.atomTypename) {
       reporter.report(
@@ -385,7 +385,7 @@ case class Read(sourcePos: SourcePos, target: IdfAccess) extends AbstractNode wi
   }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    Expr.ensureNotArray(target, reporter)
+
     if (target.atomTypename == StringTypename) {
       reporter.report(Severity.Error, this, "reading a string is not possible with the leac language")
     }

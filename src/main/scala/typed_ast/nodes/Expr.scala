@@ -3,18 +3,6 @@ package typed_ast.nodes
 import typed_ast.nodes.enums._
 import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
 
-object Expr {
-  def ensureNotArray(e: Expr, reporter: SemanticCheckReporter): Unit = {
-    if (e.getArrayOpt.isDefined) {
-      reporter.report(
-        Severity.Error, e.parent,
-        "whole arrays can only be used in function arguments. They can't be used as values and no operation can use " +
-          "them directly"
-        )
-    }
-  }
-}
-
 sealed trait Expr extends AbstractNode {
   def atomTypename: AtomTypename
 
@@ -52,8 +40,8 @@ sealed trait BinaryIntFloatOperation extends Operation {
   }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    Expr.ensureNotArray(a, reporter)
-    Expr.ensureNotArray(b, reporter)
+
+
 
     val aTypename = a.atomTypename
     val bTypename = b.atomTypename
@@ -74,8 +62,8 @@ sealed trait BinaryOrdOperation extends Operation {
   override def atomTypename: AtomTypename = BoolTypename
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    Expr.ensureNotArray(a, reporter)
-    Expr.ensureNotArray(b, reporter)
+
+
 
     val aTypename = a.atomTypename
     val bTypename = b.atomTypename
@@ -96,8 +84,8 @@ sealed trait BinaryEqOperation extends Operation {
   override def atomTypename: AtomTypename = BoolTypename
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    Expr.ensureNotArray(a, reporter)
-    Expr.ensureNotArray(b, reporter)
+
+
 
     val aTypename = a.atomTypename
     val bTypename = b.atomTypename
@@ -115,8 +103,8 @@ sealed trait BinaryLogicalOperation extends Operation {
   override def atomTypename: AtomTypename = BoolTypename
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    Expr.ensureNotArray(a, reporter)
-    Expr.ensureNotArray(b, reporter)
+
+
 
     val aTypename = a.atomTypename
     val bTypename = b.atomTypename
@@ -232,7 +220,30 @@ case class VarOrParamAccess(sourcePos: SourcePos, name: String) extends Abstract
         s"'${ name }' is a function, not a variable. Consider adding parentheses to make a function call"
         )
     }
-    case _ => ()
+    case Some(VarDecl(_, leacType, _)) => {
+      leacType match {
+        case Atom(_, _) => ()
+        case Array(sourcePos, atomTypename, rangeDefs) => if (!this.parent.isInstanceOf[Call]) {
+          reporter.report(
+            Severity.Error, this.parent,
+            "whole arrays can only be used in function arguments. They can't be used as values and no operation can use " +
+              "them directly"
+            )
+        }
+      }
+    }
+    case Some(ParamDecl(_, leacType, _, _)) => {
+      leacType match {
+        case Atom(_, _) => ()
+        case Array(sourcePos, atomTypename, rangeDefs) => if (!this.parent.isInstanceOf[Call]) {
+          reporter.report(
+            Severity.Error, this.parent,
+            "whole arrays can only be used in function arguments. They can't be used as values and no operation can use " +
+              "them directly"
+            )
+        }
+      }
+    }
   }
 }
 
@@ -274,7 +285,7 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
     for ((coord, i) <- coords.zipWithIndex) {
-      Expr.ensureNotArray(coord, reporter)
+
       if (IntTypename cantAccept coord.atomTypename) {
         reporter.report(
           Severity.Error, this, s"type mismatch in index for the dimension ${
@@ -385,7 +396,7 @@ case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode with O
   }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    Expr.ensureNotArray(a, reporter)
+
 
     val aTypename = a.atomTypename
     if (FloatTypename cantAccept aTypename) {
@@ -412,7 +423,7 @@ case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode with Operatio
   override def atomTypename: AtomTypename = BoolTypename
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-    Expr.ensureNotArray(a, reporter)
+
 
     val aTypename = a.atomTypename
     if (BoolTypename cantAccept aTypename) {
