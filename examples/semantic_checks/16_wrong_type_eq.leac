@@ -1,0 +1,5 @@
+program wrong_type_eq
+
+{
+    write 12 != 'x'
+}

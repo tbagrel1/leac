@@ -1,0 +1,7 @@
+program affectation_type_mismatch
+
+var i: int;
+
+{
+    i = true
+}

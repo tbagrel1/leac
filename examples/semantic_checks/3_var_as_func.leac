@@ -1,0 +1,7 @@
+program var_as_func
+
+var i: int;
+
+{
+    i()
+}

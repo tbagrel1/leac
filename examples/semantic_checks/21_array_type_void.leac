@@ -1,0 +1,6 @@
+program array_type_void
+
+var arr: array[0 .. 5] of void;
+
+{
+}

@@ -1,0 +1,7 @@
+program wrong_type_indexing
+
+var arr: array[0 .. 5] of int;
+
+{
+    write arr[12.3]
+}

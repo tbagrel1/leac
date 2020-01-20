@@ -1,0 +1,9 @@
+program dropped_return_value
+
+function pop(): int {
+    return 2
+}
+
+{
+    pop()
+}

@@ -1,0 +1,10 @@
+program sure_initialization
+
+var i: int;
+
+{
+    if false then
+        i = 2;
+    write 1 + i
+}
+

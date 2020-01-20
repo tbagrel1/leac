@@ -1,0 +1,5 @@
+program wrong_type_logical
+
+{
+    write 12 and true
+}

@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 Leac.g 2020-01-16 17:22:46
+// $ANTLR 3.5.2 Leac.g 2020-01-20 16:18:05
 
 package grammar;
 
@@ -54,6 +54,7 @@ public class LeacLexer extends Lexer {
 	public static final int T__108=108;
 	public static final int T__109=109;
 	public static final int T__110=110;
+	public static final int T__111=111;
 	public static final int ADD=4;
 	public static final int AFFECT=5;
 	public static final int AND=6;
@@ -900,10 +901,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__104;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:39:8: ( 'then' )
-			// Leac.g:39:10: 'then'
+			// Leac.g:39:8: ( 'string' )
+			// Leac.g:39:10: 'string'
 			{
-			match("then");
+			match("string");
 
 			}
 
@@ -921,10 +922,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__105;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:40:8: ( 'var' )
-			// Leac.g:40:10: 'var'
+			// Leac.g:40:8: ( 'then' )
+			// Leac.g:40:10: 'then'
 			{
-			match("var");
+			match("then");
 
 			}
 
@@ -942,10 +943,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__106;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:41:8: ( 'void' )
-			// Leac.g:41:10: 'void'
+			// Leac.g:41:8: ( 'var' )
+			// Leac.g:41:10: 'var'
 			{
-			match("void");
+			match("var");
 
 			}
 
@@ -963,10 +964,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__107;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:42:8: ( 'while' )
-			// Leac.g:42:10: 'while'
+			// Leac.g:42:8: ( 'void' )
+			// Leac.g:42:10: 'void'
 			{
-			match("while");
+			match("void");
 
 			}
 
@@ -984,10 +985,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__108;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:43:8: ( 'write' )
-			// Leac.g:43:10: 'write'
+			// Leac.g:43:8: ( 'while' )
+			// Leac.g:43:10: 'while'
 			{
-			match("write");
+			match("while");
 
 			}
 
@@ -1005,10 +1006,11 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__109;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:44:8: ( '{' )
-			// Leac.g:44:10: '{'
+			// Leac.g:44:8: ( 'write' )
+			// Leac.g:44:10: 'write'
 			{
-			match('{');
+			match("write");
+
 			}
 
 			state.type = _type;
@@ -1025,10 +1027,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = T__110;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:45:8: ( '}' )
-			// Leac.g:45:10: '}'
+			// Leac.g:45:8: ( '{' )
+			// Leac.g:45:10: '{'
 			{
-			match('}');
+			match('{');
 			}
 
 			state.type = _type;
@@ -1040,11 +1042,31 @@ public class LeacLexer extends Lexer {
 	}
 	// $ANTLR end "T__110"
 
+	// $ANTLR start "T__111"
+	public final void mT__111() throws RecognitionException {
+		try {
+			int _type = T__111;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// Leac.g:46:8: ( '}' )
+			// Leac.g:46:10: '}'
+			{
+			match('}');
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__111"
+
 	// $ANTLR start "EXPONENT"
 	public final void mEXPONENT() throws RecognitionException {
 		try {
-			// Leac.g:284:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-			// Leac.g:284:7: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+			// Leac.g:285:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+			// Leac.g:285:7: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
 			{
 			if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
 				input.consume();
@@ -1054,7 +1076,7 @@ public class LeacLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// Leac.g:284:21: ( '+' | '-' )?
+			// Leac.g:285:21: ( '+' | '-' )?
 			int alt1=2;
 			int LA1_0 = input.LA(1);
 			if ( (LA1_0=='+'||LA1_0=='-') ) {
@@ -1077,7 +1099,7 @@ public class LeacLexer extends Lexer {
 
 			}
 
-			// Leac.g:284:36: ( '0' .. '9' )+
+			// Leac.g:285:36: ( '0' .. '9' )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -1122,7 +1144,7 @@ public class LeacLexer extends Lexer {
 	// $ANTLR start "HEX_DIGIT"
 	public final void mHEX_DIGIT() throws RecognitionException {
 		try {
-			// Leac.g:287:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+			// Leac.g:288:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
 			// Leac.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -1145,7 +1167,7 @@ public class LeacLexer extends Lexer {
 	// $ANTLR start "OCTAL_ESC"
 	public final void mOCTAL_ESC() throws RecognitionException {
 		try {
-			// Leac.g:290:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+			// Leac.g:291:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
 			int alt3=3;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0=='\\') ) {
@@ -1203,7 +1225,7 @@ public class LeacLexer extends Lexer {
 
 			switch (alt3) {
 				case 1 :
-					// Leac.g:290:7: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+					// Leac.g:291:7: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
 					{
 					match('\\');
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '3') ) {
@@ -1233,7 +1255,7 @@ public class LeacLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// Leac.g:291:7: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+					// Leac.g:292:7: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
 					{
 					match('\\');
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
@@ -1255,7 +1277,7 @@ public class LeacLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// Leac.g:292:7: '\\\\' ( '0' .. '7' )
+					// Leac.g:293:7: '\\\\' ( '0' .. '7' )
 					{
 					match('\\');
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
@@ -1280,8 +1302,8 @@ public class LeacLexer extends Lexer {
 	// $ANTLR start "UNICODE_ESC"
 	public final void mUNICODE_ESC() throws RecognitionException {
 		try {
-			// Leac.g:295:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-			// Leac.g:295:7: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+			// Leac.g:296:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+			// Leac.g:296:7: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
 			{
 			match('\\');
 			match('u');
@@ -1305,7 +1327,7 @@ public class LeacLexer extends Lexer {
 	// $ANTLR start "ESC_SEQ"
 	public final void mESC_SEQ() throws RecognitionException {
 		try {
-			// Leac.g:298:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+			// Leac.g:299:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
 			int alt4=3;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0=='\\') ) {
@@ -1360,7 +1382,7 @@ public class LeacLexer extends Lexer {
 
 			switch (alt4) {
 				case 1 :
-					// Leac.g:298:7: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+					// Leac.g:299:7: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
 					{
 					match('\\');
 					if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -1374,14 +1396,14 @@ public class LeacLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// Leac.g:299:7: UNICODE_ESC
+					// Leac.g:300:7: UNICODE_ESC
 					{
 					mUNICODE_ESC();
 
 					}
 					break;
 				case 3 :
-					// Leac.g:300:7: OCTAL_ESC
+					// Leac.g:301:7: OCTAL_ESC
 					{
 					mOCTAL_ESC();
 
@@ -1401,7 +1423,7 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = BOOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:308:5: ( 'true' | 'false' )
+			// Leac.g:309:5: ( 'true' | 'false' )
 			int alt5=2;
 			int LA5_0 = input.LA(1);
 			if ( (LA5_0=='t') ) {
@@ -1419,14 +1441,14 @@ public class LeacLexer extends Lexer {
 
 			switch (alt5) {
 				case 1 :
-					// Leac.g:308:7: 'true'
+					// Leac.g:309:7: 'true'
 					{
 					match("true");
 
 					}
 					break;
 				case 2 :
-					// Leac.g:309:7: 'false'
+					// Leac.g:310:7: 'false'
 					{
 					match("false");
 
@@ -1448,8 +1470,8 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = IDF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:313:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-			// Leac.g:313:7: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+			// Leac.g:314:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+			// Leac.g:314:7: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -1459,7 +1481,7 @@ public class LeacLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// Leac.g:313:37: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+			// Leac.g:314:37: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			loop6:
 			while (true) {
 				int alt6=2;
@@ -1504,10 +1526,10 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = INT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:316:5: ( ( '0' .. '9' )+ )
-			// Leac.g:316:7: ( '0' .. '9' )+
+			// Leac.g:317:5: ( ( '0' .. '9' )+ )
+			// Leac.g:317:7: ( '0' .. '9' )+
 			{
-			// Leac.g:316:7: ( '0' .. '9' )+
+			// Leac.g:317:7: ( '0' .. '9' )+
 			int cnt7=0;
 			loop7:
 			while (true) {
@@ -1556,14 +1578,14 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = FLOAT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:320:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT )
+			// Leac.g:321:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT )
 			int alt14=3;
 			alt14 = dfa14.predict(input);
 			switch (alt14) {
 				case 1 :
-					// Leac.g:320:7: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
+					// Leac.g:321:7: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
 					{
-					// Leac.g:320:7: ( '0' .. '9' )+
+					// Leac.g:321:7: ( '0' .. '9' )+
 					int cnt8=0;
 					loop8:
 					while (true) {
@@ -1597,7 +1619,7 @@ public class LeacLexer extends Lexer {
 					}
 
 					match('.');
-					// Leac.g:320:25: ( '0' .. '9' )*
+					// Leac.g:321:25: ( '0' .. '9' )*
 					loop9:
 					while (true) {
 						int alt9=2;
@@ -1626,7 +1648,7 @@ public class LeacLexer extends Lexer {
 						}
 					}
 
-					// Leac.g:320:39: ( EXPONENT )?
+					// Leac.g:321:39: ( EXPONENT )?
 					int alt10=2;
 					int LA10_0 = input.LA(1);
 					if ( (LA10_0=='E'||LA10_0=='e') ) {
@@ -1634,7 +1656,7 @@ public class LeacLexer extends Lexer {
 					}
 					switch (alt10) {
 						case 1 :
-							// Leac.g:320:39: EXPONENT
+							// Leac.g:321:39: EXPONENT
 							{
 							mEXPONENT();
 
@@ -1646,10 +1668,10 @@ public class LeacLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// Leac.g:321:7: '.' ( '0' .. '9' )+ ( EXPONENT )?
+					// Leac.g:322:7: '.' ( '0' .. '9' )+ ( EXPONENT )?
 					{
 					match('.');
-					// Leac.g:321:11: ( '0' .. '9' )+
+					// Leac.g:322:11: ( '0' .. '9' )+
 					int cnt11=0;
 					loop11:
 					while (true) {
@@ -1682,7 +1704,7 @@ public class LeacLexer extends Lexer {
 						cnt11++;
 					}
 
-					// Leac.g:321:25: ( EXPONENT )?
+					// Leac.g:322:25: ( EXPONENT )?
 					int alt12=2;
 					int LA12_0 = input.LA(1);
 					if ( (LA12_0=='E'||LA12_0=='e') ) {
@@ -1690,7 +1712,7 @@ public class LeacLexer extends Lexer {
 					}
 					switch (alt12) {
 						case 1 :
-							// Leac.g:321:25: EXPONENT
+							// Leac.g:322:25: EXPONENT
 							{
 							mEXPONENT();
 
@@ -1702,9 +1724,9 @@ public class LeacLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// Leac.g:322:7: ( '0' .. '9' )+ EXPONENT
+					// Leac.g:323:7: ( '0' .. '9' )+ EXPONENT
 					{
-					// Leac.g:322:7: ( '0' .. '9' )+
+					// Leac.g:323:7: ( '0' .. '9' )+
 					int cnt13=0;
 					loop13:
 					while (true) {
@@ -1757,12 +1779,12 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:326:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-			// Leac.g:326:7: '/*' ( options {greedy=false; } : . )* '*/'
+			// Leac.g:327:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+			// Leac.g:327:7: '/*' ( options {greedy=false; } : . )* '*/'
 			{
 			match("/*");
 
-			// Leac.g:326:12: ( options {greedy=false; } : . )*
+			// Leac.g:327:12: ( options {greedy=false; } : . )*
 			loop15:
 			while (true) {
 				int alt15=2;
@@ -1783,7 +1805,7 @@ public class LeacLexer extends Lexer {
 
 				switch (alt15) {
 				case 1 :
-					// Leac.g:326:44: .
+					// Leac.g:327:44: .
 					{
 					matchAny();
 					}
@@ -1813,8 +1835,8 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:330:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-			// Leac.g:330:7: ( ' ' | '\\t' | '\\r' | '\\n' )
+			// Leac.g:331:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+			// Leac.g:331:7: ( ' ' | '\\t' | '\\r' | '\\n' )
 			{
 			if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
 				input.consume();
@@ -1841,11 +1863,11 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = STRING;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:334:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
-			// Leac.g:334:7: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
+			// Leac.g:335:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
+			// Leac.g:335:7: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
 			{
 			match('\"');
-			// Leac.g:334:11: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
+			// Leac.g:335:11: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
 			loop16:
 			while (true) {
 				int alt16=3;
@@ -1859,14 +1881,14 @@ public class LeacLexer extends Lexer {
 
 				switch (alt16) {
 				case 1 :
-					// Leac.g:334:13: ESC_SEQ
+					// Leac.g:335:13: ESC_SEQ
 					{
 					mESC_SEQ();
 
 					}
 					break;
 				case 2 :
-					// Leac.g:334:23: ~ ( '\\\\' | '\"' )
+					// Leac.g:335:23: ~ ( '\\\\' | '\"' )
 					{
 					if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
 						input.consume();
@@ -1901,11 +1923,11 @@ public class LeacLexer extends Lexer {
 		try {
 			int _type = CHAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// Leac.g:338:5: ( '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\'' )
-			// Leac.g:338:7: '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\''
+			// Leac.g:339:5: ( '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\'' )
+			// Leac.g:339:7: '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\''
 			{
 			match('\'');
-			// Leac.g:338:12: ( ESC_SEQ |~ ( '\\'' | '\\\\' ) )
+			// Leac.g:339:12: ( ESC_SEQ |~ ( '\\'' | '\\\\' ) )
 			int alt17=2;
 			int LA17_0 = input.LA(1);
 			if ( (LA17_0=='\\') ) {
@@ -1923,14 +1945,14 @@ public class LeacLexer extends Lexer {
 
 			switch (alt17) {
 				case 1 :
-					// Leac.g:338:14: ESC_SEQ
+					// Leac.g:339:14: ESC_SEQ
 					{
 					mESC_SEQ();
 
 					}
 					break;
 				case 2 :
-					// Leac.g:338:24: ~ ( '\\'' | '\\\\' )
+					// Leac.g:339:24: ~ ( '\\'' | '\\\\' )
 					{
 					if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
 						input.consume();
@@ -1959,8 +1981,8 @@ public class LeacLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// Leac.g:1:8: ( T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | BOOL | IDF | INT | FLOAT | COMMENT | WS | STRING | CHAR )
-		int alt18=52;
+		// Leac.g:1:8: ( T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | BOOL | IDF | INT | FLOAT | COMMENT | WS | STRING | CHAR )
+		int alt18=53;
 		alt18 = dfa18.predict(input);
 		switch (alt18) {
 			case 1 :
@@ -2272,56 +2294,63 @@ public class LeacLexer extends Lexer {
 				}
 				break;
 			case 45 :
-				// Leac.g:1:285: BOOL
+				// Leac.g:1:285: T__111
+				{
+				mT__111();
+
+				}
+				break;
+			case 46 :
+				// Leac.g:1:292: BOOL
 				{
 				mBOOL();
 
 				}
 				break;
-			case 46 :
-				// Leac.g:1:290: IDF
+			case 47 :
+				// Leac.g:1:297: IDF
 				{
 				mIDF();
 
 				}
 				break;
-			case 47 :
-				// Leac.g:1:294: INT
+			case 48 :
+				// Leac.g:1:301: INT
 				{
 				mINT();
 
 				}
 				break;
-			case 48 :
-				// Leac.g:1:298: FLOAT
+			case 49 :
+				// Leac.g:1:305: FLOAT
 				{
 				mFLOAT();
 
 				}
 				break;
-			case 49 :
-				// Leac.g:1:304: COMMENT
+			case 50 :
+				// Leac.g:1:311: COMMENT
 				{
 				mCOMMENT();
 
 				}
 				break;
-			case 50 :
-				// Leac.g:1:312: WS
+			case 51 :
+				// Leac.g:1:319: WS
 				{
 				mWS();
 
 				}
 				break;
-			case 51 :
-				// Leac.g:1:315: STRING
+			case 52 :
+				// Leac.g:1:322: STRING
 				{
 				mSTRING();
 
 				}
 				break;
-			case 52 :
-				// Leac.g:1:322: CHAR
+			case 53 :
+				// Leac.g:1:329: CHAR
 				{
 				mCHAR();
 
@@ -2385,55 +2414,58 @@ public class LeacLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "319:1: FLOAT : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT );";
+			return "320:1: FLOAT : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT );";
 		}
 	}
 
 	static final String DFA18_eotS =
-		"\11\uffff\1\52\2\uffff\1\54\1\56\1\60\3\uffff\16\42\3\uffff\1\107\15\uffff"+
-		"\4\42\1\114\4\42\1\121\2\42\1\124\1\125\10\42\1\uffff\1\140\3\42\1\uffff"+
-		"\4\42\1\uffff\1\150\1\151\2\uffff\2\42\1\154\3\42\1\160\3\42\1\uffff\1"+
-		"\42\1\165\1\166\1\167\3\42\2\uffff\1\42\1\174\1\uffff\1\42\1\176\1\177"+
-		"\1\uffff\1\u0080\2\42\1\u0083\3\uffff\1\u0084\1\42\1\177\1\42\1\uffff"+
-		"\1\42\3\uffff\1\u0088\1\u0089\2\uffff\2\42\1\u008c\2\uffff\1\42\1\u008e"+
-		"\1\uffff\1\u008f\2\uffff";
+		"\11\uffff\1\53\2\uffff\1\55\1\57\1\61\3\uffff\17\43\3\uffff\1\111\15\uffff"+
+		"\4\43\1\116\4\43\1\123\2\43\1\126\1\127\11\43\1\uffff\1\143\3\43\1\uffff"+
+		"\4\43\1\uffff\1\153\1\154\2\uffff\2\43\1\157\4\43\1\164\3\43\1\uffff\1"+
+		"\43\1\171\1\172\1\173\3\43\2\uffff\1\43\1\u0080\1\uffff\2\43\1\u0083\1"+
+		"\u0084\1\uffff\1\u0085\2\43\1\u0088\3\uffff\1\u0089\1\43\1\u0084\1\43"+
+		"\1\uffff\2\43\3\uffff\1\u008e\1\u008f\2\uffff\2\43\1\u0092\1\u0093\2\uffff"+
+		"\1\43\1\u0095\2\uffff\1\u0096\2\uffff";
 	static final String DFA18_eofS =
-		"\u0090\uffff";
+		"\u0097\uffff";
 	static final String DFA18_minS =
 		"\1\11\7\uffff\1\56\1\52\2\uffff\3\75\3\uffff\1\156\1\157\1\150\1\157\1"+
-		"\154\1\141\1\146\1\157\1\146\1\162\1\145\1\150\1\141\1\150\3\uffff\1\56"+
-		"\15\uffff\1\144\1\162\1\157\1\141\1\60\1\163\1\157\1\156\1\154\1\60\2"+
-		"\164\2\60\1\157\1\141\1\145\1\165\1\162\3\151\1\uffff\1\60\1\141\1\154"+
-		"\1\162\1\uffff\1\145\1\141\1\143\1\163\1\uffff\2\60\2\uffff\1\147\1\144"+
-		"\1\60\1\165\1\156\1\145\1\60\1\144\1\154\1\164\1\uffff\1\171\3\60\2\164"+
-		"\1\145\2\uffff\1\162\1\60\1\uffff\1\162\2\60\1\uffff\1\60\2\145\1\60\3"+
-		"\uffff\1\60\1\151\1\60\1\141\1\uffff\1\156\3\uffff\2\60\2\uffff\1\157"+
-		"\1\155\1\60\2\uffff\1\156\1\60\1\uffff\1\60\2\uffff";
+		"\154\1\141\1\146\1\157\1\146\1\162\1\145\1\164\1\150\1\141\1\150\3\uffff"+
+		"\1\56\15\uffff\1\144\1\162\1\157\1\141\1\60\1\163\1\157\1\156\1\154\1"+
+		"\60\2\164\2\60\1\157\1\141\1\162\1\145\1\165\1\162\3\151\1\uffff\1\60"+
+		"\1\141\1\154\1\162\1\uffff\1\145\1\141\1\143\1\163\1\uffff\2\60\2\uffff"+
+		"\1\147\1\144\1\60\1\165\1\151\1\156\1\145\1\60\1\144\1\154\1\164\1\uffff"+
+		"\1\171\3\60\2\164\1\145\2\uffff\1\162\1\60\1\uffff\1\162\1\156\2\60\1"+
+		"\uffff\1\60\2\145\1\60\3\uffff\1\60\1\151\1\60\1\141\1\uffff\1\156\1\147"+
+		"\3\uffff\2\60\2\uffff\1\157\1\155\2\60\2\uffff\1\156\1\60\2\uffff\1\60"+
+		"\2\uffff";
 	static final String DFA18_maxS =
 		"\1\175\7\uffff\1\71\1\52\2\uffff\3\75\3\uffff\1\162\1\157\1\150\1\157"+
-		"\1\154\1\165\1\156\1\157\2\162\1\145\1\162\1\157\1\162\3\uffff\1\145\15"+
-		"\uffff\1\144\1\162\1\157\1\141\1\172\1\163\1\157\1\156\1\154\1\172\2\164"+
-		"\2\172\1\157\1\164\1\145\1\165\1\162\3\151\1\uffff\1\172\1\141\1\154\1"+
-		"\162\1\uffff\1\145\1\141\1\143\1\163\1\uffff\2\172\2\uffff\1\147\1\144"+
-		"\1\172\1\165\1\156\1\145\1\172\1\144\1\154\1\164\1\uffff\1\171\3\172\2"+
-		"\164\1\145\2\uffff\1\162\1\172\1\uffff\1\162\2\172\1\uffff\1\172\2\145"+
-		"\1\172\3\uffff\1\172\1\151\1\172\1\141\1\uffff\1\156\3\uffff\2\172\2\uffff"+
-		"\1\157\1\155\1\172\2\uffff\1\156\1\172\1\uffff\1\172\2\uffff";
+		"\1\154\1\165\1\156\1\157\2\162\1\145\1\164\1\162\1\157\1\162\3\uffff\1"+
+		"\145\15\uffff\1\144\1\162\1\157\1\141\1\172\1\163\1\157\1\156\1\154\1"+
+		"\172\2\164\2\172\1\157\1\164\1\162\1\145\1\165\1\162\3\151\1\uffff\1\172"+
+		"\1\141\1\154\1\162\1\uffff\1\145\1\141\1\143\1\163\1\uffff\2\172\2\uffff"+
+		"\1\147\1\144\1\172\1\165\1\151\1\156\1\145\1\172\1\144\1\154\1\164\1\uffff"+
+		"\1\171\3\172\2\164\1\145\2\uffff\1\162\1\172\1\uffff\1\162\1\156\2\172"+
+		"\1\uffff\1\172\2\145\1\172\3\uffff\1\172\1\151\1\172\1\141\1\uffff\1\156"+
+		"\1\147\3\uffff\2\172\2\uffff\1\157\1\155\2\172\2\uffff\1\156\1\172\2\uffff"+
+		"\1\172\2\uffff";
 	static final String DFA18_acceptS =
 		"\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\2\uffff\1\12\1\13\3\uffff\1\22\1"+
-		"\23\1\24\16\uffff\1\53\1\54\1\56\1\uffff\1\62\1\63\1\64\1\10\1\60\1\61"+
-		"\1\11\1\15\1\14\1\17\1\16\1\21\1\20\26\uffff\1\57\4\uffff\1\31\4\uffff"+
-		"\1\35\2\uffff\1\40\1\41\12\uffff\1\25\7\uffff\1\36\1\37\2\uffff\1\44\3"+
-		"\uffff\1\47\4\uffff\1\27\1\30\1\32\4\uffff\1\43\1\uffff\1\46\1\55\1\50"+
-		"\2\uffff\1\26\1\33\3\uffff\1\51\1\52\2\uffff\1\45\1\uffff\1\42\1\34";
+		"\23\1\24\17\uffff\1\54\1\55\1\57\1\uffff\1\63\1\64\1\65\1\10\1\61\1\62"+
+		"\1\11\1\15\1\14\1\17\1\16\1\21\1\20\27\uffff\1\60\4\uffff\1\31\4\uffff"+
+		"\1\35\2\uffff\1\40\1\41\13\uffff\1\25\7\uffff\1\36\1\37\2\uffff\1\44\4"+
+		"\uffff\1\50\4\uffff\1\27\1\30\1\32\4\uffff\1\43\2\uffff\1\47\1\56\1\51"+
+		"\2\uffff\1\26\1\33\4\uffff\1\52\1\53\2\uffff\1\45\1\46\1\uffff\1\42\1"+
+		"\34";
 	static final String DFA18_specialS =
-		"\u0090\uffff}>";
+		"\u0097\uffff}>";
 	static final String[] DFA18_transitionS = {
-			"\2\44\2\uffff\1\44\22\uffff\1\44\1\1\1\45\4\uffff\1\46\1\2\1\3\1\4\1"+
-			"\5\1\6\1\7\1\10\1\11\12\43\1\12\1\13\1\14\1\15\1\16\2\uffff\32\42\1\17"+
-			"\1\uffff\1\20\1\21\1\42\1\uffff\1\22\1\23\1\24\1\25\1\26\1\27\2\42\1"+
-			"\30\4\42\1\31\1\32\1\33\1\42\1\34\1\42\1\35\1\42\1\36\1\37\3\42\1\40"+
-			"\1\uffff\1\41",
+			"\2\45\2\uffff\1\45\22\uffff\1\45\1\1\1\46\4\uffff\1\47\1\2\1\3\1\4\1"+
+			"\5\1\6\1\7\1\10\1\11\12\44\1\12\1\13\1\14\1\15\1\16\2\uffff\32\43\1\17"+
+			"\1\uffff\1\20\1\21\1\43\1\uffff\1\22\1\23\1\24\1\25\1\26\1\27\2\43\1"+
+			"\30\4\43\1\31\1\32\1\33\1\43\1\34\1\35\1\36\1\43\1\37\1\40\3\43\1\41"+
+			"\1\uffff\1\42",
 			"",
 			"",
 			"",
@@ -2441,40 +2473,35 @@ public class LeacLexer extends Lexer {
 			"",
 			"",
 			"",
-			"\1\47\1\uffff\12\50",
-			"\1\51",
+			"\1\50\1\uffff\12\51",
+			"\1\52",
 			"",
 			"",
-			"\1\53",
-			"\1\55",
-			"\1\57",
+			"\1\54",
+			"\1\56",
+			"\1\60",
 			"",
 			"",
 			"",
-			"\1\61\3\uffff\1\62",
-			"\1\63",
+			"\1\62\3\uffff\1\63",
 			"\1\64",
 			"\1\65",
 			"\1\66",
-			"\1\71\12\uffff\1\67\10\uffff\1\70",
-			"\1\72\7\uffff\1\73",
-			"\1\74",
-			"\1\75\13\uffff\1\76",
-			"\1\77",
+			"\1\67",
+			"\1\72\12\uffff\1\70\10\uffff\1\71",
+			"\1\73\7\uffff\1\74",
+			"\1\75",
+			"\1\76\13\uffff\1\77",
 			"\1\100",
-			"\1\101\11\uffff\1\102",
-			"\1\103\15\uffff\1\104",
-			"\1\105\11\uffff\1\106",
+			"\1\101",
+			"\1\102",
+			"\1\103\11\uffff\1\104",
+			"\1\105\15\uffff\1\106",
+			"\1\107\11\uffff\1\110",
 			"",
 			"",
 			"",
-			"\1\50\1\uffff\12\43\13\uffff\1\50\37\uffff\1\50",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
+			"\1\51\1\uffff\12\44\13\uffff\1\51\37\uffff\1\51",
 			"",
 			"",
 			"",
@@ -2482,99 +2509,111 @@ public class LeacLexer extends Lexer {
 			"",
 			"",
 			"",
-			"\1\110",
-			"\1\111",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
 			"\1\112",
 			"\1\113",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\1\114",
 			"\1\115",
-			"\1\116",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
 			"\1\117",
 			"\1\120",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\1\121",
 			"\1\122",
-			"\1\123",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-			"\1\126",
-			"\1\127\4\uffff\1\130\15\uffff\1\131",
-			"\1\132",
-			"\1\133",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"\1\124",
+			"\1\125",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"\1\130",
+			"\1\131\4\uffff\1\132\15\uffff\1\133",
 			"\1\134",
 			"\1\135",
 			"\1\136",
 			"\1\137",
-			"",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\1\140",
 			"\1\141",
 			"\1\142",
-			"\1\143",
 			"",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
 			"\1\144",
 			"\1\145",
 			"\1\146",
+			"",
 			"\1\147",
-			"",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-			"",
-			"",
+			"\1\150",
+			"\1\151",
 			"\1\152",
-			"\1\153",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"",
+			"",
 			"\1\155",
 			"\1\156",
-			"\1\157",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"\1\160",
 			"\1\161",
 			"\1\162",
 			"\1\163",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"\1\165",
+			"\1\166",
+			"\1\167",
 			"",
-			"\1\164",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
 			"\1\170",
-			"\1\171",
-			"\1\172",
-			"",
-			"",
-			"\1\173",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-			"",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"\1\174",
 			"\1\175",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\1\176",
 			"",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"",
+			"\1\177",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"",
 			"\1\u0081",
 			"\1\u0082",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
 			"",
-			"",
-			"",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-			"\1\u0085",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
 			"\1\u0086",
-			"",
 			"\1\u0087",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
 			"",
 			"",
 			"",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-			"",
-			"",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
 			"\1\u008a",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
 			"\1\u008b",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
 			"",
-			"",
+			"\1\u008c",
 			"\1\u008d",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
 			"",
-			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"",
+			"",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"",
+			"",
+			"\1\u0090",
+			"\1\u0091",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"",
+			"",
+			"\1\u0094",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+			"",
+			"",
+			"\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
 			"",
 			""
 	};
@@ -2610,7 +2649,7 @@ public class LeacLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "1:1: Tokens : ( T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | BOOL | IDF | INT | FLOAT | COMMENT | WS | STRING | CHAR );";
+			return "1:1: Tokens : ( T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | BOOL | IDF | INT | FLOAT | COMMENT | WS | STRING | CHAR );";
 		}
 	}
 

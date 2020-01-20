@@ -93,6 +93,7 @@ atom_typename
     | 'int' -> INT_TYPENAME
     | 'float' -> FLOAT_TYPENAME
     | 'char' -> CHAR_TYPENAME
+    | 'string' -> STRING_TYPENAME
     ;
 
 array_typename

@@ -1,0 +1,5 @@
+program wrong_type_arithmetic
+
+{
+    write 1 + true
+}

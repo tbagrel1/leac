@@ -34,7 +34,7 @@ object Main {
         program.fillAndLinkSymbolTable(reporter)
         program.semanticCheck(reporter)
         reporter.conclude(false)
-        println("### Output ###\n")
+        println("\n### Output ###\n")
         val output = program.code
         println(output)
         Files.write(Paths.get("/tmp/program.c"), output.getBytes(StandardCharsets.UTF_8))

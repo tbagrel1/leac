@@ -1,0 +1,7 @@
+program reading_string
+
+var b: string;
+
+{
+    read b
+}

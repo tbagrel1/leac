@@ -1,0 +1,7 @@
+program array_as_value
+
+var arr: array[0 .. 5] of int;
+
+{
+    write 1 + arr
+}

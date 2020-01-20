@@ -1,0 +1,7 @@
+program wrong_index_nb
+
+var arr: array[0 .. 5] of int;
+
+{
+    write arr[3, 4]
+}

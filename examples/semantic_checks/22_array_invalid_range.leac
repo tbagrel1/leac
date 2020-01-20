@@ -1,0 +1,6 @@
+program array_invalid_range
+
+var arr: array[2 .. 1] of int;
+
+{
+}

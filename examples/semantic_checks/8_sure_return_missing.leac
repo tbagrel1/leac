@@ -1,0 +1,9 @@
+program sure_return_missing
+
+function pop(): int {
+    if 0 > 2 then
+        return 1
+}
+
+{
+}

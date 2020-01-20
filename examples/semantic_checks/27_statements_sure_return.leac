@@ -1,0 +1,9 @@
+program statements_sure_return
+
+function add(a: int, b: int): int {
+    return a + b;
+    write "not printed"
+}
+
+{
+}

@@ -1,0 +1,10 @@
+program return_void_call
+
+function pop(): void {}
+
+function pip(): void {
+    return pop()
+}
+
+{
+}

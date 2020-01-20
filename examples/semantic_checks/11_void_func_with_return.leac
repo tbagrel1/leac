@@ -1,0 +1,8 @@
+program void_func_with_return
+
+function pop(): void {
+    return 1
+}
+
+{
+}

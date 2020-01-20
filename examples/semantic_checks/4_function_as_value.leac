@@ -1,0 +1,7 @@
+program function_as_value
+
+function i(): void {}
+
+{
+    write 1 + i
+}

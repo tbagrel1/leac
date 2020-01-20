@@ -1,0 +1,8 @@
+program return_type_mismatch_announced
+
+function pop(): int {
+    return false
+}
+
+{
+}

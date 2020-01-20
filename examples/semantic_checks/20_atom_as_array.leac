@@ -1,0 +1,7 @@
+program atom_as_array
+
+var i: int;
+
+{
+    write i[2]
+}

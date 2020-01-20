@@ -1,0 +1,8 @@
+program array_arg_not_ref
+
+var arr: array[0 .. 5] of int;
+
+function paf(arr: array[0 .. 5] of int): void {}
+
+{
+}

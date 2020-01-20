@@ -107,6 +107,9 @@ sealed trait BinaryEqOperation extends Operation {
 
     val aTypename = a.atomTypename
     val bTypename = b.atomTypename
+    if (aTypename == StringTypename || bTypename == StringTypename) {
+      reporter.report(Severity.Error, this, "cannot compare strings")
+    }
     if ((aTypename cantAccept bTypename) && (bTypename cantAccept aTypename)) {
       reporter.report(Severity.Error, this, s"type mismatch: cannot compare types ${ aTypename } and ${ bTypename }")
     }
@@ -318,7 +321,7 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
         reporter.report(
           Severity.Error, this, s"type mismatch in index for the dimension ${
             i + 1
-          } of array '${ arrayName }': expecting int, got ${ coord.atomTypename }"
+          } of array '${ arrayName }': expecting int, got ${ coord.atomTypename.code }"
           )
       }
     }

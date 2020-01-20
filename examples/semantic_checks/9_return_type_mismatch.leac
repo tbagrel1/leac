@@ -1,0 +1,10 @@
+program return_type_mismatch
+
+function pop(): int {
+    if 0 > 2 then
+        return 2;
+    return false
+}
+
+{
+}

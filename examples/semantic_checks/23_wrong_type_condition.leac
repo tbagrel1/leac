@@ -1,0 +1,6 @@
+program wrong_type_condition
+
+{
+    if 1 then
+        write "coucou"
+}

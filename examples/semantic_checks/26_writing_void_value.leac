@@ -1,0 +1,7 @@
+program writing_void_value
+
+function pop(): void {}
+
+{
+    write pop()
+}

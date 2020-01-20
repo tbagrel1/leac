@@ -1,0 +1,5 @@
+program while_true_loops
+
+{
+    while true do {}
+}

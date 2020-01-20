@@ -1,0 +1,9 @@
+program already_defined
+
+var already: int;
+
+function already(r: array[0 .. 5] of int): void
+var r: float;
+{}
+
+{}

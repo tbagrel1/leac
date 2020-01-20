@@ -1,0 +1,7 @@
+program error_void_var
+
+var should_throw: void;
+
+{
+    write 1 + should_throw
+}
