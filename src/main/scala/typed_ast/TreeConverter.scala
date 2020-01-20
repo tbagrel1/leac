@@ -72,7 +72,7 @@ object TreeConverter {
       case LOOP => Loop(sp(s), cv(n0(s)).asInstanceOf[Expr], cv(n1(s)).asInstanceOf[Statement])
       case MUL => Mul(sp(s), cv(n0(s)).asInstanceOf[Expr], cv(n1(s)).asInstanceOf[Expr])
       case NOT => Not(sp(s), cv(n0(s)).asInstanceOf[Expr])
-      case NO_RETURN_VALUE => Nothing
+      case NO_RETURN_VALUE => NoReturnValue
       case OR => Or(sp(s), cv(n0(s)).asInstanceOf[Expr], cv(n1(s)).asInstanceOf[Expr])
       case PARAM => {
         nodes.ParamDecl(

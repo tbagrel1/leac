@@ -1,7 +1,7 @@
 package typed_ast.nodes
 
 import typed_ast.nodes.enums.VoidTypename
-import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
+import typed_ast.{CodeUtils, ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
 
 case class Program(
   sourcePos: SourcePos,
@@ -21,7 +21,7 @@ case class Program(
   override def fancyContext: String = s"program '${ name }' definition"
 
 
-  override def generateCode(): String = ""
+  override def code: String = s"${ CodeUtils.preamble }\n${ varDecls.map(varDecl => s"static ${ varDecl.code }").mkString("\n") }\n\n${ funcDecls.map(_.code).mkString("\n") }\n\nint main(int argc, char **argv) {\n" + CodeUtils.indent(statement.code) + "\n}"
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)

@@ -1,7 +1,7 @@
 package typed_ast.nodes
 
-import typed_ast.nodes.enums.{AtomTypename, VoidTypename}
-import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
+import typed_ast.nodes.enums.{AtomTypename, BoolTypename, CharTypename, FloatTypename, IntTypename, StringTypename, VoidTypename}
+import typed_ast.{CodeUtils, ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
 
 sealed trait LeacType extends AbstractNode {
   def accept(other: LeacType): Boolean
@@ -18,7 +18,7 @@ case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends Abstra
   override def fancyContext: String = "basic type use"
 
 
-  override def generateCode(): String = ""
+  override def code: String = atomTypename.code
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
@@ -37,6 +37,61 @@ case class Atom(sourcePos: SourcePos, atomTypename: AtomTypename) extends Abstra
 case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: List[RangeDef]) extends AbstractNode
 
   with LeacType {
+  def codeToDisplay(name: String): String = {
+    if (rangeDefs.length > 1) {
+      return CodeUtils.COULD_NOT_HAPPEN
+    }
+    val rangeDef = rangeDefs.head
+
+    def displayCell: String = {
+      atomTypename match {
+        case IntTypename | FloatTypename | CharTypename | StringTypename => {
+          s"""printf("${
+            atomTypename
+              .formatter
+          }", ${ name }[__i - ${ rangeDef.inf }]);"""
+        }
+        case BoolTypename => s"""printf("%s", ${ name }[__i - ${ rangeDef.inf }] ? "true" : "false");"""
+        case _ => CodeUtils.COULD_NOT_HAPPEN
+      }
+    }
+    raw"""
+         |bool __first = true;
+         |printf("[");
+         |for (int __i = ${ rangeDef.inf }; i <= ${ rangeDef.sup }; ++i) {
+         |     if (__first) {
+         |         __first = false;
+         |     } else {
+         |         printf(", ");
+         |     }
+         |     ${ displayCell }
+         |printf("]");
+         |""".stripMargin
+  }
+
+  def jumps: List[Int] = {
+    var factor = 1
+    rangeDefs.map(rangeDef => {
+      val result = factor
+      factor *= (rangeDef.sup - rangeDef.inf)
+      result
+    })
+  }
+
+  def infs: List[Int] = {
+    rangeDefs.map(_.inf)
+  }
+
+  def totalSize: Int = {
+    rangeDefs.map(rangeDef => rangeDef.sup - rangeDef.inf).product
+  }
+
+  def getCell(coords: List[Expr]): String = s"[${
+    coords.zip(infs.zip(jumps)).map(ciz => s"((${ ciz._1.code } - (${ ciz._2._1 })) * (${ ciz._2._2 }))").mkString(" + ")
+  }]"
+
+  def setupDecl(name: String): String = s"${ atomTypename } ${ name }[${ totalSize }]"
+
   for (rangeDef <- rangeDefs) {
     rangeDef.setParent(this)
   }
@@ -44,7 +99,7 @@ case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: Li
   override def fancyContext: String = "array type use"
 
 
-  override def generateCode(): String = ""
+  override def code: String = CodeUtils.COULD_NOT_HAPPEN
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)

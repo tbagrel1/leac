@@ -55,4 +55,6 @@ trait Call extends AbstractNode {
       }
     }
   }
+
+  override def code: String = s"${ name }(${ args.map(_.code).mkString(", ") })"
 }

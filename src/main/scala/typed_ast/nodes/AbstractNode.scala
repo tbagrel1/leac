@@ -44,7 +44,7 @@ abstract class AbstractNode {
 
   protected def _semanticCheck(reporter: SemanticCheckReporter): Unit
 
-  def generateCode(): String
+  def code: String
 
   var parent: AbstractNode = this
 

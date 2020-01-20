@@ -1,11 +1,13 @@
 package typed_ast.nodes
 
-import typed_ast.nodes.enums.{AccessMode, AtomTypename, ByCopy, VoidTypename}
-import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
+import typed_ast._
+import typed_ast.nodes.enums._
 
 sealed trait Decl extends AbstractNode {
   def name: String
 }
+
+// TODO: illegal names starting with double underscore
 
 case class FuncDecl(
   sourcePos: SourcePos,
@@ -26,7 +28,11 @@ case class FuncDecl(
 
   override def fancyContext: String = s"'${ name }' function declaration"
 
-  override def generateCode(): String = ""
+  override def code: String = (
+    s"${ returnTypename.code } ${ name }(${ params.map(_.code).mkString(", ") }) {\n" +
+      CodeUtils.indent(s"${ varDecls.map(_.code).mkString("\n") }\n\n${ statementBlock.code }") +
+      "\n}\n\n"
+    )
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
@@ -114,7 +120,12 @@ case class VarDecl(sourcePos: SourcePos, leacType: LeacType, name: String) exten
 
   override def fancyContext: String = s"'${ name }' variable declaration"
 
-  override def generateCode(): String = ""
+  override def code: String = {
+    leacType match {
+      case Atom(_, typename) => s"${ typename } ${ name };"
+      case array: Array => array.setupDecl(name)
+    }
+  }
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
@@ -150,7 +161,15 @@ case class ParamDecl(
   override def fancyContext: String = s"function parameter '${ name }' declaration"
 
 
-  override def generateCode(): String = ""
+  override def code: String = leacType match {
+    case Atom(_, typename) => {
+      accessMode match {
+        case ByCopy => s"${ typename.code } ${ name }"
+        case ByRef => s"${ typename.code } *${ name }"
+      }
+    }
+    case Array(_, typename, _) => s"${ typename.code } *${ name }"
+  }
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)

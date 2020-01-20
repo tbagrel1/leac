@@ -1,7 +1,8 @@
 package typed_ast.nodes
 
 import typed_ast.nodes.enums._
-import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
+import typed_ast.nodes.NoReturnValue
+import typed_ast.{CodeUtils, ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
 
 sealed trait ReturnPrediction {
 
@@ -13,7 +14,8 @@ sealed trait ReturnPrediction {
       case (None, _) => other
       case (_, None) => this
       case (Unsure(thisTypename, thisReturning), Unsure(otherTypename, otherReturning)) => {
-        val (resTypename, resReturning) = if ((thisTypename cantAccept otherTypename) && (otherTypename cantAccept thisTypename)) {
+        val (resTypename, resReturning) = if ((thisTypename cantAccept otherTypename) &&
+          (otherTypename cantAccept thisTypename)) {
           reporter.report(
             Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${
               otherReturning
@@ -31,7 +33,8 @@ sealed trait ReturnPrediction {
         Unsure(resTypename, resReturning)
       }
       case (Unsure(thisTypename, thisReturning), Sure(otherTypename, otherReturning)) => {
-        val (resTypename, resReturning) = if ((thisTypename cantAccept otherTypename) && (otherTypename cantAccept thisTypename)) {
+        val (resTypename, resReturning) = if ((thisTypename cantAccept otherTypename) &&
+          (otherTypename cantAccept thisTypename)) {
           reporter.report(
             Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${
               otherReturning
@@ -49,7 +52,8 @@ sealed trait ReturnPrediction {
         Sure(resTypename, resReturning)
       }
       case (Sure(thisTypename, thisReturning), Unsure(otherTypename, otherReturning)) => {
-        val (resTypename, resReturning) = if ((thisTypename cantAccept otherTypename) && (otherTypename cantAccept thisTypename)) {
+        val (resTypename, resReturning) = if ((thisTypename cantAccept otherTypename) &&
+          (otherTypename cantAccept thisTypename)) {
           reporter.report(
             Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${
               otherReturning
@@ -67,7 +71,8 @@ sealed trait ReturnPrediction {
         Sure(resTypename, resReturning)
       }
       case (Sure(thisTypename, thisReturning), Sure(otherTypename, otherReturning)) => {
-        val (resTypename, resReturning) = if ((thisTypename cantAccept otherTypename) && (otherTypename cantAccept thisTypename)) {
+        val (resTypename, resReturning) = if ((thisTypename cantAccept otherTypename) &&
+          (otherTypename cantAccept thisTypename)) {
           reporter.report(
             Severity.Error, contextNode, s"type mismatch between return statement at ${ thisReturning.sourcePos } and ${
               otherReturning
@@ -142,7 +147,10 @@ case class Block(sourcePos: SourcePos, statements: List[Statement]) extends Abst
   override def fancyContext: String = "statement block"
 
 
-  override def generateCode(): String = ""
+  override def code: String = this.parent match {
+    case _: Block => "{\n" + CodeUtils.indent(statements.map(_.code).mkString("\n")) + "\n}"
+    case _ => statements.map(_.code).mkString("\n")
+  }
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
@@ -189,7 +197,7 @@ case class Conditional(
   override def fancyContext: String = "if-then-else construct"
 
 
-  override def generateCode(): String = ""
+
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
@@ -219,6 +227,8 @@ case class Conditional(
       case _ => resultReturnPrediction.unsure
     }
   }
+
+  override def code: String = s"if (${ condition.code }) {\n" + CodeUtils.indent(statementIfTrue.code) + "\n} else {\n" + CodeUtils.indent(statementIfFalse.code) + "\n}"
 }
 
 case class Loop(sourcePos: SourcePos, condition: Expr, statementWhileTrue: Statement) extends AbstractNode
@@ -230,7 +240,7 @@ case class Loop(sourcePos: SourcePos, condition: Expr, statementWhileTrue: State
   override def fancyContext: String = "while construct"
 
 
-  override def generateCode(): String = ""
+
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
@@ -260,6 +270,8 @@ case class Loop(sourcePos: SourcePos, condition: Expr, statementWhileTrue: State
   override def _returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     statementWhileTrue.returnPrediction(reporter, contextNode).unsure
   }
+
+  override def code: String = s"while (${ condition.code }) {\n" + CodeUtils.indent(statementWhileTrue.code) + "\n}"
 }
 
 case class Returning(sourcePos: SourcePos, returnValue: Expr) extends AbstractNode
@@ -270,7 +282,7 @@ case class Returning(sourcePos: SourcePos, returnValue: Expr) extends AbstractNo
   override def fancyContext: String = "return statement"
 
 
-  override def generateCode(): String = ""
+
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
@@ -281,7 +293,7 @@ case class Returning(sourcePos: SourcePos, returnValue: Expr) extends AbstractNo
 
 
     returnValue match {
-      case Nothing => ()
+      case NoReturnValue => ()
       case _ => {
         if (returnValue.atomTypename == VoidTypename) {
           reporter.report(Severity.Warning, this, "returning an expression of type void won't return any real value")
@@ -294,6 +306,11 @@ case class Returning(sourcePos: SourcePos, returnValue: Expr) extends AbstractNo
     import ReturnPrediction._
     Sure(returnValue.atomTypename, this)
   }
+
+  override def code: String = returnValue match {
+    case NoReturnValue => "return;"
+    case _ => s"return ${ returnValue.code };"
+  }
 }
 
 case class Affect(sourcePos: SourcePos, target: IdfAccess, value: Expr) extends AbstractNode
@@ -305,7 +322,7 @@ case class Affect(sourcePos: SourcePos, target: IdfAccess, value: Expr) extends 
   override def fancyContext: String = "affectation"
 
 
-  override def generateCode(): String = ""
+
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
@@ -314,7 +331,6 @@ case class Affect(sourcePos: SourcePos, target: IdfAccess, value: Expr) extends 
   }
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
-
 
 
     if (target.atomTypename cantAccept value.atomTypename) {
@@ -332,6 +348,8 @@ case class Affect(sourcePos: SourcePos, target: IdfAccess, value: Expr) extends 
     import ReturnPrediction._
     None
   }
+
+  override def code: String = s"${ target.code } = ${ value.code };"
 }
 
 case class ProcedureCall(sourcePos: SourcePos, name: String, args: List[Expr]) extends AbstractNode with Call
@@ -344,7 +362,7 @@ case class ProcedureCall(sourcePos: SourcePos, name: String, args: List[Expr]) e
   override def fancyContext: String = s"procedure '${ name }' call"
 
 
-  override def generateCode(): String = ""
+
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
@@ -377,8 +395,6 @@ case class Read(sourcePos: SourcePos, target: IdfAccess) extends AbstractNode wi
   override def fancyContext: String = "read user input"
 
 
-  override def generateCode(): String = ""
-
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
     target.dispatch(f, newPayload)
@@ -395,6 +411,12 @@ case class Read(sourcePos: SourcePos, target: IdfAccess) extends AbstractNode wi
     import ReturnPrediction._
     None
   }
+
+  override def code: String = target.atomTypename match {
+    case IntTypename => s"""scanf(" ${ target.atomTypename.formatter }", &(${ target.code }))"""
+    case BoolTypename => s"${ target.code } = read_bool();"
+    case _ => CodeUtils.COULD_NOT_HAPPEN
+  }
 }
 
 case class Write(sourcePos: SourcePos, value: Expr) extends AbstractNode with Statement {
@@ -403,18 +425,38 @@ case class Write(sourcePos: SourcePos, value: Expr) extends AbstractNode with St
   override def fancyContext: String = "write to the console"
 
 
-  override def generateCode(): String = ""
+
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
     value.dispatch(f, newPayload)
   }
 
-  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {}
+  override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
+    value.atomTypename match {
+      case VoidTypename => reporter.report(Severity.Error, this, "cannot write a void value to the console")
+      case _ => ()
+    }
+    value.getArrayOpt match {
+      case Some(Array(_, _, rangeDefs)) => if (rangeDefs.length > 1) {
+        reporter.report(Severity.Error, this, s"can only display 1-dimension array, but this array has dimension ${ rangeDefs.length }")
+      }
+      case _ => ()
+    }
+  }
 
   override def _returnPrediction(reporter: SemanticCheckReporter, contextNode: AbstractNode): ReturnPrediction = {
     import ReturnPrediction._
     None
+  }
+
+  override def code: String = value match {
+    case VarOrParamAccess(_, name) if value.getArrayOpt.isDefined => value.getArrayOpt.get.codeToDisplay(name)
+    case _ => value.atomTypename match {
+      case IntTypename | FloatTypename | CharTypename | StringTypename => s"""printf("${ value.atomTypename.formatter  }", ${ value.code });"""
+      case BoolTypename => s"""printf("%s", ${ value.code } ? "true" : "false");"""
+      case _ => CodeUtils.COULD_NOT_HAPPEN
+    }
   }
 }
 

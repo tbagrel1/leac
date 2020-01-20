@@ -1,3 +1,6 @@
+import java.nio.charset.StandardCharsets
+import java.nio.file.{Files, Paths}
+
 import grammar.{LeacLexer, LeacParser}
 import org.antlr.runtime.tree.CommonTree
 import org.antlr.runtime.{ANTLRFileStream, CommonTokenStream}
@@ -25,6 +28,10 @@ object Main {
         program.fillAndLinkSymbolTable(reporter)
         program.semanticCheck(reporter)
         reporter.conclude(false)
+        println("### Output ###\n")
+        val output = program.code
+        println(output)
+        Files.write(Paths.get("program.c"), output.getBytes(StandardCharsets.UTF_8))
       }
       case Err(exception) => println(s"Error during ANTLR to Scala AST conversion: <${ exception }>")
     }

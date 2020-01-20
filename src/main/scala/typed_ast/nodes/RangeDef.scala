@@ -1,12 +1,12 @@
 package typed_ast.nodes
 
-import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
+import typed_ast.{CodeUtils, ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
 
 case class RangeDef(sourcePos: SourcePos, inf: Int, sup: Int) extends AbstractNode {
   override def fancyContext: String = "array dimension range definition"
 
 
-  override def generateCode(): String = ""
+  override def code: String = CodeUtils.COULD_NOT_HAPPEN
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)

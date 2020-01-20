@@ -1,7 +1,7 @@
 package typed_ast.nodes
 
+import typed_ast._
 import typed_ast.nodes.enums._
-import typed_ast.{ScopedSymbolTable, SemanticCheckReporter, Severity, SourcePos}
 
 sealed trait Expr extends AbstractNode {
   def atomTypename: AtomTypename
@@ -23,6 +23,8 @@ sealed trait IdfAccess extends AbstractNode with Expr {}
 
 sealed trait Operation extends AbstractNode with Expr {
   def priority: Int
+
+  def symbol: String
 }
 
 sealed trait BinaryIntFloatOperation extends Operation {
@@ -42,7 +44,6 @@ sealed trait BinaryIntFloatOperation extends Operation {
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
 
 
-
     val aTypename = a.atomTypename
     val bTypename = b.atomTypename
     if (FloatTypename cantAccept aTypename) {
@@ -51,6 +52,23 @@ sealed trait BinaryIntFloatOperation extends Operation {
     if (FloatTypename cantAccept bTypename) {
       reporter.report(Severity.Error, this, s"type mismatch: expecting float or int, got ${ bTypename }")
     }
+  }
+
+  override def code: String = {
+    val aCode = if (b.atomTypename == FloatTypename && a.atomTypename == IntTypename) {
+      s"(${ FloatTypename.code })(${
+        a
+          .code
+      })"
+    } else { a.code }
+    val bCode = if (a.atomTypename == FloatTypename && b.atomTypename == IntTypename) {
+      s"(${ FloatTypename.code })(${
+        b
+          .code
+      })"
+    } else { b.code }
+
+    s"(${ aCode } ${ symbol } ${ bCode })"
   }
 }
 
@@ -64,7 +82,6 @@ sealed trait BinaryOrdOperation extends Operation {
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
 
 
-
     val aTypename = a.atomTypename
     val bTypename = b.atomTypename
     if (FloatTypename cantAccept aTypename) {
@@ -74,6 +91,8 @@ sealed trait BinaryOrdOperation extends Operation {
       reporter.report(Severity.Error, this, s"type mismatch: expecting float or int, got ${ bTypename }")
     }
   }
+
+  override def code: String = s"(${ a.code } ${ symbol } ${ b.code })"
 }
 
 sealed trait BinaryEqOperation extends Operation {
@@ -86,13 +105,14 @@ sealed trait BinaryEqOperation extends Operation {
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
 
 
-
     val aTypename = a.atomTypename
     val bTypename = b.atomTypename
     if ((aTypename cantAccept bTypename) && (bTypename cantAccept aTypename)) {
       reporter.report(Severity.Error, this, s"type mismatch: cannot compare types ${ aTypename } and ${ bTypename }")
     }
   }
+
+  override def code: String = s"(${ a.code } ${ symbol } ${ b.code })"
 }
 
 sealed trait BinaryLogicalOperation extends Operation {
@@ -105,7 +125,6 @@ sealed trait BinaryLogicalOperation extends Operation {
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
 
 
-
     val aTypename = a.atomTypename
     val bTypename = b.atomTypename
     if (BoolTypename cantAccept aTypename) {
@@ -115,16 +134,13 @@ sealed trait BinaryLogicalOperation extends Operation {
       reporter.report(Severity.Error, this, s"type mismatch: expecting bool, got ${ bTypename }")
     }
   }
+
+  override def code: String = s"(${ a.code } ${ symbol } ${ b.code })"
 }
 
 
-case class Constant(sourcePos: SourcePos, typename: AtomTypename, value: String) extends AbstractNode
-
-  with Expr {
-  override def fancyContext: String = s"${ typename.c_name } constant usage"
-
-
-  override def generateCode(): String = ""
+case class Constant(sourcePos: SourcePos, typename: AtomTypename, value: String) extends AbstractNode with Expr {
+  override def fancyContext: String = s"${ typename.code } constant usage"
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
@@ -135,19 +151,17 @@ case class Constant(sourcePos: SourcePos, typename: AtomTypename, value: String)
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {
     // TODO: check for int and float sizes
   }
+
+  override def code: String = s"(${ value })"
 }
 
-case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extends AbstractNode with Call
-
-  with Expr {
+case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extends AbstractNode with Call with Expr {
   for (arg <- args) {
     arg.setParent(this)
   }
 
   override def fancyContext: String = s"function '${ name }' call"
 
-
-  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
@@ -167,8 +181,6 @@ case class FuncCall(sourcePos: SourcePos, name: String, args: List[Expr]) extend
 case class VarOrParamAccess(sourcePos: SourcePos, name: String) extends AbstractNode with IdfAccess {
   override def fancyContext: String = s"variable '${ name }' access"
 
-
-  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
@@ -223,41 +235,57 @@ case class VarOrParamAccess(sourcePos: SourcePos, name: String) extends Abstract
     case Some(VarDecl(_, leacType, _)) => {
       leacType match {
         case Atom(_, _) => ()
-        case Array(sourcePos, atomTypename, rangeDefs) => if (!this.parent.isInstanceOf[Call]) {
-          reporter.report(
-            Severity.Error, this.parent,
-            "whole arrays can only be used in function arguments. They can't be used as values and no operation can use " +
-              "them directly"
-            )
+        case Array(sourcePos, atomTypename, rangeDefs) => {
+          if (!this.parent.isInstanceOf[Call] && !this.parent.isInstanceOf[Write]) {
+            reporter.report(
+              Severity.Error, this.parent,
+              "whole arrays can only be used in function arguments or be displayed. They can't be used as values and no operation can" +
+                " use them directly"
+              )
+          }
         }
       }
     }
     case Some(ParamDecl(_, leacType, _, _)) => {
       leacType match {
         case Atom(_, _) => ()
-        case Array(sourcePos, atomTypename, rangeDefs) => if (!this.parent.isInstanceOf[Call]) {
-          reporter.report(
-            Severity.Error, this.parent,
-            "whole arrays can only be used in function arguments. They can't be used as values and no operation can use " +
-              "them directly"
-            )
+        case Array(sourcePos, atomTypename, rangeDefs) => {
+          if (!this.parent.isInstanceOf[Call] && !this.parent.isInstanceOf[Write]) {
+            reporter.report(
+              Severity.Error, this.parent,
+              "whole arrays can only be used in function arguments or be displayed. They can't be used as values and no operation can" +
+                " use them directly"
+              )
+          }
         }
       }
     }
   }
+
+  override def code: String = this.getSymbolTable.get(name) match {
+    case Some(VarDecl(_, leacType, _)) => name
+    case Some(ParamDecl(_, leacType, accessMode, _)) => {
+      leacType match {
+        case Atom(_, _) => {
+          accessMode match {
+            case ByCopy => name
+            case ByRef => s"(*${ name })"
+          }
+        }
+        case Array(_, _, _) => name
+      }
+    }
+    case _ => CodeUtils.COULD_NOT_HAPPEN
+  }
 }
 
-case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr]) extends AbstractNode
-
-  with IdfAccess {
+case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr]) extends AbstractNode with IdfAccess {
   for (coord <- coords) {
     coord.setParent(this)
   }
 
   override def fancyContext: String = s"access to a cell of array '${ arrayName }'"
 
-
-  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
@@ -352,6 +380,24 @@ case class CellAccess(sourcePos: SourcePos, arrayName: String, coords: List[Expr
       }
     }
   }
+
+  override def code: String = {
+    this.getSymbolTable.get(arrayName) match {
+      case Some(VarDecl(_, leacType, _)) => {
+        leacType match {
+          case array: Array => s"${ arrayName }${ array.getCell(coords) }"
+          case _ => CodeUtils.COULD_NOT_HAPPEN
+        }
+      }
+      case Some(ParamDecl(_, leacType, _, _)) => {
+        leacType match {
+          case array: Array => s"${ arrayName }${ array.getCell(coords) }"
+          case _ => CodeUtils.COULD_NOT_HAPPEN
+        }
+      }
+      case _ => CodeUtils.COULD_NOT_HAPPEN
+    }
+  }
 }
 
 case class Pow(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryIntFloatOperation {
@@ -363,12 +409,20 @@ case class Pow(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
   override def fancyContext: String = "exponentiation"
 
 
-  override def generateCode(): String = ""
-
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
+  }
+
+  override def symbol: String = "^"
+
+  override def code: String = {
+    val base = s"pow(${ a.code }, ${ b.code })"
+    this.atomTypename match {
+      case IntTypename => s"(int)(${ base })"
+      case _ => base
+    }
   }
 }
 
@@ -379,8 +433,6 @@ case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode with O
 
   override def fancyContext: String = "unary minus"
 
-
-  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
@@ -403,6 +455,10 @@ case class UnaryMinus(sourcePos: SourcePos, a: Expr) extends AbstractNode with O
       reporter.report(Severity.Error, this, s"type mismatch: expecting float or int, got ${ aTypename }")
     }
   }
+
+  override def code: String = s"(${ symbol }${ a.code })"
+
+  override def symbol: String = "-"
 }
 
 case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode with Operation {
@@ -412,8 +468,6 @@ case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode with Operatio
 
   override def fancyContext: String = "logical NOT"
 
-
-  override def generateCode(): String = ""
 
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
@@ -430,6 +484,10 @@ case class Not(sourcePos: SourcePos, a: Expr) extends AbstractNode with Operatio
       reporter.report(Severity.Error, this, s"type mismatch: expecting bool, got ${ aTypename }")
     }
   }
+
+  override def code: String = s"(${ symbol }${ a.code })"
+
+  override def symbol: String = "!"
 }
 
 case class Mul(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryIntFloatOperation {
@@ -441,14 +499,13 @@ case class Mul(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
   override def fancyContext: String = "product"
 
 
-  override def generateCode(): String = ""
-
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
   }
 
+  override def symbol: String = "*"
 }
 
 case class Div(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryIntFloatOperation {
@@ -460,14 +517,13 @@ case class Div(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
   override def fancyContext: String = "division"
 
 
-  override def generateCode(): String = ""
-
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
   }
 
+  override def symbol: String = "/"
 }
 
 case class Add(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryIntFloatOperation {
@@ -479,14 +535,13 @@ case class Add(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
   override def fancyContext: String = "sum"
 
 
-  override def generateCode(): String = ""
-
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
   }
 
+  override def symbol: String = "+"
 }
 
 case class Sub(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryIntFloatOperation {
@@ -498,14 +553,13 @@ case class Sub(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
   override def fancyContext: String = "subtraction"
 
 
-  override def generateCode(): String = ""
-
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
   }
 
+  override def symbol: String = "-"
 }
 
 case class TestLowerThan(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryOrdOperation {
@@ -517,19 +571,16 @@ case class TestLowerThan(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstrac
   override def fancyContext: String = "'lower than' test"
 
 
-  override def generateCode(): String = ""
-
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
   }
 
+  override def symbol: String = "<"
 }
 
-case class TestLowerOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode
-
-  with BinaryOrdOperation {
+case class TestLowerOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryOrdOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -538,19 +589,16 @@ case class TestLowerOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Abst
   override def fancyContext: String = "'lower or equal' test"
 
 
-  override def generateCode(): String = ""
-
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
   }
 
+  override def symbol: String = "<="
 }
 
-case class TestGreaterThan(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode
-
-  with BinaryOrdOperation {
+case class TestGreaterThan(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryOrdOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -559,18 +607,16 @@ case class TestGreaterThan(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstr
   override def fancyContext: String = "'greater than' test"
 
 
-  override def generateCode(): String = ""
-
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
   }
+
+  override def symbol: String = ">"
 }
 
-case class TestGreaterOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode
-
-  with BinaryOrdOperation {
+case class TestGreaterOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryOrdOperation {
   a.setParent(this)
   b.setParent(this)
 
@@ -579,14 +625,13 @@ case class TestGreaterOrEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Ab
   override def fancyContext: String = "'greater or equal' test"
 
 
-  override def generateCode(): String = ""
-
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
   }
 
+  override def symbol: String = ">="
 }
 
 case class TestEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryEqOperation {
@@ -598,14 +643,13 @@ case class TestEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNod
   override def fancyContext: String = "equality test"
 
 
-  override def generateCode(): String = ""
-
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
   }
 
+  override def symbol: String = "=="
 }
 
 case class TestNotEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryEqOperation {
@@ -617,14 +661,13 @@ case class TestNotEqual(sourcePos: SourcePos, a: Expr, b: Expr) extends Abstract
   override def fancyContext: String = "'not equal' test"
 
 
-  override def generateCode(): String = ""
-
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
   }
 
+  override def symbol: String = "!="
 }
 
 case class And(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryLogicalOperation {
@@ -636,14 +679,13 @@ case class And(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with
   override def fancyContext: String = "logical AND"
 
 
-  override def generateCode(): String = ""
-
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
   }
 
+  override def symbol: String = "&&"
 }
 
 case class Or(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with BinaryLogicalOperation {
@@ -655,16 +697,16 @@ case class Or(sourcePos: SourcePos, a: Expr, b: Expr) extends AbstractNode with 
   override def fancyContext: String = "logical OR"
 
 
-  override def generateCode(): String = ""
-
   override def dispatch[T](f: (AbstractNode, T) => T, payload: T): Unit = {
     val newPayload = f(this, payload)
     a.dispatch(f, newPayload)
     b.dispatch(f, newPayload)
   }
+
+  override def symbol: String = "||"
 }
 
-case object Nothing extends AbstractNode with Expr {
+case object NoReturnValue extends AbstractNode with Expr {
   override def sourcePos: SourcePos = parent.sourcePos
 
   override def fancyContext: String = "expr representing an absence of return value"
@@ -675,7 +717,9 @@ case object Nothing extends AbstractNode with Expr {
 
   override protected def _semanticCheck(reporter: SemanticCheckReporter): Unit = {}
 
-  override def generateCode(): String = ""
 
   override def atomTypename: AtomTypename = VoidTypename
+
+  override def code: String = CodeUtils.COULD_NOT_HAPPEN
 }
+
