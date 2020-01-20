@@ -90,7 +90,7 @@ case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: Li
     coords.zip(infs.zip(jumps)).map(ciz => s"((${ ciz._1.code } - (${ ciz._2._1 })) * (${ ciz._2._2 }))").mkString(" + ")
   }]"
 
-  def setupDecl(name: String): String = s"${ atomTypename } ${ name }[${ totalSize }]"
+  def setupDecl(name: String): String = s"${ atomTypename } ${ name }[${ totalSize }];"
 
   for (rangeDef <- rangeDefs) {
     rangeDef.setParent(this)

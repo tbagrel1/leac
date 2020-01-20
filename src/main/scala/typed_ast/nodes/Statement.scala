@@ -361,6 +361,7 @@ case class ProcedureCall(sourcePos: SourcePos, name: String, args: List[Expr]) e
 
   override def fancyContext: String = s"procedure '${ name }' call"
 
+  override def code: String = s"${ super.code };"
 
 
 
@@ -413,7 +414,7 @@ case class Read(sourcePos: SourcePos, target: IdfAccess) extends AbstractNode wi
   }
 
   override def code: String = target.atomTypename match {
-    case IntTypename => s"""scanf(" ${ target.atomTypename.formatter }", &(${ target.code }))"""
+    case IntTypename => s"""scanf(" ${ target.atomTypename.formatter }", &(${ target.code }));"""
     case BoolTypename => s"${ target.code } = read_bool();"
     case _ => CodeUtils.COULD_NOT_HAPPEN
   }

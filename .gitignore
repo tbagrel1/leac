@@ -2,4 +2,5 @@ target
 .idea
 **/.directory
 src/main/java/output
-
+program
+program.c
