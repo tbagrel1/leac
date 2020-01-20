@@ -46,25 +46,26 @@ case class Array(sourcePos: SourcePos, atomTypename: AtomTypename, rangeDefs: Li
     def displayCell: String = {
       atomTypename match {
         case IntTypename | FloatTypename | CharTypename | StringTypename => {
-          s"""printf("${
+          s"""printf("%d: ${
             atomTypename
               .formatter
-          }", ${ name }[__i - ${ rangeDef.inf }]);"""
+          }", __i, ${ name }[__i - (${ rangeDef.inf })]);"""
         }
-        case BoolTypename => s"""printf("%s", ${ name }[__i - ${ rangeDef.inf }] ? "true" : "false");"""
+        case BoolTypename => s"""printf("%d: %s", __i, ${ name }[__i - (${ rangeDef.inf })] ? "true" : "false");"""
         case _ => CodeUtils.COULD_NOT_HAPPEN
       }
     }
     raw"""
          |bool __first = true;
          |printf("[");
-         |for (int __i = ${ rangeDef.inf }; i <= ${ rangeDef.sup }; ++i) {
+         |for (int __i = ${ rangeDef.inf }; __i <= ${ rangeDef.sup }; ++__i) {
          |     if (__first) {
          |         __first = false;
          |     } else {
          |         printf(", ");
          |     }
          |     ${ displayCell }
+         |}
          |printf("]");
          |""".stripMargin
   }

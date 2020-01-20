@@ -45,7 +45,7 @@ object Main {
 
           println("\n\n### Generated C code compilation ###\n")
 
-          "gcc /tmp/program.c -o /tmp/program" !
+          "gcc /tmp/program.c -o /tmp/program -lm" !
 
           println("\n\nIf compilation succeeded, launch /tmp/program")
         }

@@ -1,0 +1,19 @@
+program up_to
+
+var tab: array[0 .. 5] of int;
+
+function fill_up(ref arr: array[0 .. 5] of int): void
+var i: int;
+{
+    i = 0;
+    while i < 6 do {
+        i = i + 1;
+        arr[i - 1] = i
+    }
+}
+
+{
+    fill_up(tab);
+    write tab;
+    write "\n"
+}
