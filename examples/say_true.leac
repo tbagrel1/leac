@@ -1,0 +1,12 @@
+program say_true
+
+var said: bool;
+
+{
+    said = false;
+    while not said do {
+        write "say true: ";
+        read said
+    };
+    write "you eventually said true!\n"
+}

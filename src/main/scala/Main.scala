@@ -6,12 +6,18 @@ import org.antlr.runtime.tree.CommonTree
 import org.antlr.runtime.{ANTLRFileStream, CommonTokenStream}
 import typed_ast.{Err, Ok, SemanticCheckReporter, TreeConverter}
 
+import scala.io.StdIn
+
 object Main {
   def main(args: Array[String]): Unit = {
+    val leacFilePath = if (args.length > 0) {
+      args(0)
+    } else {
+      StdIn.readLine("Input Leac file: ")
+    }
     val lexer = new LeacLexer(
       new ANTLRFileStream(
-        "/home/thomas/Documents/Drive/Thomas/cours/cours_2019_2020/trad/leac/src/main/java/grammar/output" +
-          "/__Test___input.txt",
+        leacFilePath,
         "UTF8"
         )
       )
@@ -31,7 +37,18 @@ object Main {
         println("### Output ###\n")
         val output = program.code
         println(output)
-        Files.write(Paths.get("program.c"), output.getBytes(StandardCharsets.UTF_8))
+        Files.write(Paths.get("/tmp/program.c"), output.getBytes(StandardCharsets.UTF_8))
+
+        {
+          import sys.process._
+          import scala.language.postfixOps
+
+          println("\n\n### Generated C code compilation ###\n")
+
+          "gcc /tmp/program.c -o /tmp/program" !
+
+          println("\n\nIf compilation succeeded, launch /tmp/program")
+        }
       }
       case Err(exception) => println(s"Error during ANTLR to Scala AST conversion: <${ exception }>")
     }
